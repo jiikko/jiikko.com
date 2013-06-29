@@ -14,7 +14,7 @@ set :git_shallow_clone, 1 # １つ前のコミットまでとる
 set :deploy_via, :export
 
 # -*- coding: utf-8 -*-
-set :deploy_to, "/home/kjdev/public_html/www/jiikko.me"
+set :deploy_to, "/home/kjdev/public_html/jiikko.me"
 set(:app_uri, 'http://jiikko.me/')
 set(:env, 'gehirn rs2')
 
