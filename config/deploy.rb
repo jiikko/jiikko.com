@@ -1,25 +1,24 @@
 set :application, "set your application name here"
 set :repository,  "set your repository location here"
 
-# set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+set :user, 'kjdev'
+set :use_sudo, false
+set :application, 'jiikko.me'
 
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
+set :scm, :git
+set :repository, 'git@bitbucket.org:jiikko/jiikko.me.git'
+set :branch, 'master'
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+set :git_shallow_clone, 1 # １つ前のコミットまでとる
+set :deploy_via, :export
 
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+# -*- coding: utf-8 -*-
+set :deploy_to, "/home/kjdev/public_html/www/jiikko.me"
+set(:app_uri, 'http://jiikko.me/')
+set(:env, 'gehirn rs2')
+
+role :app, "s11.rs2.gehirn.jp"
+role :web, "s11.rs2.gehirn.jp"
+role :db,  "s11.rs2.gehirn.jp", :primary => true
+set :normalize_asset_timestamps, false
