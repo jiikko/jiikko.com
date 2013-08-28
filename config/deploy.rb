@@ -1,4 +1,4 @@
-set :user, 'kjdev'
+set :user, 'deployer'
 set :use_sudo, false
 
 set :scm, :git
