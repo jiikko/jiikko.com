@@ -8,7 +8,7 @@ set :branch, 'master'
 set :git_shallow_clone, 1 # １つ前のコミットまでとる
 set :deploy_via, :export
 
-set :deploy_to, "/var/www/jiikko.me"
+set :deploy_to, "/var/www/jiikko.com"
 
 # role :web, "s11.rs2.gehirn.jp"
 role :web, "133.242.187.194"
