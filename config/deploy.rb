@@ -2,7 +2,7 @@ set :user, 'deployer'
 set :use_sudo, false
 
 set :scm, :git
-set :repository, 'git@bitbucket.org:jiikko/jiikko.com.git'
+set :repository, 'git@github.com:jiikko/jiikko.com.git'
 set :branch, 'master'
 
 set :git_shallow_clone, 1 # １つ前のコミットまでとる
