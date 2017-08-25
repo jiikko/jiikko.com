@@ -11,5 +11,5 @@ set :deploy_via, :export
 set :deploy_to, "/var/www/jiikko.com"
 
 # role :web, "s11.rs2.gehirn.jp"
-role :web, "133.242.187.194"
+role :web, "jiikko.com"
 set :normalize_asset_timestamps, false
