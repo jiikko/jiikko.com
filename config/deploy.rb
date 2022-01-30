@@ -13,3 +13,9 @@ set :deploy_to, "/var/www/jiikko.com"
 # role :web, "s11.rs2.gehirn.jp"
 role :web, "jiikko.com"
 set :normalize_asset_timestamps, false
+
+set :ssh_options, {
+  keys: [File.expand_path('~/.ssh/id_rsa')],
+  forward_agent: true,
+  auth_methods: %w(publickey),
+}
