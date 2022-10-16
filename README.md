@@ -6,6 +6,8 @@ docker run --rm -it jiikko.com
 ```
 
 ## deploy
+* pushするだけでGCP側でbuild and deployしてくれる
+
 ```
 gcloud auth login
 gcloud config set project jiikko
