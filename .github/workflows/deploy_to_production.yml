@@ -44,11 +44,12 @@ jobs:
         run: |-
           gcloud run deploy "$SERVICE_NAME" \
             --project="$PROJECT_ID" \
+            --region="asia-northeast1" \
             --platform=managed \
             --image="${REGISTRY_HOST}/$PROJECT_ID/$REPOSITORY_NAME/web:master" \
-            --region="asia-northeast1" \
             --no-traffic \
             --allow-unauthenticated
           gcloud run services update-traffic "$SERVICE_NAME" \
             --project="$PROJECT_ID" \
+            --region="asia-northeast1" \
             --to-latest
