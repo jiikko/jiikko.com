@@ -2,11 +2,11 @@
 ## ローカルでの確認
 ```
 docker build -t jiikko.com .
-docker run --rm -it jiikko.com
+docker run -p 8080:8080 --rm -it jiikko.com
 ```
 
 ## deploy
-* pushするだけでGCP側でbuild and deployしてくれる
+* pushするだけでOK
 
 ```
 gcloud auth login
