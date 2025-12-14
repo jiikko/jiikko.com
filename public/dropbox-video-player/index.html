@@ -14,6 +14,13 @@
       content="Dropboxの動画を複数同時再生。レイアウト可変（1x1〜3x3）。ワークスペースで作業状態を保持、一括操作で比較作業を効率化するmacOSアプリ。"
     />
     <meta property="og:type" content="website" />
+    <!--
+      📸 OGP画像（SNSシェア用）
+      ────────────────────────────────
+      サイズ: 1200x630px（推奨）
+      内容: ヒーローショットを流用するか、テキストオーバーレイ付きの専用画像
+      ファイル名: og-image.png など
+    -->
     <meta property="og:image" content="./placeholder.svg" />
 
     <style>
@@ -522,6 +529,24 @@
           </p>
         </div>
 
+        <!--
+          📸 ヒーローショット（メイン画像）
+          ────────────────────────────────
+          目的: アプリの価値を一目で伝える「顔」となる画像
+
+          推奨構成:
+          - 2x2 または 3x3 レイアウトで複数動画が同時再生されている状態
+          - サイドバーが見えている（Dropbox連携がわかる）
+          - 動画は実際のコンテンツ（映像制作風、比較作業風など）
+          - ウィンドウ全体をキャプチャ（macOSのウィンドウシャドウ付き推奨）
+
+          避けるべき:
+          - 1x1レイアウト（複数同時再生の価値が伝わらない）
+          - 空のスロットが多い状態
+          - 個人情報や著作権のある動画
+
+          サイズ: 1280x800px以上推奨（Retina対応なら2560x1600px）
+        -->
         <div class="panel hero-shot" aria-label="スクリーンショット（仮）">
           <img src="./placeholder.svg" alt="アプリ画面のスクリーンショット（仮）" />
         </div>
@@ -647,7 +672,7 @@
         <div class="split">
           <div class="steps">
             <h2 class="section-title">使い方は3ステップ</h2>
-            <p class="section-desc">説明のリンク先や画面は仮置きです（後で差し替え）。</p>
+            <p class="section-desc">アプリの基本的な流れを紹介します。</p>
 
             <div class="panel step">
               <div class="num">1</div>
@@ -672,39 +697,110 @@
             </div>
           </div>
 
+          <!--
+            📸 使い方セクション画像
+            ────────────────────────────────
+            目的: ドラッグ&ドロップ操作のイメージを伝える
+
+            推奨構成:
+            - サイドバーから動画をドラッグしてスロットにドロップする瞬間
+            - または、複数動画がグリッドに配置された状態（2x2推奨）
+            - ドラッグ中のゴースト表示があるとベスト
+
+            代替案:
+            - GIF/動画で操作フローを見せる（将来対応）
+          -->
           <div class="panel hero-shot" aria-label="使い方のイメージ（仮）">
             <img src="./placeholder.svg" alt="使い方のイメージ（仮）" />
           </div>
         </div>
       </section>
 
-      <section aria-label="スクリーンショット（仮）">
-        <h2 class="section-title">スクリーンショット（仮）</h2>
-        <p class="section-desc">後で実機のキャプチャに差し替える想定です。</p>
+      <section aria-label="スクリーンショット">
+        <h2 class="section-title">スクリーンショット</h2>
+        <p class="section-desc">アプリの主要機能をご紹介します。</p>
         <div class="shots">
+          <!--
+            📸 スクショ1: 複数動画を同時再生
+            ────────────────────────────────
+            見せたい価値: 「複数動画を並べて見比べられる」
+
+            推奨構成:
+            - 2x2 または 3x3 レイアウト
+            - 全スロットに動画がロードされている
+            - 動画のサムネイルが異なる（同じシーンの別テイク比較など）
+            - 再生中の状態（プログレスバーが途中）
+
+            ポイント:
+            - App Storeの「価値の核」を伝える1枚目に相当
+          -->
           <figure class="panel shot">
             <img src="./placeholder.svg" alt="グリッド表示（仮）" />
-            <figcaption>複数動画を同時再生（仮）</figcaption>
+            <figcaption>複数動画を同時再生</figcaption>
           </figure>
+
+          <!--
+            📸 スクショ2: レイアウト可変
+            ────────────────────────────────
+            見せたい価値: 「用途に合わせてレイアウトを切り替えられる」
+
+            推奨構成:
+            - レイアウト切り替えUIが見えている状態（ヘッダーのドロップダウン）
+            - または、1x1 → 2x2 → 3x3 の比較画像（横並び合成）
+            - 切り替え前後のビフォーアフターがわかると◎
+
+            ポイント:
+            - 「1x1〜3x3」という数字が視覚的にわかるように
+          -->
           <figure class="panel shot">
             <img src="./placeholder.svg" alt="レイアウト切り替え（仮）" />
-            <figcaption>レイアウト可変（1x1〜3x3）（仮）</figcaption>
+            <figcaption>レイアウト可変（1x1〜3x3）</figcaption>
           </figure>
+
+          <!--
+            📸 スクショ3: サイドバー / Dropboxブラウズ
+            ────────────────────────────────
+            見せたい価値: 「Dropbox内の動画に素早くアクセスできる」
+
+            推奨構成:
+            - サイドバーが展開されている状態
+            - フォルダツリーとファイルリストが見える
+            - 動画サムネイルが表示されている
+            - 検索バーが見えるとなお良い
+
+            ポイント:
+            - Dropbox連携であることを視覚的に伝える
+          -->
           <figure class="panel shot">
-            <img src="./placeholder.svg" alt="安定した同時再生（仮）" />
-            <figcaption>複数動画の安定した同時再生（仮）</figcaption>
+            <img src="./placeholder.svg" alt="サイドバーとDropboxブラウズ" />
+            <figcaption>Dropbox内の動画にすぐアクセス</figcaption>
           </figure>
+
+          <!--
+            📸 スクショ4: ワークスペース / タブ
+            ────────────────────────────────
+            見せたい価値: 「複数の作業状態をタブで切り替えられる」
+
+            推奨構成:
+            - タブバーに複数のタブが並んでいる状態
+            - 各タブに異なる名前（プロジェクト名など）
+            - アクティブタブとそうでないタブの区別が見える
+
+            代替案:
+            - コントロールバー（再生/停止/速度調整）にフォーカスした画像
+            - キーボードショートカットのオーバーレイ表示
+          -->
           <figure class="panel shot">
-            <img src="./placeholder.svg" alt="プレーヤー操作（仮）" />
-            <figcaption>プレーヤー操作（仮）</figcaption>
+            <img src="./placeholder.svg" alt="ワークスペースタブ" />
+            <figcaption>ワークスペースで作業状態を保持</figcaption>
           </figure>
         </div>
       </section>
 
       <section id="pricing" aria-label="料金">
-        <h2 class="section-title">料金（仮）</h2>
+        <h2 class="section-title">料金</h2>
         <p class="section-desc">
-          Mac App Storeの自動更新サブスクリプションを想定。価格は仮置きです（後で設定）。
+          Mac App Storeの自動更新サブスクリプションです。
         </p>
 
         <div class="pricing">
@@ -724,9 +820,9 @@
           <div class="panel price" style="border-color: color-mix(in srgb, var(--brand), transparent 45%)">
             <div class="plan">
               <h3>Pro</h3>
-              <span class="tag">月額（仮）</span>
+              <span class="tag">月額</span>
             </div>
-            <div class="money">¥XXX<span style="font-size: 14px; font-weight: 650; color: var(--muted)"> / 月</span></div>
+            <div class="money">¥550<span style="font-size: 14px; font-weight: 650; color: var(--muted)"> / 月（税込）</span></div>
             <ul class="list">
               <li>2枠目以上（2x2 / 3x3 など）</li>
               <li>最大9枠の同時プレビュー</li>
