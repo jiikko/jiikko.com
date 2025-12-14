@@ -1,0 +1,911 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dropbox Multi-Video Player — 複数動画を同時再生</title>
+    <meta
+      name="description"
+      content="Dropboxの動画を複数同時再生。レイアウト可変（1x1〜3x3）。ワークスペースで作業状態を保持、一括操作で比較作業を効率化するmacOSアプリ。"
+    />
+    <meta property="og:title" content="Dropbox Multi-Video Player — 複数動画を同時再生" />
+    <meta
+      property="og:description"
+      content="Dropboxの動画を複数同時再生。レイアウト可変（1x1〜3x3）。ワークスペースで作業状態を保持、一括操作で比較作業を効率化するmacOSアプリ。"
+    />
+    <meta property="og:type" content="website" />
+    <!--
+      📸 OGP画像（SNSシェア用）
+      ────────────────────────────────
+      サイズ: 1200x630px（推奨）
+      内容: ヒーローショットを流用するか、テキストオーバーレイ付きの専用画像
+      ファイル名: og-image.png など
+    -->
+    <meta property="og:image" content="./placeholder.svg" />
+
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #0b0f17;
+        --fg: #eaf0ff;
+        --muted: rgba(234, 240, 255, 0.72);
+        --card: rgba(255, 255, 255, 0.06);
+        --card2: rgba(255, 255, 255, 0.085);
+        --border: rgba(255, 255, 255, 0.12);
+        --shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+        --brand: #2b70ff;
+        --brand2: #7b61ff;
+        --ok: #22c55e;
+        --warn: #f59e0b;
+        --bad: #ef4444;
+        --radius: 16px;
+      }
+
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #f6f7fb;
+          --fg: #0b1324;
+          --muted: rgba(11, 19, 36, 0.72);
+          --card: rgba(255, 255, 255, 0.78);
+          --card2: rgba(255, 255, 255, 0.92);
+          --border: rgba(11, 19, 36, 0.12);
+          --shadow: 0 22px 70px rgba(11, 19, 36, 0.14);
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", Helvetica, Arial, sans-serif;
+        color: var(--fg);
+        background:
+          radial-gradient(1200px 600px at 10% 0%, rgba(43, 112, 255, 0.38), transparent 60%),
+          radial-gradient(900px 500px at 80% 10%, rgba(123, 97, 255, 0.26), transparent 55%),
+          radial-gradient(800px 500px at 30% 95%, rgba(34, 197, 94, 0.14), transparent 55%),
+          var(--bg);
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(14px);
+        background: color-mix(in srgb, var(--bg), transparent 55%);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .topbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 0;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 750;
+        letter-spacing: 0.2px;
+      }
+
+      .brand img {
+        width: 28px;
+        height: 28px;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .nav a {
+        font-size: 14px;
+        color: var(--muted);
+        padding: 8px 10px;
+        border-radius: 10px;
+      }
+
+      .nav a:hover {
+        background: var(--card);
+        color: var(--fg);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: var(--card);
+        color: var(--fg);
+        font-weight: 650;
+        cursor: pointer;
+        user-select: none;
+        transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+        background: var(--card2);
+      }
+
+      .btn-primary {
+        border-color: color-mix(in srgb, var(--brand), transparent 40%);
+        background: linear-gradient(135deg, color-mix(in srgb, var(--brand), white 0%), color-mix(in srgb, var(--brand2), white 0%));
+        box-shadow: 0 18px 45px color-mix(in srgb, var(--brand), transparent 70%);
+      }
+
+      .btn-primary:hover {
+        border-color: color-mix(in srgb, var(--brand), transparent 10%);
+      }
+
+      .hero {
+        padding: 64px 0 28px;
+        display: grid;
+        grid-template-columns: 1.08fr 0.92fr;
+        gap: 28px;
+        align-items: center;
+      }
+
+      @media (max-width: 920px) {
+        .hero {
+          grid-template-columns: 1fr;
+          padding-top: 42px;
+        }
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--card), transparent 0%);
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .pill strong {
+        color: var(--fg);
+      }
+
+      h1 {
+        margin: 14px 0 12px;
+        line-height: 1.08;
+        font-size: clamp(34px, 4.4vw, 54px);
+        letter-spacing: -0.6px;
+      }
+
+      .lead {
+        margin: 0;
+        color: var(--muted);
+        font-size: 16px;
+      }
+
+      .cta {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 18px;
+      }
+
+      .microcopy {
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 10px;
+      }
+
+      .panel {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--card);
+        box-shadow: var(--shadow);
+      }
+
+      .hero-shot {
+        padding: 14px;
+      }
+
+      .hero-shot img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: calc(var(--radius) - 8px);
+        border: 1px solid var(--border);
+        background: #fff;
+      }
+
+      .badges {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 16px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: color-mix(in srgb, var(--card), transparent 0%);
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .badge b {
+        color: var(--fg);
+      }
+
+      section {
+        padding: 34px 0;
+      }
+
+      .section-title {
+        font-size: 24px;
+        margin: 0 0 10px;
+        letter-spacing: -0.2px;
+      }
+
+      .section-desc {
+        margin: 0 0 18px;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+
+      @media (max-width: 920px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card {
+        padding: 16px;
+      }
+
+      .card h3 {
+        margin: 8px 0 6px;
+        font-size: 16px;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--border);
+        background: color-mix(in srgb, var(--card2), transparent 0%);
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 16px;
+        align-items: center;
+      }
+
+      @media (max-width: 920px) {
+        .split {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .steps {
+        display: grid;
+        gap: 12px;
+      }
+
+      .step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 12px;
+        align-items: start;
+        padding: 14px;
+      }
+
+      .num {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--border);
+        background: linear-gradient(180deg, color-mix(in srgb, var(--brand), transparent 75%), transparent);
+        font-weight: 800;
+      }
+
+      .shots {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      @media (max-width: 920px) {
+        .shots {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .shot {
+        padding: 12px;
+      }
+
+      .shot img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: calc(var(--radius) - 10px);
+        border: 1px solid var(--border);
+        background: #fff;
+      }
+
+      .shot figcaption {
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .pricing {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      @media (max-width: 920px) {
+        .pricing {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .price {
+        padding: 18px;
+      }
+
+      .plan {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .plan h3 {
+        margin: 0;
+        font-size: 18px;
+      }
+
+      .tag {
+        font-size: 12px;
+        color: var(--muted);
+        border: 1px solid var(--border);
+        background: color-mix(in srgb, var(--card), transparent 0%);
+        padding: 6px 10px;
+        border-radius: 999px;
+      }
+
+      .money {
+        font-size: 34px;
+        font-weight: 850;
+        letter-spacing: -0.8px;
+        margin: 12px 0 8px;
+      }
+
+      .list {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--muted);
+      }
+
+      .list li {
+        margin: 8px 0;
+      }
+
+      details {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: var(--card);
+        padding: 12px 14px;
+      }
+
+      details + details {
+        margin-top: 10px;
+      }
+
+      summary {
+        cursor: pointer;
+        font-weight: 650;
+        color: var(--fg);
+        outline: none;
+      }
+
+      details p {
+        margin: 10px 0 0;
+        color: var(--muted);
+      }
+
+      .footer {
+        border-top: 1px solid var(--border);
+        padding: 22px 0 38px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .footer a {
+        color: var(--muted);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="#top">
+          <span>Dropbox Multi-Video Player</span>
+        </a>
+        <nav class="nav" aria-label="ページ内ナビゲーション">
+          <a href="#features">特徴</a>
+          <a href="#how">使い方</a>
+          <a href="#pricing">料金</a>
+          <a href="#faq">FAQ</a>
+          <a class="btn btn-primary" href="https://apps.apple.com/" aria-label="Mac App Store（仮リンク）">App Store（仮）</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top" class="container">
+      <section class="hero" aria-label="ヒーロー">
+        <div>
+          <div class="pill">
+            <span>macOS専用 / Dropbox連携</span>
+            <span aria-hidden="true">•</span>
+            <strong>マルチ同時再生</strong>
+          </div>
+          <h1>Dropboxの動画を、並べて同時再生。</h1>
+          <p class="lead">
+            複数の動画を並べて再生し、見比べながら確認できるmacOSアプリ。
+            <strong>映像制作のカット比較、教材の確認、レビュー作業</strong>など、
+            複数動画を行き来する場面に。レイアウトは<strong>1x1〜3x3</strong>で切り替え可能。
+          </p>
+
+          <div class="cta">
+            <a class="btn btn-primary" href="https://apps.apple.com/">Mac App Storeで入手（仮）</a>
+            <a class="btn" href="#how">3ステップで使い方を見る</a>
+          </div>
+
+          <div class="badges" aria-label="特徴の要点">
+            <div class="badge"><b>同時プレビュー</b> 最大9枠</div>
+            <div class="badge"><b>レイアウト可変</b> 1x1〜3x3</div>
+            <div class="badge"><b>一括操作</b> 再生/停止/シーク</div>
+            <div class="badge"><b>ワークスペース</b> タブで切替</div>
+            <div class="badge"><b>再生速度</b> 最大5倍</div>
+            <div class="badge"><b>キーボード操作</b> 対応</div>
+          </div>
+
+          <p class="microcopy">
+            ※ 本アプリはDropboxにあるファイルを再生するツールです。Webサイトから直接ダウンロードする機能は提供しません。コンテンツの権利・各サービス規約を遵守してください。再生の軽快さは回線/環境/ファイルにより変わります。
+          </p>
+        </div>
+
+        <!--
+          📸 ヒーローショット（メイン画像）
+          ────────────────────────────────
+          目的: アプリの価値を一目で伝える「顔」となる画像
+
+          推奨構成:
+          - 2x2 または 3x3 レイアウトで複数動画が同時再生されている状態
+          - サイドバーが見えている（Dropbox連携がわかる）
+          - 動画は実際のコンテンツ（映像制作風、比較作業風など）
+          - ウィンドウ全体をキャプチャ（macOSのウィンドウシャドウ付き推奨）
+
+          避けるべき:
+          - 1x1レイアウト（複数同時再生の価値が伝わらない）
+          - 空のスロットが多い状態
+          - 個人情報や著作権のある動画
+
+          サイズ: 1280x800px以上推奨（Retina対応なら2560x1600px）
+        -->
+        <div class="panel hero-shot" aria-label="スクリーンショット（仮）">
+          <img src="./placeholder.svg" alt="アプリ画面のスクリーンショット（仮）" />
+        </div>
+      </section>
+
+      <section id="features" aria-label="特徴">
+        <h2 class="section-title">Dropboxの動画プレビューを、作業向けに。</h2>
+        <p class="section-desc">
+          Dropbox Webのプレビューは便利ですが、複数同時に見比べたり、レイアウトを頻繁に切り替えたりする用途では手間が残ります。
+          本アプリは「並べる」「切り替える」「すぐ再生する」を重視したUIです。
+        </p>
+
+        <div class="grid">
+          <article class="panel card">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M4 5h7v7H4V5Zm9 0h7v7h-7V5ZM4 14h7v7H4v-7Zm9 0h7v7h-7v-7Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <h3>複数動画を同時再生</h3>
+            <p>最大9枠まで同時表示。複数候補を並べて見比べられます。</p>
+          </article>
+
+          <article class="panel card">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M4 8h16M8 4v16"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <h3>レイアウトは可変</h3>
+            <p>1x1 / 2x2 / 3x3 で切り替え。用途に合わせて“見える量”を調整できます。</p>
+          </article>
+
+          <article class="panel card">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2" />
+                <path d="M9 3v18M3 9h18" stroke="currentColor" stroke-width="2" />
+              </svg>
+            </div>
+            <h3>ワークスペース</h3>
+            <p>タブで複数の作業状態を保持。プロジェクトごとに動画セットを切り替えられます。</p>
+          </article>
+
+          <article class="panel card">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M6 4v16M10 4v16M14 4v16M18 4v16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </div>
+            <h3>一括操作</h3>
+            <p>全動画の再生/停止/先頭シークをワンクリック。比較作業のテンポを上げます。</p>
+          </article>
+
+          <article class="panel card">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M4 12h16M12 4v16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+              </svg>
+            </div>
+            <h3>安定した同時再生</h3>
+            <p>ローカルプロキシで複数動画の並列ストリーミングを安定化。ブラウザの接続数制限を回避。</p>
+          </article>
+
+          <article class="panel card">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="7" width="7" height="10" rx="1" stroke="currentColor" stroke-width="2" />
+                <path d="M14 12h7M17 9l3 3-3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <h3>ドラッグ&ドロップ</h3>
+            <p>サイドバーからスロットへ直接ドラッグ。スロット間の入れ替えもマウスで。</p>
+          </article>
+
+          <article class="panel card">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2" />
+                <path d="M7 15h2M11 15h2M15 15h2M7 11h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </div>
+            <h3>キーボードで素早く操作</h3>
+            <p>数字キーで位置ジャンプ、矢印キーで60秒シーク。マウスに手を伸ばさずテンポよく操作。</p>
+          </article>
+
+          <article class="panel card">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <h3>最大5倍速で高速チェック</h3>
+            <p>再生速度を1〜5倍で調整。長い動画のレビュー作業を効率化。全動画に一括適用も可能。</p>
+          </article>
+
+          <article class="panel card">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M12 8v4l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" />
+                <path d="M4 4l2 2M20 4l-2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </div>
+            <h3>前回の続きからすぐ再開</h3>
+            <p>再生位置・レイアウト・フォルダを自動保存。アプリを閉じても次回起動時に復元。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="how" aria-label="使い方">
+        <div class="split">
+          <div class="steps">
+            <h2 class="section-title">使い方は3ステップ</h2>
+            <p class="section-desc">アプリの基本的な流れを紹介します。</p>
+
+            <div class="panel step">
+              <div class="num">1</div>
+              <div>
+                <strong>Dropboxに接続</strong>
+                <div class="section-desc" style="margin: 6px 0 0">ログインして、動画フォルダへ。</div>
+              </div>
+            </div>
+            <div class="panel step">
+              <div class="num">2</div>
+              <div>
+                <strong>レイアウトを選んで並べる</strong>
+                <div class="section-desc" style="margin: 6px 0 0">1x1 / 2x2 / 3x3 を切り替え、ドラッグしてグリッドへ。</div>
+              </div>
+            </div>
+            <div class="panel step">
+              <div class="num">3</div>
+              <div>
+                <strong>同時再生して見比べる</strong>
+                <div class="section-desc" style="margin: 6px 0 0">再生/停止/シークなどをまとめて操作し、テンポよく確認。</div>
+              </div>
+            </div>
+          </div>
+
+          <!--
+            📸 使い方セクション画像
+            ────────────────────────────────
+            目的: ドラッグ&ドロップ操作のイメージを伝える
+
+            推奨構成:
+            - サイドバーから動画をドラッグしてスロットにドロップする瞬間
+            - または、複数動画がグリッドに配置された状態（2x2推奨）
+            - ドラッグ中のゴースト表示があるとベスト
+
+            代替案:
+            - GIF/動画で操作フローを見せる（将来対応）
+          -->
+          <div class="panel hero-shot" aria-label="使い方のイメージ（仮）">
+            <img src="./placeholder.svg" alt="使い方のイメージ（仮）" />
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="スクリーンショット">
+        <h2 class="section-title">スクリーンショット</h2>
+        <p class="section-desc">アプリの主要機能をご紹介します。</p>
+        <div class="shots">
+          <!--
+            📸 スクショ1: 複数動画を同時再生
+            ────────────────────────────────
+            見せたい価値: 「複数動画を並べて見比べられる」
+
+            推奨構成:
+            - 2x2 または 3x3 レイアウト
+            - 全スロットに動画がロードされている
+            - 動画のサムネイルが異なる（同じシーンの別テイク比較など）
+            - 再生中の状態（プログレスバーが途中）
+
+            ポイント:
+            - App Storeの「価値の核」を伝える1枚目に相当
+          -->
+          <figure class="panel shot">
+            <img src="./placeholder.svg" alt="グリッド表示（仮）" />
+            <figcaption>複数動画を同時再生</figcaption>
+          </figure>
+
+          <!--
+            📸 スクショ2: レイアウト可変
+            ────────────────────────────────
+            見せたい価値: 「用途に合わせてレイアウトを切り替えられる」
+
+            推奨構成:
+            - レイアウト切り替えUIが見えている状態（ヘッダーのドロップダウン）
+            - または、1x1 → 2x2 → 3x3 の比較画像（横並び合成）
+            - 切り替え前後のビフォーアフターがわかると◎
+
+            ポイント:
+            - 「1x1〜3x3」という数字が視覚的にわかるように
+          -->
+          <figure class="panel shot">
+            <img src="./placeholder.svg" alt="レイアウト切り替え（仮）" />
+            <figcaption>レイアウト可変（1x1〜3x3）</figcaption>
+          </figure>
+
+          <!--
+            📸 スクショ3: サイドバー / Dropboxブラウズ
+            ────────────────────────────────
+            見せたい価値: 「Dropbox内の動画に素早くアクセスできる」
+
+            推奨構成:
+            - サイドバーが展開されている状態
+            - フォルダツリーとファイルリストが見える
+            - 動画サムネイルが表示されている
+            - 検索バーが見えるとなお良い
+
+            ポイント:
+            - Dropbox連携であることを視覚的に伝える
+          -->
+          <figure class="panel shot">
+            <img src="./placeholder.svg" alt="サイドバーとDropboxブラウズ" />
+            <figcaption>Dropbox内の動画にすぐアクセス</figcaption>
+          </figure>
+
+          <!--
+            📸 スクショ4: ワークスペース / タブ
+            ────────────────────────────────
+            見せたい価値: 「複数の作業状態をタブで切り替えられる」
+
+            推奨構成:
+            - タブバーに複数のタブが並んでいる状態
+            - 各タブに異なる名前（プロジェクト名など）
+            - アクティブタブとそうでないタブの区別が見える
+
+            代替案:
+            - コントロールバー（再生/停止/速度調整）にフォーカスした画像
+            - キーボードショートカットのオーバーレイ表示
+          -->
+          <figure class="panel shot">
+            <img src="./placeholder.svg" alt="ワークスペースタブ" />
+            <figcaption>ワークスペースで作業状態を保持</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="pricing" aria-label="料金">
+        <h2 class="section-title">料金</h2>
+        <p class="section-desc">
+          Mac App Storeの自動更新サブスクリプションです。
+        </p>
+
+        <div class="pricing">
+          <div class="panel price">
+            <div class="plan">
+              <h3>Free</h3>
+              <span class="tag">お試し</span>
+            </div>
+            <div class="money">¥0</div>
+            <ul class="list">
+              <li>1枠（1x1）での視聴</li>
+              <li>Dropboxブラウズ/検索</li>
+              <li>基本操作（再生/停止/シーク）</li>
+            </ul>
+          </div>
+
+          <div class="panel price" style="border-color: color-mix(in srgb, var(--brand), transparent 45%)">
+            <div class="plan">
+              <h3>Pro</h3>
+              <span class="tag">月額</span>
+            </div>
+            <div class="money">¥550<span style="font-size: 14px; font-weight: 650; color: var(--muted)"> / 月（税込）</span></div>
+            <ul class="list">
+              <li>2枠目以上（2x2 / 3x3 など）</li>
+              <li>最大9枠の同時プレビュー</li>
+              <li>同期再生 / 一括操作</li>
+              <li>ワークスペース（タブ切替・状態復元）</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" aria-label="よくある質問">
+        <h2 class="section-title">FAQ</h2>
+        <p class="section-desc">よくあるご質問をまとめました。</p>
+
+        <details>
+          <summary>このアプリは何をしてくれる？</summary>
+          <p>
+            Dropbox内の動画を複数同時に再生し、レイアウトを切り替えながら見比べられます。
+            ワークスペース機能で作業状態を保持し、一括操作で複数動画をまとめてコントロールできます。
+          </p>
+        </details>
+        <details>
+          <summary>Webサイトから直接ダウンロードできる？</summary>
+          <p>
+            できません。本アプリはDropboxにあるファイルを再生するツールで、Webから直接ダウンロードする機能は提供しません。
+            コンテンツの権利・各サービス規約を遵守してください。
+          </p>
+        </details>
+        <details>
+          <summary>対応している動画形式は？</summary>
+          <p>
+            本アプリはChromiumベースのため、<strong>H.264 / VP9 / AV1</strong> など幅広いコーデックに対応しています。
+            DRM保護された動画は再生できません。
+          </p>
+          <ul class="list">
+            <li>表示対象の拡張子: .mp4 / .mov / .m4v / .webm / .mkv / .avi / .wmv / .3gp / .ogg</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Dropboxアカウントが必須？</summary>
+          <p>Dropbox上の動画を扱う設計のため、基本的に必要です（将来の変更は未定）。</p>
+        </details>
+        <details>
+          <summary>Windows版はある？</summary>
+          <p>現時点ではmacOS専用です。</p>
+        </details>
+      </section>
+
+      <section aria-label="最後のCTA">
+        <div class="panel" style="padding: 18px">
+          <div class="split" style="gap: 14px">
+            <div>
+              <h2 class="section-title" style="margin-bottom: 8px">Dropboxの動画プレビューを、もっと快適に。</h2>
+              <p class="section-desc" style="margin: 0">
+                複数同時再生、ワークスペース、一括操作で、見比べ作業を軽くする。
+              </p>
+            </div>
+            <div style="display: flex; justify-content: flex-end; align-items: center; gap: 12px; flex-wrap: wrap">
+              <a class="btn btn-primary" href="https://apps.apple.com/">App Store（仮）</a>
+              <a class="btn" href="mailto:n905i.1214@gmail.com">お問い合わせ</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer" aria-label="フッター">
+        <div class="container">
+          <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: space-between; align-items: center">
+            <div>
+              <strong style="color: var(--fg)">Dropbox Multi-Video Player</strong>
+              <div>© 2025</div>
+            </div>
+            <div style="display: flex; gap: 14px; flex-wrap: wrap">
+              <a href="privacy.html">プライバシーポリシー</a>
+              <a href="terms.html">利用規約</a>
+              <a href="mailto:n905i.1214@gmail.com">サポート</a>
+            </div>
+          </div>
+          <p style="margin: 12px 0 0">
+            ※ Dropbox は Dropbox, Inc. の商標です。本アプリは Dropbox, Inc. が提供・保証するものではありません。
+          </p>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>
