@@ -17,11 +17,11 @@
     <!--
       📸 OGP画像（SNSシェア用）
       ────────────────────────────────
+      ファイル名: og-image.png
       サイズ: 1200x630px（推奨）
       内容: ヒーローショットを流用するか、テキストオーバーレイ付きの専用画像
-      ファイル名: og-image.png など
     -->
-    <meta property="og:image" content="./placeholder.svg" />
+    <meta property="og:image" content="./og-image.png" />
 
     <style>
       :root {
@@ -532,6 +532,8 @@
         <!--
           📸 ヒーローショット（メイン画像）
           ────────────────────────────────
+          ★ ファイル名: 01_hero.png ★
+
           目的: アプリの価値を一目で伝える「顔」となる画像
 
           推奨構成:
@@ -547,8 +549,8 @@
 
           サイズ: 1280x800px以上推奨（Retina対応なら2560x1600px）
         -->
-        <div class="panel hero-shot" aria-label="スクリーンショット（仮）">
-          <img src="./placeholder.svg" alt="アプリ画面のスクリーンショット（仮）" />
+        <div class="panel hero-shot" aria-label="スクリーンショット" data-screenshot="01_hero.png">
+          <img src="./01_hero.png" alt="アプリ画面のスクリーンショット" />
         </div>
       </section>
 
@@ -700,6 +702,8 @@
           <!--
             📸 使い方セクション画像
             ────────────────────────────────
+            ★ ファイル名: 02_howto.png ★
+
             目的: ドラッグ&ドロップ操作のイメージを伝える
 
             推奨構成:
@@ -710,8 +714,8 @@
             代替案:
             - GIF/動画で操作フローを見せる（将来対応）
           -->
-          <div class="panel hero-shot" aria-label="使い方のイメージ（仮）">
-            <img src="./placeholder.svg" alt="使い方のイメージ（仮）" />
+          <div class="panel hero-shot" aria-label="使い方のイメージ" data-screenshot="02_howto.png">
+            <img src="./02_howto.png" alt="使い方のイメージ" />
           </div>
         </div>
       </section>
@@ -723,6 +727,8 @@
           <!--
             📸 スクショ1: 複数動画を同時再生
             ────────────────────────────────
+            ★ ファイル名: 03_multi_playback.png ★
+
             見せたい価値: 「複数動画を並べて見比べられる」
 
             推奨構成:
@@ -734,14 +740,16 @@
             ポイント:
             - App Storeの「価値の核」を伝える1枚目に相当
           -->
-          <figure class="panel shot">
-            <img src="./placeholder.svg" alt="グリッド表示（仮）" />
+          <figure class="panel shot" data-screenshot="03_multi_playback.png">
+            <img src="./03_multi_playback.png" alt="複数動画を同時再生" />
             <figcaption>複数動画を同時再生</figcaption>
           </figure>
 
           <!--
             📸 スクショ2: レイアウト可変
             ────────────────────────────────
+            ★ ファイル名: 04_layout.png ★
+
             見せたい価値: 「用途に合わせてレイアウトを切り替えられる」
 
             推奨構成:
@@ -752,14 +760,16 @@
             ポイント:
             - 「1x1〜3x3」という数字が視覚的にわかるように
           -->
-          <figure class="panel shot">
-            <img src="./placeholder.svg" alt="レイアウト切り替え（仮）" />
+          <figure class="panel shot" data-screenshot="04_layout.png">
+            <img src="./04_layout.png" alt="レイアウト切り替え" />
             <figcaption>レイアウト可変（1x1〜3x3）</figcaption>
           </figure>
 
           <!--
             📸 スクショ3: サイドバー / Dropboxブラウズ
             ────────────────────────────────
+            ★ ファイル名: 05_sidebar.png ★
+
             見せたい価値: 「Dropbox内の動画に素早くアクセスできる」
 
             推奨構成:
@@ -771,14 +781,16 @@
             ポイント:
             - Dropbox連携であることを視覚的に伝える
           -->
-          <figure class="panel shot">
-            <img src="./placeholder.svg" alt="サイドバーとDropboxブラウズ" />
+          <figure class="panel shot" data-screenshot="05_sidebar.png">
+            <img src="./05_sidebar.png" alt="サイドバーとDropboxブラウズ" />
             <figcaption>Dropbox内の動画にすぐアクセス</figcaption>
           </figure>
 
           <!--
             📸 スクショ4: ワークスペース / タブ
             ────────────────────────────────
+            ★ ファイル名: 06_tabs.png ★
+
             見せたい価値: 「複数の作業状態をタブで切り替えられる」
 
             推奨構成:
@@ -790,8 +802,8 @@
             - コントロールバー（再生/停止/速度調整）にフォーカスした画像
             - キーボードショートカットのオーバーレイ表示
           -->
-          <figure class="panel shot">
-            <img src="./placeholder.svg" alt="ワークスペースタブ" />
+          <figure class="panel shot" data-screenshot="06_tabs.png">
+            <img src="./06_tabs.png" alt="ワークスペースタブ" />
             <figcaption>ワークスペースで作業状態を保持</figcaption>
           </figure>
         </div>
