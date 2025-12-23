@@ -488,6 +488,7 @@
         <nav class="nav" aria-label="ページ内ナビゲーション">
           <a href="#features">特徴</a>
           <a href="#how">使い方</a>
+          <a href="#auth-flow">連携方法</a>
           <a href="#pricing">料金</a>
           <a href="#faq">FAQ</a>
           <a class="btn btn-primary" href="https://apps.apple.com/" aria-label="Mac App Store（仮リンク）">App Store（仮）</a>
@@ -717,6 +718,64 @@
           <div class="panel hero-shot" aria-label="使い方のイメージ" data-screenshot="02_howto.png">
             <img src="./02_howto.png" alt="使い方のイメージ" />
           </div>
+        </div>
+      </section>
+
+      <!-- Dropbox Authorization Flow (for Dropbox API review) -->
+      <section id="auth-flow" aria-label="Dropbox認証フロー">
+        <h2 class="section-title">Dropbox Authorization Flow / Dropboxとの連携方法</h2>
+        <p class="section-desc">
+          Multi-Video Player uses secure OAuth 2.0 to connect to your Dropbox account. Your password is never shared with the app.<br />
+          本アプリはOAuth 2.0を使用してDropboxに安全に接続します。パスワードがアプリに共有されることはありません。
+        </p>
+
+        <div class="grid">
+          <article class="panel card">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" />
+                <path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </div>
+            <h3>Step 1: Start Login</h3>
+            <p>Click "Login with Dropbox" button in the app.<br />アプリ内の「Dropboxでログイン」ボタンをクリック。</p>
+            <img src="./auth1.png" alt="Login button in the app" style="width:100%; margin-top:12px; border-radius:8px; border:1px solid var(--border);" />
+          </article>
+
+          <article class="panel card">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L2 7l10 5 10-5-10-5ZM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <h3>Step 2: Authorize on Dropbox</h3>
+            <p>Review the requested permissions on Dropbox's official page and click "Allow".<br />Dropbox公式ページで権限を確認し「許可」をクリック。</p>
+            <img src="./auth2.png" alt="Dropbox authorization page" style="width:100%; margin-top:12px; border-radius:8px; border:1px solid var(--border);" />
+          </article>
+
+          <article class="panel card">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <h3>Step 3: Start Using</h3>
+            <p>After authorization, browse and play your videos immediately.<br />認証完了後、すぐに動画の閲覧・再生が可能になります。</p>
+            <img src="./auth3.png" alt="App after successful authorization" style="width:100%; margin-top:12px; border-radius:8px; border:1px solid var(--border);" />
+          </article>
+        </div>
+
+        <div class="panel" style="padding: 16px; margin-top: 16px;">
+          <h3 style="margin: 0 0 8px; font-size: 16px;">Requested Permissions / 要求する権限</h3>
+          <ul class="list" style="margin: 0;">
+            <li><strong>files.metadata.read</strong> — Browse folders and search videos / フォルダ閲覧・動画検索</li>
+            <li><strong>files.content.read</strong> — Stream videos and display thumbnails / 動画再生・サムネイル表示</li>
+            <li><strong>files.content.write</strong> — Organize videos (move, rename, delete) / 動画整理（移動・リネーム・削除）</li>
+          </ul>
+          <p style="margin: 12px 0 0; color: var(--muted); font-size: 13px;">
+            All video playback happens locally on your Mac. No data is uploaded to external servers.<br />
+            すべての動画再生はMac上でローカルに行われます。外部サーバーへのデータ送信はありません。
+          </p>
         </div>
       </section>
 
