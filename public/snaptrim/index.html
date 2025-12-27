@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>SnapTrim — 動画を、無劣化でサクッとカット。</title>
+    <title>SnapTrim — 動画を、無劣化でサクッとトリム。</title>
     <meta
       name="description"
-      content="macOS向けロスレスカット（無劣化トリミング）アプリ。EL-Trim方式でMP4を無劣化カット。完全ローカル処理、VLCKitでAV1対応。"
+      content="macOS向けロスレストリム（無劣化トリミング）アプリ。フレーム精度でMP4を無劣化トリム。完全ローカル処理、VLCKitでAV1対応。"
     />
-    <meta property="og:title" content="SnapTrim — 動画を、無劣化でサクッとカット。" />
+    <meta property="og:title" content="SnapTrim — 動画を、無劣化でサクッとトリム。" />
     <meta
       property="og:description"
-      content="macOS向けロスレスカット（無劣化トリミング）アプリ。EL-Trim方式でMP4を無劣化カット。"
+      content="macOS向けロスレストリム（無劣化トリミング）アプリ。フレーム精度でMP4を無劣化トリム。"
     />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="./og-image.png" />
@@ -442,10 +442,10 @@
             <span aria-hidden="true">•</span>
             <strong>無劣化トリミング</strong>
           </div>
-          <h1>動画を、無劣化でサクッとカット。</h1>
+          <h1>動画を、無劣化でサクッとトリム。</h1>
           <p class="lead">
-            SnapTrimは、<strong>EL-Trim方式</strong>でMP4を無劣化カットするmacOSアプリ。
-            再エンコード不要で高速処理。
+            SnapTrimは、<strong>開始点と終了点を指定して1つの範囲を切り出す</strong>トリム専用アプリ。
+            フレーム精度で無劣化、再エンコード不要で高速処理。
             <strong>VLCKit搭載でAV1にも対応</strong>、すべてローカル処理で安心。
           </p>
 
@@ -455,7 +455,7 @@
           </div>
 
           <div class="badges" aria-label="特徴の要点">
-            <div class="badge"><b>無劣化カット</b> EL-Trim方式</div>
+            <div class="badge"><b>無劣化トリム</b> フレーム精度</div>
             <div class="badge"><b>波形表示</b> 正確な編集</div>
             <div class="badge"><b>VLCKit</b> AV1対応</div>
             <div class="badge"><b>マルチタブ</b> 複数動画を並行編集</div>
@@ -475,8 +475,8 @@
       <section id="features" aria-label="特徴">
         <h2 class="section-title">動画編集を、シンプルに。高速に。</h2>
         <p class="section-desc">
-          不要な部分をカットするだけなら、再エンコードは不要。SnapTrimは無劣化カットに特化し、
-          シンプルな操作で素早く編集できます。
+          開始点と終了点を指定するだけのシンプルなトリム専用アプリ。複数箇所のカット編集には対応していませんが、
+          「前後の不要部分を削除したい」「特定のシーンだけを切り出したい」というニーズに最適です。
         </p>
 
         <div class="grid">
@@ -491,7 +491,7 @@
                 />
               </svg>
             </div>
-            <h3>EL-Trim方式で無劣化カット</h3>
+            <h3>フレーム精度で無劣化トリム</h3>
             <p>再エンコード不要で動画をトリミング。画質劣化なし、処理も高速です。</p>
           </article>
 
@@ -601,8 +601,8 @@
               </tr>
               <tr>
                 <td style="padding: 12px; color: var(--muted); font-size: 14px;">ファイルサイズ</td>
-                <td style="padding: 12px; font-size: 14px;">サイズが変わる</td>
-                <td style="padding: 12px; font-size: 14px; color: var(--ok);">✓ サイズそのまま</td>
+                <td style="padding: 12px; font-size: 14px;">再圧縮で予測困難</td>
+                <td style="padding: 12px; font-size: 14px; color: var(--ok);">✓ トリミング長に比例</td>
               </tr>
             </tbody>
           </table>
@@ -625,7 +625,7 @@
             <div class="panel step">
               <div class="num">2</div>
               <div>
-                <strong>カット範囲を指定</strong>
+                <strong>トリム範囲を指定</strong>
                 <div class="section-desc" style="margin: 6px 0 0">開始・終了位置を設定。</div>
               </div>
             </div>
@@ -633,7 +633,7 @@
               <div class="num">3</div>
               <div>
                 <strong>無劣化で保存</strong>
-                <div class="section-desc" style="margin: 6px 0 0">EL-Trim方式で再エンコードなし。数秒で処理完了。</div>
+                <div class="section-desc" style="margin: 6px 0 0">再エンコードなし。数秒で処理完了。</div>
               </div>
             </div>
           </div>
@@ -666,14 +666,14 @@
       <section aria-label="ユースケース">
         <h2 class="section-title">こんな方におすすめ</h2>
         <p class="section-desc">
-          動画のカットが必要なすべての人に。
+          動画のトリムが必要なすべての人に。
         </p>
 
         <div class="grid-2">
           <article class="panel" style="padding: 18px;">
             <h3 style="margin: 0 0 8px; font-size: 18px;">YouTuber・配信者</h3>
             <p style="margin: 0; color: var(--muted); font-size: 14px;">
-              撮影素材の前後をサクッとカット。画質を落とさずSNS投稿用に整形。
+              撮影素材の前後をサクッとトリム。画質を落とさずSNS投稿用に整形。
             </p>
           </article>
 
@@ -694,7 +694,7 @@
           <article class="panel" style="padding: 18px;">
             <h3 style="margin: 0 0 8px; font-size: 18px;">一般ユーザー</h3>
             <p style="margin: 0; color: var(--muted); font-size: 14px;">
-              家族動画の不要部分をカット。シンプルな操作で誰でも簡単に使えます。
+              家族動画の不要部分をトリム。シンプルな操作で誰でも簡単に使えます。
             </p>
           </article>
         </div>
@@ -707,7 +707,7 @@
         <details>
           <summary>SnapTrimは何ができるアプリ？</summary>
           <p>
-            動画ファイルの不要な部分をカットするアプリです。EL-Trim方式を採用し、再エンコードせずに無劣化でトリミングできます。
+            動画ファイルの不要な部分をトリムするアプリです。再エンコードせずに無劣化でトリミングでき、フレーム単位で正確に切り出せます。
             シンプルな操作で目的のシーンを見つけられます。
           </p>
         </details>
@@ -715,7 +715,7 @@
         <details>
           <summary>「無劣化」とは？</summary>
           <p>
-            動画を再エンコード（再圧縮）せずにカットすることで、元の画質・音質を100%保持します。
+            動画を再エンコード（再圧縮）せずにトリムすることで、元の画質・音質を100%保持します。
             通常の編集ソフトは動画を再圧縮するため若干の劣化が発生しますが、SnapTrimはそれを回避します。
           </p>
         </details>
@@ -763,7 +763,7 @@
           <summary>キーボードショートカットはありますか？</summary>
           <p>
             はい。プロの編集フローに対応した業界標準のショートカットを用意しています。
-            I/Oキーでカット点設定、矢印キーでフレーム単位移動、⌘Eでトリミング実行など。
+            I/Oキーでトリム点設定、矢印キーでフレーム単位移動、⌘Eでトリミング実行など。
             アプリ内でショートカット一覧を確認できます。
           </p>
         </details>
@@ -773,6 +773,15 @@
           <p>
             はい。マルチタブ機能で複数の動画を同時に開いて編集できます。
             タブ切り替え（⌃Tab）で素早く作業できます。
+          </p>
+        </details>
+
+        <details>
+          <summary>複数箇所のカット編集はできますか？</summary>
+          <p>
+            いいえ。SnapTrimは<strong>トリム専用アプリ</strong>で、開始点と終了点を指定して1つの範囲を切り出す機能のみです。
+            複数箇所を削除して繋げるようなカット編集には対応していません。
+            「前後の不要部分を削除」「特定のシーンを切り出し」といったシンプルなトリム作業に特化しています。
           </p>
         </details>
 
