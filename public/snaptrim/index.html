@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SnapTrim — 動画を、無劣化でサクッとカット。</title>
+    <meta
+      name="description"
+      content="macOS向けロスレスカット（無劣化トリミング）アプリ。EL-Trim方式でMP4を無劣化カット。完全ローカル処理、VLCKitでAV1対応。"
+    />
+    <meta property="og:title" content="SnapTrim — 動画を、無劣化でサクッとカット。" />
+    <meta
+      property="og:description"
+      content="macOS向けロスレスカット（無劣化トリミング）アプリ。EL-Trim方式でMP4を無劣化カット。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="./og-image.png" />
+
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #0f0a07;
+        --fg: #fff5eb;
+        --muted: rgba(255, 245, 235, 0.72);
+        --card: rgba(255, 255, 255, 0.06);
+        --card2: rgba(255, 255, 255, 0.085);
+        --border: rgba(255, 200, 150, 0.15);
+        --shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+        --brand: #f97316;
+        --brand2: #fbbf24;
+        --ok: #22c55e;
+        --warn: #f59e0b;
+        --bad: #ef4444;
+        --radius: 16px;
+      }
+
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #fffbf7;
+          --fg: #1a0f05;
+          --muted: rgba(26, 15, 5, 0.72);
+          --card: rgba(255, 255, 255, 0.78);
+          --card2: rgba(255, 255, 255, 0.92);
+          --border: rgba(249, 115, 22, 0.15);
+          --shadow: 0 22px 70px rgba(26, 15, 5, 0.14);
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", Helvetica, Arial, sans-serif;
+        color: var(--fg);
+        background:
+          radial-gradient(1200px 600px at 10% 0%, rgba(249, 115, 22, 0.35), transparent 60%),
+          radial-gradient(900px 500px at 80% 10%, rgba(251, 191, 36, 0.25), transparent 55%),
+          radial-gradient(800px 500px at 30% 95%, rgba(234, 88, 12, 0.18), transparent 55%),
+          var(--bg);
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(14px);
+        background: color-mix(in srgb, var(--bg), transparent 55%);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .topbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 0;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 750;
+        letter-spacing: 0.2px;
+      }
+
+      .brand img {
+        width: 28px;
+        height: 28px;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .nav a {
+        font-size: 14px;
+        color: var(--muted);
+        padding: 8px 10px;
+        border-radius: 10px;
+      }
+
+      .nav a:hover {
+        background: var(--card);
+        color: var(--fg);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: var(--card);
+        color: var(--fg);
+        font-weight: 650;
+        cursor: pointer;
+        user-select: none;
+        transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+        background: var(--card2);
+      }
+
+      .btn-primary {
+        border-color: color-mix(in srgb, var(--brand), transparent 40%);
+        background: linear-gradient(135deg, color-mix(in srgb, var(--brand), white 0%), color-mix(in srgb, var(--brand2), white 0%));
+        box-shadow: 0 18px 45px color-mix(in srgb, var(--brand), transparent 70%);
+      }
+
+      .btn-primary:hover {
+        border-color: color-mix(in srgb, var(--brand), transparent 10%);
+      }
+
+      .hero {
+        padding: 64px 0 28px;
+        display: grid;
+        grid-template-columns: 1.08fr 0.92fr;
+        gap: 28px;
+        align-items: center;
+      }
+
+      @media (max-width: 920px) {
+        .hero {
+          grid-template-columns: 1fr;
+          padding-top: 42px;
+        }
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--card), transparent 0%);
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .pill strong {
+        color: var(--fg);
+      }
+
+      h1 {
+        margin: 14px 0 12px;
+        line-height: 1.08;
+        font-size: clamp(34px, 4.4vw, 54px);
+        letter-spacing: -0.6px;
+      }
+
+      .lead {
+        margin: 0;
+        color: var(--muted);
+        font-size: 16px;
+      }
+
+      .cta {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 18px;
+      }
+
+      .microcopy {
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 10px;
+      }
+
+      .panel {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--card);
+        box-shadow: var(--shadow);
+      }
+
+      .hero-shot {
+        padding: 14px;
+      }
+
+      .hero-shot img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: calc(var(--radius) - 8px);
+        border: 1px solid var(--border);
+        background: #fff;
+      }
+
+      .badges {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 16px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: color-mix(in srgb, var(--card), transparent 0%);
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .badge b {
+        color: var(--fg);
+      }
+
+      section {
+        padding: 34px 0;
+      }
+
+      .section-title {
+        font-size: 24px;
+        margin: 0 0 10px;
+        letter-spacing: -0.2px;
+      }
+
+      .section-desc {
+        margin: 0 0 18px;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+
+      @media (max-width: 920px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      @media (max-width: 920px) {
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card {
+        padding: 16px;
+      }
+
+      .card h3 {
+        margin: 8px 0 6px;
+        font-size: 16px;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--border);
+        background: color-mix(in srgb, var(--card2), transparent 0%);
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 16px;
+        align-items: center;
+      }
+
+      @media (max-width: 920px) {
+        .split {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .steps {
+        display: grid;
+        gap: 12px;
+      }
+
+      .step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 12px;
+        align-items: start;
+        padding: 14px;
+      }
+
+      .num {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--border);
+        background: linear-gradient(180deg, color-mix(in srgb, var(--brand), transparent 75%), transparent);
+        font-weight: 800;
+      }
+
+      .price-card {
+        padding: 18px;
+        text-align: center;
+      }
+
+      .money {
+        font-size: 42px;
+        font-weight: 850;
+        letter-spacing: -0.8px;
+        margin: 12px 0 8px;
+      }
+
+      .price-note {
+        color: var(--muted);
+        font-size: 14px;
+        margin-top: 12px;
+      }
+
+      details {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: var(--card);
+        padding: 12px 14px;
+      }
+
+      details + details {
+        margin-top: 10px;
+      }
+
+      summary {
+        cursor: pointer;
+        font-weight: 650;
+        color: var(--fg);
+        outline: none;
+      }
+
+      details p {
+        margin: 10px 0 0;
+        color: var(--muted);
+      }
+
+      .footer {
+        border-top: 1px solid var(--border);
+        padding: 22px 0 38px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .footer a {
+        color: var(--muted);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="#top">
+          <img src="./icon.png" alt="SnapTrim" width="28" height="28" style="border-radius: 6px;" />
+          <span>SnapTrim</span>
+        </a>
+        <nav class="nav" aria-label="ページ内ナビゲーション">
+          <a href="#features">特徴</a>
+          <a href="#how">使い方</a>
+          <a href="#pricing">料金</a>
+          <a href="#faq">FAQ</a>
+          <a class="btn btn-primary" href="https://apps.apple.com/" aria-label="Mac App Store">App Store</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top" class="container">
+      <section class="hero" aria-label="ヒーロー">
+        <div>
+          <div class="pill">
+            <span>macOS専用 / 完全ローカル処理</span>
+            <span aria-hidden="true">•</span>
+            <strong>無劣化トリミング</strong>
+          </div>
+          <h1>動画を、無劣化でサクッとカット。</h1>
+          <p class="lead">
+            SnapTrimは、<strong>EL-Trim方式</strong>でMP4を無劣化カットするmacOSアプリ。
+            再エンコード不要で高速処理。
+            <strong>VLCKit搭載でAV1にも対応</strong>、すべてローカル処理で安心。
+          </p>
+
+          <div class="cta">
+            <a class="btn btn-primary" href="https://apps.apple.com/">Mac App Storeで入手</a>
+            <a class="btn" href="#how">使い方を見る</a>
+          </div>
+
+          <div class="badges" aria-label="特徴の要点">
+            <div class="badge"><b>無劣化カット</b> EL-Trim方式</div>
+            <!-- TODO: 波形表示機能実装後に有効化
+            <div class="badge"><b>波形表示</b> 正確な編集</div>
+            -->
+            <div class="badge"><b>VLCKit</b> AV1対応</div>
+            <div class="badge"><b>完全ローカル</b> クラウド不要</div>
+          </div>
+
+          <p class="microcopy">
+            ※ macOS 13以降対応。動画ファイルはすべてMac内で処理され、外部サーバーへの送信はありません。
+          </p>
+        </div>
+
+        <div class="panel hero-shot" aria-label="スクリーンショット">
+          <div style="aspect-ratio: 16/10; background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(251,191,36,0.1)); border-radius: calc(var(--radius) - 8px); border: 1px dashed var(--border); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; color: var(--muted);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <path d="M8 21h8M12 17v4"/>
+            </svg>
+            <span style="font-size: 14px;">スクリーンショット準備中</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" aria-label="特徴">
+        <h2 class="section-title">動画編集を、シンプルに。高速に。</h2>
+        <p class="section-desc">
+          不要な部分をカットするだけなら、再エンコードは不要。SnapTrimは無劣化カットに特化し、
+          シンプルな操作で素早く編集できます。
+        </p>
+
+        <div class="grid">
+          <article class="panel card">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M4 7h16M4 12h16M4 17h10"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <h3>EL-Trim方式で無劣化カット</h3>
+            <p>再エンコード不要で動画をトリミング。画質劣化なし、処理も高速です。</p>
+          </article>
+
+          <!-- TODO: 波形表示機能実装後に有効化
+          <article class="panel card">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M3 12h18M3 6h18M3 18h18"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+                <path d="M6 12v6M9 9v9M12 6v12M15 9v9M18 12v6" stroke="currentColor" stroke-width="1.5" />
+              </svg>
+            </div>
+            <h3>波形表示で正確な編集</h3>
+            <p>音声波形を視覚化。無音区間や話し声の切れ目を一目で判断できます。</p>
+          </article>
+          -->
+
+          <article class="panel card">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2" />
+                <path d="m8 12 3 3 5-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <h3>VLCKitでAV1対応</h3>
+            <p>VLCKitを搭載し、最新のAV1コーデックにも対応。幅広い形式を再生できます。</p>
+          </article>
+
+          <article class="panel card">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+              </svg>
+            </div>
+            <h3>完全ローカル処理</h3>
+            <p>すべての処理はMac内で完結。クラウドサービスは不要で、プライバシーも安心です。</p>
+          </article>
+
+          <article class="panel card">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2" />
+                <path d="M7 15h2M11 15h2M15 15h2M7 11h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </div>
+            <h3>シンプルなUI</h3>
+            <p>SwiftUIで作られた直感的なインターフェース。トリミングに必要な機能だけを凝縮。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="how" aria-label="使い方">
+        <div class="split">
+          <div class="steps">
+            <h2 class="section-title">使い方は3ステップ</h2>
+            <p class="section-desc">動画を開いて、範囲を選んで、保存するだけ。</p>
+
+            <div class="panel step">
+              <div class="num">1</div>
+              <div>
+                <strong>動画ファイルを開く</strong>
+                <div class="section-desc" style="margin: 6px 0 0">MP4、MOV、MKVなど対応フォーマットの動画を読み込み。</div>
+              </div>
+            </div>
+            <div class="panel step">
+              <div class="num">2</div>
+              <div>
+                <strong>カット範囲を指定</strong>
+                <div class="section-desc" style="margin: 6px 0 0">開始・終了位置を設定。</div>
+              </div>
+            </div>
+            <div class="panel step">
+              <div class="num">3</div>
+              <div>
+                <strong>無劣化で保存</strong>
+                <div class="section-desc" style="margin: 6px 0 0">EL-Trim方式で再エンコードなし。数秒で処理完了。</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel hero-shot" aria-label="使い方のイメージ">
+            <div style="aspect-ratio: 16/10; background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(251,191,36,0.1)); border-radius: calc(var(--radius) - 8px); border: 1px dashed var(--border); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; color: var(--muted);">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <path d="M8 21h8M12 17v4"/>
+              </svg>
+              <span style="font-size: 14px;">スクリーンショット準備中</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" aria-label="料金">
+        <h2 class="section-title">料金</h2>
+        <p class="section-desc">
+          買い切り型。一度の購入で永続利用、サブスクリプションはありません。
+        </p>
+
+        <div class="panel" style="max-width: 400px; margin: 0 auto; padding: 24px; text-align: center; border-color: color-mix(in srgb, var(--brand), transparent 50%);">
+          <div style="font-size: 48px; font-weight: 850; letter-spacing: -1px;">¥100</div>
+          <div style="color: var(--muted); margin-top: 8px;">買い切り（税込）</div>
+          <div style="margin-top: 20px;">
+            <a class="btn btn-primary" href="https://apps.apple.com/">App Storeで購入</a>
+          </div>
+        </div>
+
+        <p style="margin-top: 16px; text-align: center; color: var(--muted); font-size: 13px;">
+          日本のApp Storeで提供中
+        </p>
+      </section>
+
+      <section id="faq" aria-label="よくある質問">
+        <h2 class="section-title">FAQ</h2>
+        <p class="section-desc">よくあるご質問をまとめました。</p>
+
+        <details>
+          <summary>SnapTrimは何ができるアプリ？</summary>
+          <p>
+            動画ファイルの不要な部分をカットするアプリです。EL-Trim方式を採用し、再エンコードせずに無劣化でトリミングできます。
+            シンプルな操作で目的のシーンを見つけられます。
+          </p>
+        </details>
+
+        <details>
+          <summary>「無劣化」とは？</summary>
+          <p>
+            動画を再エンコード（再圧縮）せずにカットすることで、元の画質・音質を100%保持します。
+            通常の編集ソフトは動画を再圧縮するため若干の劣化が発生しますが、SnapTrimはそれを回避します。
+          </p>
+        </details>
+
+        <details>
+          <summary>対応している動画形式は？</summary>
+          <p>
+            MP4、MOV、MKVなど、VLCKitが対応する幅広いフォーマットで再生・編集が可能です。
+            コーデックはH.264、H.265、AV1などに対応しています。
+          </p>
+        </details>
+
+        <details>
+          <summary>処理速度はどのくらい？</summary>
+          <p>
+            再エンコードを行わないため、数秒〜数十秒で処理が完了します（ファイルサイズにより変動）。
+            通常の動画編集ソフトの再エンコードと比べて大幅に高速です。
+          </p>
+        </details>
+
+        <details>
+          <summary>クラウドサービスに動画をアップロードする？</summary>
+          <p>
+            いいえ。すべての処理はMac内で完結し、外部サーバーへの通信は一切ありません。
+            プライバシーとセキュリティを重視した設計です。
+          </p>
+        </details>
+
+        <details>
+          <summary>動作環境は？</summary>
+          <p>
+            macOS 13 (Ventura) 以降が必要です。Apple Silicon (M1/M2/M3) およびIntelプロセッサに対応しています。
+          </p>
+        </details>
+
+        <details>
+          <summary>返金対応は？</summary>
+          <p>
+            購入後の返金についてはAppleの<a href="https://support.apple.com/ja-jp/HT204084" style="text-decoration: underline;">返金ポリシー</a>に準じます。
+            App Store経由での購入となるため、Appleのサポートにお問い合わせください。
+          </p>
+        </details>
+
+        <details>
+          <summary>サポート・お問い合わせ方法は？</summary>
+          <p>
+            ご質問やフィードバックは<a href="mailto:n905i.1214@gmail.com" style="text-decoration: underline;">n905i.1214@gmail.com</a>までお気軽にお送りください。
+            サポートページは<a href="./support.html" style="text-decoration: underline;">こちら</a>。
+          </p>
+        </details>
+      </section>
+
+      <section aria-label="最後のCTA">
+        <div class="panel" style="padding: 18px">
+          <div class="split" style="gap: 14px">
+            <div>
+              <h2 class="section-title" style="margin-bottom: 8px">動画トリミングを、もっとシンプルに。</h2>
+              <p class="section-desc" style="margin: 0">
+                無劣化、高速、完全ローカル処理。SnapTrimで編集をスマートに。
+              </p>
+            </div>
+            <div style="display: flex; justify-content: flex-end; align-items: center; gap: 12px; flex-wrap: wrap">
+              <a class="btn btn-primary" href="https://apps.apple.com/">App Store</a>
+              <a class="btn" href="mailto:n905i.1214@gmail.com">お問い合わせ</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer" aria-label="フッター">
+        <div class="container">
+          <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: space-between; align-items: center">
+            <div>
+              <strong style="color: var(--fg)">SnapTrim</strong>
+              <div>© 2025</div>
+            </div>
+            <div style="display: flex; gap: 14px; flex-wrap: wrap">
+              <a href="privacy.html">プライバシーポリシー</a>
+              <a href="support.html">サポート</a>
+              <a href="mailto:n905i.1214@gmail.com">お問い合わせ</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>

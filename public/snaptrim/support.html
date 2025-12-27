@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>サポート / Support | SnapTrim</title>
+  <style>
+    :root {
+      --bg: #1a1a1a;
+      --text: #e0e0e0;
+      --text-muted: #888;
+      --accent: #0061fe;
+      --border: #333;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      font-size: 0.95rem;
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin: 32px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      color: #fff;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 24px 0 12px;
+      color: #fff;
+    }
+    p, li {
+      margin-bottom: 12px;
+    }
+    ul {
+      padding-left: 24px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      padding: 8px 16px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+    .faq-item {
+      background: #252525;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .faq-item h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+    .contact {
+      background: #252525;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 24px;
+    }
+    .contact-item {
+      margin-bottom: 12px;
+    }
+    .contact-item:last-child {
+      margin-bottom: 0;
+    }
+    code {
+      background: #333;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">← SnapTrim メインページへ</a>
+
+    <h1>サポート / Support</h1>
+    <p class="subtitle">SnapTrim - macOS向けロスレスビデオトリミングアプリ</p>
+
+    <h2>よくある質問 (FAQ)</h2>
+
+    <div class="faq-item">
+      <h3>対応している動画形式は？</h3>
+      <p>SnapTrimは以下の形式に対応しています：</p>
+      <ul>
+        <li><strong>コンテナ形式</strong>: MP4、MOV、M4V</li>
+        <li><strong>動画コーデック</strong>: H.264 (AVC)、HEVC (H.265)、AV1</li>
+      </ul>
+      <p>最新のコーデックであるAV1にも対応しており、高画質・低ビットレートの動画も無劣化でカット可能です。</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>無劣化カットとは？</h3>
+      <p>SnapTrimは<strong>EL-Trim方式</strong>を採用しています。これは動画を再エンコードせず、必要なフレームのみを抽出してMP4ファイルとして再構築する技術です。</p>
+      <p>再エンコードを行わないため：</p>
+      <ul>
+        <li>画質が一切劣化しません</li>
+        <li>処理が高速です（数分の動画を数秒でカット）</li>
+        <li>CPUやバッテリーへの負担が少ない</li>
+      </ul>
+      <p>ただし、カット位置は動画のキーフレーム（Iフレーム）に依存するため、フレーム単位での精密なカットには制約があります。</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>書き出しに時間がかかる？</h3>
+      <p><strong>いいえ、非常に高速です。</strong></p>
+      <p>再エンコードを行わないため、動画の長さにかかわらず、書き出しは通常数秒から数十秒で完了します。従来の動画編集ソフトのように「レンダリング」に長時間待つ必要はありません。</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>macOS何以降に対応していますか？</h3>
+      <p>SnapTrimは<strong>macOS 13 (Ventura)</strong>以降に対応しています。</p>
+      <p>最新のSwiftUIとVLCKitを活用しているため、比較的新しいmacOSバージョンが必要です。</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Intel Macに対応していますか？</h3>
+      <p>現在のバージョンは<strong>Apple Silicon (M1/M2/M3シリーズ)</strong>専用です。</p>
+      <p>Intel Macへの対応は検討中ですが、現時点ではApple Siliconを搭載したMacのみで動作します。</p>
+    </div>
+
+    <h2>お問い合わせ</h2>
+    <div class="contact">
+      <p>SnapTrimに関するご質問、バグ報告、機能リクエストは、以下の方法でお問い合わせください：</p>
+
+      <div class="contact-item">
+        <strong>メール</strong>: <a href="mailto:n905i.1214@gmail.com">n905i.1214@gmail.com</a>
+      </div>
+
+    </div>
+
+    <p style="margin-top: 40px; color: var(--text-muted); text-align: center; font-size: 0.9em;">
+      SnapTrim - Lossless Video Trimming for macOS
+    </p>
+
+  </div>
+</body>
+</html>
