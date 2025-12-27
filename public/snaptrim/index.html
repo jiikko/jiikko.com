@@ -456,10 +456,9 @@
 
           <div class="badges" aria-label="特徴の要点">
             <div class="badge"><b>無劣化カット</b> EL-Trim方式</div>
-            <!-- TODO: 波形表示機能実装後に有効化
             <div class="badge"><b>波形表示</b> 正確な編集</div>
-            -->
             <div class="badge"><b>VLCKit</b> AV1対応</div>
+            <div class="badge"><b>マルチタブ</b> 複数動画を並行編集</div>
             <div class="badge"><b>完全ローカル</b> クラウド不要</div>
           </div>
 
@@ -502,7 +501,6 @@
             <p>再エンコード不要で動画をトリミング。画質劣化なし、処理も高速です。</p>
           </article>
 
-          <!-- TODO: 波形表示機能実装後に有効化
           <article class="panel card">
             <div class="icon" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -518,7 +516,6 @@
             <h3>波形表示で正確な編集</h3>
             <p>音声波形を視覚化。無音区間や話し声の切れ目を一目で判断できます。</p>
           </article>
-          -->
 
           <article class="panel card">
             <div class="icon" aria-hidden="true">
@@ -552,6 +549,69 @@
             <h3>シンプルなUI</h3>
             <p>SwiftUIで作られた直感的なインターフェース。トリミングに必要な機能だけを凝縮。</p>
           </article>
+
+          <article class="panel card">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2" />
+                <path d="M8 3v3M16 3v3" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </div>
+            <h3>マルチタブ対応</h3>
+            <p>複数の動画を同時に開いて並行編集。タブ切り替えでスムーズに作業できます。</p>
+          </article>
+
+          <article class="panel card">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <circle cx="12" cy="12" r="2" fill="currentColor" />
+              </svg>
+            </div>
+            <h3>フレーム単位編集</h3>
+            <p>矢印キーで1フレーム単位の精密な編集。業界標準のI/Oキーでプロの作業フローに対応。</p>
+          </article>
+        </div>
+      </section>
+
+      <section aria-label="性能比較">
+        <h2 class="section-title">従来の動画編集ソフトとの違い</h2>
+        <p class="section-desc">
+          再エンコードなしで処理するから、速くて綺麗。数値で見る違い。
+        </p>
+
+        <div class="panel" style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <th style="padding: 12px; text-align: left; color: var(--muted); font-weight: 600; font-size: 13px;">項目</th>
+                <th style="padding: 12px; text-align: left; font-weight: 650;">従来方式<br/><span style="font-size: 12px; font-weight: 400; color: var(--muted);">（再エンコード）</span></th>
+                <th style="padding: 12px; text-align: left; font-weight: 650; color: var(--brand);">SnapTrim<br/><span style="font-size: 12px; font-weight: 400; color: var(--muted);">（ロスレス）</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px; color: var(--muted); font-size: 14px;">画質</td>
+                <td style="padding: 12px; font-size: 14px;">画質劣化する</td>
+                <td style="padding: 12px; font-size: 14px; color: var(--ok);">✓ 画質そのまま</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px; color: var(--muted); font-size: 14px;">処理時間<br/><span style="font-size: 12px;">(1GB動画)</span></td>
+                <td style="padding: 12px; font-size: 14px;">数分〜数十分</td>
+                <td style="padding: 12px; font-size: 14px; color: var(--ok);">✓ 1秒以下</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 12px; color: var(--muted); font-size: 14px;">CPU負荷</td>
+                <td style="padding: 12px; font-size: 14px;">高負荷、ファンが回る</td>
+                <td style="padding: 12px; font-size: 14px; color: var(--ok);">✓ 低負荷、静音</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px; color: var(--muted); font-size: 14px;">ファイルサイズ</td>
+                <td style="padding: 12px; font-size: 14px;">サイズが変わる</td>
+                <td style="padding: 12px; font-size: 14px; color: var(--ok);">✓ サイズそのまま</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
@@ -615,6 +675,43 @@
         </p>
       </section>
 
+      <section aria-label="ユースケース">
+        <h2 class="section-title">こんな方におすすめ</h2>
+        <p class="section-desc">
+          動画のカットが必要なすべての人に。
+        </p>
+
+        <div class="grid-2">
+          <article class="panel" style="padding: 18px;">
+            <h3 style="margin: 0 0 8px; font-size: 18px;">YouTuber・配信者</h3>
+            <p style="margin: 0; color: var(--muted); font-size: 14px;">
+              撮影素材の前後をサクッとカット。画質を落とさずSNS投稿用に整形。
+            </p>
+          </article>
+
+          <article class="panel" style="padding: 18px;">
+            <h3 style="margin: 0 0 8px; font-size: 18px;">動画編集者</h3>
+            <p style="margin: 0; color: var(--muted); font-size: 14px;">
+              編集前の素材整理や、納品前の最終調整に。フレーム単位で精密に編集。
+            </p>
+          </article>
+
+          <article class="panel" style="padding: 18px;">
+            <h3 style="margin: 0 0 8px; font-size: 18px;">映像制作</h3>
+            <p style="margin: 0; color: var(--muted); font-size: 14px;">
+              4K/8K大容量ファイルも高速処理。波形表示で音声の切れ目を正確に判断。
+            </p>
+          </article>
+
+          <article class="panel" style="padding: 18px;">
+            <h3 style="margin: 0 0 8px; font-size: 18px;">一般ユーザー</h3>
+            <p style="margin: 0; color: var(--muted); font-size: 14px;">
+              家族動画の不要部分をカット。シンプルな操作で誰でも簡単に使えます。
+            </p>
+          </article>
+        </div>
+      </section>
+
       <section id="faq" aria-label="よくある質問">
         <h2 class="section-title">FAQ</h2>
         <p class="section-desc">よくあるご質問をまとめました。</p>
@@ -671,6 +768,23 @@
           <p>
             購入後の返金についてはAppleの<a href="https://support.apple.com/ja-jp/HT204084" style="text-decoration: underline;">返金ポリシー</a>に準じます。
             App Store経由での購入となるため、Appleのサポートにお問い合わせください。
+          </p>
+        </details>
+
+        <details>
+          <summary>キーボードショートカットはありますか？</summary>
+          <p>
+            はい。プロの編集フローに対応した業界標準のショートカットを用意しています。
+            I/Oキーでカット点設定、矢印キーでフレーム単位移動、⌘Eでトリミング実行など。
+            アプリ内でショートカット一覧を確認できます。
+          </p>
+        </details>
+
+        <details>
+          <summary>複数の動画を同時に編集できますか？</summary>
+          <p>
+            はい。マルチタブ機能で複数の動画を同時に開いて編集できます。
+            タブ切り替え（⌃Tab）で素早く作業できます。
           </p>
         </details>
 
