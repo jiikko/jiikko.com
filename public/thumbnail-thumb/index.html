@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThumbnailThumb - サムネイル作成に特化したmacOSアプリ</title>
+  <meta name="description" content="YouTube・Instagram・TikTokなど主要SNS推奨サイズをプリセットしたmacOSサムネイル作成アプリ。AI背景除去と多彩なテキスト装飾を搭載。">
+  <meta name="keywords" content="YouTube, サムネイル, macOS, アプリ, AI背景除去, 袋文字, Instagram, TikTok">
+  <meta property="og:title" content="ThumbnailThumb - サムネイル作成に特化したmacOSアプリ">
+  <meta property="og:description" content="主要SNS推奨サイズをプリセットしたmacOSサムネイル作成アプリ。AI背景除去と多彩なテキスト装飾を搭載。">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #FF3B30;
+      --primary-dark: #E02D23;
+      --accent: #0066FF;
+      --dark: #1a1a1a;
+      --gray: #666;
+      --light-gray: #f5f5f5;
+      --white: #fff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      color: var(--white);
+      padding: 80px 0 100px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--primary);
+      color: var(--white);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .hero-icon {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 24px;
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 900;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+    }
+
+    .hero-tagline {
+      font-size: clamp(18px, 2.5vw, 24px);
+      color: #aaa;
+      margin-bottom: 40px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--primary);
+      color: var(--white);
+      padding: 16px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+
+    .hero-cta:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .hero-cta svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .hero-note {
+      margin-top: 16px;
+      font-size: 14px;
+      color: #888;
+    }
+
+    .hero-screenshot {
+      margin-top: 60px;
+      border-radius: 12px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+      overflow: hidden;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-screenshot img {
+      width: 100%;
+      display: block;
+    }
+
+    .hero-screenshot-placeholder {
+      background: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 100%);
+      padding: 60px 40px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    /* Platforms Section */
+    .platforms {
+      padding: 80px 0;
+      background: var(--white);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--gray);
+      font-size: 18px;
+      margin-bottom: 48px;
+    }
+
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 600px) {
+      .platform-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .platform-card {
+      background: var(--light-gray);
+      border-radius: 12px;
+      padding: 20px 16px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .platform-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .platform-name {
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .platform-size {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    /* Strengths Section */
+    .strengths {
+      padding: 80px 0;
+      background: var(--light-gray);
+    }
+
+    .strength-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    @media (max-width: 768px) {
+      .strength-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .strength-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .strength-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--primary);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .strength-icon svg {
+      width: 32px;
+      height: 32px;
+      color: var(--white);
+    }
+
+    .strength-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .strength-card p {
+      color: var(--gray);
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    .strength-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .strength-tag {
+      background: var(--light-gray);
+      padding: 4px 12px;
+      border-radius: 16px;
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    /* Features Section */
+    .features {
+      padding: 80px 0;
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 600px) {
+      .feature-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .feature-icon svg {
+      width: 20px;
+      height: 20px;
+      color: var(--white);
+    }
+
+    .feature-content h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .feature-content p {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    /* Pricing Section */
+    .pricing {
+      background: var(--dark);
+      color: var(--white);
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .pricing .section-title {
+      color: var(--white);
+    }
+
+    .pricing .section-subtitle {
+      color: #888;
+    }
+
+    .price-card {
+      background: var(--white);
+      color: var(--dark);
+      max-width: 400px;
+      margin: 0 auto;
+      border-radius: 20px;
+      padding: 48px 40px;
+    }
+
+    .price-badge {
+      display: inline-block;
+      background: var(--primary);
+      color: var(--white);
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .price-amount {
+      font-size: 56px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .price-note {
+      color: var(--gray);
+      font-size: 14px;
+      margin-bottom: 32px;
+    }
+
+    .price-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 32px;
+    }
+
+    .price-features li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--light-gray);
+      font-size: 15px;
+    }
+
+    .price-features li:last-child {
+      border-bottom: none;
+    }
+
+    .price-features li::before {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background: #4CAF50;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+      background-size: 12px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .price-cta {
+      display: block;
+      background: var(--primary);
+      color: var(--white);
+      padding: 16px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+
+    .price-cta:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Footer */
+    .footer {
+      padding: 40px 0;
+      background: var(--light-gray);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    .footer-logo {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    .footer-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    @media (max-width: 600px) {
+      .footer-info {
+        align-items: center;
+      }
+    }
+
+    .footer-requirements {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    .footer-copyright {
+      font-size: 12px;
+      color: var(--gray);
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <img src="app-icon.png" alt="ThumbnailThumb" class="hero-icon">
+      <h1>
+        サムネイル作成に<br><span>特化</span>したmacOSアプリ
+      </h1>
+      <p class="hero-tagline">
+        AI背景除去と多彩なテキスト装飾で、目を引くサムネイルを作成
+      </p>
+      <a href="#" class="hero-cta">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+        </svg>
+        App Storeで入手
+      </a>
+      <p class="hero-note">¥100 / 買い切り / macOS 14.0以降</p>
+
+      <div class="hero-screenshot">
+        <!--
+        ==========================================
+        スクリーンショット撮影ガイド
+        ==========================================
+
+        【目的】
+        アプリの全体像と主要機能が一目でわかるメインビジュアル
+
+        【撮影する画面状態】
+        1. ウィンドウサイズ: 横幅1200px以上（フルスクリーン推奨）
+        2. ダークモード推奨（LP背景と調和する）
+
+        【キャンバス内容】
+        - YouTubeサムネイルのプリセット (1280x720) を選択
+        - 背景: グラデーション or 単色（派手な色）
+        - 人物画像: 背景除去済みの切り抜き画像を1つ配置
+        - 袋文字テキスト: 「最新動画」など短いテキスト
+          - 二重縁取り有効
+          - シャドウ有効
+          - 目立つ色（黄色や白）
+        - 図形: 1つ程度（星や矢印など）
+
+        【パネル状態】
+        - 左パネル: ツールパネルが見える状態
+        - 右パネル: テキストを選択した状態でプロパティが表示されている
+          （袋文字の設定項目が見えると良い）
+        - 下部: キャンバスストリップに2-3個のキャンバスサムネイルが見える
+
+        【避けること】
+        - 空のキャンバス（機能が伝わらない）
+        - 要素が多すぎてごちゃごちゃした状態
+        - 個人情報や実際の動画タイトルが映り込む
+
+        【画像形式】
+        - PNG推奨
+        - 幅: 1800px程度（Retinaディスプレイ対応）
+        - ファイル名: screenshot-hero.png
+
+        【埋め込み方法】
+        このコメントを以下に置き換え:
+        <img src="screenshot-hero.png" alt="ThumbnailThumb - サムネイル作成画面">
+        ==========================================
+        -->
+        <div class="hero-screenshot-placeholder">
+          ここに貼るスクショ：<br><br>
+          ・YouTubeプリセット(1280x720)選択<br>
+          ・背景：グラデーションか派手な単色<br>
+          ・背景除去済みの人物画像を1つ配置<br>
+          ・縁取り付きテキスト「最新動画」など<br>
+          ・右パネル：テキスト選択してプロパティ表示中<br>
+          ・下部：キャンバス2-3個見える状態<br>
+          ・ダークモード推奨
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platforms -->
+  <section class="platforms">
+    <div class="container">
+      <h2 class="section-title">主要SNS推奨サイズをプリセット</h2>
+      <p class="section-subtitle">選ぶだけで最適なキャンバスサイズに</p>
+
+      <div class="platform-grid">
+        <div class="platform-card">
+          <div class="platform-name">YouTube</div>
+          <div class="platform-size">1280 x 720</div>
+        </div>
+        <div class="platform-card">
+          <div class="platform-name">Instagram</div>
+          <div class="platform-size">1080 x 1080</div>
+        </div>
+        <div class="platform-card">
+          <div class="platform-name">TikTok</div>
+          <div class="platform-size">1080 x 1920</div>
+        </div>
+        <div class="platform-card">
+          <div class="platform-name">X (Twitter)</div>
+          <div class="platform-size">1200 x 675</div>
+        </div>
+        <div class="platform-card">
+          <div class="platform-name">Twitch</div>
+          <div class="platform-size">1920 x 1080</div>
+        </div>
+        <div class="platform-card">
+          <div class="platform-name">Facebook</div>
+          <div class="platform-size">1200 x 630</div>
+        </div>
+        <div class="platform-card">
+          <div class="platform-name">Mirrativ</div>
+          <div class="platform-size">1280 x 720</div>
+        </div>
+        <div class="platform-card">
+          <div class="platform-name">Instagram ストーリー</div>
+          <div class="platform-size">1080 x 1920</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Strengths -->
+  <section class="strengths">
+    <div class="container">
+      <h2 class="section-title">4つの強み</h2>
+      <p class="section-subtitle">サムネイル制作に特化した機能</p>
+
+      <div class="strength-grid">
+        <div class="strength-card">
+          <div class="strength-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm-4.44-6.19l-2.35 3.02-1.56-1.88c-.2-.25-.58-.24-.78.01l-1.74 2.23c-.26.33-.02.81.39.81h8.98c.41 0 .65-.47.4-.8l-2.55-3.39c-.19-.26-.59-.26-.79 0z"/>
+            </svg>
+          </div>
+          <h3>AI背景除去</h3>
+          <p>ワンクリックで人物や物体の背景を自動除去。Apple Vision Frameworkで高精度処理。</p>
+          <div class="strength-tags">
+            <span class="strength-tag">2秒以内</span>
+            <span class="strength-tag">オフライン</span>
+          </div>
+        </div>
+
+        <div class="strength-card">
+          <div class="strength-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M2.5 4v3h5v12h3V7h5V4h-13zm19 5h-9v3h3v7h3v-7h3V9z"/>
+            </svg>
+          </div>
+          <h3>多彩なテキスト装飾</h3>
+          <p>縁取り、シャドウ、グラデーション、斜体など多彩な装飾で目立つ文字を作成。</p>
+          <div class="strength-tags">
+            <span class="strength-tag">縁取り</span>
+            <span class="strength-tag">グラデーション</span>
+          </div>
+        </div>
+
+        <div class="strength-card">
+          <div class="strength-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M13 2.05v2.02c3.95.49 7 3.85 7 7.93 0 3.21-1.92 6-4.72 7.28L13 17v5h5l-1.22-1.22C19.91 19.07 22 15.76 22 12c0-5.18-3.95-9.45-9-9.95zM11 2.05C5.94 2.55 2 6.81 2 12c0 3.76 2.09 7.07 5.22 8.78L6 22h5v-5l-2.28 2.28C6.92 18 5 15.21 5 12c0-4.08 3.05-7.44 7-7.93V2.05z"/>
+            </svg>
+          </div>
+          <h3>高速動作</h3>
+          <p>Metal GPUアクセラレーションでサクサク動作。エクスポートも1秒以内。</p>
+          <div class="strength-tags">
+            <span class="strength-tag">起動1秒</span>
+            <span class="strength-tag">ネイティブ</span>
+          </div>
+        </div>
+
+        <div class="strength-card">
+          <div class="strength-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M3 5H1v16c0 1.1.9 2 2 2h16v-2H3V5zm18-4H7c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm0 16H7V3h14v14z"/>
+            </svg>
+          </div>
+          <h3>マルチキャンバス</h3>
+          <p>複数プロジェクトをタブ管理。1プロジェクト内に複数キャンバスでバリエーション作成。</p>
+          <div class="strength-tags">
+            <span class="strength-tag">タブ管理</span>
+            <span class="strength-tag">A/Bテスト</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="container">
+      <h2 class="section-title">その他の機能</h2>
+      <p class="section-subtitle">プロ仕様のツールを搭載</p>
+
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h4>Figmaライクカラーピッカー</h4>
+            <p>HSB・スポイト・HEX入力に対応</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.66 17.66l-1.06 1.06-.71-.71 1.06-1.06-1.94-1.94-1.06 1.06-.71-.71 1.06-1.06-1.94-1.94-1.06 1.06-.71-.71 1.06-1.06L9.7 9.7l-1.06 1.06-.71-.71 1.06-1.06-1.94-1.94-1.06 1.06-.71-.71 1.06-1.06L4.69 4.7c-.39-.39-1.02-.39-1.41 0l-.71.71c-.39.39-.39 1.02 0 1.41L12.69 17c.39.39 1.02.39 1.41 0l.71-.71c.39-.39.39-1.02 0-1.41l-1.94-1.94 1.06-1.06.71.71-1.06 1.06 1.94 1.94 1.06-1.06.71.71-1.06 1.06 1.94 1.94z"/>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h4>図形ツール</h4>
+            <p>四角・円・三角・星・矢印など6種類</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h4>ドラッグ&ドロップ</h4>
+            <p>画像を直接キャンバスに追加</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"/>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h4>50段階Undo</h4>
+            <p>安心して試行錯誤できる</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h4>PNG/JPEGエクスポート</h4>
+            <p>透明背景にも対応</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">ThumbnailThumb</div>
+        <div class="footer-links">
+          <a href="privacy.html">プライバシーポリシー</a>
+          <a href="terms.html">利用規約</a>
+        </div>
+        <div class="footer-info">
+          <span class="footer-requirements">macOS 14.0 (Sonoma) 以降 / Apple Silicon</span>
+          <span class="footer-copyright">&copy; 2026 ThumbnailThumb</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
