@@ -130,13 +130,6 @@
       display: block;
     }
 
-    .hero-screenshot-placeholder {
-      background: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 100%);
-      padding: 60px 40px;
-      color: #666;
-      font-size: 14px;
-    }
-
     /* Platforms Section */
     .platforms {
       padding: 80px 0;
@@ -412,10 +405,70 @@
       background: var(--primary-dark);
     }
 
+    /* Examples Gallery */
+    .examples {
+      padding: 80px 0;
+      background: var(--light-gray);
+    }
+
+    .example-category {
+      margin-bottom: 48px;
+    }
+
+    .example-category:last-child {
+      margin-bottom: 0;
+    }
+
+    .example-category-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gray);
+      margin-bottom: 16px;
+      padding-left: 4px;
+    }
+
+    .example-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .example-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .example-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .example-item {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+      aspect-ratio: 16 / 9;
+    }
+
+    .example-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .example-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     /* Footer */
     .footer {
       padding: 40px 0;
-      background: var(--light-gray);
+      background: var(--dark);
     }
 
     .footer-content {
@@ -436,6 +489,7 @@
     .footer-logo {
       font-size: 18px;
       font-weight: 700;
+      color: var(--white);
     }
 
     .footer-links {
@@ -444,7 +498,7 @@
     }
 
     .footer-links a {
-      color: var(--gray);
+      color: #aaa;
       text-decoration: none;
       font-size: 14px;
     }
@@ -468,12 +522,12 @@
 
     .footer-requirements {
       font-size: 12px;
-      color: var(--gray);
+      color: #888;
     }
 
     .footer-copyright {
       font-size: 12px;
-      color: var(--gray);
+      color: #888;
     }
   </style>
 </head>
@@ -481,7 +535,7 @@
   <!-- Hero -->
   <section class="hero">
     <div class="container">
-      <img src="app-icon.png" alt="ThumbnailThumb" class="hero-icon">
+      <img src="app-icon.webp" alt="ThumbnailThumb" class="hero-icon">
       <h1>
         サムネイル作成に<br><span>特化</span>したmacOSアプリ
       </h1>
@@ -497,59 +551,7 @@
       <p class="hero-note">¥100 / 買い切り / macOS 14.0以降</p>
 
       <div class="hero-screenshot">
-        <!--
-        ==========================================
-        スクリーンショット撮影ガイド
-        ==========================================
-
-        【目的】
-        アプリの全体像と主要機能が一目でわかるメインビジュアル
-
-        【撮影する画面状態】
-        1. ウィンドウサイズ: 横幅1200px以上（フルスクリーン推奨）
-        2. ダークモード推奨（LP背景と調和する）
-
-        【キャンバス内容】
-        - YouTubeサムネイルのプリセット (1280x720) を選択
-        - 背景: グラデーション or 単色（派手な色）
-        - 人物画像: 背景除去済みの切り抜き画像を1つ配置
-        - 袋文字テキスト: 「最新動画」など短いテキスト
-          - 二重縁取り有効
-          - シャドウ有効
-          - 目立つ色（黄色や白）
-        - 図形: 1つ程度（星や矢印など）
-
-        【パネル状態】
-        - 左パネル: ツールパネルが見える状態
-        - 右パネル: テキストを選択した状態でプロパティが表示されている
-          （袋文字の設定項目が見えると良い）
-        - 下部: キャンバスストリップに2-3個のキャンバスサムネイルが見える
-
-        【避けること】
-        - 空のキャンバス（機能が伝わらない）
-        - 要素が多すぎてごちゃごちゃした状態
-        - 個人情報や実際の動画タイトルが映り込む
-
-        【画像形式】
-        - PNG推奨
-        - 幅: 1800px程度（Retinaディスプレイ対応）
-        - ファイル名: screenshot-hero.png
-
-        【埋め込み方法】
-        このコメントを以下に置き換え:
-        <img src="screenshot-hero.png" alt="ThumbnailThumb - サムネイル作成画面">
-        ==========================================
-        -->
-        <div class="hero-screenshot-placeholder">
-          ここに貼るスクショ：<br><br>
-          ・YouTubeプリセット(1280x720)選択<br>
-          ・背景：グラデーションか派手な単色<br>
-          ・背景除去済みの人物画像を1つ配置<br>
-          ・縁取り付きテキスト「最新動画」など<br>
-          ・右パネル：テキスト選択してプロパティ表示中<br>
-          ・下部：キャンバス2-3個見える状態<br>
-          ・ダークモード推奨
-        </div>
+        <img src="hero-screenshot.webp" alt="ThumbnailThumb - サムネイル作成画面">
       </div>
     </div>
   </section>
@@ -739,6 +741,68 @@
           <div class="feature-content">
             <h4>画像クロップ</h4>
             <p>ダブルクリックで素早く切り出し</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Examples Gallery -->
+  <section class="examples">
+    <div class="container">
+      <h2 class="section-title">作例ギャラリー</h2>
+      <p class="section-subtitle">ThumbnailThumbで作成したサムネイル例</p>
+
+      <div class="example-category">
+        <h3 class="example-category-title">学術・解説系</h3>
+        <div class="example-grid">
+          <div class="example-item">
+            <img src="examples/academic-ted.webp" alt="TED風サムネイル" loading="lazy">
+          </div>
+          <div class="example-item">
+            <img src="examples/academic-nakata.webp" alt="中田敦彦風サムネイル" loading="lazy">
+          </div>
+          <div class="example-item">
+            <img src="examples/academic-fermi.webp" alt="フェルミ研究所風サムネイル" loading="lazy">
+          </div>
+          <div class="example-item">
+            <img src="examples/academic-hiroyuki.webp" alt="ひろゆき風サムネイル" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <div class="example-category">
+        <h3 class="example-category-title">ゲーム実況系</h3>
+        <div class="example-grid">
+          <div class="example-item">
+            <img src="examples/gaming-letsplay.webp" alt="実況プレイサムネイル" loading="lazy">
+          </div>
+          <div class="example-item">
+            <img src="examples/gaming-horror.webp" alt="ホラーゲームサムネイル" loading="lazy">
+          </div>
+          <div class="example-item">
+            <img src="examples/gaming-godplay.webp" alt="神プレイサムネイル" loading="lazy">
+          </div>
+          <div class="example-item">
+            <img src="examples/gaming-strategy.webp" alt="攻略動画サムネイル" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <div class="example-category">
+        <h3 class="example-category-title">Vlog・ライフスタイル系</h3>
+        <div class="example-grid">
+          <div class="example-item">
+            <img src="examples/vlog-morning.webp" alt="モーニングルーティンサムネイル" loading="lazy">
+          </div>
+          <div class="example-item">
+            <img src="examples/vlog-haul.webp" alt="購入品紹介サムネイル" loading="lazy">
+          </div>
+          <div class="example-item">
+            <img src="examples/vlog-travel.webp" alt="旅行Vlogサムネイル" loading="lazy">
+          </div>
+          <div class="example-item">
+            <img src="examples/vlog-roomtour.webp" alt="ルームツアーサムネイル" loading="lazy">
           </div>
         </div>
       </div>
