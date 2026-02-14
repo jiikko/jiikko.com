@@ -10,7 +10,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     steps:
       - uses: actions/checkout@v3
       - id: "auth"
@@ -32,7 +32,7 @@ jobs:
           docker push "${REGISTRY_HOST}/$PROJECT_ID/$REPOSITORY_NAME/web:pr-${{ github.event.number }}"
   deploy:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     steps:
       - uses: actions/checkout@v3
       - id: "auth"
