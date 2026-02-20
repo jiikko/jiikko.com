@@ -661,6 +661,17 @@
           <article class="panel card">
             <div class="icon" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>外部アプリ連携</h3>
+            <p>URL スキームでファイルマネージャーなど外部ツールから動画を開ける。ストリーミングプレイヤーとして使用可能。</p>
+          </article>
+
+          <article class="panel card">
+            <div class="icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path d="M12 8v4l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                 <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" />
                 <path d="M4 4l2 2M20 4l-2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
@@ -933,6 +944,25 @@
           <ul class="list">
             <li>表示対象の拡張子: .mp4 / .mov / .m4v / .webm / .mkv / .avi / .wmv / .3gp / .ogg</li>
           </ul>
+        </details>
+        <details>
+          <summary>外部アプリから動画を開ける？（開発者向け）</summary>
+          <p><strong>URL スキーム仕様:</strong></p>
+          <pre style="background: var(--card2); padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 13px; border: 1px solid var(--border); margin: 8px 0;">dbmvplayer://load?localPath={Dropbox同期フォルダ内のファイルパス}</pre>
+
+          <p style="margin-top: 12px;"><strong>パラメータ:</strong></p>
+          <ul class="list" style="margin: 4px 0;">
+            <li><code>localPath</code> (必須): Dropbox 同期フォルダ配下のファイルの絶対パス（URL エンコード必須）</li>
+          </ul>
+
+          <p style="margin-top: 12px;"><strong>Swift サンプルコード:</strong></p>
+          <pre style="background: var(--card2); padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 13px; border: 1px solid var(--border); margin-top: 8px;"><code>let path = "/Users/koji/Library/CloudStorage/Dropbox/Videos/sample.mp4"
+let encoded = path.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+let urlString = "dbmvplayer://load?localPath=\(encoded)"
+NSWorkspace.shared.open(URL(string: urlString)!)</code></pre>
+
+          <p style="margin-top: 12px;"><strong>Shell サンプルコード:</strong></p>
+          <pre style="background: var(--card2); padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 13px; border: 1px solid var(--border); margin-top: 8px;"><code>open "dbmvplayer://load?localPath=/Users/koji/Library/CloudStorage/Dropbox/Videos/sample.mp4"</code></pre>
         </details>
         <details>
           <summary>Dropboxアカウントが必須？</summary>
