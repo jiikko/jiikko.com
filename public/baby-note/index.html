@@ -421,19 +421,31 @@
         text-underline-offset: 3px;
       }
 
-      /* Placeholder image */
-      .placeholder {
-        width: 100%;
-        aspect-ratio: 9 / 16;
-        max-height: 500px;
+      /* Screenshots */
+      .screenshots-scroll {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--card2);
-        border-radius: calc(var(--radius) - 8px);
-        border: 2px dashed var(--border);
-        color: var(--muted);
-        font-size: 14px;
+        gap: 12px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .screenshots-scroll::-webkit-scrollbar { height: 4px; }
+      .screenshots-scroll::-webkit-scrollbar-track { background: var(--card); border-radius: 2px; }
+      .screenshots-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+      .screenshots-scroll img {
+        flex-shrink: 0;
+        width: 220px;
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        scroll-snap-align: start;
+        box-shadow: var(--shadow);
+      }
+
+      @media (max-width: 920px) {
+        .screenshots-scroll img { width: 180px; }
       }
     </style>
   </head>
@@ -490,7 +502,7 @@
         </div>
 
         <div class="panel hero-shot" aria-label="スクリーンショット">
-          <div class="placeholder">スクリーンショット（準備中）</div>
+          <img src="ss_1.webp" alt="タイムライン画面" loading="lazy">
         </div>
       </section>
 
@@ -591,6 +603,23 @@
           <span class="event-type">💊 薬</span>
           <span class="event-type">🤒 症状</span>
           <span class="event-type">📝 メモ</span>
+        </div>
+      </section>
+
+      <!-- Screenshots -->
+      <section aria-label="スクリーンショット">
+        <h2 class="section-title">アプリの画面</h2>
+        <div class="screenshots-scroll">
+          <img src="ss_1.webp" alt="タイムライン画面" width="220" loading="lazy">
+          <img src="ss_2.webp" alt="統計画面" width="220" loading="lazy">
+          <img src="ss_3.webp" alt="記録入力画面" width="220" loading="lazy">
+          <div style="display:flex; align-items:center; padding: 0 4px;">
+            <div style="width:1px; height:80%; background:var(--border); margin: 0 8px;"></div>
+            <span style="font-size:12px; color:var(--muted); writing-mode:vertical-rl; white-space:nowrap;">Apple Watch</span>
+          </div>
+          <img src="watch_1.webp" alt="Apple Watch画面1" loading="lazy" style="width:auto; border-radius:28px;">
+          <img src="watch_2.webp" alt="Apple Watch画面2" loading="lazy" style="width:auto; border-radius:28px;">
+          <img src="watch_3.webp" alt="Apple Watch画面3" loading="lazy" style="width:auto; border-radius:28px;">
         </div>
       </section>
 
@@ -731,9 +760,8 @@
         <details>
           <summary>家族共有はどうやって使いますか？</summary>
           <p>
-            設定画面から招待リンクを作成してパートナーに送るだけです。
-            パートナーがリンクを開くと、同じデータが自動的に同期されます。
-            別のApple IDでも問題ありません。
+            設定画面の「家族と共有」から招待したい相手のiCloudアカウントのメールアドレスを入力すると、招待リンクが生成されます。
+            そのリンクをLINEやメッセージで送り、相手がリンクをタップするとアプリが起動して参加完了です。
           </p>
         </details>
 
@@ -776,7 +804,7 @@
             </div>
             <div style="display: flex; justify-content: flex-end; align-items: center; gap: 12px; flex-wrap: wrap">
               <a class="btn btn-primary" href="#">App Store（準備中）</a>
-              <a class="btn" href="mailto:n905i.1214@gmail.com">お問い合わせ</a>
+              <a class="btn" href="https://github.com/jiikko/product-feedback">お問い合わせ</a>
             </div>
           </div>
         </div>
@@ -791,7 +819,7 @@
             </div>
             <div style="display: flex; gap: 14px; flex-wrap: wrap">
               <a href="privacy.html">プライバシーポリシー</a>
-              <a href="mailto:n905i.1214@gmail.com">お問い合わせ</a>
+              <a href="https://github.com/jiikko/product-feedback">お問い合わせ</a>
             </div>
           </div>
         </div>

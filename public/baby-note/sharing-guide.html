@@ -1,0 +1,766 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>家族共有の使い方 — ベビーノート</title>
+    <meta
+      name="description"
+      content="ベビーノートで家族を招待し、育児記録を共有する方法を解説します。招待リンクの作成から共有の停止まで。"
+    />
+
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f0f4f8;
+        --fg: #1a2233;
+        --muted: rgba(26, 34, 51, 0.65);
+        --card: rgba(255, 255, 255, 0.82);
+        --card2: rgba(255, 255, 255, 0.95);
+        --border: rgba(0, 122, 255, 0.12);
+        --shadow: 0 18px 60px rgba(26, 34, 51, 0.1);
+        --brand: #007aff;
+        --brand2: #5ac8fa;
+        --ok: #34c759;
+        --warn: #ff9500;
+        --radius: 16px;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0d1117;
+          --fg: #ecf0f6;
+          --muted: rgba(236, 240, 246, 0.65);
+          --card: rgba(255, 255, 255, 0.06);
+          --card2: rgba(255, 255, 255, 0.09);
+          --border: rgba(90, 200, 250, 0.15);
+          --shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+        }
+      }
+
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", Helvetica, Arial, sans-serif;
+        color: var(--fg);
+        background:
+          radial-gradient(1200px 600px at 10% 0%, rgba(0, 122, 255, 0.18), transparent 60%),
+          radial-gradient(900px 500px at 80% 10%, rgba(90, 200, 250, 0.14), transparent 55%),
+          var(--bg);
+        line-height: 1.7;
+      }
+
+      a { color: var(--brand); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+
+      .container {
+        width: min(780px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      /* Topbar */
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(14px);
+        background: color-mix(in srgb, var(--bg), transparent 55%);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .topbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 0;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 750;
+        letter-spacing: 0.2px;
+        color: var(--fg);
+        text-decoration: none;
+      }
+
+      .nav { display: flex; align-items: center; gap: 14px; }
+
+      .nav a {
+        font-size: 14px;
+        color: var(--muted);
+        padding: 8px 10px;
+        border-radius: 10px;
+        text-decoration: none;
+      }
+
+      .nav a:hover { background: var(--card); color: var(--fg); }
+
+      /* Page header */
+      .page-header {
+        padding: 48px 0 24px;
+      }
+
+      .page-header h1 {
+        margin: 0 0 8px;
+        font-size: clamp(26px, 3.5vw, 36px);
+        letter-spacing: -0.4px;
+        line-height: 1.2;
+      }
+
+      .page-header p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 16px;
+      }
+
+      /* TOC */
+      .toc {
+        margin: 0 0 32px;
+        padding: 16px 20px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--card);
+      }
+
+      .toc-title {
+        margin: 0 0 8px;
+        font-size: 14px;
+        font-weight: 650;
+        color: var(--muted);
+      }
+
+      .toc ol {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      .toc li {
+        margin: 4px 0;
+        font-size: 14px;
+      }
+
+      .toc a { color: var(--brand); }
+
+      /* Sections */
+      section {
+        padding: 28px 0;
+      }
+
+      h2 {
+        font-size: 22px;
+        margin: 0 0 16px;
+        letter-spacing: -0.2px;
+        padding-top: 8px;
+      }
+
+      h3 {
+        font-size: 17px;
+        margin: 24px 0 12px;
+      }
+
+      .panel {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--card);
+        box-shadow: var(--shadow);
+      }
+
+      /* Steps */
+      .steps { display: grid; gap: 12px; }
+
+      .step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 14px;
+        align-items: start;
+        padding: 16px;
+      }
+
+      .num {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--border);
+        background: linear-gradient(180deg, color-mix(in srgb, var(--brand), transparent 75%), transparent);
+        font-weight: 800;
+        flex-shrink: 0;
+      }
+
+      .step strong { display: block; margin-bottom: 4px; }
+      .step .desc { color: var(--muted); font-size: 14px; line-height: 1.6; }
+
+      /* Info boxes */
+      .info-box {
+        padding: 14px 16px;
+        border-radius: 12px;
+        font-size: 14px;
+        line-height: 1.6;
+        margin: 16px 0;
+      }
+
+      .info-box-blue {
+        background: color-mix(in srgb, var(--brand), transparent 88%);
+        border: 1px solid color-mix(in srgb, var(--brand), transparent 70%);
+      }
+
+      .info-box-orange {
+        background: color-mix(in srgb, var(--warn), transparent 88%);
+        border: 1px solid color-mix(in srgb, var(--warn), transparent 70%);
+      }
+
+      .info-box-green {
+        background: color-mix(in srgb, var(--ok), transparent 88%);
+        border: 1px solid color-mix(in srgb, var(--ok), transparent 70%);
+      }
+
+      /* Flow diagram */
+      .flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin: 20px 0;
+        padding: 20px;
+      }
+
+      .flow-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: var(--card2);
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .flow-arrow {
+        color: var(--muted);
+        font-size: 20px;
+      }
+
+      /* Comparison cards */
+      .role-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin: 16px 0;
+      }
+
+      @media (max-width: 600px) {
+        .role-grid { grid-template-columns: 1fr; }
+      }
+
+      .role-card {
+        padding: 16px;
+      }
+
+      .role-card h4 {
+        margin: 0 0 8px;
+        font-size: 15px;
+      }
+
+      .role-card ul {
+        margin: 0;
+        padding-left: 18px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .role-card li { margin: 4px 0; }
+
+      /* FAQ */
+      details {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: var(--card);
+        padding: 12px 14px;
+      }
+
+      details + details { margin-top: 10px; }
+
+      summary {
+        cursor: pointer;
+        font-weight: 650;
+        color: var(--fg);
+        outline: none;
+      }
+
+      details p {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      /* UI mock */
+      .ui-mock {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: var(--card2);
+        padding: 16px;
+        margin: 16px 0;
+        font-size: 14px;
+      }
+
+      .ui-mock-header {
+        font-weight: 700;
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--border);
+        font-size: 15px;
+      }
+
+      .ui-mock-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 0;
+      }
+
+      .ui-mock-row + .ui-mock-row {
+        border-top: 1px solid color-mix(in srgb, var(--border), transparent 50%);
+      }
+
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      .status-green { background: var(--ok); }
+      .status-orange { background: var(--warn); }
+
+      /* Footer */
+      .footer {
+        border-top: 1px solid var(--border);
+        padding: 22px 0 38px;
+        color: var(--muted);
+        font-size: 13px;
+        margin-top: 16px;
+      }
+
+      .footer a {
+        color: var(--muted);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="index.html">
+          <span style="font-size: 20px;">👶</span>
+          <span>ベビーノート</span>
+        </a>
+        <nav class="nav">
+          <a href="index.html">トップ</a>
+          <a href="privacy.html">プライバシー</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="page-header">
+        <h1>家族共有の使い方</h1>
+        <p>パートナーを招待して、育児記録を一緒に管理する方法を解説します。</p>
+      </div>
+
+      <nav class="toc">
+        <div class="toc-title">もくじ</div>
+        <ol>
+          <li><a href="#overview">家族共有とは</a></li>
+          <li><a href="#before-start">はじめる前に</a></li>
+          <li><a href="#invite">家族を招待する（オーナー）</a></li>
+          <li><a href="#accept">招待を受ける（参加者）</a></li>
+          <li><a href="#usage">共有中の使い方</a></li>
+          <li><a href="#manage">共有の管理</a></li>
+          <li><a href="#faq">よくある質問</a></li>
+        </ol>
+      </nav>
+
+      <!-- 1. Overview -->
+      <section id="overview">
+        <h2>1. 家族共有とは</h2>
+        <p>
+          家族共有を使うと、パートナーや家族とベビーノートの記録を共有できます。
+          片方が記録した授乳やおむつ交換を、もう片方のiPhoneでもリアルタイムに確認できます。
+        </p>
+
+        <div class="panel flow">
+          <div class="flow-item">👤 オーナー<br><small style="color:var(--muted)">招待する側</small></div>
+          <div class="flow-arrow">⇄</div>
+          <div class="flow-item">☁️ iCloud<br><small style="color:var(--muted)">自動同期</small></div>
+          <div class="flow-arrow">⇄</div>
+          <div class="flow-item">👤 パートナー<br><small style="color:var(--muted)">招待される側</small></div>
+        </div>
+
+        <div class="role-grid">
+          <div class="panel role-card">
+            <h4>👤 オーナー（招待する側）</h4>
+            <ul>
+              <li>招待リンクを作成・送信</li>
+              <li>記録の追加・編集・削除</li>
+              <li>子供の追加・編集</li>
+              <li>共有の停止</li>
+            </ul>
+          </div>
+          <div class="panel role-card">
+            <h4>👤 参加者（招待される側）</h4>
+            <ul>
+              <li>記録の追加・編集・削除</li>
+              <li>子供の追加・編集</li>
+              <li>タイムライン・統計の閲覧</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="info-box info-box-green">
+          <strong>プライバシー</strong><br>
+          共有データはオーナーのiCloudに保存されます。開発者を含む第三者がデータにアクセスすることはできません。共有はAppleのCloudKit技術で安全に管理されています。
+        </div>
+      </section>
+
+      <!-- 2. Before start -->
+      <section id="before-start">
+        <h2>2. はじめる前に</h2>
+        <p>家族共有を利用するには、以下の条件を満たしている必要があります。</p>
+
+        <div class="steps">
+          <div class="panel step">
+            <div class="num" style="font-size: 18px;">✓</div>
+            <div>
+              <strong>iCloudにサインインしていること</strong>
+              <div class="desc">
+                オーナー・参加者の両方が、iPhoneの「設定」→「Apple ID」からiCloudにサインインしている必要があります。
+              </div>
+            </div>
+          </div>
+          <div class="panel step">
+            <div class="num" style="font-size: 18px;">✓</div>
+            <div>
+              <strong>インターネットに接続されていること</strong>
+              <div class="desc">
+                招待リンクの作成・受け入れにはインターネット接続が必要です。共有後の記録はオフラインでも可能で、接続復帰時に自動同期されます。
+              </div>
+            </div>
+          </div>
+          <div class="panel step">
+            <div class="num" style="font-size: 18px;">✓</div>
+            <div>
+              <strong>両方のiPhoneにベビーノートがインストールされていること</strong>
+              <div class="desc">
+                パートナーのiPhoneにもベビーノートをインストールしてから、招待リンクを開いてください。
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Invite -->
+      <section id="invite">
+        <h2>3. 家族を招待する（オーナー）</h2>
+
+        <div class="steps">
+          <div class="panel step">
+            <div class="num">1</div>
+            <div>
+              <strong>設定タブを開く</strong>
+              <div class="desc">
+                画面下部のタブバーから「設定」（⚙️ アイコン）をタップします。
+              </div>
+            </div>
+          </div>
+
+          <div class="panel step">
+            <div class="num">2</div>
+            <div>
+              <strong>「家族と共有」を開く</strong>
+              <div class="desc">
+                設定画面から「家族と共有」をタップします。共有したい家族グループを選択してください。
+              </div>
+            </div>
+          </div>
+
+          <div class="panel step">
+            <div class="num">3</div>
+            <div>
+              <strong>「招待する」をタップ</strong>
+              <div class="desc">
+                共有メンバーの「招待する」ボタンをタップします。
+              </div>
+            </div>
+          </div>
+
+          <div class="panel step">
+            <div class="num">4</div>
+            <div>
+              <strong>相手の名前を入力</strong>
+              <div class="desc">
+                招待する相手の名前（ニックネーム）を入力します。<br>
+                この名前は共有メンバー一覧に表示されます。相手が承諾した後で確定されます。
+              </div>
+            </div>
+          </div>
+
+          <div class="panel step">
+            <div class="num">5</div>
+            <div>
+              <strong>招待リンクを送信</strong>
+              <div class="desc">
+                「リンクを作成」をタップすると招待リンクが生成されます。<br>
+                「共有する」ボタンから、LINE・メッセージ・メールなどで相手にリンクを送信してください。
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-box info-box-blue">
+          <strong>招待リンクについて</strong><br>
+          このリンクは1人だけが使用できます。相手が承諾すると自動的に無効になります。<br>
+          相手が承諾する前であれば、「招待をキャンセル」から招待を取り消すこともできます。
+        </div>
+
+        <h3>招待後の画面</h3>
+        <p>招待リンクを作成すると、共有メンバー欄に招待中の状態が表示されます。</p>
+
+        <div class="ui-mock">
+          <div class="ui-mock-header">共有メンバー</div>
+          <div class="ui-mock-row">
+            <span style="color: var(--brand);">👤</span>
+            <span><strong>自分</strong> <span style="color: var(--muted); font-size: 13px;">（オーナー）</span></span>
+          </div>
+          <div class="ui-mock-row">
+            <span style="color: var(--warn);">🕐</span>
+            <span>パパ <span style="color: var(--warn); font-size: 13px;">（招待中）</span></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Accept -->
+      <section id="accept">
+        <h2>4. 招待を受ける（参加者）</h2>
+
+        <div class="steps">
+          <div class="panel step">
+            <div class="num">1</div>
+            <div>
+              <strong>招待リンクをタップ</strong>
+              <div class="desc">
+                LINEやメッセージで受け取った招待リンクをタップします。<br>
+                ベビーノートが自動的に起動します。
+              </div>
+            </div>
+          </div>
+
+          <div class="panel step">
+            <div class="num">2</div>
+            <div>
+              <strong>自動で参加</strong>
+              <div class="desc">
+                「招待を処理中...」と表示された後、自動的に共有が設定されます。<br>
+                特別な操作は必要ありません。
+              </div>
+            </div>
+          </div>
+
+          <div class="panel step">
+            <div class="num">3</div>
+            <div>
+              <strong>共有データの確認</strong>
+              <div class="desc">
+                「家族に招待されました」というメッセージが表示されます。<br>
+                「表示する」をタップすると、共有された家族のデータに切り替わります。
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-box info-box-blue">
+          <strong>表示する家族の切り替え</strong><br>
+          設定タブの「表示する家族」から、自分の家族と共有された家族を切り替えることができます。
+        </div>
+
+        <h3>参加完了後の画面</h3>
+        <p>参加が完了すると、オーナー側ではメンバーの状態が更新されます。</p>
+
+        <div class="ui-mock">
+          <div class="ui-mock-header">共有メンバー</div>
+          <div class="ui-mock-row">
+            <span style="color: var(--brand);">👤</span>
+            <span><strong>自分</strong> <span style="color: var(--muted); font-size: 13px;">（オーナー）</span></span>
+          </div>
+          <div class="ui-mock-row">
+            <div class="status-dot status-green"></div>
+            <span>パパ <span style="color: var(--ok); font-size: 13px;">（参加中）</span></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Usage -->
+      <section id="usage">
+        <h2>5. 共有中の使い方</h2>
+
+        <h3>記録の追加</h3>
+        <p>
+          共有が設定されると、オーナーと参加者のどちらも記録を追加できます。
+          いつもと同じ手順で記録するだけで、変更は自動的に相手側にも反映されます。
+        </p>
+
+        <div class="panel flow">
+          <div class="flow-item">📝 記録を追加</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-item">☁️ 自動同期</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-item">📱 相手に反映</div>
+        </div>
+
+        <h3>タイムラインの確認</h3>
+        <p>
+          共有された家族を「表示する家族」で選択すると、タイムラインに双方の記録が時系列で表示されます。
+          統計グラフにも反映されます。
+        </p>
+
+        <h3>同期のタイミング</h3>
+        <p>
+          記録の同期は自動で行われますが、反映までに数秒〜数十秒かかる場合があります。
+          アプリを開いた時やフォアグラウンドに復帰した時に最新データが取得されます。
+        </p>
+
+        <div class="info-box info-box-orange">
+          <strong>同時編集について</strong><br>
+          同じ記録を同時に編集した場合、後から保存された内容が優先されます。
+          どちらが何を記録するか、おおまかに役割分担しておくとスムーズです。
+        </div>
+      </section>
+
+      <!-- 6. Manage -->
+      <section id="manage">
+        <h2>6. 共有の管理</h2>
+
+        <h3>招待をキャンセルする（オーナー）</h3>
+        <p>
+          相手がまだ承諾していない場合、招待をキャンセルできます。<br>
+          「家族と共有」画面で「招待をキャンセル」をタップしてください。リンクが無効になります。
+        </p>
+
+        <h3>共有を停止する（オーナー）</h3>
+        <p>
+          共有を停止すると、参加者はデータにアクセスできなくなります。<br>
+          「家族と共有」画面で「共有を停止」をタップしてください。
+        </p>
+
+        <div class="info-box info-box-orange">
+          <strong>共有停止時の注意</strong><br>
+          共有を停止すると招待リンクが無効になり、参加者はデータにアクセスできなくなります。
+          再度共有したい場合は、新しい招待リンクを作成してください。
+        </div>
+
+        <h3>共有家族を削除する（参加者）</h3>
+        <p>
+          参加者は、設定の「表示する家族」から共有された家族を削除できます。<br>
+          削除すると、その家族のデータはあなたのデバイスから消えますが、オーナー側のデータには影響しません。
+        </p>
+      </section>
+
+      <!-- 7. FAQ -->
+      <section id="faq">
+        <h2>7. よくある質問</h2>
+
+        <details>
+          <summary>招待リンクは何度も使えますか？</summary>
+          <p>
+            いいえ。招待リンクは1人だけが使用できます。
+            2人目を招待したい場合は、新しい招待リンクを作成してください。
+          </p>
+        </details>
+
+        <details>
+          <summary>別のApple IDでも共有できますか？</summary>
+          <p>
+            はい。家族共有は異なるApple ID間で動作します。
+            夫婦それぞれのApple IDでiCloudにサインインしていれば、問題なく共有できます。
+          </p>
+        </details>
+
+        <details>
+          <summary>招待リンクを間違った人に送ってしまいました</summary>
+          <p>
+            相手がリンクを開く前に「招待をキャンセル」をタップすれば、リンクが無効になります。
+            相手がすでに承諾してしまった場合は、「共有を停止」で共有を解除してください。
+          </p>
+        </details>
+
+        <details>
+          <summary>共有データが同期されません</summary>
+          <p>
+            以下を確認してください：
+          </p>
+          <p>
+            1. 両方のiPhoneがインターネットに接続されているか<br>
+            2. 両方がiCloudにサインインしているか<br>
+            3. アプリを一度完全に終了して再起動する<br>
+            4. しばらく待つ（同期に数十秒〜数分かかる場合があります）
+          </p>
+        </details>
+
+        <details>
+          <summary>「共有が解除されました」と表示されました</summary>
+          <p>
+            オーナーが共有を停止した場合にこのメッセージが表示されます。
+            設定画面から共有されていた家族を削除できます。
+            再度共有してもらうには、オーナーに新しい招待リンクの作成をお願いしてください。
+          </p>
+        </details>
+
+        <details>
+          <summary>参加者が記録を削除したらどうなりますか？</summary>
+          <p>
+            参加者が削除した記録は、オーナー側からも消えます。
+            共有データはオーナー・参加者で同じものを見ているため、どちらが行った変更も双方に反映されます。
+          </p>
+        </details>
+
+        <details>
+          <summary>オフラインでも記録できますか？</summary>
+          <p>
+            はい。オフラインでも通常どおり記録できます。
+            インターネットに再接続した際に、変更が自動的に同期されます。
+          </p>
+        </details>
+
+        <details>
+          <summary>家族共有は無料ですか？</summary>
+          <p>
+            はい。家族共有を含むすべての機能が無料でご利用いただけます。
+          </p>
+        </details>
+      </section>
+
+      <footer class="footer">
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: space-between; align-items: center">
+          <div>
+            <strong style="color: var(--fg)">ベビーノート</strong>
+            <div>&copy; 2026</div>
+          </div>
+          <div style="display: flex; gap: 14px; flex-wrap: wrap">
+            <a href="index.html">トップページ</a>
+            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">お問い合わせ</a>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>
