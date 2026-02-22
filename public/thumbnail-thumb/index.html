@@ -529,6 +529,106 @@
       font-size: 12px;
       color: #888;
     }
+
+    /* Developer Section */
+    .developer {
+      padding: 80px 0;
+      background: var(--white);
+    }
+
+    .developer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      margin-top: 48px;
+    }
+
+    @media (max-width: 768px) {
+      .developer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    .developer-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .developer-step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      width: 32px;
+      height: 32px;
+      background: var(--primary);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .step-content h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .step-content p {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    .developer-code {
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .developer-code .code-label {
+      font-size: 11px;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+
+    .developer-code pre {
+      margin: 0;
+      overflow-x: auto;
+    }
+
+    .developer-code code {
+      font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      color: #e0e0e0;
+      white-space: pre;
+    }
+
+    .developer-code .comment { color: #6a9955; }
+    .developer-code .command { color: #569cd6; }
+    .developer-code .string  { color: #ce9178; }
+
+    .developer-note {
+      margin-top: 16px;
+      padding: 12px 16px;
+      background: rgba(255, 59, 48, 0.08);
+      border-left: 3px solid var(--primary);
+      border-radius: 0 8px 8px 0;
+      font-size: 13px;
+      color: var(--gray);
+    }
+
   </style>
 </head>
 <body>
@@ -741,6 +841,65 @@
           <div class="feature-content">
             <h4>画像クロップ</h4>
             <p>ダブルクリックで素早く切り出し</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Developer / AI Integration -->
+  <section class="developer">
+    <div class="container">
+      <h2 class="section-title">AI・開発者ツールとの連携</h2>
+      <p class="section-subtitle">HTTP APIとtt-clientでサムネイル作成を自動化</p>
+
+      <div class="developer-grid">
+        <div class="developer-steps">
+          <div class="developer-step">
+            <span class="step-number">1</span>
+            <div class="step-content">
+              <h4>設定でローカルAPIを有効化</h4>
+              <p>アプリの設定画面から「ローカルHTTP API」をオンにします。デフォルトはオフです。有効にするとlocalhost上でHTTPサーバ（ポート18080）が起動します。</p>
+            </div>
+          </div>
+          <div class="developer-step">
+            <span class="step-number">2</span>
+            <div class="step-content">
+              <h4>tt-clientをインストール</h4>
+              <p>公式CLIツール <strong>tt-client</strong> を使うと、ポート番号の探索が不要になります。</p>
+            </div>
+          </div>
+          <div class="developer-step">
+            <span class="step-number">3</span>
+            <div class="step-content">
+              <h4>Claude Codeなどから操作</h4>
+              <p>プロジェクト・キャンバス・エレメントの作成・編集・エクスポートをAIから自動実行できます。</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="developer-code">
+            <div class="code-label">インストール</div>
+            <pre><code><span class="comment"># Homebrewでインストール</span>
+<span class="command">brew</span> install jiikko/tap/tt-client</code></pre>
+          </div>
+
+          <div class="developer-code" style="margin-top: 12px;">
+            <div class="code-label">使用例</div>
+            <pre><code><span class="comment"># ステータス確認</span>
+<span class="command">tt-client</span> /status
+
+<span class="comment"># 現在のキャンバスをプレビュー保存</span>
+<span class="command">tt-client</span> --current preview -o ./thumb.png
+
+<span class="comment"># PNG でエクスポート</span>
+<span class="command">tt-client</span> --current export -o ./output.png</code></pre>
+          </div>
+
+          <div class="developer-note">
+            ポートは自動検出されます。手動で port を調べる必要はありません。<br>
+            APIの全エンドポイントは <code style="background:rgba(255,255,255,0.15);padding:1px 5px;border-radius:3px;font-family:monospace;font-size:12px;">tt-client /help</code> または <code style="background:rgba(255,255,255,0.15);padding:1px 5px;border-radius:3px;font-family:monospace;font-size:12px;">tt-client '/help?topic={topic}'</code> で確認できます。
           </div>
         </div>
       </div>
