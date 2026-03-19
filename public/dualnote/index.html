@@ -3,20 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DualNote - 2カラムエディタ for macOS</title>
-  <meta name="description" content="日記とメモを2カラムで同時に扱うmacOSアプリ。iCloud上にMarkdownファイルとして保存するから、ロックインなし。Obsidian・iA Writerなど他アプリからもそのまま開ける。">
+  <title>DualNote - 日記とメモの2カラムエディタ for macOS</title>
+  <meta name="description" content="日記とメモを2カラムで同時に扱うmacOSアプリ。iCloud上にMarkdownファイルとして保存するから、ロックインなし。¥100の買い切り。サブスクなし。">
   <meta name="keywords" content="DualNote, 日記, メモ, macOS, アプリ, Markdown, iCloud, ロックインなし, エディタ">
-  <meta property="og:title" content="DualNote - 2カラムエディタ for macOS">
-  <meta property="og:description" content="iCloud上にMarkdownで保存。ロックインなし。日記とメモを2カラムで同時に扱うmacOSアプリ。">
+  <meta property="og:title" content="DualNote - 日記とメモの2カラムエディタ for macOS">
+  <meta property="og:description" content="日記とメモを2カラムで同時に扱うmacOSアプリ。iCloud上にMarkdownファイルで保存。ロックインなし。¥100の買い切り。">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jiikko.com/dualnote/">
+  <meta property="og:image" content="https://jiikko.com/dualnote/hero-screenshot.webp">
+  <meta property="og:site_name" content="DualNote">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DualNote - 日記とメモの2カラムエディタ for macOS">
+  <meta name="twitter:description" content="日記とメモを2カラムで同時に扱うmacOSアプリ。¥100の買い切り。">
+  <meta name="twitter:image" content="https://jiikko.com/dualnote/hero-screenshot.webp">
+  <link rel="canonical" href="https://jiikko.com/dualnote/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="hero-screenshot.webp">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "DualNote",
+    "operatingSystem": "macOS 14.0+",
+    "applicationCategory": "ProductivityApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "100",
+      "priceCurrency": "JPY"
+    },
+    "description": "日記とメモを2カラムで同時に扱うmacOSアプリ。iCloud上にMarkdownファイルとして保存。",
+    "url": "https://apps.apple.com/jp/app/id6759564454?mt=12"
+  }
+  </script>
   <style>
     :root {
       --primary: #5B7FFF;
       --primary-dark: #4A6BE0;
-      --accent: #FF8C42;
       --dark: #1a1a1a;
       --gray: #666;
       --light-gray: #f5f5f5;
@@ -32,7 +57,7 @@
     body {
       font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
       color: var(--dark);
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
     .container {
@@ -75,13 +100,9 @@
       letter-spacing: -0.02em;
     }
 
-    .hero h1 span {
-      color: var(--white);
-    }
-
     .hero-subtitle {
       font-size: clamp(16px, 2.5vw, 20px);
-      color: #8890a8;
+      color: #a0a8c0;
       margin-bottom: 32px;
       font-weight: 400;
     }
@@ -97,12 +118,17 @@
       text-decoration: none;
       font-size: 16px;
       font-weight: 700;
-      transition: all 0.2s;
+      transition: background-color 0.2s, transform 0.2s;
     }
 
     .hero-cta:hover {
       background: var(--primary-dark);
       transform: translateY(-2px);
+    }
+
+    .hero-cta:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 3px;
     }
 
     .hero-cta svg {
@@ -113,7 +139,7 @@
     .hero-note {
       margin-top: 12px;
       font-size: 13px;
-      color: #6a7190;
+      color: #9aa3bf;
     }
 
     .hero-screenshot {
@@ -131,10 +157,22 @@
       display: block;
     }
 
-    /* No Lock-in Section */
-    .no-lockin {
+    @media (max-width: 480px) {
+      .hero-title-row {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .hero-icon {
+        width: 56px;
+        height: 56px;
+      }
+    }
+
+    /* Strengths Section */
+    .strengths {
       padding: 96px 0;
-      background: var(--white);
+      background: var(--light-gray);
     }
 
     .section-title {
@@ -149,90 +187,7 @@
       text-align: center;
       color: var(--gray);
       font-size: 16px;
-      margin-bottom: 56px;
-    }
-
-    .lockin-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: center;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    @media (max-width: 768px) {
-      .lockin-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-    }
-
-    .lockin-text h3 {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 14px;
-    }
-
-    .lockin-text p {
-      color: var(--gray);
-      font-size: 15px;
-      margin-bottom: 12px;
-      line-height: 1.8;
-    }
-
-    .lockin-code {
-      background: #1a1a2e;
-      border-radius: 12px;
-      padding: 24px;
-      overflow-x: auto;
-    }
-
-    .lockin-code .code-label {
-      font-size: 11px;
-      color: #8890a8;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 12px;
-    }
-
-    .lockin-code pre {
-      margin: 0;
-    }
-
-    .lockin-code code {
-      font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
-      font-size: 13px;
-      line-height: 1.8;
-      color: #e0e0e0;
-      white-space: pre;
-    }
-
-    .lockin-code .comment { color: #6a9955; }
-    .lockin-code .key { color: #569cd6; }
-    .lockin-code .value { color: #ce9178; }
-    .lockin-code .tag { color: #e5c07b; }
-
-    .compatible-apps {
-      display: flex;
-      gap: 16px;
-      margin-top: 20px;
-      flex-wrap: wrap;
-    }
-
-    .compatible-app {
-      background: var(--light-gray);
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--gray);
-    }
-
-    /* Strengths Section */
-    .strengths {
-      padding: 96px 0;
-      background: var(--light-gray);
+      margin-bottom: 48px;
     }
 
     .strength-grid {
@@ -281,6 +236,7 @@
       font-size: 18px;
       font-weight: 700;
       margin-bottom: 10px;
+      letter-spacing: -0.01em;
     }
 
     .strength-card p {
@@ -335,6 +291,7 @@
       font-size: 15px;
       font-weight: 700;
       margin-bottom: 3px;
+      letter-spacing: -0.01em;
     }
 
     .feature-content p {
@@ -342,6 +299,73 @@
       color: var(--gray);
       line-height: 1.6;
     }
+
+    /* No Lock-in Section */
+    .no-lockin {
+      padding: 96px 0;
+      background: var(--light-gray);
+    }
+
+    .lockin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .lockin-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    .lockin-text h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .lockin-text p {
+      color: var(--gray);
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .lockin-code {
+      background: #1a1a2e;
+      border-radius: 12px;
+      padding: 24px;
+      overflow-x: auto;
+    }
+
+    .lockin-code .code-label {
+      font-size: 11px;
+      color: #aab2cc;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+
+    .lockin-code pre {
+      margin: 0;
+    }
+
+    .lockin-code code {
+      font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      color: #e0e0e0;
+      white-space: pre;
+    }
+
+    .lockin-code .comment { color: #6a9955; }
+    .lockin-code .key { color: #569cd6; }
+    .lockin-code .value { color: #ce9178; }
+    .lockin-code .tag { color: #e5c07b; }
 
     /* Pricing Section */
     .pricing {
@@ -432,11 +456,16 @@
       text-decoration: none;
       font-size: 18px;
       font-weight: 700;
-      transition: all 0.2s;
+      transition: background-color 0.2s;
     }
 
     .price-cta:hover {
       background: var(--primary-dark);
+    }
+
+    .price-cta:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 3px;
     }
 
     /* Footer */
@@ -451,13 +480,6 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 20px;
-    }
-
-    @media (max-width: 600px) {
-      .footer-content {
-        flex-direction: column;
-        text-align: center;
-      }
     }
 
     .footer-logo {
@@ -481,17 +503,17 @@
       color: var(--primary);
     }
 
+    .footer-links a:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
     .footer-info {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
       gap: 4px;
-    }
-
-    @media (max-width: 600px) {
-      .footer-info {
-        align-items: center;
-      }
     }
 
     .footer-requirements {
@@ -503,6 +525,27 @@
       font-size: 12px;
       color: #888;
     }
+
+    @media (max-width: 600px) {
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-info {
+        align-items: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-cta,
+      .price-cta {
+        transition: none;
+      }
+      .hero-cta:hover {
+        transform: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -510,8 +553,8 @@
   <section class="hero">
     <div class="container">
       <div class="hero-title-row">
-        <img src="app-icon.png" alt="DualNote" class="hero-icon">
-        <h1><span>DualNote</span></h1>
+        <img src="app-icon.png" alt="DualNoteアプリアイコン" class="hero-icon">
+        <h1>DualNote</h1>
       </div>
       <p class="hero-subtitle">macOS専用。日記とメモの2カラムエディタ</p>
       <a href="https://apps.apple.com/jp/app/id6759564454?mt=12" class="hero-cta">
@@ -523,41 +566,7 @@
       <p class="hero-note">¥100 / 買い切り / macOS 14.0以降</p>
 
       <div class="hero-screenshot">
-        <img src="hero-screenshot.webp" alt="DualNote - 日記とメモの2カラムエディタ">
-      </div>
-    </div>
-  </section>
-
-  <!-- No Lock-in -->
-  <section class="no-lockin">
-    <div class="container">
-      <h2 class="section-title">あなたのデータは、あなたのもの</h2>
-      <p class="section-subtitle">iCloud上のMarkdownファイルだから、いつでも自由に持ち出せる</p>
-
-      <div class="lockin-grid">
-        <div class="lockin-text">
-          <h3>ただのテキストファイル</h3>
-          <p>日記もメモも、iCloud Drive上にMarkdownファイルとして保存されます。独自フォーマットやデータベースは使いません。</p>
-          <p>アプリを使わなくなっても、ファイルはそのまま残ります。Obsidian、iA Writer、VSCodeなど好きなエディタでいつでも開けます。</p>
-          <div class="compatible-apps">
-            <span class="compatible-app">Obsidian</span>
-            <span class="compatible-app">iA Writer</span>
-            <span class="compatible-app">VSCode</span>
-            <span class="compatible-app">テキストエディット</span>
-          </div>
-        </div>
-        <div class="lockin-code">
-          <div class="code-label">iCloud Drive/DualNote/diary/2026-03-14.md</div>
-          <pre><code><span class="comment">---</span>
-<span class="key">date</span>: <span class="value">2026-03-14</span>
-<span class="key">tags</span>: [<span class="tag">仕事</span>, <span class="tag">アイデア</span>]
-<span class="key">version</span>: <span class="value">3</span>
-<span class="comment">---</span>
-
-新しいプロジェクトのキックオフ。
-チームの雰囲気も良さそうで
-楽しみだ。</code></pre>
-        </div>
+        <img src="hero-screenshot.webp" alt="DualNote - 日記とメモの2カラムエディタ" fetchpriority="high">
       </div>
     </div>
   </section>
@@ -571,7 +580,6 @@
       <div class="strength-grid">
         <div class="strength-card">
           <div class="strength-icon">
-            <!-- columns icon -->
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M10 18h5V5h-5v13zm-6 0h5V5H4v13zM16 5v13h5V5h-5z"/>
             </svg>
@@ -582,24 +590,22 @@
 
         <div class="strength-card">
           <div class="strength-icon">
-            <!-- switch icon -->
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z"/>
             </svg>
           </div>
           <h3>日記・メモを自由に切替</h3>
-          <p>2カラムだけでなく、日記だけ・メモだけの表示にもワンクリックで切替。その時の気分で使い分けられる。</p>
+          <p>2カラムに加え、日記のみ・メモのみの表示にもワンクリックで切り替えられる。</p>
         </div>
 
         <div class="strength-card">
           <div class="strength-icon">
-            <!-- calendar icon -->
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
             </svg>
           </div>
-          <h3>1年前の今日</h3>
-          <p>日記画面の下部に「去年の今日」を自動表示。過去の自分と対話するように振り返れる。</p>
+          <h3>過去の今日</h3>
+          <p>日記画面の下部に「1年前、2年前…の今日」を自動表示。去年の自分は何を考えていたか、書きながら振り返れる。</p>
         </div>
       </div>
     </div>
@@ -609,7 +615,7 @@
   <section class="features">
     <div class="container">
       <h2 class="section-title">機能一覧</h2>
-      <p class="section-subtitle">日々の記録に必要なものを</p>
+      <p class="section-subtitle">日々の記録に必要なものだけを揃えました</p>
 
       <div class="feature-list">
         <div class="feature-item">
@@ -643,8 +649,8 @@
             </svg>
           </div>
           <div class="feature-content">
-            <h4>全文検索</h4>
-            <p>タイトル・本文・タグをまたいで検索</p>
+            <h4>メモ全文検索</h4>
+            <p>メモをタイトル・本文・タグで横断検索</p>
           </div>
         </div>
 
@@ -668,14 +674,15 @@
           </div>
           <div class="feature-content">
             <h4>自動保存</h4>
-            <p>2秒デバウンスで自動的にファイルに保存</p>
+            <p>入力が止まると自動でファイルに保存</p>
           </div>
         </div>
 
         <div class="feature-item">
           <div class="feature-icon">
+            <!-- wifi-off icon -->
             <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/>
+              <path d="M22.99 9C19.15 5.16 13.8 3.76 8.84 4.78l2.52 2.52c3.47-.17 6.99 1.05 9.63 3.7l2-2zM18.99 13c-1.29-1.29-2.84-2.13-4.49-2.56l3.53 3.53.96-.97zM2 3.05L5.07 6.1C3.6 6.82 2.22 7.78 1 9l2 2c1.02-1.02 2.17-1.78 3.38-2.31L9.8 12.1c-1.19.55-2.27 1.35-3.18 2.39l2.39 2.39c1.04-1.17 2.37-1.97 3.82-2.39l3.27 3.27L20 21.24l1.41-1.41L3.41 1.64 2 3.05zM14 16c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2z"/>
             </svg>
           </div>
           <div class="feature-content">
@@ -692,8 +699,36 @@
           </div>
           <div class="feature-content">
             <h4>カラータグ</h4>
-            <p>6色のプリセットタグで素早く分類</p>
+            <p>カラータグで日記もメモも素早く分類</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- No Lock-in -->
+  <section class="no-lockin">
+    <div class="container">
+      <h2 class="section-title">あなたのデータは、あなたのもの</h2>
+      <p class="section-subtitle">iCloud上のMarkdownファイルだから、どのエディタからでも開ける</p>
+
+      <div class="lockin-grid">
+        <div class="lockin-text">
+          <h3>ただのテキストファイル</h3>
+          <p>日記もメモも、iCloud Drive上にMarkdownファイルとして保存されます。独自フォーマットやデータベースは使いません。</p>
+          <p>アプリを使わなくなっても、ファイルはそのまま残ります。Obsidian、iA Writer、VSCodeなど好きなエディタでいつでも開けます。</p>
+        </div>
+        <div class="lockin-code">
+          <div class="code-label">iCloud Drive/DualNote/diary/2026-03-14.md</div>
+          <pre><code><span class="comment">---</span>
+<span class="key">date</span>: <span class="value">2026-03-14</span>
+<span class="key">tags</span>: [<span class="tag">仕事</span>, <span class="tag">アイデア</span>]
+<span class="key">version</span>: <span class="value">3</span>
+<span class="comment">---</span>
+
+新しいプロジェクトのキックオフ。
+チームの雰囲気も良さそうで
+楽しみだ。</code></pre>
         </div>
       </div>
     </div>
@@ -703,18 +738,18 @@
   <section class="pricing">
     <div class="container">
       <h2 class="section-title">シンプルな料金</h2>
-      <p class="section-subtitle">サブスクリプションなし</p>
+      <p class="section-subtitle">一度買えば、ずっと使える</p>
 
       <div class="price-card">
         <span class="price-badge">買い切り</span>
         <div class="price-amount">¥100</div>
-        <div class="price-note">一度の購入ですべての機能が使えます</div>
+        <div class="price-note">月額・年額なし。追加課金なし。</div>
         <ul class="price-features">
           <li>日記 &amp; メモの2カラム同時編集</li>
           <li>iCloud同期</li>
           <li>Markdownファイル保存（ロックインなし）</li>
-          <li>タグ &amp; 全文検索</li>
-          <li>1年前の今日の自動表示</li>
+          <li>タグ &amp; メモ全文検索</li>
+          <li>過去の今日の自動表示</li>
           <li>自動保存 &amp; 競合制御</li>
         </ul>
         <a href="https://apps.apple.com/jp/app/id6759564454?mt=12" class="price-cta">
