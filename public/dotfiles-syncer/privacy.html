@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プライバシーポリシー — DotfilesSyncer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d0d0f;
+      --bg2: #141416;
+      --border: rgba(255,255,255,0.08);
+      --text: #f0f0f2;
+      --muted: #8a8a9a;
+      --accent: #3b82f6;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      padding: 3rem 1.5rem;
+    }
+    .container { max-width: 720px; margin: 0 auto; }
+    h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .app-name { color: var(--accent); text-decoration: none; }
+    .updated { color: var(--muted); font-size: 0.9rem; margin-bottom: 2.5rem; }
+    h2 { font-size: 1.2rem; margin-top: 2rem; margin-bottom: 0.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.3rem; }
+    p, ul { margin-bottom: 1rem; color: #ccc; }
+    ul { padding-left: 1.5rem; }
+    li { margin-bottom: 0.3rem; }
+    a { color: var(--accent); }
+    footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>プライバシーポリシー</h1>
+    <p><a href="./" class="app-name">DotfilesSyncer</a></p>
+    <p class="updated">最終更新日: 2026年3月21日</p>
+
+    <h2>はじめに</h2>
+    <p>DotfilesSyncer（以下「本アプリ」）は、ユーザーのプライバシーを尊重し、個人情報の保護に努めます。本ポリシーでは、本アプリにおけるデータの取り扱いについて説明します。</p>
+
+    <h2>収集するデータ</h2>
+    <p>本アプリはユーザーの個人情報を一切収集・送信しません。</p>
+    <ul>
+      <li>アナリティクスやトラッキングツールは使用していません</li>
+      <li>広告SDKは組み込まれていません</li>
+      <li>サーバーへのデータ送信は行いません</li>
+    </ul>
+
+    <h2>ローカルデータ</h2>
+    <p>本アプリは以下のデータをお使いのMac上にのみ保存します。</p>
+    <ul>
+      <li>Gitリポジトリのパスやリモート URL などの設定情報</li>
+      <li>SSH鍵へのアクセス権（Security-Scoped Bookmark）</li>
+      <li>スクリプト実行ログ</li>
+    </ul>
+    <p>これらのデータはすべてお使いのMacのローカルストレージに保存され、外部に送信されることはありません。</p>
+
+    <h2>iCloud Drive</h2>
+    <p>プライベートファイル配布機能を使用する場合、ファイルはユーザー自身のiCloud Driveに保存されます。Apple の iCloud サービスを介して同期されますが、本アプリが独自にクラウドサーバーにデータを送信することはありません。</p>
+
+    <h2>第三者へのデータ提供</h2>
+    <p>本アプリはユーザーのデータを第三者に提供、販売、共有することはありません。</p>
+
+    <h2>お問い合わせ</h2>
+    <p>本ポリシーに関するご質問は、<a href="https://github.com/jiikko/dotfiles-gui/issues">GitHub Issues</a> までお寄せください。</p>
+
+    <footer>
+      &copy; 2026 jiikko. All rights reserved.
+    </footer>
+  </div>
+</body>
+</html>
