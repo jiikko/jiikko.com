@@ -3,3 +3,5 @@
 /vender/bundler
 vendor
 .bundle/
+
+.claude/settings.local.json
