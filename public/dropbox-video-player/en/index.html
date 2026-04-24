@@ -2,34 +2,30 @@
 <!--
   ⚠️ 多言語版あり / Multi-language LP
   ────────────────────────────────
-  このファイルを更新したら、英語版も揃えて更新すること:
-    → public/dropbox-video-player/en/index.html  (URL: /dropbox-video-player/en)
+  When updating this file, keep the Japanese version in sync:
+    → public/dropbox-video-player/index.html  (URL: /dropbox-video-player/)
 
-  特にコピー・料金・機能一覧・FAQの内容変更は両方に反映する。
+  Any change to copy, pricing, feature list, or FAQ must be applied to both files.
 -->
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Multi-Video Player for Dropbox — 複数動画を同時再生</title>
+    <title>Multi-Video Player for Dropbox — Play multiple videos side by side</title>
     <meta
       name="description"
-      content="Dropboxの動画を複数同時再生。レイアウト可変（1x1〜3x3）。ワークスペースで作業状態を保持、一括操作で比較作業を効率化するmacOSアプリ。"
+      content="Play multiple Dropbox videos simultaneously on macOS. Switch layouts from 1x1 to 3x3, save your work in workspaces, and control every clip at once for faster review."
     />
-    <meta property="og:title" content="Multi-Video Player for Dropbox — 複数動画を同時再生" />
+    <meta property="og:title" content="Multi-Video Player for Dropbox — Play multiple videos side by side" />
     <meta
       property="og:description"
-      content="Dropboxの動画を複数同時再生。レイアウト可変（1x1〜3x3）。ワークスペースで作業状態を保持、一括操作で比較作業を効率化するmacOSアプリ。"
+      content="Play multiple Dropbox videos simultaneously on macOS. Switch layouts from 1x1 to 3x3, save your work in workspaces, and control every clip at once for faster review."
     />
     <meta property="og:type" content="website" />
-    <!--
-      📸 OGP画像（SNSシェア用）
-      ────────────────────────────────
-      ファイル名: og-image.png
-      サイズ: 1200x630px（推奨）
-      内容: ヒーローショットを流用するか、テキストオーバーレイ付きの専用画像
-    -->
-    <meta property="og:image" content="./og-image.png" />
+    <meta property="og:image" content="../og-image.png" />
+    <link rel="alternate" hreflang="ja" href="https://jiikko.com/dropbox-video-player/" />
+    <link rel="alternate" hreflang="en" href="https://jiikko.com/dropbox-video-player/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://jiikko.com/dropbox-video-player/" />
 
     <style>
       :root {
@@ -72,7 +68,7 @@
 
       body {
         margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", Helvetica, Arial, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
         color: var(--fg);
         background:
           radial-gradient(1200px 600px at 10% 0%, rgba(43, 112, 255, 0.38), transparent 60%),
@@ -517,82 +513,63 @@
         <a class="brand" href="#top">
           <span>Multi-Video Player for Dropbox</span>
         </a>
-        <nav class="nav" aria-label="ページ内ナビゲーション">
-          <a href="#features">特徴</a>
-          <a href="#how">使い方</a>
-          <a href="#auth-flow">連携方法</a>
-          <a href="#pricing">料金</a>
+        <nav class="nav" aria-label="In-page navigation">
+          <a href="#features">Features</a>
+          <a href="#how">How it works</a>
+          <a href="#auth-flow">Dropbox connection</a>
+          <a href="#pricing">Pricing</a>
           <a href="#faq">FAQ</a>
-          <a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">サポート</a>
-          <a class="btn btn-primary" href="https://apps.apple.com/jp/app/multi-video-player-for-dropbox/id6756692198?mt=12" aria-label="Mac App Storeで入手">App Store</a>
+          <a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">Support</a>
+          <a href="../" hreflang="ja" aria-label="日本語版">日本語</a>
+          <a class="btn btn-primary" href="https://apps.apple.com/app/multi-video-player-for-dropbox/id6756692198?mt=12" aria-label="Get it on the Mac App Store">App Store</a>
         </nav>
       </div>
     </header>
 
     <main id="top" class="container">
-      <section class="hero" aria-label="ヒーロー">
+      <section class="hero" aria-label="Hero">
         <div>
           <div class="pill">
-            <span>macOS専用 / Dropbox連携</span>
+            <span>macOS only / Dropbox integration</span>
             <span aria-hidden="true">•</span>
-            <strong>マルチ同時再生</strong>
+            <strong>Multi-video playback</strong>
           </div>
-          <h1>Dropboxの動画を、並べて同時再生。</h1>
+          <h1>Play your Dropbox videos side by side.</h1>
           <p class="lead">
-            複数の動画を並べて再生し、見比べながら確認できるmacOSアプリ。
-            <strong>映像制作のカット比較、教材の確認、レビュー作業</strong>など、
-            複数動画を行き来する場面に。レイアウトは<strong>1x1〜3x3</strong>で切り替え可能。
+            A macOS app that plays multiple videos at once so you can compare them at a glance.
+            Ideal for <strong>reviewing cuts, checking training material, or any review workflow</strong>
+            that involves switching between lots of clips. Switch the grid between <strong>1x1 and 3x3</strong> on the fly.
           </p>
 
           <div class="cta">
-            <a class="btn btn-primary" href="https://apps.apple.com/jp/app/multi-video-player-for-dropbox/id6756692198?mt=12">Mac App Storeで入手</a>
-            <a class="btn" href="#how">3ステップで使い方を見る</a>
+            <a class="btn btn-primary" href="https://apps.apple.com/app/multi-video-player-for-dropbox/id6756692198?mt=12">Get it on the Mac App Store</a>
+            <a class="btn" href="#how">See how it works in 3 steps</a>
           </div>
 
-          <div class="badges" aria-label="特徴の要点">
-            <div class="badge"><b>同時プレビュー</b> 最大9枠</div>
-            <div class="badge"><b>レイアウト可変</b> 1x1〜3x3</div>
-            <div class="badge"><b>一括操作</b> 再生/停止/シーク</div>
-            <div class="badge"><b>ワークスペース</b> タブで切替</div>
-            <div class="badge"><b>再生速度</b> 最大5倍</div>
-            <div class="badge"><b>キーボード操作</b> 対応</div>
+          <div class="badges" aria-label="Key features at a glance">
+            <div class="badge"><b>Simultaneous preview</b> up to 9 slots</div>
+            <div class="badge"><b>Flexible layout</b> 1x1 – 3x3</div>
+            <div class="badge"><b>Batch control</b> play / pause / seek</div>
+            <div class="badge"><b>Workspaces</b> switch with tabs</div>
+            <div class="badge"><b>Playback speed</b> up to 5x</div>
+            <div class="badge"><b>Keyboard friendly</b></div>
           </div>
 
           <p class="microcopy">
-            ※ 本アプリはDropboxにあるファイルを再生するツールです。Webサイトから直接ダウンロードする機能は提供しません。コンテンツの権利・各サービス規約を遵守してください。再生の軽快さは回線/環境/ファイルにより変わります。
+            * Playback smoothness depends on your network, environment, and file. Please respect the rights of any content you review.
           </p>
         </div>
 
-        <!--
-          📸 ヒーローショット（メイン画像）
-          ────────────────────────────────
-          ★ ファイル名: 01_hero.png ★
-
-          目的: アプリの価値を一目で伝える「顔」となる画像
-
-          推奨構成:
-          - 2x2 または 3x3 レイアウトで複数動画が同時再生されている状態
-          - サイドバーが見えている（Dropbox連携がわかる）
-          - 動画は実際のコンテンツ（映像制作風、比較作業風など）
-          - ウィンドウ全体をキャプチャ（macOSのウィンドウシャドウ付き推奨）
-
-          避けるべき:
-          - 1x1レイアウト（複数同時再生の価値が伝わらない）
-          - 空のスロットが多い状態
-          - 個人情報や著作権のある動画
-
-          サイズ: 1280x800px以上推奨（Retina対応なら2560x1600px）
-        -->
-        <div class="panel hero-shot" aria-label="スクリーンショット" data-screenshot="01_hero.png">
-          <img src="./01_hero.png" alt="アプリ画面のスクリーンショット" />
+        <div class="panel hero-shot" aria-label="Screenshot" data-screenshot="01_hero.png">
+          <img src="../01_hero.png" alt="Screenshot of the app" />
         </div>
       </section>
 
-      <section id="features" aria-label="特徴">
-        <h2 class="section-title">Dropboxの動画プレビューを、作業向けに。</h2>
+      <section id="features" aria-label="Features">
+        <h2 class="section-title">Dropbox video preview, built for real work.</h2>
         <p class="section-desc">
-          Dropbox Webのプレビューは便利ですが、複数同時に見比べたり、レイアウトを頻繁に切り替えたりする用途では手間が残ります。
-          本アプリは「並べる」「切り替える」「すぐ再生する」を重視したUIです。
+          Dropbox's web preview is handy, but comparing several clips at once or changing layouts on the fly still takes effort.
+          This app is designed around three things: laying videos out, switching between them, and getting playback started instantly.
         </p>
 
         <div class="grid">
@@ -607,8 +584,8 @@
                 />
               </svg>
             </div>
-            <h3>複数動画を同時再生</h3>
-            <p>最大9枠まで同時表示。複数候補を並べて見比べられます。</p>
+            <h3>Play multiple videos at once</h3>
+            <p>Show up to 9 clips simultaneously. Line up candidates and compare them side by side.</p>
           </article>
 
           <article class="panel card">
@@ -622,8 +599,8 @@
                 />
               </svg>
             </div>
-            <h3>レイアウトは可変</h3>
-            <p>1x1 / 2x2 / 3x3 で切り替え。用途に合わせて“見える量”を調整できます。</p>
+            <h3>Flexible layout</h3>
+            <p>Switch between 1x1, 2x2, and 3x3 to fit the task and control how much you see at once.</p>
           </article>
 
           <article class="panel card">
@@ -633,8 +610,8 @@
                 <path d="M9 3v18M3 9h18" stroke="currentColor" stroke-width="2" />
               </svg>
             </div>
-            <h3>ワークスペース</h3>
-            <p>タブで複数の作業状態を保持。プロジェクトごとに動画セットを切り替えられます。</p>
+            <h3>Workspaces</h3>
+            <p>Keep multiple sessions with tabs. Switch between project-specific video sets in a click.</p>
           </article>
 
           <article class="panel card">
@@ -643,8 +620,8 @@
                 <path d="M6 4v16M10 4v16M14 4v16M18 4v16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
               </svg>
             </div>
-            <h3>一括操作</h3>
-            <p>全動画の再生/停止/先頭シークをワンクリック。比較作業のテンポを上げます。</p>
+            <h3>Batch control</h3>
+            <p>Play, pause, or jump back to the start for every clip at once. Keeps comparison work moving.</p>
           </article>
 
           <article class="panel card">
@@ -654,8 +631,8 @@
                 <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
               </svg>
             </div>
-            <h3>安定した同時再生</h3>
-            <p>複数動画を同時に読み込んでも途切れにくい、ローカル配信レイヤーで並列ストリーミングを安定化。</p>
+            <h3>Stable simultaneous playback</h3>
+            <p>A local streaming layer keeps multiple clips playing smoothly at the same time, even when you load several at once.</p>
           </article>
 
           <article class="panel card">
@@ -665,8 +642,8 @@
                 <path d="M14 12h7M17 9l3 3-3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </div>
-            <h3>ドラッグ&ドロップ</h3>
-            <p>サイドバーからスロットへ直接ドラッグ。スロット間の入れ替えもマウスで。</p>
+            <h3>Drag and drop</h3>
+            <p>Drag clips straight from the sidebar into any slot. Swap clips between slots with the mouse.</p>
           </article>
 
           <article class="panel card">
@@ -676,8 +653,8 @@
                 <path d="M7 15h2M11 15h2M15 15h2M7 11h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
               </svg>
             </div>
-            <h3>キーボードで素早く操作</h3>
-            <p>数字キーで位置ジャンプ、矢印キーで60秒シーク。マウスに手を伸ばさずテンポよく操作。</p>
+            <h3>Keyboard-first operation</h3>
+            <p>Use number keys 1–5 to jump to 0%, 20%, 40%, 60%, or 80% inside the hovered clip, and arrow keys to seek 60 seconds at a time — no need to reach for the mouse.</p>
           </article>
 
           <article class="panel card">
@@ -686,8 +663,8 @@
                 <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
               </svg>
             </div>
-            <h3>最大5倍速で高速チェック</h3>
-            <p>再生速度を1〜5倍で調整。長い動画のレビュー作業を効率化。全動画に一括適用も可能。</p>
+            <h3>Up to 5x playback speed</h3>
+            <p>Adjust playback speed from 1x to 5x to speed through long reviews. Apply the speed to every clip at once.</p>
           </article>
 
           <article class="panel card">
@@ -697,8 +674,8 @@
                 <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
               </svg>
             </div>
-            <h3>外部アプリ連携</h3>
-            <p>URL スキームでファイルマネージャーなど外部ツールから動画を開ける。ストリーミングプレイヤーとして使用可能。</p>
+            <h3>External app integration</h3>
+            <p>Open videos from file managers or other tools via a URL scheme. Use the app as a dedicated streaming player.</p>
           </article>
 
           <article class="panel card">
@@ -709,8 +686,8 @@
                 <path d="M4 4l2 2M20 4l-2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
               </svg>
             </div>
-            <h3>前回の続きからすぐ再開</h3>
-            <p>再生位置・レイアウト・フォルダを自動保存。アプリを閉じても次回起動時に復元。</p>
+            <h3>Pick up right where you left off</h3>
+            <p>Playback position, layout, and folder are saved automatically so you can resume the next time you launch the app.</p>
           </article>
 
           <article class="panel card">
@@ -721,68 +698,51 @@
                 <path d="M9 14h6M9 18h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
               </svg>
             </div>
-            <h3>アプリ内でファイル整理</h3>
-            <p>Dropbox上の動画をアプリから直接リネーム・削除。確認作業中に見つけた整理対象をその場で処理できます。</p>
+            <h3>Organize right in the app</h3>
+            <p>Rename or delete videos in your Dropbox directly from the app. Clean up as you review, without switching to a browser.</p>
           </article>
         </div>
       </section>
 
-      <section id="how" aria-label="使い方">
+      <section id="how" aria-label="How it works">
         <div class="split">
           <div class="steps">
-            <h2 class="section-title">使い方は3ステップ</h2>
-            <p class="section-desc">アプリの基本的な流れを紹介します。</p>
+            <h2 class="section-title">Three steps to get started</h2>
+            <p class="section-desc">Here is the basic flow.</p>
 
             <div class="panel step">
               <div class="num">1</div>
               <div>
-                <strong>Dropboxに接続</strong>
-                <div class="section-desc" style="margin: 6px 0 0">ログインして、動画フォルダへ。</div>
+                <strong>Connect to Dropbox</strong>
+                <div class="section-desc" style="margin: 6px 0 0">Sign in and open your video folder.</div>
               </div>
             </div>
             <div class="panel step">
               <div class="num">2</div>
               <div>
-                <strong>レイアウトを選んで並べる</strong>
-                <div class="section-desc" style="margin: 6px 0 0">1x1 / 2x2 / 3x3 を切り替え、ドラッグしてグリッドへ。</div>
+                <strong>Pick a layout and line clips up</strong>
+                <div class="section-desc" style="margin: 6px 0 0">Switch between 1x1 / 2x2 / 3x3 and drag clips into the grid.</div>
               </div>
             </div>
             <div class="panel step">
               <div class="num">3</div>
               <div>
-                <strong>同時再生して見比べる</strong>
-                <div class="section-desc" style="margin: 6px 0 0">再生/停止/シークなどをまとめて操作し、テンポよく確認。</div>
+                <strong>Play and compare side by side</strong>
+                <div class="section-desc" style="margin: 6px 0 0">Batch control play, pause, and seek to keep the review moving.</div>
               </div>
             </div>
           </div>
 
-          <!--
-            📸 使い方セクション画像
-            ────────────────────────────────
-            ★ ファイル名: 02_howto.png ★
-
-            目的: ドラッグ&ドロップ操作のイメージを伝える
-
-            推奨構成:
-            - サイドバーから動画をドラッグしてスロットにドロップする瞬間
-            - または、複数動画がグリッドに配置された状態（2x2推奨）
-            - ドラッグ中のゴースト表示があるとベスト
-
-            代替案:
-            - GIF/動画で操作フローを見せる（将来対応）
-          -->
-          <div class="panel hero-shot" aria-label="使い方のイメージ" data-screenshot="02_howto.png">
-            <img src="./02_howto.png" alt="使い方のイメージ" />
+          <div class="panel hero-shot" aria-label="How it works image" data-screenshot="02_howto.png">
+            <img src="../02_howto.png" alt="How it works" />
           </div>
         </div>
       </section>
 
-      <!-- Dropbox Authorization Flow (for Dropbox API review) -->
-      <section id="auth-flow" aria-label="Dropbox認証フロー">
-        <h2 class="section-title">Dropbox Authorization Flow / Dropboxとの連携方法</h2>
+      <section id="auth-flow" aria-label="Dropbox Authorization Flow">
+        <h2 class="section-title">Dropbox Authorization Flow</h2>
         <p class="section-desc">
-          Multi-Video Player uses secure OAuth 2.0 to connect to your Dropbox account. Your password is never shared with the app.<br />
-          本アプリはOAuth 2.0を使用してDropboxに安全に接続します。パスワードがアプリに共有されることはありません。
+          Multi-Video Player uses secure OAuth 2.0 to connect to your Dropbox account. Your password is never shared with the app.
         </p>
 
         <div class="grid">
@@ -793,9 +753,9 @@
                 <path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
               </svg>
             </div>
-            <h3>Step 1: Start Login</h3>
-            <p>Click "Connect Dropbox" button in the app.<br />アプリ内の「Connect Dropbox」ボタンをクリック。</p>
-            <img src="./auth1.png" alt="Login button in the app" style="width:100%; margin-top:12px; border-radius:8px; border:1px solid var(--border);" />
+            <h3>Step 1: Start login</h3>
+            <p>Click the "Connect Dropbox" button in the app.</p>
+            <img src="../auth1.png" alt="Login button in the app" style="width:100%; margin-top:12px; border-radius:8px; border:1px solid var(--border);" />
           </article>
 
           <article class="panel card">
@@ -805,8 +765,8 @@
               </svg>
             </div>
             <h3>Step 2: Authorize on Dropbox</h3>
-            <p>Review the requested permissions on Dropbox's official page and click "Allow".<br />Dropbox公式ページで権限を確認し「許可」をクリック。</p>
-            <img src="./auth2.png" alt="Dropbox authorization page" style="width:100%; margin-top:12px; border-radius:8px; border:1px solid var(--border);" />
+            <p>Review the requested permissions on Dropbox's official page and click "Allow".</p>
+            <img src="../auth2.png" alt="Dropbox authorization page" style="width:100%; margin-top:12px; border-radius:8px; border:1px solid var(--border);" />
           </article>
 
           <article class="panel card">
@@ -815,219 +775,155 @@
                 <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </div>
-            <h3>Step 3: Start Using</h3>
-            <p>After authorization, browse and play your videos immediately.<br />認証完了後、すぐに動画の閲覧・再生が可能になります。</p>
-            <img src="./auth3.png" alt="App after successful authorization" style="width:100%; margin-top:12px; border-radius:8px; border:1px solid var(--border);" />
+            <h3>Step 3: Start using</h3>
+            <p>Once authorized, you can immediately browse and play your videos.</p>
+            <img src="../auth3.png" alt="App after successful authorization" style="width:100%; margin-top:12px; border-radius:8px; border:1px solid var(--border);" />
           </article>
         </div>
 
         <div class="panel" style="padding: 16px; margin-top: 16px;">
-          <h3 style="margin: 0 0 8px; font-size: 16px;">Requested Permissions / 要求する権限</h3>
+          <h3 style="margin: 0 0 8px; font-size: 16px;">Requested permissions</h3>
           <ul class="list" style="margin: 0;">
-            <li><strong>files.metadata.read</strong> — Browse folders and search videos / フォルダ閲覧・動画検索</li>
-            <li><strong>files.content.read</strong> — Stream videos and display thumbnails / 動画再生・サムネイル表示</li>
-            <li><strong>files.content.write</strong> — Rename and delete videos from inside the app / アプリ内からのファイルリネーム・削除</li>
-            <li><strong>account_info.read</strong> — Display signed-in account (name, email, country) / ログイン中のアカウント情報表示(名前・メール・国)</li>
+            <li><strong>files.metadata.read</strong> — Browse folders and search videos</li>
+            <li><strong>files.content.read</strong> — Stream videos and display thumbnails</li>
+            <li><strong>files.content.write</strong> — Rename and delete videos from inside the app</li>
+            <li><strong>account_info.read</strong> — Display the signed-in account (name, email, country)</li>
           </ul>
           <p style="margin: 12px 0 0; color: var(--muted); font-size: 13px;">
-            All video playback happens locally on your Mac. No data is uploaded to external servers.<br />
-            すべての動画再生はMac上でローカルに行われます。外部サーバーへのデータ送信はありません。
+            All video playback happens locally on your Mac. No data is uploaded to external servers.
           </p>
         </div>
       </section>
 
-      <section aria-label="スクリーンショット">
-        <h2 class="section-title">スクリーンショット</h2>
-        <p class="section-desc">アプリの主要機能をご紹介します。</p>
+      <section aria-label="Screenshots">
+        <h2 class="section-title">Screenshots</h2>
+        <p class="section-desc">A tour of the key features.</p>
         <div class="shots">
-          <!--
-            📸 スクショ1: 複数動画を同時再生
-            ────────────────────────────────
-            ★ ファイル名: 03_multi_playback.png ★
-
-            見せたい価値: 「複数動画を並べて見比べられる」
-
-            推奨構成:
-            - 2x2 または 3x3 レイアウト
-            - 全スロットに動画がロードされている
-            - 動画のサムネイルが異なる（同じシーンの別テイク比較など）
-            - 再生中の状態（プログレスバーが途中）
-
-            ポイント:
-            - App Storeの「価値の核」を伝える1枚目に相当
-          -->
           <figure class="panel shot" data-screenshot="03_multi_playback.png">
-            <img src="./03_multi_playback.png" alt="複数動画を同時再生" />
-            <figcaption>複数動画を同時再生</figcaption>
+            <img src="../03_multi_playback.png" alt="Playing multiple videos simultaneously" />
+            <figcaption>Multiple videos playing at once</figcaption>
           </figure>
 
-          <!--
-            📸 スクショ2: レイアウト可変
-            ────────────────────────────────
-            ★ ファイル名: 04_layout.png ★
-
-            見せたい価値: 「用途に合わせてレイアウトを切り替えられる」
-
-            推奨構成:
-            - レイアウト切り替えUIが見えている状態（ヘッダーのドロップダウン）
-            - または、1x1 → 2x2 → 3x3 の比較画像（横並び合成）
-            - 切り替え前後のビフォーアフターがわかると◎
-
-            ポイント:
-            - 「1x1〜3x3」という数字が視覚的にわかるように
-          -->
           <figure class="panel shot" data-screenshot="04_layout.png">
-            <img src="./04_layout.png" alt="レイアウト切り替え" />
-            <figcaption>レイアウト可変（1x1〜3x3）</figcaption>
+            <img src="../04_layout.png" alt="Switching layouts" />
+            <figcaption>Flexible layouts (1x1 – 3x3)</figcaption>
           </figure>
 
-          <!--
-            📸 スクショ3: サイドバー / Dropboxブラウズ
-            ────────────────────────────────
-            ★ ファイル名: 05_sidebar.png ★
-
-            見せたい価値: 「Dropbox内の動画に素早くアクセスできる」
-
-            推奨構成:
-            - サイドバーが展開されている状態
-            - フォルダツリーとファイルリストが見える
-            - 動画サムネイルが表示されている
-            - 検索バーが見えるとなお良い
-
-            ポイント:
-            - Dropbox連携であることを視覚的に伝える
-          -->
           <figure class="panel shot" data-screenshot="05_sidebar.png">
-            <img src="./05_sidebar.png" alt="サイドバーとDropboxブラウズ" />
-            <figcaption>Dropbox内の動画にすぐアクセス</figcaption>
+            <img src="../05_sidebar.png" alt="Sidebar and Dropbox browser" />
+            <figcaption>Quick access to your Dropbox videos</figcaption>
           </figure>
 
-          <!--
-            📸 スクショ4: ワークスペース / タブ
-            ────────────────────────────────
-            ★ ファイル名: 06_tabs.png ★
-
-            見せたい価値: 「複数の作業状態をタブで切り替えられる」
-
-            推奨構成:
-            - タブバーに複数のタブが並んでいる状態
-            - 各タブに異なる名前（プロジェクト名など）
-            - アクティブタブとそうでないタブの区別が見える
-
-            代替案:
-            - コントロールバー（再生/停止/速度調整）にフォーカスした画像
-            - キーボードショートカットのオーバーレイ表示
-          -->
           <figure class="panel shot" data-screenshot="06_tabs.png">
-            <img src="./06_tabs.png" alt="ワークスペースタブ" />
-            <figcaption>ワークスペースで作業状態を保持</figcaption>
+            <img src="../06_tabs.png" alt="Workspace tabs" />
+            <figcaption>Keep work state with workspaces</figcaption>
           </figure>
         </div>
       </section>
 
-      <section id="pricing" aria-label="料金">
-        <h2 class="section-title">料金</h2>
+      <section id="pricing" aria-label="Pricing">
+        <h2 class="section-title">Pricing</h2>
         <p class="section-desc">
-          Mac App Storeの自動更新サブスクリプションです。
+          An auto-renewing subscription sold through the Mac App Store.
         </p>
 
         <div class="panel price-single" style="border-color: color-mix(in srgb, var(--brand), transparent 45%)">
           <div class="price-main">
             <div class="plan">
               <h3>Pro</h3>
-              <span class="tag">7日間無料トライアル付き</span>
+              <span class="tag">7-day free trial included</span>
             </div>
-            <div class="money">¥550<span style="font-size: 14px; font-weight: 650; color: var(--muted)"> / 月（税込）</span></div>
+            <div class="money">¥550<span style="font-size: 14px; font-weight: 650; color: var(--muted)"> / month (JPY, tax incl.)</span></div>
             <p style="margin: 0 0 16px; color: var(--muted); font-size: 14px">
-              最初の7日間は無料で全機能をお試しいただけます。課金はMac App Storeのアカウント設定に従います。
+              Try all features free for the first 7 days. The Mac App Store will show the price in your local currency before you subscribe.
             </p>
-            <a class="btn btn-primary" href="https://apps.apple.com/jp/app/multi-video-player-for-dropbox/id6756692198?mt=12">Mac App Storeで入手</a>
+            <a class="btn btn-primary" href="https://apps.apple.com/app/multi-video-player-for-dropbox/id6756692198?mt=12">Get it on the Mac App Store</a>
           </div>
           <ul class="list">
-            <li>最大9枠の同時プレビュー</li>
-            <li>同期再生 / 一括操作</li>
-            <li>ワークスペース（タブ切替・状態復元）</li>
-            <li>レイアウト可変（1x1〜3x3）・最大5倍速</li>
+            <li>Up to 9 simultaneous previews</li>
+            <li>Synchronized playback / batch controls</li>
+            <li>Workspaces (tab switching, state restore)</li>
+            <li>Flexible layouts (1x1 – 3x3) and up to 5x playback speed</li>
           </ul>
         </div>
       </section>
 
-      <section id="faq" aria-label="よくある質問">
+      <section id="faq" aria-label="Frequently asked questions">
         <h2 class="section-title">FAQ</h2>
-        <p class="section-desc">よくあるご質問をまとめました。</p>
+        <p class="section-desc">Common questions and answers.</p>
 
         <details>
-          <summary>このアプリは何をしてくれる？</summary>
+          <summary>What does this app do?</summary>
           <p>
-            Dropbox内の動画を複数同時に再生し、レイアウトを切り替えながら見比べられます。
-            ワークスペース機能で作業状態を保持し、一括操作で複数動画をまとめてコントロールできます。
+            It plays multiple videos from your Dropbox simultaneously and lets you switch layouts while comparing them.
+            Workspaces keep your work state, and batch controls let you drive every clip at once.
           </p>
         </details>
         <details>
-          <summary>Webサイトから直接ダウンロードできる？</summary>
+          <summary>Can I download videos directly from a website?</summary>
           <p>
-            できません。本アプリはDropboxにあるファイルを再生するツールで、Webから直接ダウンロードする機能は提供しません。
-            コンテンツの権利・各サービス規約を遵守してください。
+            No. This app plays files that are already in Dropbox; it does not download videos from external websites.
+            Please follow the content rights and terms of service for each platform.
           </p>
         </details>
         <details>
-          <summary>対応している動画形式は？</summary>
+          <summary>Which video formats are supported?</summary>
           <p>
-            本アプリはChromiumベースのため、<strong>H.264 / VP9 / AV1</strong> など幅広いコーデックに対応しています。
-            DRM保護された動画は再生できません。
+            The app is built on Chromium, so it supports a wide range of codecs including <strong>H.264, VP9, and AV1</strong>.
+            DRM-protected videos cannot be played.
           </p>
           <ul class="list">
-            <li>表示対象の拡張子: .mp4 / .mov / .m4v / .webm / .mkv / .avi / .wmv / .3gp / .ogg</li>
+            <li>Displayed file extensions: .mp4 / .mov / .m4v / .webm / .mkv / .avi / .wmv / .3gp / .ogg</li>
           </ul>
         </details>
         <details>
-          <summary>外部アプリから動画を開ける？（開発者向け）</summary>
-          <p><strong>URL スキーム仕様:</strong></p>
-          <pre style="background: var(--card2); padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 13px; border: 1px solid var(--border); margin: 8px 0;">dbmvplayer://load?localPath={Dropbox同期フォルダ内のファイルパス}</pre>
+          <summary>Can I open videos from another app? (for developers)</summary>
+          <p><strong>URL scheme:</strong></p>
+          <pre style="background: var(--card2); padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 13px; border: 1px solid var(--border); margin: 8px 0;">dbmvplayer://load?localPath={absolute path to a file inside the Dropbox sync folder}</pre>
 
-          <p style="margin-top: 12px;"><strong>パラメータ:</strong></p>
+          <p style="margin-top: 12px;"><strong>Parameters:</strong></p>
           <ul class="list" style="margin: 4px 0;">
-            <li><code>localPath</code> (必須): Dropbox 同期フォルダ配下のファイルの絶対パス（URL エンコード必須）</li>
+            <li><code>localPath</code> (required): absolute path to a file inside the Dropbox sync folder (URL-encoded)</li>
           </ul>
 
-          <p style="margin-top: 12px;"><strong>Swift サンプルコード:</strong></p>
-          <pre style="background: var(--card2); padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 13px; border: 1px solid var(--border); margin-top: 8px;"><code>let path = "/Users/koji/Library/CloudStorage/Dropbox/Videos/sample.mp4"
+          <p style="margin-top: 12px;"><strong>Swift example:</strong></p>
+          <pre style="background: var(--card2); padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 13px; border: 1px solid var(--border); margin-top: 8px;"><code>let path = "/Users/username/Library/CloudStorage/Dropbox/Videos/sample.mp4"
 let encoded = path.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
 let urlString = "dbmvplayer://load?localPath=\(encoded)"
 NSWorkspace.shared.open(URL(string: urlString)!)</code></pre>
 
-          <p style="margin-top: 12px;"><strong>Shell サンプルコード:</strong></p>
-          <pre style="background: var(--card2); padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 13px; border: 1px solid var(--border); margin-top: 8px;"><code>open "dbmvplayer://load?localPath=/Users/koji/Library/CloudStorage/Dropbox/Videos/sample.mp4"</code></pre>
+          <p style="margin-top: 12px;"><strong>Shell example:</strong></p>
+          <pre style="background: var(--card2); padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 13px; border: 1px solid var(--border); margin-top: 8px;"><code>open "dbmvplayer://load?localPath=/Users/username/Library/CloudStorage/Dropbox/Videos/sample.mp4"</code></pre>
         </details>
         <details>
-          <summary>Dropboxアカウントが必須？</summary>
-          <p>Dropbox上の動画を扱う設計のため、基本的に必要です（将来の変更は未定）。</p>
+          <summary>Is a Dropbox account required?</summary>
+          <p>Yes. The app is built around videos stored in Dropbox, so a Dropbox account is required.</p>
         </details>
         <details>
-          <summary>Windows版はある？</summary>
-          <p>現時点ではmacOS専用です。</p>
+          <summary>Is there a Windows version?</summary>
+          <p>At this time the app is macOS only.</p>
         </details>
       </section>
 
 
-      <section aria-label="最後のCTA">
+      <section aria-label="Final call to action">
         <div class="panel" style="padding: 18px">
           <div class="split" style="gap: 14px">
             <div>
-              <h2 class="section-title" style="margin-bottom: 8px">Dropboxの動画プレビューを、もっと快適に。</h2>
+              <h2 class="section-title" style="margin-bottom: 8px">Make Dropbox video review feel lighter.</h2>
               <p class="section-desc" style="margin: 0">
-                複数同時再生、ワークスペース、一括操作で、見比べ作業を軽くする。
+                Simultaneous playback, workspaces, and batch controls — for smoother comparisons.
               </p>
             </div>
             <div style="display: flex; justify-content: flex-end; align-items: center; gap: 12px; flex-wrap: wrap">
-              <a class="btn btn-primary" href="https://apps.apple.com/jp/app/multi-video-player-for-dropbox/id6756692198?mt=12">App Store</a>
-              <a class="btn" href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">お問い合わせ</a>
+              <a class="btn btn-primary" href="https://apps.apple.com/app/multi-video-player-for-dropbox/id6756692198?mt=12">App Store</a>
+              <a class="btn" href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">Contact</a>
             </div>
           </div>
         </div>
       </section>
 
-      <footer class="footer" aria-label="フッター">
+      <footer class="footer" aria-label="Footer">
         <div class="container">
           <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: space-between; align-items: center">
             <div>
@@ -1035,13 +931,14 @@ NSWorkspace.shared.open(URL(string: urlString)!)</code></pre>
               <div>© 2025</div>
             </div>
             <div style="display: flex; gap: 14px; flex-wrap: wrap">
-              <a href="privacy.html">プライバシーポリシー</a>
-              <a href="terms.html">利用規約</a>
-              <a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">サポート</a>
+              <a href="../privacy-en.html">Privacy Policy</a>
+              <a href="../terms-en.html">Terms of Use</a>
+              <a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">Support</a>
+              <a href="../" hreflang="ja">日本語</a>
             </div>
           </div>
           <p style="margin: 12px 0 0">
-            ※ Dropbox は Dropbox, Inc. の商標です。本アプリは Dropbox, Inc. が提供・保証するものではありません。
+            * Dropbox is a trademark of Dropbox, Inc. This app is neither provided nor endorsed by Dropbox, Inc.
           </p>
         </div>
       </footer>
