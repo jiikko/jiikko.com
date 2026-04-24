@@ -3,20 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DualNote - 日記を書きながら、考えがつながる macOSアプリ</title>
-  <meta name="description" content="日記とメモをつなげて、書くことも振り返ることも続けやすくするmacOSアプリ。iCloud上のMarkdownファイルで保存。ロックインなし。">
-  <meta name="keywords" content="日記, メモ, macOS, アプリ, Markdown, iCloud, ロックインなし, 振り返り">
-  <meta property="og:title" content="DualNote - 日記を書きながら、考えがつながる">
-  <meta property="og:description" content="日記とメモをつなげて、書くことも振り返ることも続けやすくするmacOSアプリ。iCloud上のMarkdownファイルで保存。ロックインなし。">
+  <title>DualNote - 日記とメモの2カラムエディタ for macOS</title>
+  <meta name="description" content="日記とメモを2カラムで同時に扱うmacOSアプリ。iCloud上にMarkdownファイルとして保存するから、ロックインなし。¥100の買い切り。サブスクなし。">
+  <meta name="keywords" content="DualNote, 日記, メモ, macOS, アプリ, Markdown, iCloud, ロックインなし, エディタ">
+  <meta property="og:title" content="DualNote - 日記とメモの2カラムエディタ for macOS">
+  <meta property="og:description" content="日記とメモを2カラムで同時に扱うmacOSアプリ。iCloud上にMarkdownファイルで保存。ロックインなし。¥100の買い切り。">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jiikko.com/dualnote/">
+  <meta property="og:image" content="https://jiikko.com/dualnote/hero-screenshot.webp">
+  <meta property="og:site_name" content="DualNote">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DualNote - 日記とメモの2カラムエディタ for macOS">
+  <meta name="twitter:description" content="日記とメモを2カラムで同時に扱うmacOSアプリ。¥100の買い切り。">
+  <meta name="twitter:image" content="https://jiikko.com/dualnote/hero-screenshot.webp">
+  <link rel="canonical" href="https://jiikko.com/dualnote/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="hero-screenshot.webp">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "DualNote",
+    "operatingSystem": "macOS 14.0+",
+    "applicationCategory": "ProductivityApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "100",
+      "priceCurrency": "JPY"
+    },
+    "description": "日記とメモを2カラムで同時に扱うmacOSアプリ。iCloud上にMarkdownファイルとして保存。",
+    "url": "https://apps.apple.com/jp/app/id6759564454?mt=12"
+  }
+  </script>
   <style>
     :root {
       --primary: #5B7FFF;
       --primary-dark: #4A6BE0;
-      --accent: #FF8C42;
       --dark: #1a1a1a;
       --gray: #666;
       --light-gray: #f5f5f5;
@@ -32,7 +57,7 @@
     body {
       font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
       color: var(--dark);
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
     .container {
@@ -45,58 +70,55 @@
     .hero {
       background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
       color: var(--white);
-      padding: 80px 0 100px;
+      padding: 100px 0 0;
       text-align: center;
+      overflow: hidden;
     }
 
     .hero-title-row {
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 24px;
-      margin-bottom: 16px;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 12px;
     }
 
     .hero-icon {
-      width: 80px;
-      height: 80px;
-      border-radius: 18px;
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.3);
       flex-shrink: 0;
     }
 
     .hero h1 {
-      font-size: clamp(32px, 5vw, 56px);
+      font-size: clamp(36px, 5vw, 52px);
       font-weight: 900;
       margin-bottom: 0;
-      line-height: 1.2;
-      text-align: left;
+      line-height: 1.1;
+      text-align: center;
+      letter-spacing: -0.02em;
     }
 
-    .hero-tagline {
-      font-size: clamp(18px, 2.5vw, 24px);
-      color: #b0b8d0;
-      margin-bottom: 16px;
-    }
-
-    .hero-selling-point {
-      font-size: clamp(15px, 2vw, 18px);
-      color: var(--accent);
-      font-weight: 700;
-      margin-bottom: 40px;
+    .hero-subtitle {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: #a0a8c0;
+      margin-bottom: 32px;
+      font-weight: 400;
     }
 
     .hero-cta {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       background: var(--primary);
       color: var(--white);
-      padding: 16px 32px;
-      border-radius: 12px;
+      padding: 14px 28px;
+      border-radius: 10px;
       text-decoration: none;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 700;
-      transition: all 0.2s;
+      transition: background-color 0.2s, transform 0.2s;
     }
 
     .hero-cta:hover {
@@ -104,23 +126,28 @@
       transform: translateY(-2px);
     }
 
+    .hero-cta:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 3px;
+    }
+
     .hero-cta svg {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
     }
 
     .hero-note {
-      margin-top: 16px;
-      font-size: 14px;
-      color: #8890a8;
+      margin-top: 12px;
+      font-size: 13px;
+      color: #9aa3bf;
     }
 
     .hero-screenshot {
-      margin-top: 60px;
-      border-radius: 12px;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+      margin-top: 48px;
+      border-radius: 10px 10px 0 0;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.4);
       overflow: hidden;
-      max-width: 960px;
+      max-width: 1100px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -130,33 +157,52 @@
       display: block;
     }
 
-    /* Strengths Section (3 Reasons) */
+    @media (max-width: 480px) {
+      .hero-title-row {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .hero-icon {
+        width: 56px;
+        height: 56px;
+      }
+    }
+
+    /* Strengths Section */
     .strengths {
-      padding: 80px 0;
+      padding: 96px 0;
       background: var(--light-gray);
     }
 
     .section-title {
       text-align: center;
-      font-size: clamp(28px, 4vw, 40px);
+      font-size: clamp(24px, 3.5vw, 32px);
       font-weight: 900;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
     }
 
     .section-subtitle {
       text-align: center;
       color: var(--gray);
-      font-size: 18px;
+      font-size: 16px;
       margin-bottom: 48px;
     }
 
     .strength-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      gap: 32px;
     }
 
     @media (max-width: 900px) {
+      .strength-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
       .strength-grid {
         grid-template-columns: 1fr;
       }
@@ -164,43 +210,100 @@
 
     .strength-card {
       background: var(--white);
-      border-radius: 16px;
-      padding: 32px;
+      border-radius: 14px;
+      padding: 36px 28px;
       text-align: center;
     }
 
     .strength-icon {
-      width: 64px;
-      height: 64px;
+      width: 56px;
+      height: 56px;
       background: var(--primary);
-      border-radius: 16px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 20px;
+      margin: 0 auto 18px;
     }
 
     .strength-icon svg {
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       color: var(--white);
     }
 
     .strength-card h3 {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
     }
 
     .strength-card p {
       color: var(--gray);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* Features Section */
+    .features {
+      padding: 96px 0;
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px 48px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 600px) {
+      .feature-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .feature-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--primary);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .feature-icon svg {
+      width: 18px;
+      height: 18px;
+      color: var(--white);
+    }
+
+    .feature-content h4 {
       font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 3px;
+      letter-spacing: -0.01em;
+    }
+
+    .feature-content p {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.6;
     }
 
     /* No Lock-in Section */
     .no-lockin {
-      padding: 80px 0;
-      background: var(--white);
+      padding: 96px 0;
+      background: var(--light-gray);
     }
 
     .lockin-grid {
@@ -220,16 +323,16 @@
     }
 
     .lockin-text h3 {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
       margin-bottom: 16px;
+      letter-spacing: -0.01em;
     }
 
     .lockin-text p {
       color: var(--gray);
-      font-size: 16px;
-      margin-bottom: 12px;
-      line-height: 1.8;
+      font-size: 15px;
+      margin-bottom: 8px;
     }
 
     .lockin-code {
@@ -241,7 +344,7 @@
 
     .lockin-code .code-label {
       font-size: 11px;
-      color: #8890a8;
+      color: #aab2cc;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       margin-bottom: 12px;
@@ -264,131 +367,11 @@
     .lockin-code .value { color: #ce9178; }
     .lockin-code .tag { color: #e5c07b; }
 
-    .compatible-apps {
-      display: flex;
-      gap: 16px;
-      margin-top: 20px;
-      flex-wrap: wrap;
-    }
-
-    .compatible-app {
-      background: var(--light-gray);
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--gray);
-    }
-
-    /* Target Users Section */
-    .target-users {
-      padding: 80px 0;
-      background: var(--light-gray);
-    }
-
-    .target-list {
-      max-width: 640px;
-      margin: 0 auto;
-      list-style: none;
-    }
-
-    .target-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 16px 0;
-      font-size: 17px;
-      line-height: 1.6;
-    }
-
-    .target-list li::before {
-      content: '';
-      width: 24px;
-      height: 24px;
-      background: var(--primary);
-      border-radius: 50%;
-      flex-shrink: 0;
-      margin-top: 4px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
-      background-size: 14px;
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-
-    /* Features Section */
-    .features {
-      padding: 80px 0;
-    }
-
-    .feature-group {
-      max-width: 800px;
-      margin: 0 auto 40px;
-    }
-
-    .feature-group:last-child {
-      margin-bottom: 0;
-    }
-
-    .feature-group-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 16px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid var(--light-gray);
-    }
-
-    .feature-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-    }
-
-    @media (max-width: 600px) {
-      .feature-list {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .feature-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-    }
-
-    .feature-icon {
-      width: 40px;
-      height: 40px;
-      background: var(--primary);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .feature-icon svg {
-      width: 20px;
-      height: 20px;
-      color: var(--white);
-    }
-
-    .feature-content h4 {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .feature-content p {
-      font-size: 14px;
-      color: var(--gray);
-    }
-
     /* Pricing Section */
     .pricing {
       background: var(--dark);
       color: var(--white);
-      padding: 80px 0;
+      padding: 96px 0;
       text-align: center;
     }
 
@@ -403,10 +386,10 @@
     .price-card {
       background: var(--white);
       color: var(--dark);
-      max-width: 400px;
+      max-width: 380px;
       margin: 0 auto;
-      border-radius: 20px;
-      padding: 48px 40px;
+      border-radius: 16px;
+      padding: 40px 36px;
     }
 
     .price-badge {
@@ -421,7 +404,7 @@
     }
 
     .price-amount {
-      font-size: 56px;
+      font-size: 48px;
       font-weight: 900;
       margin-bottom: 8px;
     }
@@ -473,11 +456,16 @@
       text-decoration: none;
       font-size: 18px;
       font-weight: 700;
-      transition: all 0.2s;
+      transition: background-color 0.2s;
     }
 
     .price-cta:hover {
       background: var(--primary-dark);
+    }
+
+    .price-cta:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 3px;
     }
 
     /* Footer */
@@ -492,13 +480,6 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 20px;
-    }
-
-    @media (max-width: 600px) {
-      .footer-content {
-        flex-direction: column;
-        text-align: center;
-      }
     }
 
     .footer-logo {
@@ -522,17 +503,17 @@
       color: var(--primary);
     }
 
+    .footer-links a:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
     .footer-info {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
       gap: 4px;
-    }
-
-    @media (max-width: 600px) {
-      .footer-info {
-        align-items: center;
-      }
     }
 
     .footer-requirements {
@@ -544,6 +525,27 @@
       font-size: 12px;
       color: #888;
     }
+
+    @media (max-width: 600px) {
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-info {
+        align-items: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-cta,
+      .price-cta {
+        transition: none;
+      }
+      .hero-cta:hover {
+        transform: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -551,15 +553,10 @@
   <section class="hero">
     <div class="container">
       <div class="hero-title-row">
-        <img src="app-icon.png" alt="DualNote" class="hero-icon">
-        <h1>日記を書きながら、<br>考えがつながる。</h1>
+        <img src="app-icon.png" alt="DualNoteアプリアイコン" class="hero-icon">
+        <h1>DualNote</h1>
       </div>
-      <p class="hero-tagline">
-        日記とメモを並べて使える、macOS専用アプリ。
-      </p>
-      <p class="hero-selling-point">
-        iCloud上のMarkdown保存。ロックインなし。
-      </p>
+      <p class="hero-subtitle">macOS専用。日記とメモの2カラムエディタ</p>
       <a href="https://apps.apple.com/jp/app/id6759564454?mt=12" class="hero-cta">
         <svg viewBox="0 0 24 24" fill="currentColor">
           <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
@@ -569,49 +566,141 @@
       <p class="hero-note">¥100 / 買い切り / macOS 14.0以降</p>
 
       <div class="hero-screenshot">
-        <!-- TODO: アプリのスクリーンショットを hero-screenshot.png として配置 -->
-        <div style="background:#2a2a3e;padding:160px 40px;text-align:center;color:#556;font-size:14px;">スクリーンショット（hero-screenshot.png）</div>
+        <img src="hero-screenshot.webp" alt="DualNote - 日記とメモの2カラムエディタ" fetchpriority="high">
       </div>
     </div>
   </section>
 
-  <!-- 3 Reasons -->
+  <!-- Strengths -->
   <section class="strengths">
     <div class="container">
-      <h2 class="section-title">書く・つながる・振り返る。<br>日記が続く3つの理由</h2>
+      <h2 class="section-title">3つの特長</h2>
+      <p class="section-subtitle">日記とメモを、シンプルに</p>
 
       <div class="strength-grid">
         <div class="strength-card">
           <div class="strength-icon">
-            <!-- columns icon -->
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M10 18h5V5h-5v13zm-6 0h5V5H4v13zM16 5v13h5V5h-5z"/>
             </svg>
           </div>
-          <h3>書きながら、過去やメモをすぐ見返せる</h3>
-          <p>左に日記、右にメモ。関連メモを見ながら、その日の記録を途切れずに書けます。</p>
+          <h3>2カラム同時表示</h3>
+          <p>左に日記、右にメモ。書きながら過去を振り返ったり、関連メモを参照しながら日記を書ける。</p>
         </div>
 
         <div class="strength-card">
           <div class="strength-icon">
-            <!-- tag icon -->
             <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/>
+              <path d="M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z"/>
             </svg>
           </div>
-          <h3>タグで、日記とメモが自然につながる</h3>
-          <p>日記にもメモにも同じタグをつけられる。あとからタグで絞り込めば、関連する記録がすぐ見つかります。</p>
+          <h3>日記・メモを自由に切替</h3>
+          <p>2カラムに加え、日記のみ・メモのみの表示にもワンクリックで切り替えられる。</p>
         </div>
 
         <div class="strength-card">
           <div class="strength-icon">
-            <!-- calendar icon -->
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
             </svg>
           </div>
-          <h3>過去の自分に、毎日会える</h3>
-          <p>「1年前の今日」を自動表示。書いた記録が、読み返したくなる記録に変わります。</p>
+          <h3>過去の今日</h3>
+          <p>日記画面の下部に「1年前、2年前…の今日」を自動表示。去年の自分は何を考えていたか、書きながら振り返れる。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="container">
+      <h2 class="section-title">機能一覧</h2>
+      <p class="section-subtitle">日々の記録に必要なものだけを揃えました</p>
+
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h4>iCloud同期</h4>
+            <p>iCloud Driveで複数Mac間を自動同期</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M3 18h12v-2H3v2zM3 6v2h18V6H3zm0 7h18v-2H3v2z"/>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h4>Markdownファイル</h4>
+            <p>YAML frontmatter付きの標準的な形式</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h4>メモ全文検索</h4>
+            <p>メモをタイトル・本文・タグで横断検索</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h4>ピン留め</h4>
+            <p>重要なメモをリストの先頭に固定</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15l-5-2.18L7 18V5h10v13z"/>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h4>自動保存</h4>
+            <p>入力が止まると自動でファイルに保存</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <!-- wifi-off icon -->
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M22.99 9C19.15 5.16 13.8 3.76 8.84 4.78l2.52 2.52c3.47-.17 6.99 1.05 9.63 3.7l2-2zM18.99 13c-1.29-1.29-2.84-2.13-4.49-2.56l3.53 3.53.96-.97zM2 3.05L5.07 6.1C3.6 6.82 2.22 7.78 1 9l2 2c1.02-1.02 2.17-1.78 3.38-2.31L9.8 12.1c-1.19.55-2.27 1.35-3.18 2.39l2.39 2.39c1.04-1.17 2.37-1.97 3.82-2.39l3.27 3.27L20 21.24l1.41-1.41L3.41 1.64 2 3.05zM14 16c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2z"/>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h4>オフライン対応</h4>
+            <p>iCloud未接続でもローカルで読み書き可能</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h4>カラータグ</h4>
+            <p>カラータグで日記もメモも素早く分類</p>
+          </div>
         </div>
       </div>
     </div>
@@ -620,20 +709,14 @@
   <!-- No Lock-in -->
   <section class="no-lockin">
     <div class="container">
-      <h2 class="section-title">日記もメモも、アプリに閉じ込めない</h2>
-      <p class="section-subtitle">すべてiCloud Drive上のMarkdownファイルで保存。独自フォーマットや専用データベースは使いません。</p>
+      <h2 class="section-title">あなたのデータは、あなたのもの</h2>
+      <p class="section-subtitle">iCloud上のMarkdownファイルだから、どのエディタからでも開ける</p>
 
       <div class="lockin-grid">
         <div class="lockin-text">
-          <h3>アプリをやめても、記録はそのまま残る</h3>
-          <p>日記もメモも、iCloud Drive上にMarkdownファイルとして保存されます。</p>
+          <h3>ただのテキストファイル</h3>
+          <p>日記もメモも、iCloud Drive上にMarkdownファイルとして保存されます。独自フォーマットやデータベースは使いません。</p>
           <p>アプリを使わなくなっても、ファイルはそのまま残ります。Obsidian、iA Writer、VSCodeなど好きなエディタでいつでも開けます。</p>
-          <div class="compatible-apps">
-            <span class="compatible-app">Obsidian</span>
-            <span class="compatible-app">iA Writer</span>
-            <span class="compatible-app">VSCode</span>
-            <span class="compatible-app">テキストエディット</span>
-          </div>
         </div>
         <div class="lockin-code">
           <div class="code-label">iCloud Drive/DualNote/diary/2026-03-14.md</div>
@@ -651,166 +734,22 @@
     </div>
   </section>
 
-  <!-- Target Users -->
-  <section class="target-users">
-    <div class="container">
-      <h2 class="section-title">こんな人に向いています</h2>
-
-      <ul class="target-list">
-        <li>日記を書くだけでなく、メモやアイデアも一緒に残したい</li>
-        <li>ObsidianやiA Writerなど、テキスト資産との相性を重視したい</li>
-        <li>サブスクではなく、軽く始められるmacOSアプリがほしい</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Features -->
-  <section class="features">
-    <div class="container">
-      <h2 class="section-title">毎日使うための機能も、きちんと揃えました</h2>
-      <p class="section-subtitle"></p>
-
-      <div class="feature-group">
-        <div class="feature-group-title">書きやすさ</div>
-        <div class="feature-list">
-          <div class="feature-item">
-            <div class="feature-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15l-5-2.18L7 18V5h10v13z"/>
-              </svg>
-            </div>
-            <div class="feature-content">
-              <h4>自動保存</h4>
-              <p>書いたそばから自動的にファイルに保存</p>
-            </div>
-          </div>
-
-          <div class="feature-item">
-            <div class="feature-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
-              </svg>
-            </div>
-            <div class="feature-content">
-              <h4>クイック追記</h4>
-              <p>メモの末尾にサッと書き足せる入力欄</p>
-            </div>
-          </div>
-
-          <div class="feature-item">
-            <div class="feature-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z"/>
-              </svg>
-            </div>
-            <div class="feature-content">
-              <h4>日記だけ / メモだけ切替</h4>
-              <p>2カラムだけでなく、ワンクリックで表示切替</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="feature-group">
-        <div class="feature-group-title">探しやすさ</div>
-        <div class="feature-list">
-          <div class="feature-item">
-            <div class="feature-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-              </svg>
-            </div>
-            <div class="feature-content">
-              <h4>全文検索</h4>
-              <p>タイトル・本文・タグをまたいで検索</p>
-            </div>
-          </div>
-
-          <div class="feature-item">
-            <div class="feature-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
-              </svg>
-            </div>
-            <div class="feature-content">
-              <h4>カラータグ</h4>
-              <p>6色のプリセットタグで素早く分類</p>
-            </div>
-          </div>
-
-          <div class="feature-item">
-            <div class="feature-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
-              </svg>
-            </div>
-            <div class="feature-content">
-              <h4>ピン留め</h4>
-              <p>重要なメモをリストの先頭に固定</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="feature-group">
-        <div class="feature-group-title">残しやすさ</div>
-        <div class="feature-list">
-          <div class="feature-item">
-            <div class="feature-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/>
-              </svg>
-            </div>
-            <div class="feature-content">
-              <h4>iCloud同期</h4>
-              <p>iCloud Driveで複数Mac間を自動同期</p>
-            </div>
-          </div>
-
-          <div class="feature-item">
-            <div class="feature-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3 18h12v-2H3v2zM3 6v2h18V6H3zm0 7h18v-2H3v2z"/>
-              </svg>
-            </div>
-            <div class="feature-content">
-              <h4>Markdown保存</h4>
-              <p>YAML frontmatter付きの標準的な形式</p>
-            </div>
-          </div>
-
-          <div class="feature-item">
-            <div class="feature-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/>
-              </svg>
-            </div>
-            <div class="feature-content">
-              <h4>オフライン対応</h4>
-              <p>iCloud未接続でもローカルで読み書き可能</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Pricing -->
   <section class="pricing">
     <div class="container">
-      <h2 class="section-title">一度買えば、ずっと使える</h2>
-      <p class="section-subtitle">サブスクリプションなし。日記もメモも、Markdownのまま自分の手元に残ります。</p>
+      <h2 class="section-title">シンプルな料金</h2>
+      <p class="section-subtitle">一度買えば、ずっと使える</p>
 
       <div class="price-card">
         <span class="price-badge">買い切り</span>
         <div class="price-amount">¥100</div>
-        <div class="price-note">macOS 14.0 (Sonoma) 以降</div>
+        <div class="price-note">月額・年額なし。追加課金なし。</div>
         <ul class="price-features">
           <li>日記 &amp; メモの2カラム同時編集</li>
           <li>iCloud同期</li>
           <li>Markdownファイル保存（ロックインなし）</li>
-          <li>タグ連携 &amp; 全文検索</li>
-          <li>1年前の今日の自動表示</li>
+          <li>タグ &amp; メモ全文検索</li>
+          <li>過去の今日の自動表示</li>
           <li>自動保存 &amp; 競合制御</li>
         </ul>
         <a href="https://apps.apple.com/jp/app/id6759564454?mt=12" class="price-cta">
