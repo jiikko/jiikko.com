@@ -414,11 +414,11 @@
 
         <ul class="feature-list">
           <li>1x1 から 3x3 までのグリッドレイアウト（最大 9 本同時再生）</li>
-          <li>全動画を 0 秒から同時にスタートする同期再生</li>
+          <li>全動画を 0 秒から同時にスタートする同期再生（Sync Start）</li>
           <li>0.5 倍〜4.0 倍の再生速度調整</li>
           <li>ファイルリストでのサムネイル表示</li>
           <li>キーボードショートカットでの効率的な操作</li>
-          <li>前回の再生状態を復元するセッション機能</li>
+          <li>メニューバーから再生・速度・レイアウトを操作（メインウィンドウを閉じた状態でも可）</li>
           <li>ドラッグ &amp; ドロップによる簡単な動画読み込み</li>
         </ul>
       </section>
@@ -426,15 +426,13 @@
       <section id="formats" aria-label="対応フォーマット" class="reveal">
         <h2 class="section-title">対応フォーマット</h2>
         <p class="section-desc">
-          AVFoundation が対応する形式を再生できます。
+          macOS 標準の AVFoundation がネイティブ対応するコンテナ・コーデック（H.264 / HEVC など）の範囲で再生します。外部コーデックのインストールは不要です。
         </p>
 
         <ul class="formats">
-          <li>mp4</li><li>m4v</li><li>mov</li><li>mkv</li><li>flv</li><li>webm</li>
-          <li>mpg</li><li>mpeg</li><li>m2ts</li><li>mts</li><li>ts</li><li>3gp</li>
-          <li>3g2</li><li>ogv</li><li>ogg</li><li>vob</li><li>f4v</li><li>swf</li>
-          <li>rm</li><li>rmvb</li><li>ram</li><li>mxf</li><li>dv</li><li>gxf</li>
-          <li>nutm</li><li>nut</li>
+          <li>mp4</li><li>m4v</li><li>mov</li><li>mkv</li><li>webm</li>
+          <li>mpg</li><li>mpeg</li><li>m2ts</li><li>mts</li><li>ts</li>
+          <li>3gp</li><li>3g2</li><li>dv</li>
         </ul>
       </section>
 
