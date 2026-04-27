@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プライバシーポリシー | Video Grid Player</title>
+  <style>
+    :root {
+      --bg: #06141a;
+      --text: #e5f4ff;
+      --text-muted: #8aa3b3;
+      --accent: #06b6d4;
+      --border: #14323f;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      padding: 40px 20px;
+    }
+    .container { max-width: 800px; margin: 0 auto; }
+    a.back-link {
+      display: inline-block;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+    a.back-link:hover { text-decoration: underline; }
+    h1 { font-size: 2rem; margin-bottom: 8px; color: #fff; }
+    .last-updated { color: var(--text-muted); margin-bottom: 40px; }
+    h2 {
+      font-size: 1.25rem;
+      margin: 32px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      color: #fff;
+    }
+    h3 { font-size: 1.05rem; margin: 20px 0 10px; color: #fff; }
+    p, li { margin-bottom: 12px; }
+    ul { padding-left: 24px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .highlight {
+      background: rgba(6, 182, 212, 0.08);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 24px 0;
+      border-left: 4px solid var(--accent);
+    }
+    .contact {
+      background: rgba(255, 255, 255, 0.04);
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">← Video Grid Player トップへ</a>
+    <h1>プライバシーポリシー</h1>
+    <p class="last-updated">最終更新日: 2026年4月27日</p>
+
+    <p>Video Grid Player（以下「本アプリ」）は、ユーザーのプライバシーを最優先に考えた設計となっています。本ポリシーでは、本アプリがどのような情報を取り扱い、どのように扱うかを説明します。</p>
+
+    <div class="highlight">
+      <p><strong>ローカル動作・通信なし</strong></p>
+      <p>本アプリはネットワーク通信を行いません。App Sandbox の設定でネットワークアクセス権限を持たず、動画データや設定情報が外部に送信されることは技術的にできません。</p>
+    </div>
+
+    <h2>1. 取り扱う情報</h2>
+
+    <h3>1.1 動画ファイル</h3>
+    <ul>
+      <li>ユーザーが Finder のドラッグ &amp; ドロップ、またはファイル選択ダイアログから明示的に選んだ動画ファイルのみを読み込みます。</li>
+      <li>動画ファイルはお使いの Mac 内で再生され、外部に送信されることはありません。</li>
+      <li>動画ファイル自体を本アプリが書き換えることはありません。</li>
+      <li>macOS の App Sandbox による Security-Scoped Bookmark を用いて、再起動後も同じファイルへ継続アクセスできるようにしています。</li>
+    </ul>
+
+    <h3>1.2 アプリ設定</h3>
+    <p>以下の情報を Mac 内の UserDefaults にローカル保存します。</p>
+    <ul>
+      <li>ユーザーがカスタマイズしたキーボードショートカット</li>
+      <li>サイドバーで最後に選択していたタブ</li>
+      <li>その他のアプリ環境設定（ウィンドウ状態、最後に使ったレイアウト等）</li>
+    </ul>
+    <p>これらはすべてお使いの Mac 内に保存され、外部に送信されることはありません。</p>
+
+    <h2>2. 通信を行わないことの根拠</h2>
+    <ul>
+      <li>本アプリは macOS の App Sandbox で配布される Mac App Store 版で、entitlements にネットワークアクセス権限（<code>com.apple.security.network.client</code> 等）を含みません。</li>
+      <li>このため、サンドボックスの仕組み上、本アプリからインターネットへの通信は技術的にブロックされます。</li>
+      <li>解析サーバー、広告ネットワーク、クラッシュレポートサービスへの送信は一切ありません（Mac App Store によるアプリ受領情報を除く）。</li>
+    </ul>
+
+    <h2>3. 第三者への情報提供</h2>
+    <p>本アプリはユーザーの情報を第三者に販売・貸与・共有することはありません。</p>
+    <p><strong>本アプリは以下を行いません：</strong></p>
+    <ul>
+      <li>アクセス解析・行動トラッキング</li>
+      <li>広告ネットワークとの連携</li>
+      <li>クラッシュレポートの自動送信</li>
+      <li>使用統計の収集</li>
+    </ul>
+
+    <h2>4. データの削除</h2>
+    <ul>
+      <li>本アプリのアンインストールにより、UserDefaults に保存された設定情報は削除されます。</li>
+      <li>動画ファイル自体は本アプリが管理していないため、ユーザーが Finder 等で個別に削除してください。</li>
+    </ul>
+
+    <h2>5. ポリシーの変更</h2>
+    <p>本ポリシーは法令の変更やアプリの機能追加に伴い、予告なく変更される場合があります。重要な変更がある場合はアプリのアップデート情報でお知らせします。</p>
+
+    <h2>6. お問い合わせ</h2>
+    <div class="contact">
+      <p>本ポリシーに関するご質問は、以下までお問い合わせください：</p>
+      <p><a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">GitHub Issues</a></p>
+    </div>
+  </div>
+</body>
+</html>
