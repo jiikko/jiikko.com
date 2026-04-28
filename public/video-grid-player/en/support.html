@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <!--
-  ⚠️ 多言語版あり / Multi-language page
-  このファイルを更新したら、英語版も揃えて更新すること:
-    → public/video-grid-player/en/support.html
+  ⚠️ Multi-language page
+  When updating this file, keep the Japanese version in sync:
+    → public/video-grid-player/support.html
 -->
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>サポート | Video Grid Player</title>
+  <title>Support | Video Grid Player</title>
   <link rel="alternate" hreflang="ja" href="https://jiikko.com/video-grid-player/support.html" />
   <link rel="alternate" hreflang="en" href="https://jiikko.com/video-grid-player/en/support.html" />
   <style>
@@ -43,13 +43,6 @@
     }
     .lang-switch a { color: var(--accent); text-decoration: none; }
     .lang-switch a:hover { text-decoration: underline; }
-    code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      background: rgba(255, 255, 255, 0.08);
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-size: 0.92em;
-    }
     h1 { font-size: 2rem; margin-bottom: 24px; color: #fff; }
     h2 {
       font-size: 1.25rem;
@@ -63,6 +56,13 @@
     ul { padding-left: 24px; }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
     .contact {
       background: rgba(255, 255, 255, 0.04);
       padding: 20px;
@@ -73,31 +73,31 @@
 </head>
 <body>
   <div class="container">
-    <a href="index.html" class="back-link">← Video Grid Player トップへ</a>
-    <span class="lang-switch"><a href="./en/support.html" hreflang="en">English</a></span>
-    <h1>サポート</h1>
+    <a href="./" class="back-link">← Back to Video Grid Player</a>
+    <span class="lang-switch"><a href="../support.html" hreflang="ja">日本語</a></span>
+    <h1>Support</h1>
 
-    <h2>動作環境</h2>
+    <h2>System requirements</h2>
     <ul>
-      <li>macOS 14.0 (Sonoma) 以降</li>
-      <li>Apple Silicon (M1 以降) 専用。Intel Mac は非対応。</li>
+      <li>macOS 14 Sonoma or later</li>
+      <li>Apple Silicon (M1 or later) only. Intel Macs are not supported.</li>
     </ul>
 
-    <h2>対応フォーマット</h2>
-    <p>macOS 標準の QuickTime Player で再生できる動画なら、本アプリでも再生できます。内部的に macOS の AVFoundation を使用しているため、追加のコーデックインストールは不要です。</p>
+    <h2>Supported formats</h2>
+    <p>If a video plays in macOS's built-in QuickTime Player, it plays in this app. The App uses macOS's AVFoundation under the hood, so there are no extra codec packs to install.</p>
 
-    <h3>確実に再生できるもの</h3>
-    <p>H.264 / HEVC を含む <code>.mp4</code> / <code>.mov</code>(iPhone やカメラ、一般的な編集ソフトの書き出し形式)。</p>
+    <h3>What plays reliably</h3>
+    <p><code>.mp4</code> and <code>.mov</code> files containing H.264 or HEVC video (the formats produced by iPhones, cameras, and most editing apps).</p>
 
-    <h3>非対応・条件付きのもの</h3>
-    <p>VP9 / AV1(YouTube 等のダウンロード動画でよく使われるコーデック)は再生できません。<code>.mp4</code> 拡張子のファイルでも、内部のコーデックが VP9 / AV1 の場合は再生できない点にご注意ください。一部の <code>.mkv</code> / <code>.webm</code> はコンテナレベルで非対応となることがあります。事前に QuickTime Player で開けるかご確認ください。</p>
+    <h3>What may not play</h3>
+    <p>VP9 and AV1 codecs (often found in videos downloaded from YouTube and similar sites) are not supported. Note that even files with a <code>.mp4</code> extension may not play if their internal video codec is VP9 or AV1. Some <code>.mkv</code> and <code>.webm</code> files are unsupported at the container level. Open the file in QuickTime Player first to confirm it plays.</p>
 
-    <h3>対象拡張子</h3>
+    <h3>Recognized extensions</h3>
     <p><code>mp4</code>, <code>m4v</code>, <code>mov</code>, <code>mpg</code>, <code>mpeg</code>, <code>m2ts</code>, <code>mts</code>, <code>ts</code>, <code>3gp</code>, <code>3g2</code>, <code>dv</code></p>
 
-    <h2>お問い合わせ</h2>
+    <h2>Contact</h2>
     <div class="contact">
-      <p>バグ報告・機能リクエストは以下からお願いします。</p>
+      <p>Please report bugs and feature requests at:</p>
       <p><a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">GitHub Issues</a></p>
     </div>
   </div>

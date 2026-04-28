@@ -1,9 +1,16 @@
 <!DOCTYPE html>
+<!--
+  ⚠️ 多言語版あり / Multi-language page
+  このファイルを更新したら、英語版も揃えて更新すること:
+    → public/video-grid-player/en/privacy.html
+-->
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>プライバシーポリシー | Video Grid Player</title>
+  <link rel="alternate" hreflang="ja" href="https://jiikko.com/video-grid-player/privacy.html" />
+  <link rel="alternate" hreflang="en" href="https://jiikko.com/video-grid-player/en/privacy.html" />
   <style>
     :root {
       --bg: #06141a;
@@ -29,6 +36,13 @@
       font-size: 14px;
     }
     a.back-link:hover { text-decoration: underline; }
+    .lang-switch {
+      float: right;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .lang-switch a { color: var(--accent); text-decoration: none; }
+    .lang-switch a:hover { text-decoration: underline; }
     h1 { font-size: 2rem; margin-bottom: 8px; color: #fff; }
     .last-updated { color: var(--text-muted); margin-bottom: 40px; }
     h2 {
@@ -61,6 +75,7 @@
 <body>
   <div class="container">
     <a href="index.html" class="back-link">← Video Grid Player トップへ</a>
+    <span class="lang-switch"><a href="./en/privacy.html" hreflang="en">English</a></span>
     <h1>プライバシーポリシー</h1>
     <p class="last-updated">最終更新日: 2026年4月27日</p>
 

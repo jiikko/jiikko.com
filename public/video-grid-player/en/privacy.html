@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!--
+  ⚠️ Multi-language page
+  When updating this file, keep the Japanese version in sync:
+    → public/video-grid-player/privacy.html
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy | Video Grid Player</title>
+  <link rel="alternate" hreflang="ja" href="https://jiikko.com/video-grid-player/privacy.html" />
+  <link rel="alternate" hreflang="en" href="https://jiikko.com/video-grid-player/en/privacy.html" />
+  <style>
+    :root {
+      --bg: #06141a;
+      --text: #e5f4ff;
+      --text-muted: #8aa3b3;
+      --accent: #06b6d4;
+      --border: #14323f;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      padding: 40px 20px;
+    }
+    .container { max-width: 800px; margin: 0 auto; }
+    a.back-link {
+      display: inline-block;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+    a.back-link:hover { text-decoration: underline; }
+    .lang-switch {
+      float: right;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .lang-switch a { color: var(--accent); text-decoration: none; }
+    .lang-switch a:hover { text-decoration: underline; }
+    h1 { font-size: 2rem; margin-bottom: 8px; color: #fff; }
+    .last-updated { color: var(--text-muted); margin-bottom: 40px; }
+    h2 {
+      font-size: 1.25rem;
+      margin: 32px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      color: #fff;
+    }
+    h3 { font-size: 1.05rem; margin: 20px 0 10px; color: #fff; }
+    p, li { margin-bottom: 12px; }
+    ul { padding-left: 24px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .highlight {
+      background: rgba(6, 182, 212, 0.08);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 24px 0;
+      border-left: 4px solid var(--accent);
+    }
+    .contact {
+      background: rgba(255, 255, 255, 0.04);
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="./" class="back-link">← Back to Video Grid Player</a>
+    <span class="lang-switch"><a href="../privacy.html" hreflang="ja">日本語</a></span>
+    <h1>Privacy Policy</h1>
+    <p class="last-updated">Last updated: April 27, 2026</p>
+
+    <p>Video Grid Player ("the App") is designed with user privacy as a top priority. This policy explains what information the App handles and how.</p>
+
+    <div class="highlight">
+      <p><strong>Local-only operation, no network communication</strong></p>
+      <p>The App does not perform any network communication. Its App Sandbox configuration grants no network access entitlement, so it is technically impossible for video data or settings to be transmitted externally.</p>
+    </div>
+
+    <h2>1. Information handled by the App</h2>
+
+    <h3>1.1 Video files</h3>
+    <ul>
+      <li>The App only reads video files that the user explicitly selects, either via Finder drag and drop or the file picker dialog.</li>
+      <li>Video files are played on your Mac and are never transmitted externally.</li>
+      <li>The App does not modify the video files themselves.</li>
+      <li>macOS App Sandbox Security-Scoped Bookmarks are used so the App can continue to access the same files after restart.</li>
+    </ul>
+
+    <h3>1.2 App settings</h3>
+    <p>The following information is stored locally in UserDefaults on your Mac:</p>
+    <ul>
+      <li>Custom keyboard shortcuts you have configured</li>
+      <li>The tab last selected in the sidebar</li>
+      <li>Other app preferences (window state, last used layout, etc.)</li>
+    </ul>
+    <p>All of this data is stored on your Mac and is never transmitted externally.</p>
+
+    <h2>2. Why no communication occurs</h2>
+    <ul>
+      <li>The App is distributed via the Mac App Store under macOS App Sandbox, and its entitlements do not include network access (e.g. <code>com.apple.security.network.client</code>).</li>
+      <li>As a result, network communication from the App to the Internet is technically blocked by the sandbox.</li>
+      <li>No data is sent to analytics servers, advertising networks, or crash reporting services (apart from app receipt information handled by the Mac App Store).</li>
+    </ul>
+
+    <h2>3. Disclosure to third parties</h2>
+    <p>The App does not sell, lend, or share user information with any third party.</p>
+    <p><strong>The App does NOT do any of the following:</strong></p>
+    <ul>
+      <li>Access analytics or behavioral tracking</li>
+      <li>Integration with advertising networks</li>
+      <li>Automatic crash report transmission</li>
+      <li>Collection of usage statistics</li>
+    </ul>
+
+    <h2>4. Data deletion</h2>
+    <ul>
+      <li>Uninstalling the App removes settings stored in UserDefaults.</li>
+      <li>The App does not manage your video files; please delete them yourself via Finder or another tool if needed.</li>
+    </ul>
+
+    <h2>5. Changes to this policy</h2>
+    <p>This policy may be updated without notice in response to changes in law or new features in the App. Significant changes will be communicated via app update release notes.</p>
+
+    <h2>6. Contact</h2>
+    <div class="contact">
+      <p>For questions about this policy, please contact us via:</p>
+      <p><a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">GitHub Issues</a></p>
+    </div>
+  </div>
+</body>
+</html>
