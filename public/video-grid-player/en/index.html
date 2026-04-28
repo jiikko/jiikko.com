@@ -2,42 +2,42 @@
 <!--
   ⚠️ 多言語版あり / Multi-language LP
   ────────────────────────────────
-  このファイルを更新したら、英語版も揃えて更新すること:
-    → public/video-grid-player/en/index.html  (URL: /video-grid-player/en/)
+  When updating this file, keep the Japanese version in sync:
+    → public/video-grid-player/index.html  (URL: /video-grid-player/)
 
-  特にコピー・機能一覧・対応フォーマットの内容変更は両方に反映する。
+  Any change to copy, feature list, format support, or pricing must be applied to both files.
 -->
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Video Grid Player — 最大9本の動画を同時再生</title>
+    <title>Video Grid Player — Play up to 9 videos at once on macOS</title>
     <meta
       name="description"
-      content="ローカルの動画ファイルを最大 3x3 グリッドで同時に再生できる macOS 専用アプリ。"
+      content="A macOS-only app that plays local video files simultaneously in a grid of up to 3x3. Compare multiple clips side by side."
     />
-    <meta property="og:title" content="Video Grid Player — 最大9本の動画を同時再生" />
+    <meta property="og:title" content="Video Grid Player — Play up to 9 videos at once on macOS" />
     <meta
       property="og:description"
-      content="ローカルの動画ファイルを最大 3x3 グリッドで同時に再生できる macOS 専用アプリ。"
+      content="A macOS-only app that plays local video files simultaneously in a grid of up to 3x3. Compare multiple clips side by side."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://jiikko.com/video-grid-player/" />
+    <meta property="og:url" content="https://jiikko.com/video-grid-player/en/" />
     <meta property="og:image" content="https://jiikko.com/video-grid-player/icon.png" />
-    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="Video Grid Player" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Video Grid Player — 最大9本の動画を同時再生" />
-    <meta name="twitter:description" content="ローカルの動画ファイルを最大 3x3 グリッドで同時に再生できる macOS 専用アプリ。" />
+    <meta name="twitter:title" content="Video Grid Player — Play up to 9 videos at once on macOS" />
+    <meta name="twitter:description" content="A macOS-only app that plays local video files simultaneously in a grid of up to 3x3. Compare multiple clips side by side." />
     <meta name="twitter:image" content="https://jiikko.com/video-grid-player/icon.png" />
-    <link rel="canonical" href="https://jiikko.com/video-grid-player/" />
+    <link rel="canonical" href="https://jiikko.com/video-grid-player/en/" />
     <link rel="alternate" hreflang="ja" href="https://jiikko.com/video-grid-player/" />
     <link rel="alternate" hreflang="en" href="https://jiikko.com/video-grid-player/en/" />
     <link rel="alternate" hreflang="x-default" href="https://jiikko.com/video-grid-player/" />
-    <link rel="icon" type="image/png" href="./icon-128.png" />
+    <link rel="icon" type="image/png" href="../icon-128.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <style>
       :root {
@@ -71,8 +71,7 @@
 
       body {
         margin: 0;
-        font-family: "Inter", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-        font-feature-settings: "palt";
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
         color: var(--fg);
         background:
           radial-gradient(1200px 600px at 10% 0%, rgba(6, 182, 212, 0.32), transparent 60%),
@@ -362,7 +361,6 @@
       .footer a { color: var(--muted); }
       .footer a:hover { color: var(--fg); }
 
-      /* スクロール時のフェードイン */
       .reveal {
         opacity: 0;
         transform: translateY(16px);
@@ -381,79 +379,79 @@
     <header class="topbar">
       <div class="container topbar-inner">
         <a class="brand" href="#top">
-          <img src="./icon-128.png" alt="Video Grid Player" width="28" height="28" style="border-radius: 6px;" />
+          <img src="../icon-128.png" alt="Video Grid Player" width="28" height="28" style="border-radius: 6px;" />
           <span>Video Grid Player</span>
         </a>
-        <nav class="nav" aria-label="ページ内ナビゲーション">
-          <a href="#features">主な機能</a>
-          <a href="#formats">対応フォーマット</a>
-          <a href="./en/" hreflang="en" aria-label="English">English</a>
-          <span class="btn btn-primary btn-disabled" aria-disabled="true">App Store 準備中</span>
+        <nav class="nav" aria-label="In-page navigation">
+          <a href="#features">Features</a>
+          <a href="#formats">Supported formats</a>
+          <a href="../" hreflang="ja" aria-label="日本語版">日本語</a>
+          <span class="btn btn-primary btn-disabled" aria-disabled="true">Coming to App Store</span>
         </nav>
       </div>
     </header>
 
     <main id="top" class="container">
-      <section class="hero" aria-label="ヒーロー">
+      <section class="hero" aria-label="Hero">
         <div>
           <div class="pill">
-            <span>macOS 14.0 (Sonoma) 以降 / Apple Silicon 専用</span>
+            <span>macOS 14 Sonoma+ / Apple Silicon only</span>
             <span aria-hidden="true">•</span>
-            <strong>最大9本の動画を同時再生</strong>
+            <strong>Up to 9 videos at once</strong>
           </div>
-          <h1>最大9本の動画を、<br />同時再生。</h1>
+          <h1>Up to 9 videos.<br />All at once.</h1>
           <p class="lead">
-            Video Grid Player は<strong>ローカルの動画ファイルを最大 3x3 グリッドで同時に再生できる macOS 専用アプリ</strong>です。
-            複数の動画を同時に並べて再生・比較できます。
+            Video Grid Player is <strong>a macOS-only app that plays local video files simultaneously in a grid of up to 3x3</strong>.
+            Line up several clips and compare them side by side without juggling separate windows.
           </p>
 
           <div class="cta">
-            <span class="btn btn-primary btn-disabled" aria-disabled="true">App Store 準備中</span>
+            <span class="btn btn-primary btn-disabled" aria-disabled="true">Coming to App Store</span>
           </div>
 
           <p class="microcopy">
-            ※ macOS 14.0 (Sonoma) 以降、Apple Silicon (M1 以降) 専用。Intel Mac は非対応。
+            * Requires macOS 14 Sonoma or later on Apple Silicon (M1 or later). Intel Macs are not supported.
           </p>
         </div>
 
         <div class="panel hero-shot" aria-label="Video Grid Player">
-          <img src="./icon.png" alt="Video Grid Player" class="hero-app-icon" />
+          <img src="../icon.png" alt="Video Grid Player" class="hero-app-icon" />
         </div>
       </section>
 
-      <section id="features" aria-label="主な機能" class="reveal">
-        <h2 class="section-title">主な機能</h2>
+      <section id="features" aria-label="Features" class="reveal">
+        <h2 class="section-title">Features</h2>
 
         <ul class="feature-list">
-          <li>1x1 から 3x3 までのグリッドレイアウト（最大 9 本同時再生）</li>
-          <li>全動画を 0 秒から同時にスタートする同期再生（Sync Start）</li>
-          <li>0.5 倍〜4.0 倍の再生速度調整</li>
-          <li>キーボードショートカットでの効率的な操作</li>
-          <li>メニューバーから再生・速度・レイアウトを操作（メインウィンドウを閉じた状態でも可）</li>
-          <li>ドラッグ &amp; ドロップによる簡単な動画読み込み</li>
+          <li>Grid layouts from 1x1 to 3x3 (up to 9 simultaneous videos)</li>
+          <li>Sync Start: kick off every clip from 0 seconds at the same moment</li>
+          <li>Playback speed adjustable from 0.5x to 4.0x</li>
+          <li>Keyboard shortcuts for fast operation</li>
+          <li>Control playback, speed, and layout from the menu bar, even when the main window is closed</li>
+          <li>Drag and drop to load videos</li>
         </ul>
       </section>
 
-      <section id="formats" aria-label="対応フォーマット" class="reveal">
-        <h2 class="section-title">対応フォーマット</h2>
+      <section id="formats" aria-label="Supported formats" class="reveal">
+        <h2 class="section-title">Supported formats</h2>
         <p class="section-desc">
-          <strong>macOS 標準の QuickTime Player で再生できる動画なら、本アプリでも再生できます。</strong>
-          内部的に macOS の AVFoundation を使用しているため、追加のコーデックインストールは不要です。
+          <strong>If a video plays in macOS's built-in QuickTime Player, it plays in this app.</strong>
+          We use macOS's AVFoundation under the hood, so there are no extra codec packs to install.
         </p>
 
         <p class="section-desc">
-          <strong>確実に再生できるもの:</strong> H.264 / HEVC を含む <code>.mp4</code> / <code>.mov</code>
-          （iPhone やカメラ、一般的な編集ソフトの書き出し形式）。
+          <strong>What plays reliably:</strong> <code>.mp4</code> and <code>.mov</code> files containing H.264 or HEVC video
+          (the formats produced by iPhones, cameras, and most editing apps).
         </p>
 
         <p class="section-desc">
-          <strong>非対応・条件付きのもの:</strong> VP9 / AV1（YouTube 等のダウンロード動画でよく使われるコーデック）は再生できません。
-          <code>.mp4</code> 拡張子のファイルでも、内部のコーデックが VP9 / AV1 の場合は再生できない点にご注意ください。
-          一部の <code>.mkv</code> / <code>.webm</code> はコンテナレベルで非対応となることがあります。
-          <strong>事前に QuickTime Player で開けるかご確認ください。</strong>
+          <strong>What may not play:</strong> VP9 and AV1 codecs (often found in videos downloaded from YouTube and similar sites) are not supported.
+          Note that even files with a <code>.mp4</code> extension may not play if their internal video codec is VP9 or AV1.
+          Some <code>.mkv</code> and <code>.webm</code> files are unsupported at the container level.
+          <strong>Open the file in QuickTime Player first to confirm it plays.</strong>
         </p>
 
-        <p class="section-desc" style="margin-bottom: 12px;">対象拡張子:</p>
+        <p class="section-desc" style="margin-bottom: 12px;">Recognized extensions:</p>
         <ul class="formats">
           <li>mp4</li><li>m4v</li><li>mov</li>
           <li>mpg</li><li>mpeg</li><li>m2ts</li><li>mts</li><li>ts</li>
@@ -461,15 +459,15 @@
         </ul>
       </section>
 
-      <footer class="footer" aria-label="フッター">
+      <footer class="footer" aria-label="Footer">
         <p>
-          <a href="./privacy.html">プライバシーポリシー</a>
+          <a href="../privacy.html">Privacy Policy</a>
           ・
-          <a href="./support.html">サポート / FAQ</a>
+          <a href="../support.html">Support / FAQ</a>
           ・
-          <a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">フィードバック</a>
+          <a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">Feedback</a>
           ・
-          <a href="./en/" hreflang="en">English</a>
+          <a href="../" hreflang="ja">日本語</a>
           ・
           <a href="https://jiikko.com/">jiikko.com</a>
         </p>
