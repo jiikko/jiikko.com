@@ -426,11 +426,25 @@
       <section id="formats" aria-label="対応フォーマット" class="reveal">
         <h2 class="section-title">対応フォーマット</h2>
         <p class="section-desc">
-          macOS 標準の AVFoundation がネイティブ対応するコンテナ・コーデック（H.264 / HEVC など）の範囲で再生します。外部コーデックのインストールは不要です。
+          <strong>macOS 標準の QuickTime Player で再生できる動画なら、本アプリでも再生できます。</strong>
+          内部的に macOS の AVFoundation を使用しているため、追加のコーデックインストールは不要です。
         </p>
 
+        <p class="section-desc">
+          <strong>確実に再生できるもの:</strong> H.264 / HEVC を含む <code>.mp4</code> / <code>.mov</code>
+          （iPhone やカメラ、一般的な編集ソフトの書き出し形式）。
+        </p>
+
+        <p class="section-desc">
+          <strong>非対応・条件付きのもの:</strong> VP9 / AV1（YouTube 等のダウンロード動画でよく使われるコーデック）は再生できません。
+          <code>.mp4</code> 拡張子のファイルでも、内部のコーデックが VP9 / AV1 の場合は再生できない点にご注意ください。
+          一部の <code>.mkv</code> / <code>.webm</code> はコンテナレベルで非対応となることがあります。
+          <strong>事前に QuickTime Player で開けるかご確認ください。</strong>
+        </p>
+
+        <p class="section-desc" style="margin-bottom: 12px;">対象拡張子:</p>
         <ul class="formats">
-          <li>mp4</li><li>m4v</li><li>mov</li><li>mkv</li><li>webm</li>
+          <li>mp4</li><li>m4v</li><li>mov</li>
           <li>mpg</li><li>mpeg</li><li>m2ts</li><li>mts</li><li>ts</li>
           <li>3gp</li><li>3g2</li><li>dv</li>
         </ul>
