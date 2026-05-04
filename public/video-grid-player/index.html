@@ -237,7 +237,7 @@
       }
 
       .hero-shot {
-        aspect-ratio: 1 / 1;
+        aspect-ratio: 8 / 5;
         display: grid;
         place-items: center;
         padding: 0;
@@ -248,26 +248,12 @@
           var(--card);
       }
 
-      .hero-shot::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background-image:
-          linear-gradient(to right, rgba(120, 200, 255, 0.18) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(120, 200, 255, 0.18) 1px, transparent 1px);
-        background-size: calc(100% / 3) calc(100% / 3);
-        background-position: -1px -1px;
-        opacity: 0.6;
-      }
-
-      .hero-app-icon {
+      .hero-shot-img {
         position: relative;
-        width: clamp(160px, 38%, 240px);
-        height: clamp(160px, 38%, 240px);
-        border-radius: 22%;
-        box-shadow:
-          0 24px 80px rgba(0, 0, 0, 0.45),
-          0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
         z-index: 1;
       }
 
@@ -417,7 +403,7 @@
         </div>
 
         <div class="panel hero-shot" aria-label="Video Grid Player">
-          <img src="./icon.png" alt="Video Grid Player" class="hero-app-icon" />
+          <img src="./hero-screenshot.webp" alt="Video Grid Player の 3x3 グリッド再生画面" class="hero-shot-img" width="1600" height="1000" />
         </div>
       </section>
 
