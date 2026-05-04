@@ -1,20 +1,29 @@
 <!DOCTYPE html>
-<html lang="ja">
+<!--
+  ⚠️ 多言語版あり / Multi-language LP
+  ────────────────────────────────
+  When updating this file, keep the Japanese version in sync:
+    → public/thumbnail-thumb/index.html  (URL: /thumbnail-thumb/)
+
+  Any change to copy, feature list, platform list, pricing, or developer
+  section must be applied to both files.
+-->
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ThumbnailThumb - サムネイル作成に特化したmacOSアプリ</title>
-  <meta name="description" content="YouTube・Instagram・TikTokなど主要SNS推奨サイズをプリセットしたmacOSサムネイル作成アプリ。AI背景除去と多彩なテキスト装飾を搭載。">
-  <meta name="keywords" content="YouTube, サムネイル, macOS, アプリ, AI背景除去, 袋文字, Instagram, TikTok">
-  <meta property="og:title" content="ThumbnailThumb - サムネイル作成に特化したmacOSアプリ">
-  <meta property="og:description" content="主要SNS推奨サイズをプリセットしたmacOSサムネイル作成アプリ。AI背景除去と多彩なテキスト装飾を搭載。">
+  <title>ThumbnailThumb — A macOS app built for thumbnail creation</title>
+  <meta name="description" content="A macOS thumbnail maker with presets for YouTube, Instagram, TikTok and more. AI background removal and rich text styling included.">
+  <meta name="keywords" content="thumbnail, YouTube, macOS, app, AI background removal, outline text, Instagram, TikTok">
+  <meta property="og:title" content="ThumbnailThumb — A macOS app built for thumbnail creation">
+  <meta property="og:description" content="A macOS thumbnail maker with presets for major social platforms. AI background removal and rich text styling included.">
   <meta property="og:type" content="website">
   <link rel="alternate" hreflang="ja" href="https://jiikko.com/thumbnail-thumb/">
   <link rel="alternate" hreflang="en" href="https://jiikko.com/thumbnail-thumb/en/">
   <link rel="alternate" hreflang="x-default" href="https://jiikko.com/thumbnail-thumb/en/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #FF3B30;
@@ -33,7 +42,7 @@
     }
 
     body {
-      font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       color: var(--dark);
       line-height: 1.6;
     }
@@ -312,102 +321,6 @@
       color: var(--gray);
     }
 
-    /* Pricing Section */
-    .pricing {
-      background: var(--dark);
-      color: var(--white);
-      padding: 80px 0;
-      text-align: center;
-    }
-
-    .pricing .section-title {
-      color: var(--white);
-    }
-
-    .pricing .section-subtitle {
-      color: #888;
-    }
-
-    .price-card {
-      background: var(--white);
-      color: var(--dark);
-      max-width: 400px;
-      margin: 0 auto;
-      border-radius: 20px;
-      padding: 48px 40px;
-    }
-
-    .price-badge {
-      display: inline-block;
-      background: var(--primary);
-      color: var(--white);
-      padding: 4px 12px;
-      border-radius: 12px;
-      font-size: 12px;
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
-
-    .price-amount {
-      font-size: 56px;
-      font-weight: 900;
-      margin-bottom: 8px;
-    }
-
-    .price-note {
-      color: var(--gray);
-      font-size: 14px;
-      margin-bottom: 32px;
-    }
-
-    .price-features {
-      list-style: none;
-      text-align: left;
-      margin-bottom: 32px;
-    }
-
-    .price-features li {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--light-gray);
-      font-size: 15px;
-    }
-
-    .price-features li:last-child {
-      border-bottom: none;
-    }
-
-    .price-features li::before {
-      content: '';
-      width: 20px;
-      height: 20px;
-      background: #4CAF50;
-      border-radius: 50%;
-      flex-shrink: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
-      background-size: 12px;
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-
-    .price-cta {
-      display: block;
-      background: var(--primary);
-      color: var(--white);
-      padding: 16px 32px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-size: 18px;
-      font-weight: 700;
-      transition: all 0.2s;
-    }
-
-    .price-cta:hover {
-      background: var(--primary-dark);
-    }
-
     /* Examples Gallery */
     .examples {
       padding: 80px 0;
@@ -638,23 +551,23 @@
   <!-- Hero -->
   <section class="hero">
     <div class="container">
-      <img src="app-icon.webp" alt="ThumbnailThumb" class="hero-icon">
+      <img src="../app-icon.webp" alt="ThumbnailThumb" class="hero-icon">
       <h1>
-        サムネイル作成に<br><span>特化</span>したmacOSアプリ
+        A macOS app built<br><span>for thumbnails</span>
       </h1>
       <p class="hero-tagline">
-        AI背景除去と多彩なテキスト装飾で、目を引くサムネイルを作成
+        Create eye-catching thumbnails with AI background removal and rich text styling.
       </p>
-      <a href="https://apps.apple.com/jp/app/thumbnailthumb/id6757274992?mt=12" class="hero-cta">
+      <a href="https://apps.apple.com/app/thumbnailthumb/id6757274992?mt=12" class="hero-cta">
         <svg viewBox="0 0 24 24" fill="currentColor">
           <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
         </svg>
-        App Storeで入手
+        Get on App Store
       </a>
-      <p class="hero-note">¥100 / 買い切り / macOS 14.0以降</p>
+      <p class="hero-note">One-time purchase / macOS 14.0 or later</p>
 
       <div class="hero-screenshot">
-        <img src="hero-screenshot.webp" alt="ThumbnailThumb - サムネイル作成画面">
+        <img src="../hero-screenshot.webp" alt="ThumbnailThumb editing interface">
       </div>
     </div>
   </section>
@@ -662,41 +575,41 @@
   <!-- Platforms -->
   <section class="platforms">
     <div class="container">
-      <h2 class="section-title">主要SNS推奨サイズをプリセット</h2>
-      <p class="section-subtitle">選ぶだけで最適なキャンバスサイズに</p>
+      <h2 class="section-title">Presets for major social platforms</h2>
+      <p class="section-subtitle">Pick a preset and your canvas is ready to go</p>
 
       <div class="platform-grid">
         <div class="platform-card">
           <div class="platform-name">YouTube</div>
-          <div class="platform-size">1280 x 720</div>
+          <div class="platform-size">1280 × 720</div>
         </div>
         <div class="platform-card">
           <div class="platform-name">Instagram</div>
-          <div class="platform-size">1080 x 1080</div>
+          <div class="platform-size">1080 × 1080</div>
         </div>
         <div class="platform-card">
           <div class="platform-name">TikTok</div>
-          <div class="platform-size">1080 x 1920</div>
+          <div class="platform-size">1080 × 1920</div>
         </div>
         <div class="platform-card">
           <div class="platform-name">X (Twitter)</div>
-          <div class="platform-size">1200 x 675</div>
+          <div class="platform-size">1200 × 675</div>
         </div>
         <div class="platform-card">
           <div class="platform-name">Twitch</div>
-          <div class="platform-size">1920 x 1080</div>
+          <div class="platform-size">1920 × 1080</div>
         </div>
         <div class="platform-card">
           <div class="platform-name">Facebook</div>
-          <div class="platform-size">1200 x 630</div>
+          <div class="platform-size">1200 × 630</div>
         </div>
         <div class="platform-card">
           <div class="platform-name">Mirrativ</div>
-          <div class="platform-size">1280 x 720</div>
+          <div class="platform-size">1280 × 720</div>
         </div>
         <div class="platform-card">
-          <div class="platform-name">Instagram ストーリー</div>
-          <div class="platform-size">1080 x 1920</div>
+          <div class="platform-name">Instagram Story</div>
+          <div class="platform-size">1080 × 1920</div>
         </div>
       </div>
     </div>
@@ -705,8 +618,8 @@
   <!-- Strengths -->
   <section class="strengths">
     <div class="container">
-      <h2 class="section-title">4つの強み</h2>
-      <p class="section-subtitle">サムネイル制作に特化した機能</p>
+      <h2 class="section-title">Four key strengths</h2>
+      <p class="section-subtitle">Features tailored for thumbnail creation</p>
 
       <div class="strength-grid">
         <div class="strength-card">
@@ -715,11 +628,11 @@
               <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm-4.44-6.19l-2.35 3.02-1.56-1.88c-.2-.25-.58-.24-.78.01l-1.74 2.23c-.26.33-.02.81.39.81h8.98c.41 0 .65-.47.4-.8l-2.55-3.39c-.19-.26-.59-.26-.79 0z"/>
             </svg>
           </div>
-          <h3>AI背景除去</h3>
-          <p>ワンクリックで人物や物体の背景を自動除去。Apple Vision Frameworkで高精度処理。</p>
+          <h3>AI Background Removal</h3>
+          <p>Remove people or objects from a background with one click. Powered by Apple Vision for high accuracy.</p>
           <div class="strength-tags">
-            <span class="strength-tag">2秒以内</span>
-            <span class="strength-tag">オフライン</span>
+            <span class="strength-tag">Under 2 seconds</span>
+            <span class="strength-tag">Offline</span>
           </div>
         </div>
 
@@ -729,11 +642,11 @@
               <path d="M2.5 4v3h5v12h3V7h5V4h-13zm19 5h-9v3h3v7h3v-7h3V9z"/>
             </svg>
           </div>
-          <h3>多彩なテキスト装飾</h3>
-          <p>縁取り、シャドウ、グラデーション、斜体など多彩な装飾で目立つ文字を作成。</p>
+          <h3>Rich Text Styling</h3>
+          <p>Create eye-catching text with outlines, shadows, gradients, italics, and more.</p>
           <div class="strength-tags">
-            <span class="strength-tag">縁取り</span>
-            <span class="strength-tag">グラデーション</span>
+            <span class="strength-tag">Outline</span>
+            <span class="strength-tag">Gradient</span>
           </div>
         </div>
 
@@ -743,11 +656,11 @@
               <path d="M13 2.05v2.02c3.95.49 7 3.85 7 7.93 0 3.21-1.92 6-4.72 7.28L13 17v5h5l-1.22-1.22C19.91 19.07 22 15.76 22 12c0-5.18-3.95-9.45-9-9.95zM11 2.05C5.94 2.55 2 6.81 2 12c0 3.76 2.09 7.07 5.22 8.78L6 22h5v-5l-2.28 2.28C6.92 18 5 15.21 5 12c0-4.08 3.05-7.44 7-7.93V2.05z"/>
             </svg>
           </div>
-          <h3>高速動作</h3>
-          <p>Metal GPUアクセラレーションでサクサク動作。エクスポートも1秒以内。</p>
+          <h3>Fast Performance</h3>
+          <p>Smooth operation with Metal GPU acceleration. Export in under one second.</p>
           <div class="strength-tags">
-            <span class="strength-tag">起動1秒</span>
-            <span class="strength-tag">ネイティブ</span>
+            <span class="strength-tag">1-second launch</span>
+            <span class="strength-tag">Native</span>
           </div>
         </div>
 
@@ -757,11 +670,11 @@
               <path d="M3 5H1v16c0 1.1.9 2 2 2h16v-2H3V5zm18-4H7c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm0 16H7V3h14v14z"/>
             </svg>
           </div>
-          <h3>マルチキャンバス</h3>
-          <p>複数プロジェクトをタブ管理。1プロジェクト内に複数キャンバスでバリエーション作成。</p>
+          <h3>Multi-Canvas Workflow</h3>
+          <p>Manage multiple projects in tabs. Create variations with multiple canvases per project.</p>
           <div class="strength-tags">
-            <span class="strength-tag">タブ管理</span>
-            <span class="strength-tag">A/Bテスト</span>
+            <span class="strength-tag">Tabs</span>
+            <span class="strength-tag">A/B testing</span>
           </div>
         </div>
       </div>
@@ -771,8 +684,8 @@
   <!-- Features -->
   <section class="features">
     <div class="container">
-      <h2 class="section-title">その他の機能</h2>
-      <p class="section-subtitle">プロ仕様のツールを搭載</p>
+      <h2 class="section-title">More features</h2>
+      <p class="section-subtitle">Pro-grade tools built in</p>
 
       <div class="feature-list">
         <div class="feature-item">
@@ -782,8 +695,8 @@
             </svg>
           </div>
           <div class="feature-content">
-            <h4>Figmaライクカラーピッカー</h4>
-            <p>HSB・スポイト・HEX入力に対応</p>
+            <h4>Figma-style color picker</h4>
+            <p>HSB, eyedropper, and HEX input</p>
           </div>
         </div>
 
@@ -794,8 +707,8 @@
             </svg>
           </div>
           <div class="feature-content">
-            <h4>図形ツール</h4>
-            <p>四角・円・三角・星・矢印など6種類</p>
+            <h4>Shape tools</h4>
+            <p>Rectangle, circle, triangle, star, arrow, polygon</p>
           </div>
         </div>
 
@@ -806,8 +719,8 @@
             </svg>
           </div>
           <div class="feature-content">
-            <h4>ドラッグ&ドロップ</h4>
-            <p>画像を直接キャンバスに追加</p>
+            <h4>Drag & drop</h4>
+            <p>Add images directly to the canvas</p>
           </div>
         </div>
 
@@ -818,8 +731,8 @@
             </svg>
           </div>
           <div class="feature-content">
-            <h4>50段階Undo</h4>
-            <p>安心して試行錯誤できる</p>
+            <h4>50-step undo</h4>
+            <p>Experiment freely</p>
           </div>
         </div>
 
@@ -830,8 +743,8 @@
             </svg>
           </div>
           <div class="feature-content">
-            <h4>PNG/JPEGエクスポート</h4>
-            <p>透明背景にも対応</p>
+            <h4>PNG / JPEG export</h4>
+            <p>Transparent backgrounds supported</p>
           </div>
         </div>
 
@@ -842,8 +755,8 @@
             </svg>
           </div>
           <div class="feature-content">
-            <h4>画像クロップ</h4>
-            <p>ダブルクリックで素早く切り出し</p>
+            <h4>Image cropping</h4>
+            <p>Double-click to crop quickly</p>
           </div>
         </div>
       </div>
@@ -853,56 +766,56 @@
   <!-- Developer / AI Integration -->
   <section class="developer">
     <div class="container">
-      <h2 class="section-title">AI・開発者ツールとの連携</h2>
-      <p class="section-subtitle">HTTP APIとtt-clientでサムネイル作成を自動化</p>
+      <h2 class="section-title">Developer & AI integration</h2>
+      <p class="section-subtitle">Automate thumbnail creation via the local HTTP API and tt-client</p>
 
       <div class="developer-grid">
         <div class="developer-steps">
           <div class="developer-step">
             <span class="step-number">1</span>
             <div class="step-content">
-              <h4>設定でローカルAPIを有効化</h4>
-              <p>アプリの設定画面から「ローカルHTTP API」をオンにします。デフォルトはオフです。有効にするとlocalhost上でHTTPサーバ（ポート18080）が起動します。</p>
+              <h4>Enable the local API in settings</h4>
+              <p>Turn on "Local HTTP API" in app preferences (off by default). When enabled, an HTTP server starts on localhost (port 18080).</p>
             </div>
           </div>
           <div class="developer-step">
             <span class="step-number">2</span>
             <div class="step-content">
-              <h4>tt-clientをインストール</h4>
-              <p>公式CLIツール <strong>tt-client</strong> を使うと、ポート番号の探索が不要になります。</p>
+              <h4>Install tt-client</h4>
+              <p>The official CLI tool <strong>tt-client</strong> takes care of port discovery so you don't have to.</p>
             </div>
           </div>
           <div class="developer-step">
             <span class="step-number">3</span>
             <div class="step-content">
-              <h4>Claude Codeなどから操作</h4>
-              <p>プロジェクト・キャンバス・エレメントの作成・編集・エクスポートをAIから自動実行できます。</p>
+              <h4>Drive it from Claude Code or any AI tool</h4>
+              <p>Create, edit, and export projects, canvases, and elements programmatically.</p>
             </div>
           </div>
         </div>
 
         <div>
           <div class="developer-code">
-            <div class="code-label">インストール</div>
-            <pre><code><span class="comment"># Homebrewでインストール</span>
+            <div class="code-label">Install</div>
+            <pre><code><span class="comment"># Install via Homebrew</span>
 <span class="command">brew</span> install jiikko/tap/tt-client</code></pre>
           </div>
 
           <div class="developer-code" style="margin-top: 12px;">
-            <div class="code-label">使用例</div>
-            <pre><code><span class="comment"># ステータス確認</span>
+            <div class="code-label">Usage</div>
+            <pre><code><span class="comment"># Check status</span>
 <span class="command">tt-client</span> /status
 
-<span class="comment"># 現在のキャンバスをプレビュー保存</span>
+<span class="comment"># Save a preview of the current canvas</span>
 <span class="command">tt-client</span> --current preview -o ./thumb.png
 
-<span class="comment"># PNG でエクスポート</span>
+<span class="comment"># Export as PNG</span>
 <span class="command">tt-client</span> --current export -o ./output.png</code></pre>
           </div>
 
           <div class="developer-note">
-            ポートは自動検出されます。手動で port を調べる必要はありません。<br>
-            APIの全エンドポイントは <code style="background:rgba(255,255,255,0.15);padding:1px 5px;border-radius:3px;font-family:monospace;font-size:12px;">tt-client /help</code> または <code style="background:rgba(255,255,255,0.15);padding:1px 5px;border-radius:3px;font-family:monospace;font-size:12px;">tt-client '/help?topic={topic}'</code> で確認できます。
+            The port is auto-detected; you don't need to look it up manually.<br>
+            For a full list of endpoints, run <code style="background:rgba(255,255,255,0.15);padding:1px 5px;border-radius:3px;font-family:monospace;font-size:12px;">tt-client /help</code> or <code style="background:rgba(255,255,255,0.15);padding:1px 5px;border-radius:3px;font-family:monospace;font-size:12px;">tt-client '/help?topic={topic}'</code>.
           </div>
         </div>
       </div>
@@ -912,59 +825,59 @@
   <!-- Examples Gallery -->
   <section class="examples">
     <div class="container">
-      <h2 class="section-title">作例ギャラリー</h2>
-      <p class="section-subtitle">ThumbnailThumbで作成したサムネイル例</p>
+      <h2 class="section-title">Example gallery</h2>
+      <p class="section-subtitle">Thumbnails created with ThumbnailThumb</p>
 
       <div class="example-category">
-        <h3 class="example-category-title">学術・解説系</h3>
+        <h3 class="example-category-title">Educational & explainer</h3>
         <div class="example-grid">
           <div class="example-item">
-            <img src="examples/academic-ted.webp" alt="TED風サムネイル" loading="lazy">
+            <img src="../examples/academic-ted.webp" alt="TED-style thumbnail" loading="lazy">
           </div>
           <div class="example-item">
-            <img src="examples/academic-nakata.webp" alt="中田敦彦風サムネイル" loading="lazy">
+            <img src="../examples/academic-nakata.webp" alt="Lecture-style thumbnail" loading="lazy">
           </div>
           <div class="example-item">
-            <img src="examples/academic-fermi.webp" alt="フェルミ研究所風サムネイル" loading="lazy">
+            <img src="../examples/academic-fermi.webp" alt="Science explainer thumbnail" loading="lazy">
           </div>
           <div class="example-item">
-            <img src="examples/academic-hiroyuki.webp" alt="ひろゆき風サムネイル" loading="lazy">
+            <img src="../examples/academic-hiroyuki.webp" alt="Talking-head thumbnail" loading="lazy">
           </div>
         </div>
       </div>
 
       <div class="example-category">
-        <h3 class="example-category-title">ゲーム実況系</h3>
+        <h3 class="example-category-title">Gaming & Let's Play</h3>
         <div class="example-grid">
           <div class="example-item">
-            <img src="examples/gaming-letsplay.webp" alt="実況プレイサムネイル" loading="lazy">
+            <img src="../examples/gaming-letsplay.webp" alt="Let's Play thumbnail" loading="lazy">
           </div>
           <div class="example-item">
-            <img src="examples/gaming-horror.webp" alt="ホラーゲームサムネイル" loading="lazy">
+            <img src="../examples/gaming-horror.webp" alt="Horror game thumbnail" loading="lazy">
           </div>
           <div class="example-item">
-            <img src="examples/gaming-godplay.webp" alt="神プレイサムネイル" loading="lazy">
+            <img src="../examples/gaming-godplay.webp" alt="Highlight play thumbnail" loading="lazy">
           </div>
           <div class="example-item">
-            <img src="examples/gaming-strategy.webp" alt="攻略動画サムネイル" loading="lazy">
+            <img src="../examples/gaming-strategy.webp" alt="Strategy guide thumbnail" loading="lazy">
           </div>
         </div>
       </div>
 
       <div class="example-category">
-        <h3 class="example-category-title">Vlog・ライフスタイル系</h3>
+        <h3 class="example-category-title">Vlog & lifestyle</h3>
         <div class="example-grid">
           <div class="example-item">
-            <img src="examples/vlog-morning.webp" alt="モーニングルーティンサムネイル" loading="lazy">
+            <img src="../examples/vlog-morning.webp" alt="Morning routine thumbnail" loading="lazy">
           </div>
           <div class="example-item">
-            <img src="examples/vlog-haul.webp" alt="購入品紹介サムネイル" loading="lazy">
+            <img src="../examples/vlog-haul.webp" alt="Haul video thumbnail" loading="lazy">
           </div>
           <div class="example-item">
-            <img src="examples/vlog-travel.webp" alt="旅行Vlogサムネイル" loading="lazy">
+            <img src="../examples/vlog-travel.webp" alt="Travel vlog thumbnail" loading="lazy">
           </div>
           <div class="example-item">
-            <img src="examples/vlog-roomtour.webp" alt="ルームツアーサムネイル" loading="lazy">
+            <img src="../examples/vlog-roomtour.webp" alt="Room tour thumbnail" loading="lazy">
           </div>
         </div>
       </div>
@@ -977,12 +890,12 @@
       <div class="footer-content">
         <div class="footer-logo">ThumbnailThumb</div>
         <div class="footer-links">
-          <a href="privacy.html">プライバシーポリシー</a>
-          <a href="terms.html">利用規約</a>
-          <a href="en/">English</a>
+          <a href="../privacy.html">Privacy Policy</a>
+          <a href="../terms.html">Terms of Service</a>
+          <a href="../">日本語</a>
         </div>
         <div class="footer-info">
-          <span class="footer-requirements">macOS 14.0 (Sonoma) 以降 / Apple Silicon</span>
+          <span class="footer-requirements">macOS 14.0 (Sonoma) or later / Apple Silicon</span>
           <span class="footer-copyright">&copy; 2026 ThumbnailThumb</span>
         </div>
       </div>
