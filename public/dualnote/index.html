@@ -335,6 +335,19 @@
       margin-bottom: 8px;
     }
 
+    .inline-link {
+      color: var(--primary);
+      text-decoration: underline;
+      text-decoration-color: rgba(91, 127, 255, 0.4);
+      text-underline-offset: 2px;
+      font-weight: 700;
+    }
+
+    .inline-link:hover {
+      color: var(--primary-dark);
+      text-decoration-color: var(--primary);
+    }
+
     .lockin-code {
       background: #1a1a2e;
       border-radius: 12px;
@@ -717,6 +730,7 @@
           <h3>ただのテキストファイル</h3>
           <p>日記もメモも、iCloud Drive上にMarkdownファイルとして保存されます。独自フォーマットやデータベースは使いません。</p>
           <p>アプリを使わなくなっても、ファイルはそのまま残ります。Obsidian、iA Writer、VSCodeなど好きなエディタでいつでも開けます。</p>
+          <p>同じノートは <a href="/dualnote-ios/" class="inline-link">iPhone版 DualNote</a>（近日App Store公開予定）からも開けます。外出先でも続きが書けます。</p>
         </div>
         <div class="lockin-code">
           <div class="code-label">iCloud Drive/DualNote/diary/2026-03-14.md</div>
@@ -765,6 +779,7 @@
       <div class="footer-content">
         <div class="footer-logo">DualNote</div>
         <div class="footer-links">
+          <a href="/dualnote-ios/">iPhone版</a>
           <a href="privacy.html">プライバシーポリシー</a>
           <a href="terms.html">利用規約</a>
         </div>
