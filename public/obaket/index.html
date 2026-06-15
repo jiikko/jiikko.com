@@ -12,12 +12,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Obaket — 複数クラウドの「閲覧」と「アップロード」をひとつに</title>
+    <title>Obaket — S3・R2・Dropbox などのクラウドストレージを、ひとつのアプリで</title>
     <meta
       name="description"
       content="S3 / Cloudflare R2 / Dropbox などのクラウドストレージを Finder 感覚で扱える macOS アプリ。ダウンロードせずにプレビュー、どのクラウドにも同じ操作でアップロード。"
     />
-    <meta property="og:title" content="Obaket — 複数クラウドの「閲覧」と「アップロード」をひとつに" />
+    <meta property="og:title" content="Obaket — S3・R2・Dropbox などのクラウドストレージを、ひとつのアプリで" />
     <meta
       property="og:description"
       content="S3 / Cloudflare R2 / Dropbox などのクラウドストレージを Finder 感覚で扱える macOS アプリ。"
@@ -28,7 +28,7 @@
     <meta property="og:locale" content="ja_JP" />
     <meta property="og:site_name" content="Obaket" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Obaket — 複数クラウドの「閲覧」と「アップロード」をひとつに" />
+    <meta name="twitter:title" content="Obaket — S3・R2・Dropbox などのクラウドストレージを、ひとつのアプリで" />
     <meta name="twitter:description" content="S3 / Cloudflare R2 / Dropbox などのクラウドストレージを Finder 感覚で扱える macOS アプリ。" />
     <meta name="twitter:image" content="https://jiikko.com/obaket/icon.png" />
     <link rel="canonical" href="https://jiikko.com/obaket/" />
@@ -472,32 +472,104 @@
         box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
       }
 
-      /* ─── 対応サービス ─── */
+      /* ─── 対応ストレージサービス (ロゴタイル付きカードグリッド) ─── */
       .services {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(264px, 1fr));
+        gap: 16px;
         margin: 0;
         padding: 0;
         list-style: none;
       }
 
       .services li {
-        display: inline-flex;
+        position: relative;
+        display: flex;
         align-items: center;
-        gap: 8px;
-        padding: 9px 16px;
-        font-size: 14px;
-        color: var(--fg);
-        background: var(--card2);
+        gap: 15px;
+        padding: 22px 20px;
+        background:
+          radial-gradient(140% 120% at 0% 0%, color-mix(in srgb, var(--g1, var(--brand)), transparent 88%), transparent 58%),
+          var(--card2);
         border: 1px solid var(--border);
-        border-radius: 999px;
-        line-height: 1;
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
       }
 
-      .services .status { font-size: 11px; color: var(--ok); font-weight: 700; }
-      .services li.planned { color: var(--plan); border-style: dashed; }
-      .services li.planned .status { color: var(--plan); font-weight: 600; }
+      /* 上辺のグラデーションアクセント */
+      .services li::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--g1, var(--brand)), var(--g2, var(--brand2)));
+      }
+
+      .services li:hover {
+        transform: translateY(-4px);
+        border-color: color-mix(in srgb, var(--g1, var(--brand)), transparent 35%);
+        box-shadow: 0 26px 64px rgba(0, 0, 0, 0.3);
+      }
+
+      .service-logo {
+        flex: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        font-size: 15px;
+        letter-spacing: -0.02em;
+        color: #fff;
+        background: linear-gradient(135deg, var(--g1, var(--brand)), var(--g2, var(--brand2)));
+        box-shadow:
+          0 10px 24px color-mix(in srgb, var(--g1, var(--brand)), transparent 55%),
+          inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      }
+
+      .service-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; padding-right: 40px; }
+      .service-name { font-weight: 700; font-size: 15px; line-height: 1.28; }
+      a.service-name { transition: color 0.15s ease; }
+      a.service-name:hover {
+        color: color-mix(in srgb, var(--g1, var(--brand)), var(--fg) 30%);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .service-meta { font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+      .service-meta a {
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        text-decoration-color: color-mix(in srgb, currentColor, transparent 55%);
+      }
+      .service-meta a:hover { color: var(--fg); text-decoration-color: currentColor; }
+
+      .services .status {
+        position: absolute;
+        top: 13px;
+        right: 13px;
+        font-size: 10.5px;
+        font-weight: 700;
+        color: var(--ok);
+        background: color-mix(in srgb, var(--ok), transparent 84%);
+        border: 1px solid color-mix(in srgb, var(--ok), transparent 58%);
+        padding: 3px 10px;
+        border-radius: 999px;
+        line-height: 1;
+        white-space: nowrap;
+      }
+
+      .services li.planned .service-logo { filter: saturate(0.5); opacity: 0.85; }
+      .services li.planned .service-name { color: var(--muted); }
+      .services li.planned .status {
+        color: var(--plan);
+        background: color-mix(in srgb, var(--fg), transparent 90%);
+        border-color: var(--border);
+        border-style: dashed;
+        font-weight: 600;
+      }
 
       .pricing-card {
         max-width: 560px;
@@ -556,7 +628,7 @@
         </a>
         <nav class="nav" aria-label="ページ内ナビゲーション">
           <a href="#features">特徴</a>
-          <a href="#services">対応サービス</a>
+          <a href="#services">対応ストレージ</a>
           <a href="#pricing">価格</a>
           <span class="btn btn-primary btn-disabled" aria-disabled="true">近日公開</span>
         </nav>
@@ -571,11 +643,10 @@
             <span aria-hidden="true">•</span>
             <strong>開発中 — Coming Soon</strong>
           </div>
-          <h1>複数クラウドの「閲覧」と<br />「アップロード」を、<span style="white-space: nowrap;">ひとつに。</span></h1>
+          <h1>S3 も R2 も Dropbox も、<br /><span style="white-space: nowrap;">ひとつのアプリで。</span></h1>
           <p class="lead">
-            Obaket は <strong>S3 / Cloudflare R2 / Dropbox などのクラウドストレージを Finder 感覚で扱える macOS アプリ</strong>です。
             サービスごとに管理コンソールや CLI を行き来する必要はもうありません。
-            ダウンロードせずにそのままプレビューできます。
+            <strong>Finder 感覚でプレビュー</strong>でき、どのクラウドにも<strong>同じ操作でアップロード</strong>できる macOS アプリです。
           </p>
 
           <div class="cta">
@@ -650,20 +721,67 @@
         </ul>
       </section>
 
-      <section id="services" aria-label="対応サービス" class="reveal">
-        <h2 class="section-title">対応サービス</h2>
+      <section id="services" aria-label="対応ストレージサービス" class="reveal">
+        <h2 class="section-title">対応ストレージサービス</h2>
         <p class="section-desc">
-          v1.0 では以下のサービスに対応予定です。<strong>対応サービスは順次拡大していきます。</strong>
+          v1.0 では以下のストレージサービスに対応予定です。<strong>対応サービスは順次拡大していきます。</strong>
         </p>
 
         <ul class="services">
-          <li>Amazon S3 <span class="status">対応</span></li>
-          <li>Cloudflare R2 <span class="status">対応</span></li>
-          <li>Dropbox <span class="status">対応</span></li>
-          <li>PikPak (WebDAV / 閲覧のみ) <span class="status">対応</span></li>
-          <li class="planned">S3 互換 (MinIO / Wasabi / Backblaze B2) <span class="status">予定</span></li>
-          <li class="planned">Internet Archive <span class="status">予定</span></li>
-          <li class="planned">Finder マウント (FUSE) <span class="status">v2.0 予定</span></li>
+          <li style="--g1:#ff9d2e; --g2:#e0700f;">
+            <span class="service-logo" aria-hidden="true">S3</span>
+            <span class="service-body">
+              <a class="service-name" href="https://aws.amazon.com/s3/" target="_blank" rel="noopener noreferrer">Amazon S3</a>
+              <span class="service-meta">オブジェクトストレージ</span>
+            </span>
+            <span class="status">対応</span>
+          </li>
+          <li style="--g1:#f6821f; --g2:#faae40;">
+            <span class="service-logo" aria-hidden="true">R2</span>
+            <span class="service-body">
+              <a class="service-name" href="https://www.cloudflare.com/products/r2/" target="_blank" rel="noopener noreferrer">Cloudflare R2</a>
+              <span class="service-meta">エグレス無料のストレージ</span>
+            </span>
+            <span class="status">対応</span>
+          </li>
+          <li style="--g1:#1e8fff; --g2:#0061fe;">
+            <span class="service-logo" aria-hidden="true">Db</span>
+            <span class="service-body">
+              <a class="service-name" href="https://www.dropbox.com/" target="_blank" rel="noopener noreferrer">Dropbox</a>
+              <span class="service-meta">読み書き・マルチパート対応</span>
+            </span>
+            <span class="status">対応</span>
+          </li>
+          <li style="--g1:#2dd4bf; --g2:#0ea5b7;">
+            <span class="service-logo" aria-hidden="true">PP</span>
+            <span class="service-body">
+              <a class="service-name" href="https://mypikpak.com/" target="_blank" rel="noopener noreferrer">PikPak</a>
+              <span class="service-meta">WebDAV / 閲覧のみ</span>
+            </span>
+            <span class="status">対応</span>
+          </li>
+          <li class="planned" style="--g1:#8b93ff; --g2:#5a6bd8;">
+            <span class="service-logo" aria-hidden="true">S3+</span>
+            <span class="service-body">
+              <span class="service-name">S3 互換</span>
+              <span class="service-meta">
+                <a href="https://min.io/" target="_blank" rel="noopener noreferrer">MinIO</a>
+                /
+                <a href="https://wasabi.com/" target="_blank" rel="noopener noreferrer">Wasabi</a>
+                /
+                <a href="https://www.backblaze.com/cloud-storage" target="_blank" rel="noopener noreferrer">Backblaze B2</a>
+              </span>
+            </span>
+            <span class="status">予定</span>
+          </li>
+          <li class="planned" style="--g1:#d9a441; --g2:#b07e2a;">
+            <span class="service-logo" aria-hidden="true">IA</span>
+            <span class="service-body">
+              <a class="service-name" href="https://archive.org/" target="_blank" rel="noopener noreferrer">Internet Archive</a>
+              <span class="service-meta">公開アーカイブ</span>
+            </span>
+            <span class="status">予定</span>
+          </li>
         </ul>
       </section>
 
