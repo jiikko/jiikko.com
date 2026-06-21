@@ -2,47 +2,48 @@
 <!--
   ⚠️ 多言語版あり / Multi-language LP
   ────────────────────────────────
-  この日本語版を更新したら、英語版も同期すること:
-    → public/obaket/en/index.html  (URL: /obaket/en/)
-  コピー・機能・対応サービス・価格の変更は両ファイルに反映する。
+  When updating this file, keep the Japanese version in sync:
+    → public/obaket/index.html  (URL: /obaket/)
+
+  Any change to copy, feature list, supported services, or pricing must be applied to both files.
 
   - アプリは v1.0 開発中 (未リリース)。App Store リンクは公開後に差し替えること
   - ヒーローの「アプリ画面イメージ」は CSS モックのプレースホルダー。
     実スクリーンショットが用意でき次第 <div class="mock-window"> ごと
-    <img src="./hero-screenshot.webp"> に置き換える (video-grid-player と同形式)
+    <img src="../hero-screenshot.webp"> に置き換える (video-grid-player と同形式)
   - 機能・対応サービスの正本は apps/obaket/README.md。乖離したらこちらを直す
 -->
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Obaket — S3・R2・Dropbox などのクラウドストレージを、ひとつのアプリで</title>
+    <title>Obaket — All your cloud storage, S3, R2, and Dropbox, in one app</title>
     <meta
       name="description"
-      content="S3 / Cloudflare R2 / Dropbox などのクラウドストレージを Finder 感覚で扱える macOS アプリ。ダウンロードせずにプレビュー、どのクラウドにも同じ操作でアップロード。"
+      content="A macOS app that lets you handle cloud storage like S3 / Cloudflare R2 / Dropbox the way you use Finder. Preview without downloading, and upload to any cloud with the same actions."
     />
-    <meta property="og:title" content="Obaket — S3・R2・Dropbox などのクラウドストレージを、ひとつのアプリで" />
+    <meta property="og:title" content="Obaket — All your cloud storage, S3, R2, and Dropbox, in one app" />
     <meta
       property="og:description"
-      content="S3 / Cloudflare R2 / Dropbox などのクラウドストレージを Finder 感覚で扱える macOS アプリ。"
+      content="A macOS app that lets you handle cloud storage like S3 / Cloudflare R2 / Dropbox the way you use Finder."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://jiikko.com/obaket/" />
+    <meta property="og:url" content="https://jiikko.com/obaket/en/" />
     <meta property="og:image" content="https://jiikko.com/obaket/icon.png" />
-    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="Obaket" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Obaket — S3・R2・Dropbox などのクラウドストレージを、ひとつのアプリで" />
-    <meta name="twitter:description" content="S3 / Cloudflare R2 / Dropbox などのクラウドストレージを Finder 感覚で扱える macOS アプリ。" />
+    <meta name="twitter:title" content="Obaket — All your cloud storage, S3, R2, and Dropbox, in one app" />
+    <meta name="twitter:description" content="A macOS app that lets you handle cloud storage like S3 / Cloudflare R2 / Dropbox the way you use Finder." />
     <meta name="twitter:image" content="https://jiikko.com/obaket/icon.png" />
-    <link rel="canonical" href="https://jiikko.com/obaket/" />
+    <link rel="canonical" href="https://jiikko.com/obaket/en/" />
     <link rel="alternate" hreflang="ja" href="https://jiikko.com/obaket/" />
     <link rel="alternate" hreflang="en" href="https://jiikko.com/obaket/en/" />
     <link rel="alternate" hreflang="x-default" href="https://jiikko.com/obaket/" />
-    <link rel="icon" type="image/png" href="./icon-128.png" />
+    <link rel="icon" type="image/png" href="../icon-128.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <style>
       :root {
@@ -81,8 +82,7 @@
 
       body {
         margin: 0;
-        font-family: "Inter", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-        font-feature-settings: "palt";
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
         color: var(--fg);
         background:
           radial-gradient(1200px 600px at 10% 0%, rgba(255, 106, 0, 0.28), transparent 60%),
@@ -242,7 +242,7 @@
         box-shadow: var(--shadow);
       }
 
-      /* ─── ヒーローのアプリ画面イメージ (CSS モック / スクショ準備中のプレースホルダー) ─── */
+      /* ─── Hero app screen image (CSS mock / placeholder while screenshots are prepared) ─── */
       .hero-shot {
         position: relative;
         padding: 0;
@@ -479,7 +479,7 @@
         box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
       }
 
-      /* ─── 対応ストレージサービス (ロゴタイル付きカードグリッド) ─── */
+      /* ─── Supported storage services (logo tile card grid) ─── */
       .services {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(264px, 1fr));
@@ -505,7 +505,7 @@
         transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
       }
 
-      /* 上辺のグラデーションアクセント */
+      /* top edge gradient accent */
       .services li::before {
         content: "";
         position: absolute;
@@ -611,7 +611,7 @@
       .footer a { color: var(--muted); }
       .footer a:hover { color: var(--fg); }
 
-      /* スクロール時のフェードイン */
+      /* fade-in on scroll */
       .reveal {
         opacity: 0;
         transform: translateY(16px);
@@ -630,54 +630,55 @@
     <header class="topbar">
       <div class="container topbar-inner">
         <a class="brand" href="#top">
-          <img src="./icon-128.png" alt="Obaket" width="28" height="28" style="border-radius: 6px;" />
+          <img src="../icon-128.png" alt="Obaket" width="28" height="28" style="border-radius: 6px;" />
           <span>Obaket</span>
         </a>
-        <nav class="nav" aria-label="ページ内ナビゲーション">
-          <a href="#features">特徴</a>
-          <a href="#services">対応ストレージ</a>
-          <a href="#pricing">価格</a>
-          <a href="./en/" hreflang="en" aria-label="English">English</a>
-          <span class="btn btn-primary btn-disabled" aria-disabled="true">近日公開</span>
+        <nav class="nav" aria-label="Page navigation">
+          <a href="#features">Features</a>
+          <a href="#services">Supported storage</a>
+          <a href="#pricing">Pricing</a>
+          <a href="../" hreflang="ja" aria-label="日本語版">日本語</a>
+          <span class="btn btn-primary btn-disabled" aria-disabled="true">Coming Soon</span>
         </nav>
       </div>
     </header>
 
     <main id="top" class="container">
-      <section class="hero" aria-label="ヒーロー">
+      <section class="hero" aria-label="Hero">
         <div>
           <div class="pill">
-            <span>macOS 専用</span>
+            <span>macOS only</span>
             <span aria-hidden="true">•</span>
-            <strong>開発中 — Coming Soon</strong>
+            <strong>In development — Coming Soon</strong>
           </div>
-          <h1>S3 も R2 も Dropbox も、<br /><span style="white-space: nowrap;">ひとつのアプリで。</span></h1>
+          <h1>S3, R2, and Dropbox,<br /><span style="white-space: nowrap;">all in one app.</span></h1>
           <p class="lead">
-            サービスごとに管理コンソールや CLI を行き来する必要はもうありません。
-            <strong>Finder 感覚でプレビュー</strong>でき、どのクラウドにも<strong>同じ操作でアップロード</strong>できる macOS アプリです。
+            No more bouncing between management consoles and CLIs for every service.
+            Obaket is a macOS app where you can <strong>preview files just like in Finder</strong>
+            and <strong>upload to any cloud with the same actions</strong>.
           </p>
 
           <div class="cta">
-            <span class="btn btn-primary btn-disabled" aria-disabled="true">App Store にて近日公開</span>
-            <a href="https://github.com/jiikko/product-feedback" class="btn" target="_blank" rel="noopener noreferrer">フィードバックを送る</a>
+            <span class="btn btn-primary btn-disabled" aria-disabled="true">Coming soon on the App Store</span>
+            <a href="https://github.com/jiikko/product-feedback" class="btn" target="_blank" rel="noopener noreferrer">Send feedback</a>
           </div>
 
           <p class="microcopy">
-            ※ 現在 v1.0 を開発中です。リリース時期・内容は変更される可能性があります。
+            * v1.0 is currently in development. Release timing and contents are subject to change.
           </p>
         </div>
 
-        <div class="panel hero-shot" aria-label="Obaket のアプリ画面イメージ">
-          <span class="mock-badge">スクリーンショット準備中 — 画面はイメージです</span>
-          <!-- プレースホルダー: 実スクショができたら .mock-window ごと <img> に置き換える -->
-          <div class="mock-window" role="img" aria-label="ファイルブラウザのイメージ: サイドバーに接続済みクラウド、右にファイル一覧と転送進捗">
+        <div class="panel hero-shot" aria-label="Obaket app screen image">
+          <span class="mock-badge">Screenshot coming soon — image is for illustration</span>
+          <!-- Placeholder: replace the whole .mock-window with <img> once a real screenshot is ready -->
+          <div class="mock-window" role="img" aria-label="File browser image: connected clouds in the sidebar, file list and transfer progress on the right">
             <div class="mock-titlebar">
               <span class="mock-dot r"></span><span class="mock-dot y"></span><span class="mock-dot g"></span>
               <span class="mock-title">Obaket — my-bucket</span>
             </div>
             <div class="mock-body">
               <div class="mock-sidebar">
-                <div class="mock-side-item" style="font-size:9px; color: rgba(250,243,236,0.4); padding-bottom:2px;">接続</div>
+                <div class="mock-side-item" style="font-size:9px; color: rgba(250,243,236,0.4); padding-bottom:2px;">Connections</div>
                 <div class="mock-side-item active"><span class="mock-side-dot"></span>Amazon S3</div>
                 <div class="mock-side-item"><span class="mock-side-dot"></span>Cloudflare R2</div>
                 <div class="mock-side-item"><span class="mock-side-dot"></span>Dropbox</div>
@@ -689,7 +690,7 @@
                 <div class="mock-row"><span class="mock-fileicon"></span><span class="mock-filename">release-notes.md</span><span class="mock-filesize">4 KB</span></div>
                 <div class="mock-row"><span class="mock-fileicon"></span><span class="mock-filename">backup-2026.tar.gz</span><span class="mock-filesize">2.1 GB</span></div>
                 <div class="mock-transfer">
-                  <div class="mock-transfer-label"><span>⬆ アップロード中 (2/3)</span><span>68%</span></div>
+                  <div class="mock-transfer-label"><span>⬆ Uploading (2/3)</span><span>68%</span></div>
                   <div class="mock-progress"></div>
                 </div>
               </div>
@@ -699,40 +700,40 @@
         </div>
       </section>
 
-      <section id="features" aria-label="特徴" class="reveal">
-        <h2 class="section-title">特徴</h2>
+      <section id="features" aria-label="Features" class="reveal">
+        <h2 class="section-title">Features</h2>
         <p class="section-desc">
-          「閲覧」と「アップロード」、クラウドストレージでいちばん良く使う 2 つの操作を、サービス横断でひとつの UI に統一します。
+          Browsing and uploading — the two things you do most with cloud storage — unified into a single UI across every service.
         </p>
 
         <ul class="feature-list">
           <li>
-            <strong>ダウンロードせずに、その場でプレビュー</strong>
-            <span>画像・動画・テキストを Quick Look 感覚で即表示。動画は HTTP Range で逐次取得するので、フルダウンロードを待たずに再生が始まります。</span>
+            <strong>Preview on the spot, without downloading</strong>
+            <span>View images, videos, and text instantly, Quick Look style. Videos are fetched progressively over HTTP Range, so playback starts without waiting for a full download.</span>
           </li>
           <li>
-            <strong>どのクラウドにも、同じ操作でアップロード</strong>
-            <span>ドラッグ &amp; ドロップで完了。進捗と失敗の可視化までサービス横断で統一。大きいファイルはマルチパートで分割転送します。</span>
+            <strong>Upload to any cloud with the same actions</strong>
+            <span>Just drag &amp; drop. Progress and failures are visualized consistently across services. Large files are split and transferred via multipart upload.</span>
           </li>
           <li>
-            <strong>フォルダごと一括ダウンロード</strong>
-            <span>複数選択やディレクトリの再帰ダウンロードに対応。どのサービスでも同じ操作で取り出せます。</span>
+            <strong>Download whole folders at once</strong>
+            <span>Supports multi-selection and recursive directory downloads. Pull files out the same way on every service.</span>
           </li>
           <li>
-            <strong>認証情報は Keychain に安全に保管</strong>
-            <span>Access Key / Secret Key は macOS の Keychain で保護。Touch ID 連携にも対応します。</span>
+            <strong>Credentials are kept safely in the Keychain</strong>
+            <span>Access keys and secret keys are protected by the macOS Keychain, with Touch ID support too.</span>
           </li>
           <li>
-            <strong>転送の後始末まで面倒を見る</strong>
-            <span>マルチパートアップロードが途中で失敗しても、見えないところで課金され続ける断片 (orphan parts) を自動でクリーンアップします。</span>
+            <strong>It even cleans up after your transfers</strong>
+            <span>Even if a multipart upload fails partway through, Obaket automatically cleans up the leftover fragments (orphan parts) that would otherwise keep silently incurring charges.</span>
           </li>
         </ul>
       </section>
 
-      <section id="services" aria-label="対応ストレージサービス" class="reveal">
-        <h2 class="section-title">対応ストレージサービス</h2>
+      <section id="services" aria-label="Supported storage services" class="reveal">
+        <h2 class="section-title">Supported storage services</h2>
         <p class="section-desc">
-          v1.0 では以下のストレージサービスに対応予定です。<strong>対応サービスは順次拡大していきます。</strong>
+          v1.0 plans to support the storage services below. <strong>Supported services will keep expanding over time.</strong>
         </p>
 
         <ul class="services">
@@ -740,38 +741,38 @@
             <span class="service-logo" aria-hidden="true">S3</span>
             <span class="service-body">
               <a class="service-name" href="https://aws.amazon.com/s3/" target="_blank" rel="noopener noreferrer">Amazon S3</a>
-              <span class="service-meta">オブジェクトストレージ</span>
+              <span class="service-meta">Object storage</span>
             </span>
-            <span class="status">対応</span>
+            <span class="status">Supported</span>
           </li>
           <li style="--g1:#f6821f; --g2:#faae40;">
             <span class="service-logo" aria-hidden="true">R2</span>
             <span class="service-body">
               <a class="service-name" href="https://www.cloudflare.com/products/r2/" target="_blank" rel="noopener noreferrer">Cloudflare R2</a>
-              <span class="service-meta">エグレス無料のストレージ</span>
+              <span class="service-meta">Zero egress fee storage</span>
             </span>
-            <span class="status">対応</span>
+            <span class="status">Supported</span>
           </li>
           <li style="--g1:#1e8fff; --g2:#0061fe;">
             <span class="service-logo" aria-hidden="true">Db</span>
             <span class="service-body">
               <a class="service-name" href="https://www.dropbox.com/" target="_blank" rel="noopener noreferrer">Dropbox</a>
-              <span class="service-meta">読み書き・マルチパート対応</span>
+              <span class="service-meta">Read/write, multipart support</span>
             </span>
-            <span class="status">対応</span>
+            <span class="status">Supported</span>
           </li>
           <li style="--g1:#2dd4bf; --g2:#0ea5b7;">
             <span class="service-logo" aria-hidden="true">PP</span>
             <span class="service-body">
               <a class="service-name" href="https://mypikpak.com/" target="_blank" rel="noopener noreferrer">PikPak</a>
-              <span class="service-meta">WebDAV / 閲覧のみ</span>
+              <span class="service-meta">WebDAV / browsing only</span>
             </span>
-            <span class="status">対応</span>
+            <span class="status">Supported</span>
           </li>
           <li class="planned" style="--g1:#8b93ff; --g2:#5a6bd8;">
             <span class="service-logo" aria-hidden="true">S3+</span>
             <span class="service-body">
-              <span class="service-name">S3 互換</span>
+              <span class="service-name">S3-compatible</span>
               <span class="service-meta">
                 <a href="https://min.io/" target="_blank" rel="noopener noreferrer">MinIO</a>
                 /
@@ -780,39 +781,39 @@
                 <a href="https://www.backblaze.com/cloud-storage" target="_blank" rel="noopener noreferrer">Backblaze B2</a>
               </span>
             </span>
-            <span class="status">予定</span>
+            <span class="status">Planned</span>
           </li>
           <li class="planned" style="--g1:#d9a441; --g2:#b07e2a;">
             <span class="service-logo" aria-hidden="true">IA</span>
             <span class="service-body">
               <a class="service-name" href="https://archive.org/" target="_blank" rel="noopener noreferrer">Internet Archive</a>
-              <span class="service-meta">公開アーカイブ</span>
+              <span class="service-meta">Public archive</span>
             </span>
-            <span class="status">予定</span>
+            <span class="status">Planned</span>
           </li>
         </ul>
       </section>
 
-      <section id="pricing" aria-label="価格" class="reveal">
-        <h2 class="section-title" style="text-align: center;">価格</h2>
+      <section id="pricing" aria-label="Pricing" class="reveal">
+        <h2 class="section-title" style="text-align: center;">Pricing</h2>
         <div class="panel pricing-card">
-          <p style="margin: 0; color: var(--muted); font-size: 14px;">買い切り (予定)</p>
+          <p style="margin: 0; color: var(--muted); font-size: 14px;">One-time purchase (planned)</p>
           <p class="pricing-price">¥100</p>
-          <p style="margin: 0; font-weight: 700;">サブスクリプションはありません</p>
+          <p style="margin: 0; font-weight: 700;">No subscriptions</p>
           <p class="pricing-note">
-            リリース当初は無料の早期アクセス版として公開し、フル機能版 (v2.0) から ¥100 の買い切りとする予定です。
+            We plan to launch first as a free early-access version, then switch to a ¥100 one-time purchase from the full-featured version (v2.0).
           </p>
         </div>
       </section>
 
-      <footer class="footer" aria-label="フッター">
+      <footer class="footer" aria-label="Footer">
         <p>
-          <a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">フィードバック</a>
-          ・
-          <a href="/obaket/privacy.html">プライバシーポリシー</a>
-          ・
-          <a href="./en/" hreflang="en">English</a>
-          ・
+          <a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">Feedback</a>
+          ·
+          <a href="./privacy.html">Privacy Policy</a>
+          ·
+          <a href="../" hreflang="ja">日本語</a>
+          ·
           <a href="https://jiikko.com/">jiikko.com</a>
         </p>
         <p style="margin-top: 8px;">© Obaket</p>
