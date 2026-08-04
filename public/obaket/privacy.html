@@ -71,7 +71,10 @@
     <h1>プライバシーポリシー</h1>
     <p class="last-updated">最終更新日: 2026年7月12日</p>
 
-    <p>Obaket（以下「本アプリ」）は、Amazon S3・Cloudflare R2・Dropbox・Google ドライブ・PikPak（WebDAV）などのクラウドオブジェクトストレージを、ひとつの macOS アプリから閲覧・転送するためのクライアントです。本ポリシーは、本アプリがどのような情報を扱い、どのように保護するかを説明します。</p>
+    <!-- Google ドライブは一般公開 pending (新規接続 picker から非表示、
+         issues/epic/google-drive/production-readiness.md 参照)。
+         一般公開時にこのコメントアウトを戻すこと。 -->
+    <p>Obaket（以下「本アプリ」）は、Amazon S3・Cloudflare R2・Dropbox・<!-- Google ドライブ・-->PikPak（WebDAV）などのクラウドオブジェクトストレージを、ひとつの macOS アプリから閲覧・転送するためのクライアントです。本ポリシーは、本アプリがどのような情報を扱い、どのように保護するかを説明します。</p>
 
     <div class="highlight">
       <p><strong>開発者にデータは届きません</strong></p>
@@ -101,6 +104,7 @@
       <li>この通信が開発者のサーバーを経由することはありません。</li>
     </ul>
 
+    <!-- Google ドライブ一般公開時にこの節を復活させること (上記コメント参照)。
     <h3>1.4 Google ドライブへのアクセスについて</h3>
     <ul>
       <li>あなたが Google ドライブに接続すると、本アプリは Google の OAuth 認証を通じて、あなた自身の Google アカウントの許可を得た上で Google Drive API にアクセスします。</li>
@@ -108,13 +112,14 @@
       <li>Google ドライブから取得したデータ（ファイル本体・ファイル名・フォルダ構成などのメタデータ）は、<strong>あなたが本アプリ上で行った操作を実行する目的にのみ</strong>使用されます。開発者のサーバーへの送信、広告・分析目的での利用、あなた以外の第三者への共有は一切行いません。</li>
       <li>本アプリによる Google API から取得した情報の使用および他アプリへの転送は、<strong>Limited Use の要件を含む Google API Services User Data Policy</strong>（<a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">https://developers.google.com/terms/api-services-user-data-policy</a>）に準拠します。</li>
     </ul>
+    -->
 
     <h2>2. 通信先</h2>
     <p>本アプリが通信するのは、次の宛先のみです：</p>
     <ul>
-      <li><strong>あなたが設定したクラウドストレージのエンドポイント</strong>（Amazon S3 / Cloudflare R2 / Dropbox / Google ドライブ / PikPak の WebDAV など）。通信はすべて HTTPS で行われます。</li>
+      <li><strong>あなたが設定したクラウドストレージのエンドポイント</strong>（Amazon S3 / Cloudflare R2 / Dropbox /<!-- Google ドライブ / --> PikPak の WebDAV など）。通信はすべて HTTPS で行われます。</li>
       <li>Dropbox を利用する場合、認証はあなた自身のアカウントによる OAuth を通じて Dropbox 社の認証サーバーと行われます。</li>
-      <li>Google ドライブを利用する場合、認証はあなた自身のアカウントによる OAuth を通じて Google 社の認証サーバー（<code>accounts.google.com</code> / <code>oauth2.googleapis.com</code>）および Google Drive API（<code>www.googleapis.com</code>）と行われます。</li>
+      <!-- <li>Google ドライブを利用する場合、認証はあなた自身のアカウントによる OAuth を通じて Google 社の認証サーバー（<code>accounts.google.com</code> / <code>oauth2.googleapis.com</code>）および Google Drive API（<code>www.googleapis.com</code>）と行われます。</li> -->
     </ul>
     <p>上記以外への送信は行いません。</p>
 
@@ -144,7 +149,7 @@
     <p>クラウドストレージ上にあるあなたのファイルは、本アプリをアンインストールしても削除されません。必要に応じて各クラウドサービス側で管理してください。</p>
 
     <h2>6. 第三者サービスについて</h2>
-    <p>本アプリは、あなた自身が契約している外部のクラウドストレージサービスに接続します。本アプリは独立したサードパーティ製クライアントであり、Amazon Web Services、Cloudflare、Dropbox、Google、PikPak とは提携・後援・推奨の関係にありません。Amazon S3、Cloudflare R2、Dropbox、Google ドライブ、PikPak は各社の商標です。各サービスにおけるデータの取り扱いについては、それぞれのサービスのプライバシーポリシー（Google については <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google プライバシーポリシー</a>）をご確認ください。</p>
+    <p>本アプリは、あなた自身が契約している外部のクラウドストレージサービスに接続します。本アプリは独立したサードパーティ製クライアントであり、Amazon Web Services、Cloudflare、Dropbox、<!-- Google、-->PikPak とは提携・後援・推奨の関係にありません。Amazon S3、Cloudflare R2、Dropbox、<!-- Google ドライブ、-->PikPak は各社の商標です。各サービスにおけるデータの取り扱いについては、それぞれのサービスのプライバシーポリシー<!--（Google については <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google プライバシーポリシー</a>）-->をご確認ください。</p>
 
     <h2>7. お子様のプライバシー</h2>
     <p>本アプリは 13 歳未満のお子様を対象としたサービスではありません。本アプリは開発者に対して個人情報を収集しません。</p>
