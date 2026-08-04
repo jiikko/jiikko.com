@@ -8,9 +8,8 @@
   Any change to copy, feature list, supported services, or pricing must be applied to both files.
 
   - App Store 公開済み (2026-07-02, id6768261740)。CTA は App Store リンク済み
-  - ヒーローの「アプリ画面イメージ」は CSS モックのプレースホルダー。
-    実スクリーンショットが用意でき次第 <div class="mock-window"> ごと
-    <img src="../hero-screenshot.webp"> に置き換える (video-grid-player と同形式)
+  - ヒーローは実スクリーンショット。画像は ja 版と共有し ../hero-screenshot.webp を参照する
+    (en/ に画像は置かない)。差し替え手順は ja 版 (public/obaket/index.html) の冒頭コメント参照
   - 機能・対応サービスの正本は apps/obaket/README.md。乖離したらこちらを直す
 -->
 <html lang="en">
@@ -252,149 +251,12 @@
           var(--card);
       }
 
-      .mock-badge {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        z-index: 2;
-        font-size: 11px;
-        padding: 4px 10px;
-        border-radius: 999px;
-        background: color-mix(in srgb, var(--bg), transparent 20%);
-        border: 1px solid var(--border);
-        color: var(--muted);
-      }
-
-      .mock-window {
-        margin: 26px 22px;
-        border-radius: 12px;
-        overflow: hidden;
-        background: #211a16;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
-        font-size: 11px;
-        color: rgba(250, 243, 236, 0.85);
-      }
-
-      .mock-titlebar {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        padding: 9px 12px;
-        background: rgba(255, 255, 255, 0.05);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-      }
-
-      .mock-dot { width: 9px; height: 9px; border-radius: 50%; }
-      .mock-dot.r { background: #ff5f57; }
-      .mock-dot.y { background: #febc2e; }
-      .mock-dot.g { background: #28c840; }
-
-      .mock-title {
-        flex: 1;
-        text-align: center;
-        font-size: 10px;
-        color: rgba(250, 243, 236, 0.55);
-      }
-
-      .mock-body {
-        display: grid;
-        grid-template-columns: 116px 1fr;
-        min-height: 220px;
-      }
-
-      .mock-sidebar {
-        padding: 10px 8px;
-        background: rgba(255, 255, 255, 0.03);
-        border-right: 1px solid rgba(255, 255, 255, 0.07);
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-      }
-
-      .mock-side-item {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        padding: 5px 8px;
-        border-radius: 6px;
-        color: rgba(250, 243, 236, 0.7);
-        white-space: nowrap;
-      }
-
-      .mock-side-item.active {
-        background: rgba(255, 106, 0, 0.22);
-        color: #ffd9b8;
-      }
-
-      .mock-side-dot {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        flex: none;
-        background: var(--brand);
-      }
-      .mock-side-item:nth-child(3) .mock-side-dot { background: #f6821f; }
-      .mock-side-item:nth-child(4) .mock-side-dot { background: #0061fe; }
-      .mock-side-item:nth-child(5) .mock-side-dot { background: #9aa0a6; }
-
-      .mock-main { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 6px; }
-
-      .mock-row {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 6px 8px;
-        border-radius: 6px;
-        background: rgba(255, 255, 255, 0.035);
-      }
-
-      .mock-row.selected { background: rgba(255, 106, 0, 0.2); }
-
-      .mock-fileicon {
-        width: 14px;
-        height: 14px;
-        border-radius: 4px;
-        flex: none;
-        background: linear-gradient(135deg, var(--brand), var(--brand2));
-        opacity: 0.9;
-      }
-      .mock-row:nth-child(2) .mock-fileicon { background: linear-gradient(135deg, #6aa9ff, #9ecbff); }
-      .mock-row:nth-child(4) .mock-fileicon { background: linear-gradient(135deg, #8d8d93, #c4c4ca); }
-
-      .mock-filename { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-      .mock-filesize { color: rgba(250, 243, 236, 0.45); font-size: 10px; }
-
-      .mock-transfer {
-        margin-top: auto;
-        padding: 7px 9px;
-        border-radius: 8px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-
-      .mock-transfer-label {
-        display: flex;
-        justify-content: space-between;
-        font-size: 10px;
-        color: rgba(250, 243, 236, 0.6);
-        margin-bottom: 5px;
-      }
-
-      .mock-progress {
-        height: 5px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.1);
-        overflow: hidden;
-      }
-
-      .mock-progress::before {
-        content: "";
+      .hero-shot-img {
+        position: relative;
+        width: 100%;
+        height: auto;
         display: block;
-        height: 100%;
-        width: 68%;
-        border-radius: 999px;
-        background: linear-gradient(90deg, var(--brand), var(--brand2));
+        z-index: 1;
       }
 
       .mock-ghost {
@@ -667,33 +529,13 @@
         </div>
 
         <div class="panel hero-shot" aria-label="Obaket app screen image">
-          <span class="mock-badge">Screenshot coming soon — image is for illustration</span>
-          <!-- Placeholder: replace the whole .mock-window with <img> once a real screenshot is ready -->
-          <div class="mock-window" role="img" aria-label="File browser image: connected clouds in the sidebar, file list and transfer progress on the right">
-            <div class="mock-titlebar">
-              <span class="mock-dot r"></span><span class="mock-dot y"></span><span class="mock-dot g"></span>
-              <span class="mock-title">Obaket — my-bucket</span>
-            </div>
-            <div class="mock-body">
-              <div class="mock-sidebar">
-                <div class="mock-side-item" style="font-size:9px; color: rgba(250,243,236,0.4); padding-bottom:2px;">Connections</div>
-                <div class="mock-side-item active"><span class="mock-side-dot"></span>Amazon S3</div>
-                <div class="mock-side-item"><span class="mock-side-dot"></span>Cloudflare R2</div>
-                <div class="mock-side-item"><span class="mock-side-dot"></span>Dropbox</div>
-                <div class="mock-side-item"><span class="mock-side-dot"></span>PikPak</div>
-              </div>
-              <div class="mock-main">
-                <div class="mock-row selected"><span class="mock-fileicon"></span><span class="mock-filename">camera-2026-06-07.mov</span><span class="mock-filesize">812 MB</span></div>
-                <div class="mock-row"><span class="mock-fileicon"></span><span class="mock-filename">trip-photos/</span><span class="mock-filesize">—</span></div>
-                <div class="mock-row"><span class="mock-fileicon"></span><span class="mock-filename">release-notes.md</span><span class="mock-filesize">4 KB</span></div>
-                <div class="mock-row"><span class="mock-fileicon"></span><span class="mock-filename">backup-2026.tar.gz</span><span class="mock-filesize">2.1 GB</span></div>
-                <div class="mock-transfer">
-                  <div class="mock-transfer-label"><span>⬆ Uploading (2/3)</span><span>68%</span></div>
-                  <div class="mock-progress"></div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <img
+            src="../hero-screenshot.webp"
+            alt="Obaket main window: connected clouds in the sidebar, a thumbnail file list in the center, and metadata and actions for the selected file on the right"
+            class="hero-shot-img"
+            width="1600"
+            height="1000"
+          />
           <span class="mock-ghost" aria-hidden="true">👻</span>
         </div>
       </section>
@@ -718,8 +560,8 @@
             <span>Supports multi-selection and recursive directory downloads. Pull files out the same way on every service.</span>
           </li>
           <li>
-            <strong>Summon your files with a single hotkey</strong>
-            <span>Press ⌥⌘Space from any app to bring up the search panel. Results narrow as you type, and you can go straight to preview or download (available for Dropbox).</span>
+            <strong>Check what’s in the cloud with a single hotkey</strong>
+            <span>“Did I ever upload that file?” — answer it with ⌥⌘Space. Bring up the search panel from any app, type a name, and see right away whether it exists in your cloud storage. Found it? Go straight to preview or download (available for Dropbox).</span>
           </li>
           <li>
             <strong>Keep work and personal separate with profiles</strong>
