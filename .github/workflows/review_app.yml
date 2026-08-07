@@ -31,6 +31,7 @@ jobs:
           docker build -t "${REGISTRY_HOST}/$PROJECT_ID/$REPOSITORY_NAME/web:pr-${{ github.event.number }}" .
           docker push "${REGISTRY_HOST}/$PROJECT_ID/$REPOSITORY_NAME/web:pr-${{ github.event.number }}"
   deploy:
+      if: github.actor != 'dependabot[bot]'
     needs: build
     runs-on: ubuntu-slim
     steps:
