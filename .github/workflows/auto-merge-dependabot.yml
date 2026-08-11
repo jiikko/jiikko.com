@@ -1,0 +1,16 @@
+name: Auto-merge dependabot PR
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # 毎週月曜 09:00 JST
+  workflow_dispatch:
+
+jobs:
+  automerge:
+    permissions:
+      contents: write
+      pull-requests: write
+      checks: read
+      statuses: read
+      actions: read
+    uses: jiikko/shared-workflows/.github/workflows/auto-merge-dependabot.yml@main

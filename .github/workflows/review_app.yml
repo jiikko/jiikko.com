@@ -10,9 +10,10 @@ env:
 
 jobs:
   build:
+    if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-slim
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - id: "auth"
         uses: "google-github-actions/auth@v3"
         with:
@@ -31,10 +32,11 @@ jobs:
           docker build -t "${REGISTRY_HOST}/$PROJECT_ID/$REPOSITORY_NAME/web:pr-${{ github.event.number }}" .
           docker push "${REGISTRY_HOST}/$PROJECT_ID/$REPOSITORY_NAME/web:pr-${{ github.event.number }}"
   deploy:
+    if: github.actor != 'dependabot[bot]'
     needs: build
     runs-on: ubuntu-slim
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - id: "auth"
         uses: "google-github-actions/auth@v3"
         with:
