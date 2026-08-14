@@ -17,6 +17,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
+      /* ライト固定デザイン。宣言が無いとダークモード環境で背景だけ暗転し
+         --dark 系の見出しが沈む (自動ダーク化対策)。ダーク対応するならここから再設計 */
+      color-scheme: light;
       --primary: #FF3B30;
       --primary-dark: #E02D23;
       --accent: #0066FF;
@@ -34,6 +37,7 @@
 
     body {
       font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--white);
       color: var(--dark);
       line-height: 1.6;
     }
