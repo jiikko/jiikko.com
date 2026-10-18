@@ -1,0 +1,414 @@
+<!doctype html>
+<!--
+  ⚠️ 多言語版あり / Multi-language page
+  このファイルを更新したら、もう一方の言語版も揃えて更新すること:
+    → public/syakescreen/
+  公開前: noindex を入れている。App Store に出して LP へリンクを貼るときに、全ページから外す(issues/809)。
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>SyakeScreen — Switch between many Macs with one key</title>
+    <meta name="description" content="A macOS screen sharing client that stays connected to many Macs on your network and switches the one you see with a single key. Up to four Macs side by side, with sound and low latency." />
+    <meta property="og:title" content="SyakeScreen — Switch between many Macs with one key" />
+    <meta property="og:description" content="A macOS screen sharing client that stays connected to many Macs on your network and switches the one you see with a single key. Up to four Macs side by side, with sound and low latency." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jiikko.com/syakescreen/en/" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="SyakeScreen" />
+    <link rel="canonical" href="https://jiikko.com/syakescreen/en/" />
+    <link rel="alternate" hreflang="ja" href="https://jiikko.com/syakescreen/" />
+    <link rel="alternate" hreflang="en" href="https://jiikko.com/syakescreen/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://jiikko.com/syakescreen/" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #161412;
+        --fg: #f7f1e8;
+        --muted: rgba(247, 241, 232, 0.72);
+        --card: rgba(255, 255, 255, 0.06);
+        --card2: rgba(255, 255, 255, 0.085);
+        --border: rgba(255, 153, 31, 0.22);
+        --shadow: 0 18px 60px rgba(0, 0, 0, 0.45);
+        --brand: #ff9500;
+        --brand2: #ffb340;
+        --on-brand: #1c1409;
+        --radius: 16px;
+      }
+
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #fff8ef;
+          --fg: #271a0c;
+          --muted: rgba(39, 26, 12, 0.72);
+          --card: rgba(255, 255, 255, 0.78);
+          --card2: rgba(255, 255, 255, 0.92);
+          --border: rgba(214, 122, 0, 0.28);
+          --shadow: 0 22px 70px rgba(63, 38, 5, 0.14);
+        }
+      }
+
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+
+      body {
+        margin: 0;
+        font-family: "Inter", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        font-feature-settings: "palt";
+        color: var(--fg);
+        background:
+          radial-gradient(1200px 600px at 10% 0%, rgba(255, 149, 0, 0.26), transparent 60%),
+          radial-gradient(900px 500px at 80% 10%, rgba(255, 94, 0, 0.18), transparent 55%),
+          radial-gradient(800px 500px at 30% 95%, rgba(255, 179, 64, 0.12), transparent 55%),
+          var(--bg);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      a { color: inherit; text-decoration: none; }
+
+      .container {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(14px);
+        background: color-mix(in srgb, var(--bg), transparent 55%);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .topbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 0;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 750;
+        letter-spacing: 0.2px;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .nav a {
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .nav a:hover { color: var(--fg); }
+      .nav .btn-primary { color: var(--on-brand); }
+      .nav .btn-primary:hover { color: var(--on-brand); }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 22px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--card);
+        color: var(--fg);
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 1;
+        transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 32px rgba(255, 149, 0, 0.25);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--brand), var(--brand2));
+        border-color: transparent;
+        color: var(--on-brand);
+        padding: 14px 26px;
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .btn-primary:hover {
+        box-shadow: 0 16px 40px rgba(255, 149, 0, 0.35);
+      }
+
+      .btn-disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 48px;
+        align-items: center;
+        padding: 64px 0 48px;
+      }
+
+      @media (max-width: 880px) {
+        .hero { grid-template-columns: 1fr; gap: 32px; padding: 40px 0 28px; }
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 16px;
+      }
+
+      .pill strong { color: var(--fg); }
+
+      h1 {
+        font-size: clamp(36px, 5.6vw, 60px);
+        font-weight: 800;
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+        margin: 0 0 22px;
+      }
+
+      .lead {
+        font-size: clamp(16px, 1.4vw, 18px);
+        color: var(--muted);
+        margin: 0 0 28px;
+        max-width: 38em;
+        line-height: 1.75;
+      }
+
+      .lead strong { color: var(--fg); }
+
+      .cta {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+      }
+
+      .microcopy {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 16px;
+      }
+
+      .panel {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 20px;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-shot {
+        aspect-ratio: 8 / 5;
+        display: grid;
+        place-items: center;
+        padding: 0;
+        position: relative;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 50% 50%, rgba(255, 149, 0, 0.16), transparent 60%),
+          var(--card);
+      }
+
+      .hero-shot-img {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        z-index: 1;
+      }
+
+      section { padding: clamp(56px, 9vw, 96px) 0; }
+
+      .section-title {
+        font-size: clamp(26px, 3.6vw, 40px);
+        font-weight: 800;
+        letter-spacing: -0.015em;
+        line-height: 1.2;
+        margin: 0 0 16px;
+      }
+
+      .section-desc {
+        color: var(--muted);
+        max-width: 780px;
+        margin: 0 0 36px;
+      }
+
+      ul.feature-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+      }
+
+      ul.feature-list li {
+        flex: 1 1 320px;
+        max-width: 360px;
+        padding: 20px 24px 20px 52px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        font-size: 15px;
+        line-height: 1.6;
+        position: relative;
+        transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      }
+
+      ul.feature-list li::before {
+        content: "";
+        position: absolute;
+        left: 22px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 18px;
+        height: 18px;
+        border-radius: 6px;
+        background: linear-gradient(135deg, var(--brand), var(--brand2));
+        opacity: 0.85;
+        box-shadow: 0 4px 14px rgba(255, 149, 0, 0.3);
+      }
+
+      ul.feature-list li:hover {
+        transform: translateY(-3px);
+        border-color: rgba(255, 149, 0, 0.45);
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+      }
+
+      .formats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .formats li {
+        padding: 6px 14px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13px;
+        color: var(--fg);
+        background: var(--card2);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        line-height: 1;
+      }
+
+      .footer {
+        padding: 40px 0 60px;
+        border-top: 1px solid var(--border);
+        margin-top: 32px;
+        color: var(--muted);
+        font-size: 13px;
+        text-align: center;
+      }
+
+      .footer a { color: var(--muted); }
+      .footer a:hover { color: var(--fg); }
+
+      /* スクロール時のフェードイン */
+      .reveal {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .reveal.is-visible {
+        opacity: 1;
+        transform: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal { opacity: 1; transform: none; transition: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="#top"><span>SyakeScreen</span></a>
+        <nav class="nav" aria-label="Page navigation">
+          <a href="#features">Features</a>
+          <a href="#requirements">Requirements</a>
+          <a href="../" hreflang="ja">日本語</a>
+          <span class="btn btn-primary btn-disabled">Coming soon to the App Store</span>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top" class="container">
+      <section class="hero" aria-label="Hero" style="grid-template-columns: 1fr;">
+        <div>
+          <div class="pill"><span>macOS 26 or later / Apple Silicon only</span><span aria-hidden="true">•</span><strong>A client for the Mac's built-in Screen Sharing</strong></div>
+          <h1>Many Macs,<br />one key.</h1>
+          <p class="lead">SyakeScreen is a screen sharing client that <strong>stays connected to many Macs on your network and switches the one you see with a single key</strong>. Nothing to install on the other Mac — just turn on the built-in Screen Sharing.</p>
+          <div class="cta"><span class="btn btn-primary btn-disabled">Coming soon to the App Store</span></div>
+          <p class="microcopy">Turn on System Settings > General > Sharing > Screen Sharing on each Mac you want to reach.</p>
+        </div>
+      </section>
+
+      <section id="features">
+        <h2 class="section-title">Features</h2>
+        <p class="section-desc">Built for working with several Macs at once.</p>
+        <ul class="feature-list">
+            <li><strong>Stay connected to many Macs</strong> — switch the Mac you see instantly with ⌃⌥1–9</li>
+            <li><strong>Three layouts</strong> — one Mac large / up to four tiles / a gallery with one large Mac and the rest below</li>
+            <li><strong>High Performance (60 fps, with sound)</strong> — low-latency video and the remote Mac's audio. Falls back to Standard (TCP) on networks that block UDP</li>
+            <li><strong>Keyboard and clipboard</strong> — ⌘C and ⌘V work on the remote Mac. Text and URL clipboard sharing</li>
+            <li><strong>Switch the remote Mac's Spaces</strong> — move between desktops and full-screen apps with ⌃← ⌃→. Open Mission Control too</li>
+            <li><strong>See how the connection is doing</strong> — fps, bitrate, queueing delay and loss on screen and in a diagnostics window. Tells you why the picture stopped</li>
+            <li><strong>Keeps your input source in sync</strong> — switching between ABC and Japanese input (Eisu / Kana keys or the menu bar) is mirrored on the remote Mac</li>
+            <li><strong>Separate windows and full screen</strong> — remembers each Mac's window position and size</li>
+        </ul>
+      </section>
+
+      <section id="requirements">
+        <h2 class="section-title">Requirements</h2>
+        <ul class="feature-list">
+            <li>macOS 26 or later / Apple Silicon (M1 or later) only</li>
+            <li>Screen Sharing turned on on the other Mac (System Settings > General > Sharing)</li>
+            <li>For High Performance, UDP 5900–5902 must pass between the Macs (use Standard on VPNs or networks that block UDP)</li>
+        </ul>
+      </section>
+
+      <section id="privacy">
+        <h2 class="section-title">Privacy</h2>
+        <p class="section-desc">Passwords are stored only in your Mac's Keychain. Screen images, audio, input and the clipboard travel only between your Mac and the Mac you connect to. No analytics, advertising or tracking.</p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p><a href="./privacy.html">Privacy Policy</a> ・ <a href="./support.html">Support</a></p>
+        <p>Apple, Mac, macOS and Apple Silicon are trademarks of Apple Inc. SyakeScreen is an independent app and is not affiliated with Apple Inc.</p>
+        <p>© 2026 jiikko</p>
+      </div>
+    </footer>
+  </body>
+</html>

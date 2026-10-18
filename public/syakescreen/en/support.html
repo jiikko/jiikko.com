@@ -1,0 +1,126 @@
+<!doctype html>
+<!--
+  ⚠️ 多言語版あり / Multi-language page
+  このファイルを更新したら、もう一方の言語版も揃えて更新すること:
+    → public/syakescreen/support.html
+  公開前: noindex を入れている。App Store に出して LP へリンクを貼るときに、全ページから外す(issues/809)。
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Support | SyakeScreen</title>
+    <meta name="description" content="Support | SyakeScreen" />
+    <meta property="og:title" content="Support | SyakeScreen" />
+    <meta property="og:description" content="Support | SyakeScreen" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jiikko.com/syakescreen/en/support.html" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="SyakeScreen" />
+    <link rel="canonical" href="https://jiikko.com/syakescreen/en/support.html" />
+    <link rel="alternate" hreflang="ja" href="https://jiikko.com/syakescreen/support.html" />
+    <link rel="alternate" hreflang="en" href="https://jiikko.com/syakescreen/en/support.html" />
+    <link rel="alternate" hreflang="x-default" href="https://jiikko.com/syakescreen/support.html" />
+    <style>
+    :root {
+      --bg: #161412;
+      --text: #f7f1e8;
+      --text-muted: #b3a48f;
+      --accent: #ff9f1f;
+      --border: #3f2d14;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      padding: 40px 20px;
+    }
+    .container { max-width: 800px; margin: 0 auto; }
+    a.back-link {
+      display: inline-block;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+    a.back-link:hover { text-decoration: underline; }
+    .lang-switch {
+      float: right;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .lang-switch a { color: var(--accent); text-decoration: none; }
+    .lang-switch a:hover { text-decoration: underline; }
+    h1 { font-size: 2rem; margin-bottom: 8px; color: #fff; }
+    .last-updated { color: var(--text-muted); margin-bottom: 40px; }
+    h2 {
+      font-size: 1.25rem;
+      margin: 32px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      color: #fff;
+    }
+    h3 { font-size: 1.05rem; margin: 20px 0 10px; color: #fff; }
+    p, li { margin-bottom: 12px; }
+    ul { padding-left: 24px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .highlight {
+      background: rgba(255, 149, 0, 0.08);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 24px 0;
+      border-left: 4px solid var(--accent);
+    }
+    .contact {
+      background: rgba(255, 255, 255, 0.04);
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 24px;
+    }
+  </style>
+  </head>
+<body>
+  <div class="container">
+<a href="./" class="back-link">← Back to SyakeScreen</a>
+<span class="lang-switch"><a href="../support.html" hreflang="ja">日本語</a></span>
+<h1>Support</h1>
+
+<h2>Requirements</h2>
+<ul>
+<li>macOS 26 or later / Apple Silicon (M1 or later) only. Intel Macs are not supported.</li>
+<li>On the other Mac: turn on Screen Sharing in System Settings > General > Sharing.</li>
+<li>For High Performance, UDP 5900–5902 must pass between the Macs. On VPNs or networks that block UDP, use Standard.</li>
+</ul>
+
+<h2>Getting started</h2>
+<ol>
+<li>Click "Add connection" (+) below the list on the left.</li>
+<li>Enter <code>user@host</code> (for example <code>koji@my-mac.local</code>) and the login password of that Mac, then click "Add and connect".</li>
+<li>Press ⌃⌥1–9 to switch to the Mac in that position in the list.</li>
+</ol>
+<p>On first launch the App asks for the "Local Network" permission. It is needed to reach Macs on your network.</p>
+
+<h2>Troubleshooting</h2>
+<h3>"Wrong password"</h3>
+<p>Right-click the Mac in the list and choose "Enter password…".</p>
+<h3>High Performance does not connect, or no video arrives</h3>
+<p>Check the findings in the diagnostics window (⌃⌥D). On networks that block UDP, switch the Mac's "Video" setting to Standard from the right-click menu. Standard has no audio.</p>
+<h3>The picture glitched or froze</h3>
+<p>Press ⌃⌥R to refresh the picture (High Performance only). While the picture is frozen, a "Recovering video" notice may appear at the bottom right of the window.</p>
+<h3>⌘Q and similar keys do not work on your own Mac</h3>
+<p>The ⌘ key is being sent to the remote Mac. Press ⌃⌥0 to switch it back to your own Mac.</p>
+<h3>No sound</h3>
+<p>Standard mode has no audio. In High Performance, only the Mac you are looking at (the selected one, or the one in a separate window) plays sound.</p>
+
+<h2>Contact</h2>
+<div class="contact">
+<p>Please report bugs and feature requests here.</p>
+<p><a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">GitHub Issues</a></p>
+</div>
+  </div>
+</body>
+</html>

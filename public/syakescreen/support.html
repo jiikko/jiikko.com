@@ -1,0 +1,126 @@
+<!doctype html>
+<!--
+  ⚠️ 多言語版あり / Multi-language page
+  このファイルを更新したら、もう一方の言語版も揃えて更新すること:
+    → public/syakescreen/en/support.html
+  公開前: noindex を入れている。App Store に出して LP へリンクを貼るときに、全ページから外す(issues/809)。
+-->
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>サポート | SyakeScreen</title>
+    <meta name="description" content="サポート | SyakeScreen" />
+    <meta property="og:title" content="サポート | SyakeScreen" />
+    <meta property="og:description" content="サポート | SyakeScreen" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jiikko.com/syakescreen/support.html" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:site_name" content="SyakeScreen" />
+    <link rel="canonical" href="https://jiikko.com/syakescreen/support.html" />
+    <link rel="alternate" hreflang="ja" href="https://jiikko.com/syakescreen/support.html" />
+    <link rel="alternate" hreflang="en" href="https://jiikko.com/syakescreen/en/support.html" />
+    <link rel="alternate" hreflang="x-default" href="https://jiikko.com/syakescreen/support.html" />
+    <style>
+    :root {
+      --bg: #161412;
+      --text: #f7f1e8;
+      --text-muted: #b3a48f;
+      --accent: #ff9f1f;
+      --border: #3f2d14;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      padding: 40px 20px;
+    }
+    .container { max-width: 800px; margin: 0 auto; }
+    a.back-link {
+      display: inline-block;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+    a.back-link:hover { text-decoration: underline; }
+    .lang-switch {
+      float: right;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .lang-switch a { color: var(--accent); text-decoration: none; }
+    .lang-switch a:hover { text-decoration: underline; }
+    h1 { font-size: 2rem; margin-bottom: 8px; color: #fff; }
+    .last-updated { color: var(--text-muted); margin-bottom: 40px; }
+    h2 {
+      font-size: 1.25rem;
+      margin: 32px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      color: #fff;
+    }
+    h3 { font-size: 1.05rem; margin: 20px 0 10px; color: #fff; }
+    p, li { margin-bottom: 12px; }
+    ul { padding-left: 24px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .highlight {
+      background: rgba(255, 149, 0, 0.08);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 24px 0;
+      border-left: 4px solid var(--accent);
+    }
+    .contact {
+      background: rgba(255, 255, 255, 0.04);
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 24px;
+    }
+  </style>
+  </head>
+<body>
+  <div class="container">
+<a href="./" class="back-link">← SyakeScreen トップへ</a>
+<span class="lang-switch"><a href="./en/support.html" hreflang="en">English</a></span>
+<h1>サポート</h1>
+
+<h2>動作環境</h2>
+<ul>
+<li>macOS 26 以降 / Apple Silicon (M1 以降) 専用。Intel Mac は非対応です。</li>
+<li>相手の Mac: 「システム設定 > 一般 > 共有」で「画面共有」を入れておきます。</li>
+<li>高性能で繋ぐ場合は、相手までの間で UDP 5900〜5902 が通ること。VPN や UDP を通さない網では「標準」を使えます。</li>
+</ul>
+
+<h2>使い始め</h2>
+<ol>
+<li>左の一覧の下の「接続先を追加」(+)を押します。</li>
+<li>「相手」に <code>ユーザー名@ホスト名</code>(例 <code>koji@my-mac.local</code>)を入れ、相手の Mac のログインのパスワードを入れて「追加して繋ぐ」を押します。</li>
+<li>⌃⌥1〜9 で、一覧の順番どおりに見る相手を切り替えます。</li>
+</ol>
+<p>初回の起動で「ローカルネットワーク」の許可を求められます。同じネットワークの Mac に繋ぐために必要です。</p>
+
+<h2>困ったとき</h2>
+<h3>「パスワードが違います」と出る</h3>
+<p>一覧の相手を右クリックして「パスワードを入力…」から入れ直してください。</p>
+<h3>高性能で繋がらない・映像が来ない</h3>
+<p>診断の窓(⌃⌥D)の見立てを見てください。UDP が通らない網では、右クリックの「映像」を「標準」にします。標準は音が鳴りません。</p>
+<h3>映像が乱れた・止まった</h3>
+<p>⌃⌥R で画面を取り直せます(高性能のとき)。画面が止まっている間は、窓の右下に「映像を回復中」と出ることがあります。</p>
+<h3>⌘Q などが手元で効かない</h3>
+<p>⌘ の送り先が相手になっています。⌃⌥0 で手元に切り替えます。</p>
+<h3>音が出ない</h3>
+<p>標準の方式では音は鳴りません。高性能でも、鳴るのは見ている相手(メインで選んでいる相手か別ウインドウ)だけです。</p>
+
+<h2>お問い合わせ</h2>
+<div class="contact">
+<p>バグ報告・機能リクエストは以下からお願いします。</p>
+<p><a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">GitHub Issues</a></p>
+</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!doctype html>
+<!--
+  ⚠️ 多言語版あり / Multi-language page
+  このファイルを更新したら、もう一方の言語版も揃えて更新すること:
+    → public/syakescreen/privacy.html
+  公開前: noindex を入れている。App Store に出して LP へリンクを貼るときに、全ページから外す(issues/809)。
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Privacy Policy | SyakeScreen</title>
+    <meta name="description" content="Privacy Policy | SyakeScreen" />
+    <meta property="og:title" content="Privacy Policy | SyakeScreen" />
+    <meta property="og:description" content="Privacy Policy | SyakeScreen" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jiikko.com/syakescreen/en/privacy.html" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="SyakeScreen" />
+    <link rel="canonical" href="https://jiikko.com/syakescreen/en/privacy.html" />
+    <link rel="alternate" hreflang="ja" href="https://jiikko.com/syakescreen/privacy.html" />
+    <link rel="alternate" hreflang="en" href="https://jiikko.com/syakescreen/en/privacy.html" />
+    <link rel="alternate" hreflang="x-default" href="https://jiikko.com/syakescreen/privacy.html" />
+    <style>
+    :root {
+      --bg: #161412;
+      --text: #f7f1e8;
+      --text-muted: #b3a48f;
+      --accent: #ff9f1f;
+      --border: #3f2d14;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      padding: 40px 20px;
+    }
+    .container { max-width: 800px; margin: 0 auto; }
+    a.back-link {
+      display: inline-block;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+    a.back-link:hover { text-decoration: underline; }
+    .lang-switch {
+      float: right;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .lang-switch a { color: var(--accent); text-decoration: none; }
+    .lang-switch a:hover { text-decoration: underline; }
+    h1 { font-size: 2rem; margin-bottom: 8px; color: #fff; }
+    .last-updated { color: var(--text-muted); margin-bottom: 40px; }
+    h2 {
+      font-size: 1.25rem;
+      margin: 32px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      color: #fff;
+    }
+    h3 { font-size: 1.05rem; margin: 20px 0 10px; color: #fff; }
+    p, li { margin-bottom: 12px; }
+    ul { padding-left: 24px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .highlight {
+      background: rgba(255, 149, 0, 0.08);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 24px 0;
+      border-left: 4px solid var(--accent);
+    }
+    .contact {
+      background: rgba(255, 255, 255, 0.04);
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 24px;
+    }
+  </style>
+  </head>
+<body>
+  <div class="container">
+<a href="./" class="back-link">← Back to SyakeScreen</a>
+<span class="lang-switch"><a href="../privacy.html" hreflang="ja">日本語</a></span>
+<h1>Privacy Policy</h1>
+<p class="last-updated">Last updated: October 19, 2026</p>
+
+<p>SyakeScreen (the "App") is a client that connects to the screens of Macs on your network. This policy explains what information the App handles.</p>
+
+<div class="highlight">
+<p><strong>We collect no data</strong></p>
+<p>The App does not send your information to the developer or to any third-party server. It communicates only with the Macs you add yourself. There is no analytics, advertising, tracking or automatic crash reporting.</p>
+</div>
+
+<h2>1. Information the App handles</h2>
+
+<h3>1.1 The Macs you connect to</h3>
+<ul>
+<li>The name (host name or IP address), user name and display name you enter in "Add connection" are stored on your Mac.</li>
+<li>Per-Mac settings — video mode, screen sizing, layout, window position and size, and whether a Mac is paused — are also stored on your Mac.</li>
+<li>None of this is sent anywhere.</li>
+</ul>
+
+<h3>1.2 Passwords</h3>
+<ul>
+<li>The login password of each Mac is stored only in your Mac's Keychain.</li>
+<li>The password is sent only to that Mac when you connect to it (Screen Sharing authentication). It is not written to logs or settings files.</li>
+</ul>
+
+<h3>1.3 Screen, audio, input and clipboard</h3>
+<ul>
+<li>The remote Mac's screen and audio travel from that Mac to yours. The App only displays and plays them; it does not record or save them.</li>
+<li>Keyboard and mouse input is sent to the remote Mac you are controlling.</li>
+<li>Clipboard sharing (on by default; can be turned off from the menu) exchanges text and URLs only between your Mac and the remote Mac you are controlling.</li>
+<li>None of this is sent to anyone other than the Mac you connected to.</li>
+</ul>
+
+<h2>2. Networking</h2>
+<ul>
+<li>The App uses network connections to the Macs you add (the macOS Screen Sharing protocol: TCP, and UDP in High Performance mode).</li>
+<li>To receive video and audio over UDP from the remote Mac, the App uses the App Sandbox network entitlements (outgoing and incoming). It receives traffic only from the single Mac you connected to.</li>
+<li>The App asks for the macOS "Local Network" permission so that it can reach Macs on your network.</li>
+<li>The App does not communicate with any other server on the internet.</li>
+</ul>
+
+<h2>3. Sharing with third parties</h2>
+<p>We do not sell, rent or share your information with third parties. The App does not use analytics, advertising networks, behavioral tracking or usage statistics.</p>
+
+<h2>4. Deleting data</h2>
+<ul>
+<li>Removing a Mac from the list also removes its settings and its password from the Keychain.</li>
+<li>Deleting the App removes the settings it saved. If a Keychain item remains, you can delete it in Keychain Access.</li>
+</ul>
+
+<h2>5. Changes to this policy</h2>
+<p>This policy may change with legal changes or new features. Important changes will be announced in the App's update notes.</p>
+
+<h2>6. Contact</h2>
+<div class="contact">
+<p>For questions about this policy, please contact us here:</p>
+<p><a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">GitHub Issues</a></p>
+</div>
+  </div>
+</body>
+</html>

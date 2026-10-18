@@ -1,0 +1,150 @@
+<!doctype html>
+<!--
+  ⚠️ 多言語版あり / Multi-language page
+  このファイルを更新したら、もう一方の言語版も揃えて更新すること:
+    → public/syakescreen/en/privacy.html
+  公開前: noindex を入れている。App Store に出して LP へリンクを貼るときに、全ページから外す(issues/809)。
+-->
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>プライバシーポリシー | SyakeScreen</title>
+    <meta name="description" content="プライバシーポリシー | SyakeScreen" />
+    <meta property="og:title" content="プライバシーポリシー | SyakeScreen" />
+    <meta property="og:description" content="プライバシーポリシー | SyakeScreen" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jiikko.com/syakescreen/privacy.html" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:site_name" content="SyakeScreen" />
+    <link rel="canonical" href="https://jiikko.com/syakescreen/privacy.html" />
+    <link rel="alternate" hreflang="ja" href="https://jiikko.com/syakescreen/privacy.html" />
+    <link rel="alternate" hreflang="en" href="https://jiikko.com/syakescreen/en/privacy.html" />
+    <link rel="alternate" hreflang="x-default" href="https://jiikko.com/syakescreen/privacy.html" />
+    <style>
+    :root {
+      --bg: #161412;
+      --text: #f7f1e8;
+      --text-muted: #b3a48f;
+      --accent: #ff9f1f;
+      --border: #3f2d14;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      padding: 40px 20px;
+    }
+    .container { max-width: 800px; margin: 0 auto; }
+    a.back-link {
+      display: inline-block;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+    a.back-link:hover { text-decoration: underline; }
+    .lang-switch {
+      float: right;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .lang-switch a { color: var(--accent); text-decoration: none; }
+    .lang-switch a:hover { text-decoration: underline; }
+    h1 { font-size: 2rem; margin-bottom: 8px; color: #fff; }
+    .last-updated { color: var(--text-muted); margin-bottom: 40px; }
+    h2 {
+      font-size: 1.25rem;
+      margin: 32px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      color: #fff;
+    }
+    h3 { font-size: 1.05rem; margin: 20px 0 10px; color: #fff; }
+    p, li { margin-bottom: 12px; }
+    ul { padding-left: 24px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .highlight {
+      background: rgba(255, 149, 0, 0.08);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 24px 0;
+      border-left: 4px solid var(--accent);
+    }
+    .contact {
+      background: rgba(255, 255, 255, 0.04);
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 24px;
+    }
+  </style>
+  </head>
+<body>
+  <div class="container">
+<a href="./" class="back-link">← SyakeScreen トップへ</a>
+<span class="lang-switch"><a href="./en/privacy.html" hreflang="en">English</a></span>
+<h1>プライバシーポリシー</h1>
+<p class="last-updated">最終更新日: 2026年10月19日</p>
+
+<p>SyakeScreen(以下「本アプリ」)は、同じネットワークにある Mac の画面に繋ぐクライアントです。本ポリシーでは、本アプリがどのような情報を取り扱うかを説明します。</p>
+
+<div class="highlight">
+<p><strong>収集するデータはありません</strong></p>
+<p>本アプリは、開発者や第三者のサーバーへ、あなたの情報を送信しません。通信するのは、あなた自身が追加した Mac との間だけです。解析・広告・トラッキング・クラッシュレポートの自動送信はありません。</p>
+</div>
+
+<h2>1. 取り扱う情報</h2>
+
+<h3>1.1 繋ぐ Mac の情報</h3>
+<ul>
+<li>「接続先を追加」で入力した、相手の名前(ホスト名または IP アドレス)、ユーザー名、付けた表示名を、お使いの Mac 内に保存します。</li>
+<li>相手ごとの映像の方式、画面の大きさの設定、並べ方、ウインドウの位置と大きさ、「停止」の状態も、お使いの Mac 内に保存します。</li>
+<li>これらは外部に送信されません。</li>
+</ul>
+
+<h3>1.2 パスワード</h3>
+<ul>
+<li>相手の Mac のログインのパスワードは、お使いの Mac の Keychain にだけ保存します。</li>
+<li>パスワードは、その相手の Mac に繋ぐときに、その相手の Mac に対してだけ送られます(画面共有の認証)。ログや設定ファイルには書き出しません。</li>
+</ul>
+
+<h3>1.3 画面・音・入力・クリップボード</h3>
+<ul>
+<li>相手の Mac の画面と音は、相手の Mac からあなたの Mac へ届きます。本アプリはそれを表示・再生するだけで、保存・録画はしません。</li>
+<li>キーボードとマウスの操作は、あなたが画面を操作している相手の Mac へ送られます。</li>
+<li>クリップボードの同期(既定で有効。メニューで切り替えられます)は、文字と URL を、あなたの Mac と、その画面を操作している相手の Mac との間でだけやり取りします。</li>
+<li>これらが、あなたの Mac と繋いだ Mac 以外へ送られることはありません。</li>
+</ul>
+
+<h2>2. 通信について</h2>
+<ul>
+<li>本アプリは、あなたが追加した Mac へのネットワーク接続を使います(macOS の画面共有のプロトコル。TCP と、高性能の方式では UDP)。</li>
+<li>相手の Mac から映像と音を UDP で受け取るため、App Sandbox のネットワーク権限(送信と受信)を使います。受け取るのは、あなたが繋いだ 1 台の相手からの通信だけです。</li>
+<li>同じネットワークの Mac を探して繋ぐため、macOS の「ローカルネットワーク」の許可を求めます。</li>
+<li>本アプリは、上記以外のインターネット上のサーバーと通信しません。</li>
+</ul>
+
+<h2>3. 第三者への情報提供</h2>
+<p>本アプリは、あなたの情報を第三者に販売・貸与・共有しません。アクセス解析、広告ネットワーク、行動トラッキング、使用統計の収集は行いません。</p>
+
+<h2>4. データの削除</h2>
+<ul>
+<li>相手を一覧から削除すると、その相手の設定と、Keychain のパスワードも削除されます。</li>
+<li>本アプリを削除すると、本アプリが保存した設定が削除されます。Keychain の項目が残る場合は、「キーチェーンアクセス」から削除できます。</li>
+</ul>
+
+<h2>5. ポリシーの変更</h2>
+<p>本ポリシーは、法令の変更やアプリの機能追加に伴い、変更される場合があります。重要な変更はアプリのアップデート情報でお知らせします。</p>
+
+<h2>6. お問い合わせ</h2>
+<div class="contact">
+<p>本ポリシーに関するご質問は、以下までお問い合わせください:</p>
+<p><a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">GitHub Issues</a></p>
+</div>
+  </div>
+</body>
+</html>
