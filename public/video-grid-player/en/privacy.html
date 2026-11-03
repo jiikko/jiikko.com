@@ -77,13 +77,13 @@
     <a href="./" class="back-link">← Back to Video Grid Player</a>
     <span class="lang-switch"><a href="../privacy.html" hreflang="ja">日本語</a></span>
     <h1>Privacy Policy</h1>
-    <p class="last-updated">Last updated: April 27, 2026</p>
+    <p class="last-updated">Last updated: November 4, 2026</p>
 
     <p>Video Grid Player ("the App") is designed with user privacy as a top priority. This policy explains what information the App handles and how.</p>
 
     <div class="highlight">
       <p><strong>Local-only operation, no network communication</strong></p>
-      <p>The App does not perform any network communication. Its App Sandbox configuration grants no network access entitlement, so it is technically impossible for video data or settings to be transmitted externally.</p>
+      <p>The App itself does not perform any network communication. Its App Sandbox configuration grants no network access entitlement, so it is technically impossible for video data or settings to be transmitted externally. Purchasing, restoring, and checking a Pro subscription are handled by macOS and the App Store, which communicate with Apple.</p>
     </div>
 
     <h2>1. Information handled by the App</h2>
@@ -96,12 +96,21 @@
       <li>macOS App Sandbox Security-Scoped Bookmarks are used so the App can continue to access the same files after restart.</li>
     </ul>
 
-    <h3>1.2 App settings</h3>
-    <p>The following information is stored locally in UserDefaults on your Mac:</p>
+    <h3>1.2 Smart Playback analysis (Pro)</h3>
+    <ul>
+      <li>Smart Playback (start when sound begins / start when a face appears) analyzes a video's audio and frames <strong>only on your Mac</strong>, using Apple's AVFoundation and Vision.</li>
+      <li>The result (where to start playback) is used only inside the App and is never transmitted externally. Faces are detected only to find where a face appears; the App does not identify who they are.</li>
+      <li>Results are kept in memory while the App is running and are not saved to files.</li>
+    </ul>
+
+    <h3>1.3 App settings</h3>
+    <p>The following information is stored locally on your Mac (in UserDefaults and in files in the App's storage area):</p>
     <ul>
       <li>Custom keyboard shortcuts you have configured</li>
       <li>The tab last selected in the sidebar</li>
-      <li>Other app preferences (window state, last used layout, etc.)</li>
+      <li>Open tabs and videos, layout, playback speed, and Smart Playback on/off</li>
+      <li>The date you started the Smart Playback free trial</li>
+      <li>Other app preferences (window state, etc.)</li>
     </ul>
     <p>All of this data is stored on your Mac and is never transmitted externally.</p>
 
@@ -110,6 +119,7 @@
       <li>The App is distributed via the Mac App Store under macOS App Sandbox, and its entitlements do not include network access (e.g. <code>com.apple.security.network.client</code>).</li>
       <li>As a result, network communication from the App to the Internet is technically blocked by the sandbox.</li>
       <li>No data is sent to analytics servers, advertising networks, or crash reporting services (apart from app receipt information handled by the Mac App Store).</li>
+      <li>Pro purchases are handled by Apple's App Store. The developer does not receive your name, payment details, or similar information.</li>
     </ul>
 
     <h2>3. Disclosure to third parties</h2>
@@ -124,7 +134,7 @@
 
     <h2>4. Data deletion</h2>
     <ul>
-      <li>Uninstalling the App removes settings stored in UserDefaults.</li>
+      <li>For the Mac App Store version, settings data (in <code>~/Library/Containers</code>) may remain after you delete the App. Remaining data is never transmitted off your Mac. To remove it completely, delete that folder.</li>
       <li>The App does not manage your video files; please delete them yourself via Finder or another tool if needed.</li>
     </ul>
 
