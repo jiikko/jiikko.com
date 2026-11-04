@@ -339,6 +339,20 @@
         line-height: 1;
       }
 
+      .code-line {
+        margin: 0 0 20px;
+        padding: 14px 18px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13px;
+        line-height: 1.6;
+        color: var(--fg);
+        background: var(--card2);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow-x: auto;
+        white-space: pre;
+      }
+
       .footer {
         padding: 40px 0 60px;
         border-top: 1px solid var(--border);
@@ -376,6 +390,7 @@
         <nav class="nav" aria-label="ページ内ナビゲーション">
           <a href="#features">主な機能</a>
           <a href="#formats">対応フォーマット</a>
+          <a href="#url-scheme">URL で開く</a>
           <a href="./en/" hreflang="en" aria-label="English">English</a>
           <a href="https://apps.apple.com/us/app/video-grid-player/id6758890486?mt=12" class="btn btn-primary" target="_blank" rel="noopener noreferrer">App Store で入手</a>
         </nav>
@@ -447,6 +462,31 @@
           <li>mp4</li><li>m4v</li><li>mov</li>
           <li>mpg</li><li>mpeg</li><li>m2ts</li><li>mts</li><li>ts</li>
           <li>3gp</li><li>3g2</li><li>dv</li>
+        </ul>
+      </section>
+
+      <section id="url-scheme" aria-label="URL スキームで開く" class="reveal">
+        <h2 class="section-title">URL で動画を開く</h2>
+        <p class="section-desc">
+          ターミナル・ショートカット (Shortcuts.app)・他のアプリから、URL でファイルを渡して再生を始められます。
+        </p>
+
+        <p class="section-desc" style="margin-bottom: 12px;"><strong>形式:</strong></p>
+        <pre class="code-line">videogridplayer://play?file=&lt;絶対パス&gt;[&amp;file=&lt;絶対パス&gt;...]</pre>
+
+        <p class="section-desc" style="margin-bottom: 12px;"><strong>例 (ターミナル):</strong></p>
+        <pre class="code-line">open "videogridplayer://play?file=/Users/you/Movies/a.mp4&amp;file=/Users/you/Movies/b.mp4"</pre>
+
+        <p class="section-desc">
+          <strong>ショートカットから:</strong> 「URL」アクションに上の形の URL を入れ、「URL を開く」アクションにつなぎます。
+        </p>
+
+        <p class="section-desc" style="margin-bottom: 12px;"><strong>注意:</strong></p>
+        <ul class="feature-list">
+          <li>パスは <code>/</code> から始まる絶対パスで書きます。空白などは <code>%20</code> のようにエンコードします</li>
+          <li>1 つの URL で開けるのは 9 本までです。空いているスロットへ順に入り、空きが無いと開きません</li>
+          <li>レイアウトは URL では変わりません。必要ならアプリで先に切り替えておきます</li>
+          <li>アプリで一度開いた (アクセスを許可した) フォルダの中のファイルだけを開けます</li>
         </ul>
       </section>
 
