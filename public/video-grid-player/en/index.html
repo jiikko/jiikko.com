@@ -415,7 +415,7 @@
         <ul class="feature-list">
           <li>Grid layouts from 1x1 to 3x3 (up to 9 simultaneous videos)</li>
           <li>Sync Start: kick off every clip from 0 seconds at the same moment</li>
-          <li>Playback speed adjustable from 0.5x to 4.0x</li>
+          <li>Playback speed adjustable from 1.0x to 5.0x</li>
           <li>Keyboard shortcuts for fast operation</li>
           <li>Control playback, speed, and layout from the menu bar, even when the main window is closed</li>
           <li>Drag and drop to load videos</li>
@@ -455,15 +455,16 @@
         </p>
 
         <p class="section-desc">
-          <strong>What may not play:</strong> VP9 and AV1 codecs (often found in videos downloaded from YouTube and similar sites) are not supported.
-          Note that even files with a <code>.mp4</code> extension may not play if their internal video codec is VP9 or AV1.
+          <strong>What may not play:</strong> VP8 and VP9 codecs (often found in videos downloaded from YouTube and similar sites) are not supported.
+          AV1 plays only on Macs with AV1 hardware decoding (M3 or later).
+          Note that even files with a <code>.mp4</code> extension may not play if their internal video codec is VP8 or VP9.
           Some <code>.mkv</code> and <code>.webm</code> files are unsupported at the container level.
           <strong>Open the file in QuickTime Player first to confirm it plays.</strong>
         </p>
 
         <p class="section-desc" style="margin-bottom: 12px;">Recognized extensions:</p>
         <ul class="formats">
-          <li>mp4</li><li>m4v</li><li>mov</li>
+          <li>mp4</li><li>m4v</li><li>mov</li><li>mkv</li><li>webm</li>
           <li>mpg</li><li>mpeg</li><li>m2ts</li><li>mts</li><li>ts</li>
           <li>3gp</li><li>3g2</li><li>dv</li>
         </ul>
