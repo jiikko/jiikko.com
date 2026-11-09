@@ -393,6 +393,20 @@
         line-height: 1;
       }
 
+      .code-line {
+        margin: 0 0 20px;
+        padding: 14px 18px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13px;
+        line-height: 1.6;
+        color: var(--fg);
+        background: var(--card2);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow-x: auto;
+        white-space: pre;
+      }
+
       .footer {
         padding: 40px 0 60px;
         border-top: 1px solid var(--border);
@@ -430,6 +444,7 @@
           <a href="#features">Features</a>
           <a href="#pro">Pro</a>
           <a href="#formats">Supported formats</a>
+          <a href="#url-scheme">Open by URL</a>
           <a href="../" hreflang="ja" aria-label="日本語版">日本語</a>
           <a href="https://apps.apple.com/us/app/video-grid-player/id6758890486?mt=12" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Download on the App Store</a>
         </nav>
@@ -548,6 +563,31 @@
           <li>mp4</li><li>m4v</li><li>mov</li><li>mkv</li><li>webm</li>
           <li>mpg</li><li>mpeg</li><li>m2ts</li><li>mts</li><li>ts</li>
           <li>3gp</li><li>3g2</li><li>dv</li>
+        </ul>
+      </section>
+
+      <section id="url-scheme" aria-label="Open videos with a URL" class="reveal">
+        <h2 class="section-title">Open videos with a URL</h2>
+        <p class="section-desc">
+          Start playback from Terminal, Shortcuts, or another app by passing files in a URL.
+        </p>
+
+        <p class="section-desc" style="margin-bottom: 12px;"><strong>Format:</strong></p>
+        <pre class="code-line">videogridplayer://play?file=&lt;absolute path&gt;[&amp;file=&lt;absolute path&gt;...]</pre>
+
+        <p class="section-desc" style="margin-bottom: 12px;"><strong>Example (Terminal):</strong></p>
+        <pre class="code-line">open "videogridplayer://play?file=/Users/you/Movies/a.mp4&amp;file=/Users/you/Movies/b.mp4"</pre>
+
+        <p class="section-desc">
+          <strong>From Shortcuts:</strong> put a URL in this form into a "URL" action and connect it to an "Open URLs" action.
+        </p>
+
+        <p class="section-desc" style="margin-bottom: 12px;"><strong>Notes:</strong></p>
+        <ul class="feature-list">
+          <li>Use absolute paths starting with <code>/</code>. Percent-encode spaces and similar characters (<code>%20</code>)</li>
+          <li>One URL opens up to 9 files. They go into empty slots in order; files that don't fit aren't opened</li>
+          <li>A URL doesn't change the layout. Switch it in the app first if needed</li>
+          <li>Only files inside folders you've already opened in the app (granted access to) can be opened</li>
         </ul>
       </section>
 
