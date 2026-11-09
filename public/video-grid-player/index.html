@@ -380,6 +380,21 @@
         margin-bottom: 20px;
       }
 
+      .other-title {
+        margin: 28px 0 8px;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .other-features {
+        margin: 0;
+        padding-left: 20px;
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      .other-features a { text-decoration: underline; }
+
       .formats {
         display: flex;
         flex-wrap: wrap;
@@ -398,20 +413,6 @@
         border: 1px solid var(--border);
         border-radius: 999px;
         line-height: 1;
-      }
-
-      .code-line {
-        margin: 0 0 20px;
-        padding: 14px 18px;
-        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-        font-size: 13px;
-        line-height: 1.6;
-        color: var(--fg);
-        background: var(--card2);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        overflow-x: auto;
-        white-space: pre;
       }
 
       .footer {
@@ -451,7 +452,6 @@
         <nav class="nav" aria-label="ページ内ナビゲーション">
           <a href="#features">主な機能</a>
           <a href="#formats">対応フォーマット</a>
-          <a href="#url-scheme">URL で開く</a>
           <a href="#pro">料金</a>
           <a href="./en/" hreflang="en" aria-label="English">English</a>
           <a href="https://apps.apple.com/us/app/video-grid-player/id6758890486?mt=12" class="btn btn-primary" target="_blank" rel="noopener noreferrer">App Store で入手</a>
@@ -492,13 +492,18 @@
 
         <ul class="feature-list">
           <li>1x1 から 3x3 までのグリッドで最大 9 本を同時再生</li>
-          <li>最大 12 種類のレイアウト（Pro。Free は 3 種類）</li>
           <li>スマート再生（Pro）: 冒頭の無音や、顔が映るまでの部分を飛ばして再生</li>
+          <li>最大 12 種類のレイアウト（Pro。Free は 3 種類）</li>
           <li>全動画を 0 秒から同時にスタートする同期再生（Sync Start）</li>
           <li>1.0 倍〜5.0 倍の再生速度調整</li>
+          <li>ドラッグ &amp; ドロップによる簡単な動画読み込み</li>
+        </ul>
+
+        <h3 class="other-title">その他の機能</h3>
+        <ul class="other-features">
           <li>キーボードショートカットでの効率的な操作</li>
           <li>メニューバーから再生・速度・レイアウトを操作（メインウィンドウを閉じた状態でも可）</li>
-          <li>ドラッグ &amp; ドロップによる簡単な動画読み込み</li>
+          <li>URL で動画を開く（ターミナルやショートカットから。<a href="./support.html#url-scheme">使い方</a>）</li>
         </ul>
       </section>
 
@@ -527,31 +532,6 @@
           <li>mp4</li><li>m4v</li><li>mov</li><li>mkv</li><li>webm</li>
           <li>mpg</li><li>mpeg</li><li>m2ts</li><li>mts</li><li>ts</li>
           <li>3gp</li><li>3g2</li><li>dv</li>
-        </ul>
-      </section>
-
-      <section id="url-scheme" aria-label="URL スキームで開く" class="reveal">
-        <h2 class="section-title">URL で動画を開く</h2>
-        <p class="section-desc">
-          ターミナル・ショートカット (Shortcuts.app)・他のアプリから、URL でファイルを渡して再生を始められます。
-        </p>
-
-        <p class="section-desc" style="margin-bottom: 12px;"><strong>形式:</strong></p>
-        <pre class="code-line">videogridplayer://play?file=&lt;絶対パス&gt;[&amp;file=&lt;絶対パス&gt;...]</pre>
-
-        <p class="section-desc" style="margin-bottom: 12px;"><strong>例 (ターミナル):</strong></p>
-        <pre class="code-line">open "videogridplayer://play?file=/Users/you/Movies/a.mp4&amp;file=/Users/you/Movies/b.mp4"</pre>
-
-        <p class="section-desc">
-          <strong>ショートカットから:</strong> 「URL」アクションに上の形の URL を入れ、「URL を開く」アクションにつなぎます。
-        </p>
-
-        <p class="section-desc" style="margin-bottom: 12px;"><strong>注意:</strong></p>
-        <ul class="feature-list">
-          <li>パスは <code>/</code> から始まる絶対パスで書きます。空白などは <code>%20</code> のようにエンコードします</li>
-          <li>1 つの URL で開けるのは 9 本までです。空いているスロットへ順に入り、空きが無いと開きません</li>
-          <li>レイアウトは URL では変わりません。必要ならアプリで先に切り替えておきます</li>
-          <li>アプリで一度開いた (アクセスを許可した) フォルダの中のファイルだけを開けます</li>
         </ul>
       </section>
 

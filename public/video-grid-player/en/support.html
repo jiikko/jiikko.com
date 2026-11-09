@@ -43,6 +43,17 @@
     }
     .lang-switch a { color: var(--accent); text-decoration: none; }
     .lang-switch a:hover { text-decoration: underline; }
+    pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      overflow-x: auto;
+      white-space: pre;
+    }
     h1 { font-size: 2rem; margin-bottom: 24px; color: #fff; }
     h2 {
       font-size: 1.25rem;
@@ -94,6 +105,26 @@
 
     <h3>Recognized extensions</h3>
     <p><code>mp4</code>, <code>m4v</code>, <code>mov</code>, <code>mpg</code>, <code>mpeg</code>, <code>m2ts</code>, <code>mts</code>, <code>ts</code>, <code>3gp</code>, <code>3g2</code>, <code>dv</code></p>
+
+    <h2 id="url-scheme">Open videos with a URL</h2>
+    <p>Start playback from Terminal, Shortcuts, or another app by passing files in a URL.</p>
+
+    <h3>Format</h3>
+    <pre>videogridplayer://play?file=&lt;absolute path&gt;[&amp;file=&lt;absolute path&gt;...]</pre>
+
+    <h3>Example (Terminal)</h3>
+    <pre>open "videogridplayer://play?file=/Users/you/Movies/a.mp4&amp;file=/Users/you/Movies/b.mp4"</pre>
+
+    <h3>From Shortcuts</h3>
+    <p>Put a URL in this form into a "URL" action and connect it to an "Open URLs" action.</p>
+
+    <h3>Notes</h3>
+    <ul>
+      <li>Use absolute paths starting with <code>/</code>. Percent-encode spaces and similar characters (<code>%20</code>)</li>
+      <li>One URL opens up to 9 files. They go into empty slots in order; files that don't fit aren't opened</li>
+      <li>A URL doesn't change the layout. Switch it in the app first if needed</li>
+      <li>Only files inside folders you've already opened in the app (granted access to) can be opened</li>
+    </ul>
 
     <h2>Contact</h2>
     <div class="contact">
