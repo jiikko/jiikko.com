@@ -374,6 +374,12 @@
         .plan { padding: 20px; }
       }
 
+      .plan-cta {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
       .formats {
         display: flex;
         flex-wrap: wrap;
@@ -444,9 +450,9 @@
         </a>
         <nav class="nav" aria-label="ページ内ナビゲーション">
           <a href="#features">主な機能</a>
-          <a href="#pro">Pro</a>
           <a href="#formats">対応フォーマット</a>
           <a href="#url-scheme">URL で開く</a>
+          <a href="#pro">料金</a>
           <a href="./en/" hreflang="en" aria-label="English">English</a>
           <a href="https://apps.apple.com/us/app/video-grid-player/id6758890486?mt=12" class="btn btn-primary" target="_blank" rel="noopener noreferrer">App Store で入手</a>
         </nav>
@@ -494,50 +500,6 @@
           <li>メニューバーから再生・速度・レイアウトを操作（メインウィンドウを閉じた状態でも可）</li>
           <li>ドラッグ &amp; ドロップによる簡単な動画読み込み</li>
         </ul>
-      </section>
-
-      <section id="pro" aria-label="Free と Pro" class="reveal">
-        <h2 class="section-title">Free と Pro</h2>
-        <p class="section-desc">基本の機能はすべて無料で使えます。Pro では、スマート再生と追加のレイアウトを使えます。</p>
-
-        <div class="plan-cards">
-          <div class="plan">
-            <div class="plan-head">
-              <h3 class="plan-name">Free</h3>
-              <p class="plan-price">¥0</p>
-              <p class="plan-note">課金なしで使えます</p>
-            </div>
-            <div class="plan-row"><span>最大 9 本の同時再生</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
-            <div class="plan-row"><span>レイアウト</span><span class="mark mark-value">3 種類</span></div>
-            <div class="plan-row"><span>Sync Start（同期再生）</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
-            <div class="plan-row"><span>1.0 倍〜5.0 倍の再生速度</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
-            <div class="plan-row"><span>キーボードショートカット</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
-            <div class="plan-row"><span>メニューバーからの操作</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
-            <div class="plan-row"><span>ドラッグ &amp; ドロップでの読み込み</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
-            <div class="plan-row"><span>スマート再生（冒頭の無音や顔が映るまでを飛ばす）</span><span class="mark mark-no" role="img" aria-label="使えない">—</span></div>
-          </div>
-          <div class="plan plan-pro">
-            <div class="plan-head">
-              <h3 class="plan-name">Pro</h3>
-              <p class="plan-price">¥550 / 月</p>
-              <p class="plan-note">または ¥5,500 / 年（2 か月分お得）<br /><strong>7 日間無料でお試しできます</strong></p>
-            </div>
-            <div class="plan-row"><span>最大 9 本の同時再生</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
-            <div class="plan-row"><span>レイアウト</span><span class="mark mark-value">12 種類</span></div>
-            <div class="plan-row"><span>Sync Start（同期再生）</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
-            <div class="plan-row"><span>1.0 倍〜5.0 倍の再生速度</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
-            <div class="plan-row"><span>キーボードショートカット</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
-            <div class="plan-row"><span>メニューバーからの操作</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
-            <div class="plan-row"><span>ドラッグ &amp; ドロップでの読み込み</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
-            <div class="plan-row"><span>スマート再生（冒頭の無音や顔が映るまでを飛ばす）</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
-          </div>
-        </div>
-
-        <p class="microcopy">
-          Free のレイアウトは 1x1・2x2・3x3 の 3 種類です。Pro では、2x1・3x1・3x2 と、大きい枠と小さい枠を組み合わせた並べ方の 9 種類が増えます。<br />
-          スマート再生の「音が鳴ったら開始」は、動画の冒頭の無音を飛ばします。「顔が映ったら開始」は、顔が映り始める位置から再生します。解析は Mac の中だけで行い、動画は外に出ません。飛ばす部分が見つからない動画は、最初から再生します。<br />
-          ※ 7 日間のお試しの期間が終わっても、自動で課金されることはありません。購入・解約は App Store で行います。解約は App Store のサブスクリプションの管理からいつでもできます。価格は日本のストアのものです。
-        </p>
       </section>
 
       <section id="formats" aria-label="対応フォーマット" class="reveal">
@@ -591,6 +553,54 @@
           <li>レイアウトは URL では変わりません。必要ならアプリで先に切り替えておきます</li>
           <li>アプリで一度開いた (アクセスを許可した) フォルダの中のファイルだけを開けます</li>
         </ul>
+      </section>
+
+      <section id="pro" aria-label="Free と Pro" class="reveal">
+        <h2 class="section-title">Free と Pro</h2>
+        <p class="section-desc">基本の機能はすべて無料で使えます。Pro では、スマート再生と追加のレイアウトを使えます。</p>
+
+        <div class="plan-cards">
+          <div class="plan">
+            <div class="plan-head">
+              <h3 class="plan-name">Free</h3>
+              <p class="plan-price">¥0</p>
+              <p class="plan-note">課金なしで使えます</p>
+            </div>
+            <div class="plan-row"><span>最大 9 本の同時再生</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
+            <div class="plan-row"><span>レイアウト</span><span class="mark mark-value">3 種類</span></div>
+            <div class="plan-row"><span>Sync Start（同期再生）</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
+            <div class="plan-row"><span>1.0 倍〜5.0 倍の再生速度</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
+            <div class="plan-row"><span>キーボードショートカット</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
+            <div class="plan-row"><span>メニューバーからの操作</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
+            <div class="plan-row"><span>ドラッグ &amp; ドロップでの読み込み</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
+            <div class="plan-row"><span>スマート再生（冒頭の無音や顔が映るまでを飛ばす）</span><span class="mark mark-no" role="img" aria-label="使えない">—</span></div>
+          </div>
+          <div class="plan plan-pro">
+            <div class="plan-head">
+              <h3 class="plan-name">Pro</h3>
+              <p class="plan-price">¥550 / 月</p>
+              <p class="plan-note">または ¥5,500 / 年（2 か月分お得）<br /><strong>7 日間無料でお試しできます</strong></p>
+            </div>
+            <div class="plan-row"><span>最大 9 本の同時再生</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
+            <div class="plan-row"><span>レイアウト</span><span class="mark mark-value">12 種類</span></div>
+            <div class="plan-row"><span>Sync Start（同期再生）</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
+            <div class="plan-row"><span>1.0 倍〜5.0 倍の再生速度</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
+            <div class="plan-row"><span>キーボードショートカット</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
+            <div class="plan-row"><span>メニューバーからの操作</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
+            <div class="plan-row"><span>ドラッグ &amp; ドロップでの読み込み</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
+            <div class="plan-row"><span>スマート再生（冒頭の無音や顔が映るまでを飛ばす）</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
+          </div>
+        </div>
+
+        <div class="plan-cta">
+          <a href="https://apps.apple.com/us/app/video-grid-player/id6758890486?mt=12" class="btn btn-primary" target="_blank" rel="noopener noreferrer">App Store で入手</a>
+        </div>
+
+        <p class="microcopy">
+          Free のレイアウトは 1x1・2x2・3x3 の 3 種類です。Pro では、2x1・3x1・3x2 と、大きい枠と小さい枠を組み合わせた並べ方の 9 種類が増えます。<br />
+          スマート再生の「音が鳴ったら開始」は、動画の冒頭の無音を飛ばします。「顔が映ったら開始」は、顔が映り始める位置から再生します。解析は Mac の中だけで行い、動画は外に出ません。飛ばす部分が見つからない動画は、最初から再生します。<br />
+          ※ 7 日間のお試しの期間が終わっても、自動で課金されることはありません。購入・解約は App Store で行います。解約は App Store のサブスクリプションの管理からいつでもできます。価格は日本のストアのものです。
+        </p>
       </section>
 
       <footer class="footer" aria-label="フッター">

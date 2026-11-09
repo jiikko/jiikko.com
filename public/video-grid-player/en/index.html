@@ -373,6 +373,12 @@
         .plan { padding: 20px; }
       }
 
+      .plan-cta {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
       .formats {
         display: flex;
         flex-wrap: wrap;
@@ -442,9 +448,9 @@
         </a>
         <nav class="nav" aria-label="In-page navigation">
           <a href="#features">Features</a>
-          <a href="#pro">Pro</a>
           <a href="#formats">Supported formats</a>
           <a href="#url-scheme">Open by URL</a>
+          <a href="#pro">Pricing</a>
           <a href="../" hreflang="ja" aria-label="日本語版">日本語</a>
           <a href="https://apps.apple.com/us/app/video-grid-player/id6758890486?mt=12" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Download on the App Store</a>
         </nav>
@@ -492,50 +498,6 @@
           <li>Control playback, speed, and layout from the menu bar, even when the main window is closed</li>
           <li>Drag and drop to load videos</li>
         </ul>
-      </section>
-
-      <section id="pro" aria-label="Free and Pro" class="reveal">
-        <h2 class="section-title">Free and Pro</h2>
-        <p class="section-desc">The core features are free. Pro adds Smart Playback and more layouts.</p>
-
-        <div class="plan-cards">
-          <div class="plan">
-            <div class="plan-head">
-              <h3 class="plan-name">Free</h3>
-              <p class="plan-price">No cost</p>
-              <p class="plan-note">No subscription needed</p>
-            </div>
-            <div class="plan-row"><span>Play up to 9 videos at once</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
-            <div class="plan-row"><span>Layouts</span><span class="mark mark-value">3</span></div>
-            <div class="plan-row"><span>Sync Start</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
-            <div class="plan-row"><span>Playback speed from 1.0x to 5.0x</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
-            <div class="plan-row"><span>Keyboard shortcuts</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
-            <div class="plan-row"><span>Menu bar controls</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
-            <div class="plan-row"><span>Drag &amp; drop to add videos</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
-            <div class="plan-row"><span>Smart Playback (start at the first sound or face)</span><span class="mark mark-no" role="img" aria-label="Not included">—</span></div>
-          </div>
-          <div class="plan plan-pro">
-            <div class="plan-head">
-              <h3 class="plan-name">Pro</h3>
-              <p class="plan-price">Monthly or yearly</p>
-              <p class="plan-note"><strong>Try it free for 7 days</strong></p>
-            </div>
-            <div class="plan-row"><span>Play up to 9 videos at once</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
-            <div class="plan-row"><span>Layouts</span><span class="mark mark-value">12</span></div>
-            <div class="plan-row"><span>Sync Start</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
-            <div class="plan-row"><span>Playback speed from 1.0x to 5.0x</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
-            <div class="plan-row"><span>Keyboard shortcuts</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
-            <div class="plan-row"><span>Menu bar controls</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
-            <div class="plan-row"><span>Drag &amp; drop to add videos</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
-            <div class="plan-row"><span>Smart Playback (start at the first sound or face)</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
-          </div>
-        </div>
-
-        <p class="microcopy">
-          Free includes the 1x1, 2x2, and 3x3 layouts. Pro adds 9 more, including 2x1, 3x1, 3x2, and layouts that combine large views with smaller ones.<br />
-          Smart Playback&#39;s &quot;Start when sound begins&quot; skips silence at the start of a video. &quot;Start when a face appears&quot; plays from where a face first appears. Videos are analyzed on your Mac and never leave it. If there&#39;s nothing to skip, the video plays from the beginning.<br />
-          You won&#39;t be charged when the 7-day trial ends. Purchases are handled by the App Store. Cancel anytime in your App Store subscription settings. The price for your region is shown in the App Store and in the app.
-        </p>
       </section>
 
       <section id="formats" aria-label="Supported formats" class="reveal">
@@ -589,6 +551,54 @@
           <li>A URL doesn't change the layout. Switch it in the app first if needed</li>
           <li>Only files inside folders you've already opened in the app (granted access to) can be opened</li>
         </ul>
+      </section>
+
+      <section id="pro" aria-label="Free and Pro" class="reveal">
+        <h2 class="section-title">Free and Pro</h2>
+        <p class="section-desc">The core features are free. Pro adds Smart Playback and more layouts.</p>
+
+        <div class="plan-cards">
+          <div class="plan">
+            <div class="plan-head">
+              <h3 class="plan-name">Free</h3>
+              <p class="plan-price">No cost</p>
+              <p class="plan-note">No subscription needed</p>
+            </div>
+            <div class="plan-row"><span>Play up to 9 videos at once</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
+            <div class="plan-row"><span>Layouts</span><span class="mark mark-value">3</span></div>
+            <div class="plan-row"><span>Sync Start</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
+            <div class="plan-row"><span>Playback speed from 1.0x to 5.0x</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
+            <div class="plan-row"><span>Keyboard shortcuts</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
+            <div class="plan-row"><span>Menu bar controls</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
+            <div class="plan-row"><span>Drag &amp; drop to add videos</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
+            <div class="plan-row"><span>Smart Playback (start at the first sound or face)</span><span class="mark mark-no" role="img" aria-label="Not included">—</span></div>
+          </div>
+          <div class="plan plan-pro">
+            <div class="plan-head">
+              <h3 class="plan-name">Pro</h3>
+              <p class="plan-price">Monthly or yearly</p>
+              <p class="plan-note"><strong>Try it free for 7 days</strong></p>
+            </div>
+            <div class="plan-row"><span>Play up to 9 videos at once</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
+            <div class="plan-row"><span>Layouts</span><span class="mark mark-value">12</span></div>
+            <div class="plan-row"><span>Sync Start</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
+            <div class="plan-row"><span>Playback speed from 1.0x to 5.0x</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
+            <div class="plan-row"><span>Keyboard shortcuts</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
+            <div class="plan-row"><span>Menu bar controls</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
+            <div class="plan-row"><span>Drag &amp; drop to add videos</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
+            <div class="plan-row"><span>Smart Playback (start at the first sound or face)</span><span class="mark mark-yes" role="img" aria-label="Included">✓</span></div>
+          </div>
+        </div>
+
+        <div class="plan-cta">
+          <a href="https://apps.apple.com/us/app/video-grid-player/id6758890486?mt=12" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Download on the App Store</a>
+        </div>
+
+        <p class="microcopy">
+          Free includes the 1x1, 2x2, and 3x3 layouts. Pro adds 9 more, including 2x1, 3x1, 3x2, and layouts that combine large views with smaller ones.<br />
+          Smart Playback&#39;s &quot;Start when sound begins&quot; skips silence at the start of a video. &quot;Start when a face appears&quot; plays from where a face first appears. Videos are analyzed on your Mac and never leave it. If there&#39;s nothing to skip, the video plays from the beginning.<br />
+          You won&#39;t be charged when the 7-day trial ends. Purchases are handled by the App Store. Cancel anytime in your App Store subscription settings. The price for your region is shown in the App Store and in the app.
+        </p>
       </section>
 
       <footer class="footer" aria-label="Footer">
