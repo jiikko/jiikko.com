@@ -75,11 +75,7 @@
         font-family: "Inter", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
         font-feature-settings: "palt";
         color: var(--fg);
-        background:
-          radial-gradient(1200px 600px at 10% 0%, rgba(255, 149, 0, 0.26), transparent 60%),
-          radial-gradient(900px 500px at 80% 10%, rgba(255, 94, 0, 0.18), transparent 55%),
-          radial-gradient(800px 500px at 30% 95%, rgba(255, 179, 64, 0.12), transparent 55%),
-          var(--bg);
+        background: var(--bg);
         line-height: 1.7;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -178,11 +174,11 @@
         grid-template-columns: 1.1fr 1fr;
         gap: 48px;
         align-items: center;
-        padding: 64px 0 48px;
+        padding: 64px 0 12px;
       }
 
       @media (max-width: 880px) {
-        .hero { grid-template-columns: 1fr; gap: 32px; padding: 40px 0 28px; }
+        .hero { grid-template-columns: 1fr; gap: 32px; padding: 40px 0 7px; }
       }
 
       .pill {
@@ -260,7 +256,7 @@
         z-index: 1;
       }
 
-      section { padding: clamp(56px, 9vw, 96px) 0; }
+      section { padding: clamp(14px, 2vw, 24px) 0; }
 
       .section-title {
         font-size: clamp(26px, 3.6vw, 40px);
@@ -290,6 +286,7 @@
         flex: 1 1 320px;
         max-width: 360px;
         padding: 20px 24px 20px 52px;
+        align-content: center;
         background: var(--card);
         border: 1px solid var(--border);
         border-radius: 14px;
@@ -319,6 +316,85 @@
         box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
       }
 
+      .plan-cards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      /* 2 枚のカードの同じ機能を横に揃えるため、行の高さをカード間で共有する (subgrid) */
+      .plan {
+        display: grid;
+        grid-row: span 5;
+        grid-template-rows: subgrid;
+        padding: 24px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+      }
+
+      .plan-pro {
+        background: var(--card2);
+        border: 2px solid var(--brand);
+      }
+
+      .plan-head { padding-bottom: 16px; }
+      .plan-name { margin: 0; font-size: 20px; font-weight: 800; }
+      .plan-price { margin: 4px 0 0; font-size: 24px; font-weight: 800; line-height: 1.3; }
+      .plan-note { margin: 4px 0 0; font-size: 13px; color: var(--muted); }
+
+      .plan-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 0;
+        border-top: 1px solid var(--border);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .mark {
+        flex: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 26px;
+        height: 26px;
+        font-weight: 800;
+      }
+
+      .mark-yes { border-radius: 50%; background: var(--brand); color: var(--on-brand); }
+      .mark-no { color: var(--muted); }
+      .mark-value { font-size: 15px; }
+
+      @media (max-width: 640px) {
+        .plan-cards { grid-template-columns: minmax(0, 1fr); row-gap: 16px; }
+        .plan { padding: 20px; }
+      }
+
+      .plan-cta {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .other-title {
+        margin: 28px 0 8px;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .other-features {
+        margin: 0;
+        padding-left: 20px;
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      .other-features a { text-decoration: underline; }
+
       .formats {
         display: flex;
         flex-wrap: wrap;
@@ -337,20 +413,6 @@
         border: 1px solid var(--border);
         border-radius: 999px;
         line-height: 1;
-      }
-
-      .code-line {
-        margin: 0 0 20px;
-        padding: 14px 18px;
-        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-        font-size: 13px;
-        line-height: 1.6;
-        color: var(--fg);
-        background: var(--card2);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        overflow-x: auto;
-        white-space: pre;
       }
 
       .footer {
@@ -390,7 +452,7 @@
         <nav class="nav" aria-label="ページ内ナビゲーション">
           <a href="#features">主な機能</a>
           <a href="#formats">対応フォーマット</a>
-          <a href="#url-scheme">URL で開く</a>
+          <a href="#pro">料金</a>
           <a href="./en/" hreflang="en" aria-label="English">English</a>
           <a href="https://apps.apple.com/us/app/video-grid-player/id6758890486?mt=12" class="btn btn-primary" target="_blank" rel="noopener noreferrer">App Store で入手</a>
         </nav>
@@ -429,12 +491,19 @@
         <h2 class="section-title">主な機能</h2>
 
         <ul class="feature-list">
-          <li>1x1 から 3x3 までのグリッドレイアウト（最大 9 本同時再生）</li>
+          <li>1x1 から 3x3 までのグリッドで最大 9 本を同時再生</li>
+          <li>スマート再生（Pro）: 冒頭の無音や、顔が映るまでの部分を飛ばして再生</li>
+          <li>最大 12 種類のレイアウト（Pro。Free は 3 種類）</li>
           <li>全動画を 0 秒から同時にスタートする同期再生（Sync Start）</li>
-          <li>0.5 倍〜4.0 倍の再生速度調整</li>
+          <li>1.0 倍〜5.0 倍の再生速度調整</li>
+          <li>ドラッグ &amp; ドロップによる簡単な動画読み込み</li>
+        </ul>
+
+        <h3 class="other-title">その他の機能</h3>
+        <ul class="other-features">
           <li>キーボードショートカットでの効率的な操作</li>
           <li>メニューバーから再生・速度・レイアウトを操作（メインウィンドウを閉じた状態でも可）</li>
-          <li>ドラッグ &amp; ドロップによる簡単な動画読み込み</li>
+          <li>URL で動画を開く（ターミナルやショートカットから。<a href="./support.html#url-scheme">使い方</a>）</li>
         </ul>
       </section>
 
@@ -451,43 +520,59 @@
         </p>
 
         <p class="section-desc">
-          <strong>非対応・条件付きのもの:</strong> VP9 / AV1（YouTube 等のダウンロード動画でよく使われるコーデック）は再生できません。
-          <code>.mp4</code> 拡張子のファイルでも、内部のコーデックが VP9 / AV1 の場合は再生できない点にご注意ください。
+          <strong>非対応・条件付きのもの:</strong> VP8 / VP9（YouTube 等のダウンロード動画でよく使われるコーデック）は再生できません。
+          AV1 は、AV1 のハードウェアデコードに対応した Mac（M3 以降）でだけ再生できます。
+          <code>.mp4</code> 拡張子のファイルでも、内部のコーデックが VP8 / VP9 の場合は再生できない点にご注意ください。
           一部の <code>.mkv</code> / <code>.webm</code> はコンテナレベルで非対応となることがあります。
           <strong>事前に QuickTime Player で開けるかご確認ください。</strong>
         </p>
 
         <p class="section-desc" style="margin-bottom: 12px;">対象拡張子:</p>
         <ul class="formats">
-          <li>mp4</li><li>m4v</li><li>mov</li>
+          <li>mp4</li><li>m4v</li><li>mov</li><li>mkv</li><li>webm</li>
           <li>mpg</li><li>mpeg</li><li>m2ts</li><li>mts</li><li>ts</li>
           <li>3gp</li><li>3g2</li><li>dv</li>
         </ul>
       </section>
 
-      <section id="url-scheme" aria-label="URL スキームで開く" class="reveal">
-        <h2 class="section-title">URL で動画を開く</h2>
-        <p class="section-desc">
-          ターミナル・ショートカット (Shortcuts.app)・他のアプリから、URL でファイルを渡して再生を始められます。
+      <section id="pro" aria-label="Free と Pro" class="reveal">
+        <h2 class="section-title">Free と Pro</h2>
+        <p class="section-desc">基本の機能はすべて無料で使えます。Pro では、スマート再生と追加のレイアウトを使えます。</p>
+
+        <div class="plan-cards">
+          <div class="plan">
+            <div class="plan-head">
+              <h3 class="plan-name">Free</h3>
+              <p class="plan-price">¥0</p>
+              <p class="plan-note">課金なしで使えます</p>
+            </div>
+            <div class="plan-row"><span>スマート再生（冒頭の無音や顔が映るまでを飛ばす）</span><span class="mark mark-no" role="img" aria-label="使えない">—</span></div>
+            <div class="plan-row"><span>レイアウト</span><span class="mark mark-value">3 種類</span></div>
+            <div class="plan-row"><span>最大 9 本の同時再生</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
+            <div class="plan-row"><span>基本の機能（Sync Start・再生速度・ショートカットなど）</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
+          </div>
+          <div class="plan plan-pro">
+            <div class="plan-head">
+              <h3 class="plan-name">Pro</h3>
+              <p class="plan-price">¥550 / 月</p>
+              <p class="plan-note">または ¥5,500 / 年<br /><strong>7 日間無料でお試しできます</strong></p>
+            </div>
+            <div class="plan-row"><span>スマート再生（冒頭の無音や顔が映るまでを飛ばす）</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
+            <div class="plan-row"><span>レイアウト</span><span class="mark mark-value">12 種類</span></div>
+            <div class="plan-row"><span>最大 9 本の同時再生</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
+            <div class="plan-row"><span>基本の機能（Sync Start・再生速度・ショートカットなど）</span><span class="mark mark-yes" role="img" aria-label="使える">✓</span></div>
+          </div>
+        </div>
+
+        <div class="plan-cta">
+          <a href="https://apps.apple.com/us/app/video-grid-player/id6758890486?mt=12" class="btn btn-primary" target="_blank" rel="noopener noreferrer">App Store で入手</a>
+        </div>
+
+        <p class="microcopy">
+          Free のレイアウトは 1x1・2x2・3x3 の 3 種類です。Pro では、2x1・3x1・3x2 と、大きい枠と小さい枠を組み合わせた並べ方の 9 種類が増えます。<br />
+          スマート再生の「音が鳴ったら開始」は、動画の冒頭の無音を飛ばします。「顔が映ったら開始」は、顔が映り始める位置から再生します。解析は Mac の中だけで行い、動画は外に出ません。飛ばす部分が見つからない動画は、最初から再生します。<br />
+          ※ 7 日間のお試しの期間が終わっても、自動で課金されることはありません。購入・解約は App Store で行います。解約は App Store のサブスクリプションの管理からいつでもできます。価格は日本のストアのものです。
         </p>
-
-        <p class="section-desc" style="margin-bottom: 12px;"><strong>形式:</strong></p>
-        <pre class="code-line">videogridplayer://play?file=&lt;絶対パス&gt;[&amp;file=&lt;絶対パス&gt;...]</pre>
-
-        <p class="section-desc" style="margin-bottom: 12px;"><strong>例 (ターミナル):</strong></p>
-        <pre class="code-line">open "videogridplayer://play?file=/Users/you/Movies/a.mp4&amp;file=/Users/you/Movies/b.mp4"</pre>
-
-        <p class="section-desc">
-          <strong>ショートカットから:</strong> 「URL」アクションに上の形の URL を入れ、「URL を開く」アクションにつなぎます。
-        </p>
-
-        <p class="section-desc" style="margin-bottom: 12px;"><strong>注意:</strong></p>
-        <ul class="feature-list">
-          <li>パスは <code>/</code> から始まる絶対パスで書きます。空白などは <code>%20</code> のようにエンコードします</li>
-          <li>1 つの URL で開けるのは 9 本までです。空いているスロットへ順に入り、空きが無いと開きません</li>
-          <li>レイアウトは URL では変わりません。必要ならアプリで先に切り替えておきます</li>
-          <li>アプリで一度開いた (アクセスを許可した) フォルダの中のファイルだけを開けます</li>
-        </ul>
       </section>
 
       <footer class="footer" aria-label="フッター">

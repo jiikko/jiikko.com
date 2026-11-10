@@ -77,13 +77,13 @@
     <a href="index.html" class="back-link">← Video Grid Player トップへ</a>
     <span class="lang-switch"><a href="./en/privacy.html" hreflang="en">English</a></span>
     <h1>プライバシーポリシー</h1>
-    <p class="last-updated">最終更新日: 2026年4月27日</p>
+    <p class="last-updated">最終更新日: 2026年11月10日</p>
 
     <p>Video Grid Player（以下「本アプリ」）は、ユーザーのプライバシーを最優先に考えた設計となっています。本ポリシーでは、本アプリがどのような情報を取り扱い、どのように扱うかを説明します。</p>
 
     <div class="highlight">
       <p><strong>ローカル動作・通信なし</strong></p>
-      <p>本アプリはネットワーク通信を行いません。App Sandbox の設定でネットワークアクセス権限を持たず、動画データや設定情報が外部に送信されることは技術的にできません。</p>
+      <p>本アプリ自体はネットワーク通信を行いません。App Sandbox の設定でネットワークアクセス権限を持たず、動画データや設定情報が外部に送信されることは技術的にできません。Pro（サブスクリプション）の購入・復元・購読状態の確認は、macOS の App Store の仕組みが Apple と通信して行います。</p>
     </div>
 
     <h2>1. 取り扱う情報</h2>
@@ -96,12 +96,23 @@
       <li>macOS の App Sandbox による Security-Scoped Bookmark を用いて、再起動後も同じファイルへ継続アクセスできるようにしています。</li>
     </ul>
 
-    <h3>1.2 アプリ設定</h3>
-    <p>以下の情報を Mac 内の UserDefaults にローカル保存します。</p>
+    <h3>1.2 スマート再生の解析（Pro）</h3>
+    <ul>
+      <li>スマート再生（音が鳴ったら開始・顔が映ったら開始）は、動画の音声と映像のフレームを <strong>お使いの Mac の中だけで</strong> 解析します（Apple の AVFoundation と Vision を使います）。</li>
+      <li>解析の結果（再生を始める位置）は本アプリの中だけで使い、外部に送信されることはありません。顔を検出するのは顔が映っている位置を知るためだけで、誰の顔かは識別しません。</li>
+      <li>解析の結果はアプリを起動している間だけメモリに保持し、ファイルには保存しません。</li>
+    </ul>
+
+    <h3>1.3 アプリ設定</h3>
+    <p>以下の情報をお使いの Mac の中（UserDefaults と、アプリの保存領域のファイル）にローカル保存します。</p>
     <ul>
       <li>ユーザーがカスタマイズしたキーボードショートカット</li>
       <li>サイドバーで最後に選択していたタブ</li>
-      <li>その他のアプリ環境設定（ウィンドウ状態、最後に使ったレイアウト等）</li>
+      <li>開いていたタブと動画、レイアウト、再生速度、スマート再生の ON/OFF</li>
+      <li>Pro の無料お試しを始めた日</li>
+      <li>Pro の購読の控え（プランと次の更新日。起動した直後の表示に使います）</li>
+      <li>起動時に開くフォルダ</li>
+      <li>その他のアプリ環境設定（ウィンドウ状態等）</li>
     </ul>
     <p>これらはすべてお使いの Mac 内に保存され、外部に送信されることはありません。</p>
 
@@ -110,6 +121,7 @@
       <li>本アプリは macOS の App Sandbox で配布される Mac App Store 版で、entitlements にネットワークアクセス権限（<code>com.apple.security.network.client</code> 等）を含みません。</li>
       <li>このため、サンドボックスの仕組み上、本アプリからインターネットへの通信は技術的にブロックされます。</li>
       <li>解析サーバー、広告ネットワーク、クラッシュレポートサービスへの送信は一切ありません（Mac App Store によるアプリ受領情報を除く）。</li>
+      <li>Pro の購入は Apple の App Store が扱います。開発者が購入者の氏名・支払い情報などを受け取ることはありません。</li>
     </ul>
 
     <h2>3. 第三者への情報提供</h2>
@@ -124,7 +136,7 @@
 
     <h2>4. データの削除</h2>
     <ul>
-      <li>本アプリのアンインストールにより、UserDefaults に保存された設定情報は削除されます。</li>
+      <li>Mac App Store 版では、アプリを削除しても設定のデータ（<code>~/Library/Containers</code> の中）が残ることがあります。残ったデータもお使いの Mac の外には送信されません。完全に消すには、そのフォルダを削除してください。</li>
       <li>動画ファイル自体は本アプリが管理していないため、ユーザーが Finder 等で個別に削除してください。</li>
     </ul>
 
@@ -135,6 +147,7 @@
     <div class="contact">
       <p>本ポリシーに関するご質問は、以下までお問い合わせください：</p>
       <p><a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">GitHub Issues</a></p>
+      <p><a href="mailto:support@jiikko.com">support@jiikko.com</a></p>
     </div>
   </div>
 </body>

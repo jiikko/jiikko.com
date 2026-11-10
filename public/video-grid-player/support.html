@@ -50,6 +50,17 @@
       border-radius: 4px;
       font-size: 0.92em;
     }
+    pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      overflow-x: auto;
+      white-space: pre;
+    }
     h1 { font-size: 2rem; margin-bottom: 24px; color: #fff; }
     h2 {
       font-size: 1.25rem;
@@ -84,21 +95,33 @@
     </ul>
 
     <h2>対応フォーマット</h2>
-    <p>macOS 標準の QuickTime Player で再生できる動画なら、本アプリでも再生できます。内部的に macOS の AVFoundation を使用しているため、追加のコーデックインストールは不要です。</p>
+    <p>macOS 標準の QuickTime Player で再生できる動画なら、本アプリでも再生できます。再生できないコーデックと対象の拡張子は、<a href="index.html#formats">製品ページの対応フォーマット</a>をご覧ください。</p>
 
-    <h3>確実に再生できるもの</h3>
-    <p>H.264 / HEVC を含む <code>.mp4</code> / <code>.mov</code>(iPhone やカメラ、一般的な編集ソフトの書き出し形式)。</p>
+    <h2 id="url-scheme">URL で動画を開く</h2>
+    <p>ターミナル・ショートカット (Shortcuts.app)・他のアプリから、URL でファイルを渡して再生を始められます。</p>
 
-    <h3>非対応・条件付きのもの</h3>
-    <p>VP9 / AV1(YouTube 等のダウンロード動画でよく使われるコーデック)は再生できません。<code>.mp4</code> 拡張子のファイルでも、内部のコーデックが VP9 / AV1 の場合は再生できない点にご注意ください。一部の <code>.mkv</code> / <code>.webm</code> はコンテナレベルで非対応となることがあります。事前に QuickTime Player で開けるかご確認ください。</p>
+    <h3>形式</h3>
+    <pre>videogridplayer://play?file=&lt;絶対パス&gt;[&amp;file=&lt;絶対パス&gt;...]</pre>
 
-    <h3>対象拡張子</h3>
-    <p><code>mp4</code>, <code>m4v</code>, <code>mov</code>, <code>mpg</code>, <code>mpeg</code>, <code>m2ts</code>, <code>mts</code>, <code>ts</code>, <code>3gp</code>, <code>3g2</code>, <code>dv</code></p>
+    <h3>例 (ターミナル)</h3>
+    <pre>open "videogridplayer://play?file=/Users/you/Movies/a.mp4&amp;file=/Users/you/Movies/b.mp4"</pre>
+
+    <h3>ショートカットから</h3>
+    <p>「URL」アクションに上の形の URL を入れ、「URL を開く」アクションにつなぎます。</p>
+
+    <h3>注意</h3>
+    <ul>
+      <li>パスは <code>/</code> から始まる絶対パスで書きます。空白などは <code>%20</code> のようにエンコードします</li>
+      <li>1 つの URL で開けるのは 9 本までです。空いているスロットへ順に入り、空きが無いと開きません</li>
+      <li>レイアウトは URL では変わりません。必要ならアプリで先に切り替えておきます</li>
+      <li>アプリで一度開いた (アクセスを許可した) フォルダの中のファイルだけを開けます</li>
+    </ul>
 
     <h2>お問い合わせ</h2>
     <div class="contact">
       <p>バグ報告・機能リクエストは以下からお願いします。</p>
       <p><a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">GitHub Issues</a></p>
+      <p><a href="mailto:support@jiikko.com">support@jiikko.com</a></p>
     </div>
   </div>
 </body>

@@ -11,7 +11,9 @@ env:
 jobs:
   build:
     if: github.actor != 'dependabot[bot]'
-    runs-on: ubuntu-slim
+    # ubuntu-slim はコンテナの中で動き Docker daemon が無いので、docker build が
+    # /var/run/docker.sock に繋げず落ちる。Deploy to production と同じ runner に揃える。
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
       - id: "auth"
@@ -34,7 +36,7 @@ jobs:
   deploy:
     if: github.actor != 'dependabot[bot]'
     needs: build
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
       - id: "auth"
