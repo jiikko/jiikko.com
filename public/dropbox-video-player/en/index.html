@@ -14,15 +14,16 @@
     <title>Multi-Video Player for Dropbox — Play multiple videos side by side</title>
     <meta
       name="description"
-      content="Play multiple Dropbox videos simultaneously on macOS. Switch layouts from 1x1 to 3x3, save your work in workspaces, and control every clip at once for faster review."
+      content="Play multiple Dropbox videos simultaneously on macOS. Switch layouts from 1x1 to 3x3, keep your work state in tabs, and control every clip at once for faster review."
     />
     <meta property="og:title" content="Multi-Video Player for Dropbox — Play multiple videos side by side" />
     <meta
       property="og:description"
-      content="Play multiple Dropbox videos simultaneously on macOS. Switch layouts from 1x1 to 3x3, save your work in workspaces, and control every clip at once for faster review."
+      content="Play multiple Dropbox videos simultaneously on macOS. Switch layouts from 1x1 to 3x3, keep your work state in tabs, and control every clip at once for faster review."
     />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="../og-image.png" />
+    <link rel="icon" type="image/png" href="../icon-128.png" />
     <link rel="alternate" hreflang="ja" href="https://jiikko.com/dropbox-video-player/" />
     <link rel="alternate" hreflang="en" href="https://jiikko.com/dropbox-video-player/en/" />
     <link rel="alternate" hreflang="x-default" href="https://jiikko.com/dropbox-video-player/" />
@@ -39,6 +40,7 @@
         --shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
         --brand: #2b70ff;
         --brand2: #7b61ff;
+        --link: #8fb4ff;
         --ok: #22c55e;
         --warn: #f59e0b;
         --bad: #ef4444;
@@ -54,6 +56,7 @@
           --card2: rgba(255, 255, 255, 0.92);
           --border: rgba(11, 19, 36, 0.12);
           --shadow: 0 22px 70px rgba(11, 19, 36, 0.14);
+          --link: #1d5bdb;
         }
       }
 
@@ -70,11 +73,7 @@
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
         color: var(--fg);
-        background:
-          radial-gradient(1200px 600px at 10% 0%, rgba(43, 112, 255, 0.38), transparent 60%),
-          radial-gradient(900px 500px at 80% 10%, rgba(123, 97, 255, 0.26), transparent 55%),
-          radial-gradient(800px 500px at 30% 95%, rgba(34, 197, 94, 0.14), transparent 55%),
-          var(--bg);
+        background: var(--bg);
         line-height: 1.6;
       }
 
@@ -159,49 +158,43 @@
         background: var(--card2);
       }
 
-      .btn-primary {
+      /* .btn.btn-primary にしているのは、.btn:hover / .nav a / .nav a:hover (白系の背景・灰色の文字) に勝たせるため */
+      .btn.btn-primary {
+        color: #fff;
         border-color: color-mix(in srgb, var(--brand), transparent 40%);
-        background: linear-gradient(135deg, color-mix(in srgb, var(--brand), white 0%), color-mix(in srgb, var(--brand2), white 0%));
+        background: linear-gradient(135deg, #1d5bdb, #6247e6);
         box-shadow: 0 18px 45px color-mix(in srgb, var(--brand), transparent 70%);
       }
 
-      .btn-primary:hover {
+      .btn.btn-primary:hover {
+        color: #fff;
         border-color: color-mix(in srgb, var(--brand), transparent 10%);
+        background: linear-gradient(135deg, #174cba, #5238cf);
       }
 
+      /* 1 段目はキャッチコピーを全幅で 1 行、2 段目は説明 (左) とスクリーンショット (右) */
       .hero {
-        padding: 64px 0 28px;
+        padding: 24px 0 0;
         display: grid;
         grid-template-columns: 1.08fr 0.92fr;
-        gap: 28px;
+        gap: 18px 28px;
         align-items: center;
+      }
+
+      .hero h1 {
+        grid-column: 1 / -1;
       }
 
       @media (max-width: 920px) {
         .hero {
           grid-template-columns: 1fr;
-          padding-top: 42px;
+          padding-top: 20px;
         }
       }
 
-      .pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 8px 12px;
-        border: 1px solid var(--border);
-        border-radius: 999px;
-        background: color-mix(in srgb, var(--card), transparent 0%);
-        color: var(--muted);
-        font-size: 13px;
-      }
-
-      .pill strong {
-        color: var(--fg);
-      }
-
       h1 {
-        margin: 14px 0 12px;
+        margin: 0;
+        word-break: keep-all;
         line-height: 1.08;
         font-size: clamp(34px, 4.4vw, 54px);
         letter-spacing: -0.6px;
@@ -270,8 +263,13 @@
         color: var(--fg);
       }
 
+      /* セクション間の余白は見出しの上の 15px だけにする (前のセクションの下は 0) */
       section {
-        padding: 34px 0;
+        padding: 15px 0 0;
+      }
+
+      #how {
+        padding-top: 25px;
       }
 
       .section-title {
@@ -299,14 +297,20 @@
 
       .card {
         padding: 16px;
+        display: grid;
+        grid-template-columns: 40px 1fr;
+        column-gap: 12px;
+        row-gap: 10px;
+        align-items: center;
       }
 
       .card h3 {
-        margin: 8px 0 6px;
+        margin: 0;
         font-size: 16px;
       }
 
       .card p {
+        grid-column: 1 / -1;
         margin: 0;
         color: var(--muted);
         font-size: 14px;
@@ -327,7 +331,7 @@
         display: grid;
         grid-template-columns: 0.95fr 1.05fr;
         gap: 16px;
-        align-items: center;
+        align-items: start;
       }
 
       @media (max-width: 920px) {
@@ -360,37 +364,6 @@
         font-weight: 800;
       }
 
-      .shots {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-      }
-
-      @media (max-width: 920px) {
-        .shots {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      .shot {
-        padding: 12px;
-      }
-
-      .shot img {
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: calc(var(--radius) - 10px);
-        border: 1px solid var(--border);
-        background: #fff;
-      }
-
-      .shot figcaption {
-        margin-top: 10px;
-        color: var(--muted);
-        font-size: 13px;
-      }
-
       .pricing {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -411,7 +384,7 @@
         align-items: center;
       }
 
-      .price-single .price-main .money {
+      .price-single .price-main .price-row {
         margin-top: 10px;
       }
 
@@ -444,19 +417,27 @@
       }
 
       .tag {
-        font-size: 12px;
-        color: var(--muted);
-        border: 1px solid var(--border);
-        background: color-mix(in srgb, var(--card), transparent 0%);
-        padding: 6px 10px;
+        font-size: 13px;
+        font-weight: 750;
+        color: var(--fg);
+        border: 1px solid color-mix(in srgb, var(--brand), transparent 30%);
+        background: color-mix(in srgb, var(--brand), transparent 82%);
+        padding: 6px 12px;
         border-radius: 999px;
+      }
+
+      .price-row {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px 14px;
+        margin: 12px 0 8px;
       }
 
       .money {
         font-size: 34px;
         font-weight: 850;
         letter-spacing: -0.8px;
-        margin: 12px 0 8px;
       }
 
       .list {
@@ -492,6 +473,17 @@
         color: var(--muted);
       }
 
+      /* 全体の a は装飾なし (ナビ・ボタン用)。本文中のリンクだけ下線と色でリンクと分かるようにする */
+      details p a {
+        color: var(--link);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      details p a:hover {
+        text-decoration-thickness: 2px;
+      }
+
       .footer {
         border-top: 1px solid var(--border);
         padding: 22px 0 38px;
@@ -511,6 +503,7 @@
     <header class="topbar">
       <div class="container topbar-inner">
         <a class="brand" href="#top">
+          <img src="../icon-128.png" alt="Multi-Video Player for Dropbox" width="28" height="28" style="border-radius: 6px;" />
           <span>Multi-Video Player for Dropbox</span>
         </a>
         <nav class="nav" aria-label="In-page navigation">
@@ -528,13 +521,8 @@
 
     <main id="top" class="container">
       <section class="hero" aria-label="Hero">
+        <h1>Play your Dropbox videos side by side.</h1>
         <div>
-          <div class="pill">
-            <span>macOS only / Dropbox integration</span>
-            <span aria-hidden="true">•</span>
-            <strong>Multi-video playback</strong>
-          </div>
-          <h1>Play your Dropbox videos side by side.</h1>
           <p class="lead">
             A macOS app that plays multiple videos at once so you can compare them at a glance.
             Ideal for <strong>reviewing cuts, checking training material, or any review workflow</strong>
@@ -550,7 +538,7 @@
             <div class="badge"><b>Simultaneous preview</b> up to 9 slots</div>
             <div class="badge"><b>Flexible layout</b> 1x1 – 3x3</div>
             <div class="badge"><b>Batch control</b> play / pause / seek</div>
-            <div class="badge"><b>Workspaces</b> switch with tabs</div>
+            <div class="badge"><b>Tabs</b> switch work state</div>
             <div class="badge"><b>Playback speed</b> up to 5x</div>
             <div class="badge"><b>Keyboard friendly</b></div>
           </div>
@@ -610,8 +598,8 @@
                 <path d="M9 3v18M3 9h18" stroke="currentColor" stroke-width="2" />
               </svg>
             </div>
-            <h3>Workspaces</h3>
-            <p>Keep multiple sessions with tabs. Switch between project-specific video sets in a click.</p>
+            <h3>Tabs</h3>
+            <p>Each tab keeps its own work state. Switch tabs to move to a different set of videos.</p>
           </article>
 
           <article class="panel card">
@@ -806,32 +794,6 @@
         </div>
       </section>
 
-      <section aria-label="Screenshots">
-        <h2 class="section-title">Screenshots</h2>
-        <p class="section-desc">A tour of the key features.</p>
-        <div class="shots">
-          <figure class="panel shot" data-screenshot="03_multi_playback.png">
-            <img src="../03_multi_playback.png" alt="Playing multiple videos simultaneously" />
-            <figcaption>Multiple videos playing at once</figcaption>
-          </figure>
-
-          <figure class="panel shot" data-screenshot="04_layout.png">
-            <img src="../04_layout.png" alt="Switching layouts" />
-            <figcaption>Flexible layouts (1x1 – 3x3)</figcaption>
-          </figure>
-
-          <figure class="panel shot" data-screenshot="05_sidebar.png">
-            <img src="../05_sidebar.png" alt="Sidebar and Dropbox browser" />
-            <figcaption>Quick access to your Dropbox videos</figcaption>
-          </figure>
-
-          <figure class="panel shot" data-screenshot="06_tabs.png">
-            <img src="../06_tabs.png" alt="Workspace tabs" />
-            <figcaption>Keep work state with workspaces</figcaption>
-          </figure>
-        </div>
-      </section>
-
       <section id="pricing" aria-label="Pricing">
         <h2 class="section-title">Pricing</h2>
         <p class="section-desc">
@@ -842,9 +804,11 @@
           <div class="price-main">
             <div class="plan">
               <h3>Pro</h3>
+            </div>
+            <div class="price-row">
+              <div class="money">¥550<span style="font-size: 14px; font-weight: 650; color: var(--muted)"> / month (JPY, tax incl.)</span></div>
               <span class="tag">7-day free trial included</span>
             </div>
-            <div class="money">¥550<span style="font-size: 14px; font-weight: 650; color: var(--muted)"> / month (JPY, tax incl.)</span></div>
             <p style="margin: 0 0 16px; color: var(--muted); font-size: 14px">
               Try all features free for the first 7 days. The Mac App Store will show the price in your local currency before you subscribe.
             </p>
@@ -853,7 +817,7 @@
           <ul class="list">
             <li>Up to 9 simultaneous previews</li>
             <li>Synchronized playback / batch controls</li>
-            <li>Workspaces (tab switching, state restore)</li>
+            <li>Tabs (switching, state restore)</li>
             <li>Flexible layouts (1x1 – 3x3) and up to 5x playback speed</li>
           </ul>
         </div>
@@ -867,7 +831,7 @@
           <summary>What does this app do?</summary>
           <p>
             It plays multiple videos from your Dropbox simultaneously and lets you switch layouts while comparing them.
-            Workspaces keep your work state, and batch controls let you drive every clip at once.
+            Tabs keep your work state, and batch controls let you drive every clip at once.
           </p>
         </details>
         <details>
@@ -912,6 +876,13 @@ NSWorkspace.shared.open(URL(string: urlString)!)</code></pre>
           <p>Yes. The app is built around videos stored in Dropbox, so a Dropbox account is required.</p>
         </details>
         <details>
+          <summary>Can it play video files stored on my Mac?</summary>
+          <p>
+            This app plays videos stored in Dropbox. To play local video files side by side, try our sister app,
+            <a href="https://jiikko.com/video-grid-player/">Video Grid Player</a> — it plays up to 9 videos (3x3) at once.
+          </p>
+        </details>
+        <details>
           <summary>Is there a Windows version?</summary>
           <p>At this time the app is macOS only.</p>
         </details>
@@ -922,9 +893,9 @@ NSWorkspace.shared.open(URL(string: urlString)!)</code></pre>
         <div class="panel" style="padding: 18px">
           <div class="split" style="gap: 14px">
             <div>
-              <h2 class="section-title" style="margin-bottom: 8px">Make Dropbox video review feel lighter.</h2>
+              <h2 class="section-title" style="margin-bottom: 8px">Line up your Dropbox videos and compare them at a glance.</h2>
               <p class="section-desc" style="margin: 0">
-                Simultaneous playback, workspaces, and batch controls — for smoother comparisons.
+                Simultaneous playback, tabs, and batch controls — for smoother comparisons.
               </p>
             </div>
             <div style="display: flex; justify-content: flex-end; align-items: center; gap: 12px; flex-wrap: wrap">
@@ -946,6 +917,7 @@ NSWorkspace.shared.open(URL(string: urlString)!)</code></pre>
               <a href="../privacy-en.html">Privacy Policy</a>
               <a href="../terms-en.html">Terms of Use</a>
               <a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">Support</a>
+              <a href="mailto:support@jiikko.com">support@jiikko.com</a>
               <a href="../" hreflang="ja">日本語</a>
             </div>
           </div>
