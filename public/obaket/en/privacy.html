@@ -85,8 +85,9 @@
 
     <h3>1.1 Credentials (connection credentials)</h3>
     <ul>
-      <li>Credentials used to connect to cloud storage — such as access keys / secret keys, OAuth tokens, and WebDAV usernames and passwords — are <strong>stored only in the macOS Keychain on your Mac</strong>.</li>
+      <li>Credentials used to connect to cloud storage — such as access keys / secret keys, OAuth tokens, and server usernames and passwords — are <strong>stored only in the macOS Keychain on your Mac</strong>.</li>
       <li>These credentials are never sent to the developer or any other third party. They are used solely to connect to your cloud services.</li>
+      <li>If you use the export feature, the exported file (or the clipboard) contains your credentials unencrypted. Keep anything you export safe.</li>
     </ul>
 
     <h3>1.2 Settings and Cache Stored Locally</h3>
@@ -108,7 +109,7 @@
     <ul>
       <li>When you connect Box, the App accesses the Box API through Box OAuth 2.0, with permission granted by you from your own Box account.</li>
       <li>The permission requested is to read and write the files and folders stored in Box. It is used to list, preview, download, upload, create folders, rename, move, copy, and delete.</li>
-      <li>The tokens received from Box are stored only in the macOS Keychain. The Box refresh token is not included when you export connections.</li>
+      <li>The tokens received from Box are stored in the macOS Keychain. When you export connections, the access token is included but the refresh token is not (on the importing Mac, you need to reconnect after the access token expires).</li>
       <li>Data obtained from Box (file contents and metadata such as file names and folder structure) is used <strong>solely to carry out the actions you perform within the App</strong>. It is never sent to the developer’s servers, used for advertising or analytics, or shared with any third party other than you.</li>
     </ul>
 
@@ -126,8 +127,8 @@
     <p>The App communicates only with the following destinations:</p>
     <ul>
       <li><strong>The cloud storage and servers you configure</strong> (such as Amazon S3 / Cloudflare R2 / Dropbox / Box /<!-- Google Drive / --> PikPak WebDAV, and the SFTP, FTP, SMB, and WebDAV servers you specify). Encryption depends on the connection type: cloud services and HTTPS WebDAV use HTTPS, SFTP uses SSH, and FTPS uses TLS. The App asks you to confirm before connecting with unencrypted FTP, and uses HTTP WebDAV only when you specify an <code>http://</code> address.</li>
-      <li>When you use Dropbox, authentication is performed with Dropbox’s authentication servers via OAuth using your own account.</li>
-      <li>When you use Box, authentication is performed with Box’s authentication servers (<code>account.box.com</code> / <code>api.box.com</code>) via OAuth using your own account, and file operations go to the Box API (<code>api.box.com</code> / <code>upload.box.com</code>).</li>
+      <li><strong>The API, authentication, and file delivery hosts of the services you choose.</strong> For Dropbox: Dropbox’s authentication servers and <code>api.dropboxapi.com</code> / <code>content.dropboxapi.com</code>. For Box: <code>account.box.com</code> / <code>api.box.com</code> / <code>upload.box.com</code>, and the hosts Box uses to deliver files and thumbnails, such as <code>*.boxcloud.com</code> / <code>*.boxcdn.net</code>. For Internet Archive: <code>archive.org</code> and its download servers. Authentication always uses your own account.</li>
+      <li><strong>Discovery of SMB servers on your local network.</strong> When you create an SMB connection, the App uses Bonjour (local network discovery) to suggest servers.</li>
       <!-- <li>When you use Google Drive, authentication is performed with Google’s authentication servers (<code>accounts.google.com</code> / <code>oauth2.googleapis.com</code>) and the Google Drive API (<code>www.googleapis.com</code>) via OAuth using your own account.</li> -->
     </ul>
     <p>No transmissions are made to any destination other than the above.</p>

@@ -87,6 +87,7 @@
     <ul>
       <li>クラウドストレージに接続するためのアクセスキー / シークレットキー、OAuth トークン、各サーバーのユーザー名・パスワードなどの認証情報は、<strong>お使いの Mac の macOS キーチェーン（Keychain）にのみ保存</strong>されます。</li>
       <li>これらの認証情報が開発者やその他の第三者に送信されることはありません。各クラウドサービスへの接続にのみ使用されます。</li>
+      <li>接続を書き出す機能を使うと、書き出したファイル（またはクリップボード）に認証情報が暗号化されずに含まれます。書き出したものは、あなた自身で安全に管理してください。</li>
     </ul>
 
     <h3>1.2 ローカルに保存される設定・キャッシュ</h3>
@@ -108,7 +109,7 @@
     <ul>
       <li>あなたが Box に接続すると、本アプリは Box の OAuth 2.0 認証を通じて、あなた自身の Box アカウントの許可を得た上で Box API にアクセスします。</li>
       <li>許可を求める権限は、Box に保存されたファイルとフォルダの読み取りと書き込みです。一覧表示・プレビュー・ダウンロード・アップロード・フォルダ作成・名前の変更・移動・コピー・削除のために使います。</li>
-      <li>Box から受け取ったトークンは macOS キーチェーンにのみ保存されます。接続を書き出す機能を使っても、Box のリフレッシュトークンは書き出しに含めません。</li>
+      <li>Box から受け取ったトークンは macOS キーチェーンに保存されます。接続を書き出すと、アクセストークンは書き出しに含まれますが、リフレッシュトークンは含めません（取り込んだ先では、アクセストークンの期限が切れた後に再接続が必要です）。</li>
       <li>Box から取得したデータ（ファイル本体・ファイル名・フォルダ構成などのメタデータ）は、<strong>あなたが本アプリ上で行った操作を実行する目的にのみ</strong>使用されます。開発者のサーバーへの送信、広告・分析目的での利用、あなた以外の第三者への共有は一切行いません。</li>
     </ul>
 
@@ -126,8 +127,8 @@
     <p>本アプリが通信するのは、次の宛先のみです：</p>
     <ul>
       <li><strong>あなたが設定したクラウドストレージやサーバーの接続先</strong>（Amazon S3 / Cloudflare R2 / Dropbox / Box /<!-- Google ドライブ / --> PikPak の WebDAV、あなたが指定した SFTP・FTP・SMB・WebDAV のサーバーなど）。通信の暗号化は接続の種類によります。クラウドサービスと HTTPS の WebDAV は HTTPS、SFTP は SSH、FTPS は TLS で暗号化されます。暗号化しない FTP は接続の前に確認があり、HTTP の WebDAV はあなたが <code>http://</code> の接続先を指定したときだけ使われます。</li>
-      <li>Dropbox を利用する場合、認証はあなた自身のアカウントによる OAuth を通じて Dropbox 社の認証サーバーと行われます。</li>
-      <li>Box を利用する場合、認証はあなた自身のアカウントによる OAuth を通じて Box 社の認証サーバー（<code>account.box.com</code> / <code>api.box.com</code>）と行われ、ファイルの操作は Box API（<code>api.box.com</code> / <code>upload.box.com</code>）と行われます。</li>
+      <li><strong>あなたが選んだサービスの API・認証・ファイル配信のホスト</strong>。Dropbox は Dropbox 社の認証サーバーと <code>api.dropboxapi.com</code> / <code>content.dropboxapi.com</code>、Box は <code>account.box.com</code> / <code>api.box.com</code> / <code>upload.box.com</code> と、ファイルやサムネイルの配信に使われる <code>*.boxcloud.com</code> / <code>*.boxcdn.net</code> など、Internet Archive は <code>archive.org</code> とそのダウンロードの配信先です。認証はいずれも、あなた自身のアカウントで行われます。</li>
+      <li><strong>同じネットワーク内の SMB サーバーの探索</strong>。SMB の接続を作る画面では、接続先の候補を出すために Bonjour（ローカルネットワーク内の探索）を使います。</li>
       <!-- <li>Google ドライブを利用する場合、認証はあなた自身のアカウントによる OAuth を通じて Google 社の認証サーバー（<code>accounts.google.com</code> / <code>oauth2.googleapis.com</code>）および Google Drive API（<code>www.googleapis.com</code>）と行われます。</li> -->
     </ul>
     <p>上記以外への送信は行いません。</p>
