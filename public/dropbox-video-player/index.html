@@ -160,23 +160,31 @@
         background: var(--card2);
       }
 
-      .btn-primary {
+      /* .btn.btn-primary にしているのは、.btn:hover / .nav a / .nav a:hover (白系の背景・灰色の文字) に勝たせるため */
+      .btn.btn-primary {
         color: #fff;
         border-color: color-mix(in srgb, var(--brand), transparent 40%);
         background: linear-gradient(135deg, #1d5bdb, #6247e6);
         box-shadow: 0 18px 45px color-mix(in srgb, var(--brand), transparent 70%);
       }
 
-      .btn-primary:hover {
+      .btn.btn-primary:hover {
+        color: #fff;
         border-color: color-mix(in srgb, var(--brand), transparent 10%);
+        background: linear-gradient(135deg, #174cba, #5238cf);
       }
 
+      /* 1 段目はキャッチコピーを全幅で 1 行、2 段目は説明 (左) とスクリーンショット (右) */
       .hero {
-        padding: 24px 0 28px;
+        padding: 24px 0 0;
         display: grid;
         grid-template-columns: 1.08fr 0.92fr;
-        gap: 28px;
+        gap: 18px 28px;
         align-items: center;
+      }
+
+      .hero h1 {
+        grid-column: 1 / -1;
       }
 
       @media (max-width: 920px) {
@@ -186,10 +194,9 @@
         }
       }
 
-
-
       h1 {
-        margin: 0 0 12px;
+        margin: 0;
+        word-break: keep-all;
         line-height: 1.08;
         font-size: clamp(34px, 4.4vw, 54px);
         letter-spacing: -0.6px;
@@ -258,8 +265,13 @@
         color: var(--fg);
       }
 
+      /* セクション間の余白は見出しの上の 15px だけにする (前のセクションの下は 0) */
       section {
-        padding: 34px 0;
+        padding: 15px 0 0;
+      }
+
+      #how {
+        padding-top: 25px;
       }
 
       .section-title {
@@ -321,7 +333,7 @@
         display: grid;
         grid-template-columns: 0.95fr 1.05fr;
         gap: 16px;
-        align-items: center;
+        align-items: start;
       }
 
       @media (max-width: 920px) {
@@ -354,37 +366,6 @@
         font-weight: 800;
       }
 
-      .shots {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-      }
-
-      @media (max-width: 920px) {
-        .shots {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      .shot {
-        padding: 12px;
-      }
-
-      .shot img {
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: calc(var(--radius) - 10px);
-        border: 1px solid var(--border);
-        background: #fff;
-      }
-
-      .shot figcaption {
-        margin-top: 10px;
-        color: var(--muted);
-        font-size: 13px;
-      }
-
       .pricing {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -405,7 +386,7 @@
         align-items: center;
       }
 
-      .price-single .price-main .money {
+      .price-single .price-main .price-row {
         margin-top: 10px;
       }
 
@@ -447,11 +428,18 @@
         border-radius: 999px;
       }
 
+      .price-row {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px 14px;
+        margin: 12px 0 8px;
+      }
+
       .money {
         font-size: 34px;
         font-weight: 850;
         letter-spacing: -0.8px;
-        margin: 12px 0 8px;
       }
 
       .list {
@@ -523,8 +511,8 @@
 
     <main id="top" class="container">
       <section class="hero" aria-label="ヒーロー">
+        <h1>Dropboxの動画を、<wbr />並べて同時再生。</h1>
         <div>
-          <h1>Dropboxの動画を、並べて同時再生。</h1>
           <p class="lead">
             複数の動画を並べて再生し、見比べながら確認できるmacOSアプリ。
             <strong>映像制作のカット比較、教材の確認、レビュー作業</strong>など、
@@ -834,95 +822,6 @@
         </div>
       </section>
 
-      <section aria-label="スクリーンショット">
-        <h2 class="section-title">スクリーンショット</h2>
-        <p class="section-desc">アプリの主要機能をご紹介します。</p>
-        <div class="shots">
-          <!--
-            📸 スクショ1: 複数動画を同時再生
-            ────────────────────────────────
-            ★ ファイル名: 03_multi_playback.png ★
-
-            見せたい価値: 「複数動画を並べて見比べられる」
-
-            推奨構成:
-            - 2x2 または 3x3 レイアウト
-            - 全スロットに動画がロードされている
-            - 動画のサムネイルが異なる（同じシーンの別テイク比較など）
-            - 再生中の状態（プログレスバーが途中）
-
-            ポイント:
-            - App Storeの「価値の核」を伝える1枚目に相当
-          -->
-          <figure class="panel shot" data-screenshot="03_multi_playback.png">
-            <img src="./03_multi_playback.png" alt="複数動画を同時再生" />
-            <figcaption>複数動画を同時再生</figcaption>
-          </figure>
-
-          <!--
-            📸 スクショ2: レイアウト可変
-            ────────────────────────────────
-            ★ ファイル名: 04_layout.png ★
-
-            見せたい価値: 「用途に合わせてレイアウトを切り替えられる」
-
-            推奨構成:
-            - レイアウト切り替えUIが見えている状態（ヘッダーのドロップダウン）
-            - または、1x1 → 2x2 → 3x3 の比較画像（横並び合成）
-            - 切り替え前後のビフォーアフターがわかると◎
-
-            ポイント:
-            - 「1x1〜3x3」という数字が視覚的にわかるように
-          -->
-          <figure class="panel shot" data-screenshot="04_layout.png">
-            <img src="./04_layout.png" alt="レイアウト切り替え" />
-            <figcaption>レイアウト可変（1x1〜3x3）</figcaption>
-          </figure>
-
-          <!--
-            📸 スクショ3: サイドバー / Dropboxブラウズ
-            ────────────────────────────────
-            ★ ファイル名: 05_sidebar.png ★
-
-            見せたい価値: 「Dropbox内の動画に素早くアクセスできる」
-
-            推奨構成:
-            - サイドバーが展開されている状態
-            - フォルダツリーとファイルリストが見える
-            - 動画サムネイルが表示されている
-            - 検索バーが見えるとなお良い
-
-            ポイント:
-            - Dropbox連携であることを視覚的に伝える
-          -->
-          <figure class="panel shot" data-screenshot="05_sidebar.png">
-            <img src="./05_sidebar.png" alt="サイドバーとDropboxブラウズ" />
-            <figcaption>Dropbox内の動画にすぐアクセス</figcaption>
-          </figure>
-
-          <!--
-            📸 スクショ4: タブ
-            ────────────────────────────────
-            ★ ファイル名: 06_tabs.png ★
-
-            見せたい価値: 「複数の作業状態をタブで切り替えられる」
-
-            推奨構成:
-            - タブバーに複数のタブが並んでいる状態
-            - 各タブに異なる名前（プロジェクト名など）
-            - アクティブタブとそうでないタブの区別が見える
-
-            代替案:
-            - コントロールバー（再生/停止/速度調整）にフォーカスした画像
-            - キーボードショートカットのオーバーレイ表示
-          -->
-          <figure class="panel shot" data-screenshot="06_tabs.png">
-            <img src="./06_tabs.png" alt="タブ" />
-            <figcaption>タブで作業状態を保持</figcaption>
-          </figure>
-        </div>
-      </section>
-
       <section id="pricing" aria-label="料金">
         <h2 class="section-title">料金</h2>
         <p class="section-desc">
@@ -933,9 +832,11 @@
           <div class="price-main">
             <div class="plan">
               <h3>Pro</h3>
+            </div>
+            <div class="price-row">
+              <div class="money">¥550<span style="font-size: 14px; font-weight: 650; color: var(--muted)"> / 月（税込）</span></div>
               <span class="tag">7日間無料トライアル付き</span>
             </div>
-            <div class="money">¥550<span style="font-size: 14px; font-weight: 650; color: var(--muted)"> / 月（税込）</span></div>
             <p style="margin: 0 0 16px; color: var(--muted); font-size: 14px">
               最初の7日間は無料で全機能をお試しいただけます。課金はMac App Storeのアカウント設定に従います。
             </p>
@@ -1013,7 +914,7 @@ NSWorkspace.shared.open(URL(string: urlString)!)</code></pre>
         <div class="panel" style="padding: 18px">
           <div class="split" style="gap: 14px">
             <div>
-              <h2 class="section-title" style="margin-bottom: 8px">Dropboxの動画プレビューを、もっと快適に。</h2>
+              <h2 class="section-title" style="margin-bottom: 8px">Dropboxの動画を並べて、すぐ見比べる。</h2>
               <p class="section-desc" style="margin: 0">
                 複数同時再生、タブ、一括操作で、見比べ作業を軽くする。
               </p>

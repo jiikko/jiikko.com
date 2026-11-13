@@ -156,23 +156,31 @@
         background: var(--card2);
       }
 
-      .btn-primary {
+      /* .btn.btn-primary にしているのは、.btn:hover / .nav a / .nav a:hover (白系の背景・灰色の文字) に勝たせるため */
+      .btn.btn-primary {
         color: #fff;
         border-color: color-mix(in srgb, var(--brand), transparent 40%);
         background: linear-gradient(135deg, #1d5bdb, #6247e6);
         box-shadow: 0 18px 45px color-mix(in srgb, var(--brand), transparent 70%);
       }
 
-      .btn-primary:hover {
+      .btn.btn-primary:hover {
+        color: #fff;
         border-color: color-mix(in srgb, var(--brand), transparent 10%);
+        background: linear-gradient(135deg, #174cba, #5238cf);
       }
 
+      /* 1 段目はキャッチコピーを全幅で 1 行、2 段目は説明 (左) とスクリーンショット (右) */
       .hero {
-        padding: 24px 0 28px;
+        padding: 24px 0 0;
         display: grid;
         grid-template-columns: 1.08fr 0.92fr;
-        gap: 28px;
+        gap: 18px 28px;
         align-items: center;
+      }
+
+      .hero h1 {
+        grid-column: 1 / -1;
       }
 
       @media (max-width: 920px) {
@@ -182,10 +190,9 @@
         }
       }
 
-
-
       h1 {
-        margin: 0 0 12px;
+        margin: 0;
+        word-break: keep-all;
         line-height: 1.08;
         font-size: clamp(34px, 4.4vw, 54px);
         letter-spacing: -0.6px;
@@ -254,8 +261,13 @@
         color: var(--fg);
       }
 
+      /* セクション間の余白は見出しの上の 15px だけにする (前のセクションの下は 0) */
       section {
-        padding: 34px 0;
+        padding: 15px 0 0;
+      }
+
+      #how {
+        padding-top: 25px;
       }
 
       .section-title {
@@ -317,7 +329,7 @@
         display: grid;
         grid-template-columns: 0.95fr 1.05fr;
         gap: 16px;
-        align-items: center;
+        align-items: start;
       }
 
       @media (max-width: 920px) {
@@ -350,37 +362,6 @@
         font-weight: 800;
       }
 
-      .shots {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-      }
-
-      @media (max-width: 920px) {
-        .shots {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      .shot {
-        padding: 12px;
-      }
-
-      .shot img {
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: calc(var(--radius) - 10px);
-        border: 1px solid var(--border);
-        background: #fff;
-      }
-
-      .shot figcaption {
-        margin-top: 10px;
-        color: var(--muted);
-        font-size: 13px;
-      }
-
       .pricing {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -401,7 +382,7 @@
         align-items: center;
       }
 
-      .price-single .price-main .money {
+      .price-single .price-main .price-row {
         margin-top: 10px;
       }
 
@@ -443,11 +424,18 @@
         border-radius: 999px;
       }
 
+      .price-row {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px 14px;
+        margin: 12px 0 8px;
+      }
+
       .money {
         font-size: 34px;
         font-weight: 850;
         letter-spacing: -0.8px;
-        margin: 12px 0 8px;
       }
 
       .list {
@@ -520,8 +508,8 @@
 
     <main id="top" class="container">
       <section class="hero" aria-label="Hero">
+        <h1>Play your Dropbox videos side by side.</h1>
         <div>
-          <h1>Play your Dropbox videos side by side.</h1>
           <p class="lead">
             A macOS app that plays multiple videos at once so you can compare them at a glance.
             Ideal for <strong>reviewing cuts, checking training material, or any review workflow</strong>
@@ -793,32 +781,6 @@
         </div>
       </section>
 
-      <section aria-label="Screenshots">
-        <h2 class="section-title">Screenshots</h2>
-        <p class="section-desc">A tour of the key features.</p>
-        <div class="shots">
-          <figure class="panel shot" data-screenshot="03_multi_playback.png">
-            <img src="../03_multi_playback.png" alt="Playing multiple videos simultaneously" />
-            <figcaption>Multiple videos playing at once</figcaption>
-          </figure>
-
-          <figure class="panel shot" data-screenshot="04_layout.png">
-            <img src="../04_layout.png" alt="Switching layouts" />
-            <figcaption>Flexible layouts (1x1 – 3x3)</figcaption>
-          </figure>
-
-          <figure class="panel shot" data-screenshot="05_sidebar.png">
-            <img src="../05_sidebar.png" alt="Sidebar and Dropbox browser" />
-            <figcaption>Quick access to your Dropbox videos</figcaption>
-          </figure>
-
-          <figure class="panel shot" data-screenshot="06_tabs.png">
-            <img src="../06_tabs.png" alt="Tabs" />
-            <figcaption>Keep work state with tabs</figcaption>
-          </figure>
-        </div>
-      </section>
-
       <section id="pricing" aria-label="Pricing">
         <h2 class="section-title">Pricing</h2>
         <p class="section-desc">
@@ -829,9 +791,11 @@
           <div class="price-main">
             <div class="plan">
               <h3>Pro</h3>
+            </div>
+            <div class="price-row">
+              <div class="money">¥550<span style="font-size: 14px; font-weight: 650; color: var(--muted)"> / month (JPY, tax incl.)</span></div>
               <span class="tag">7-day free trial included</span>
             </div>
-            <div class="money">¥550<span style="font-size: 14px; font-weight: 650; color: var(--muted)"> / month (JPY, tax incl.)</span></div>
             <p style="margin: 0 0 16px; color: var(--muted); font-size: 14px">
               Try all features free for the first 7 days. The Mac App Store will show the price in your local currency before you subscribe.
             </p>
@@ -909,7 +873,7 @@ NSWorkspace.shared.open(URL(string: urlString)!)</code></pre>
         <div class="panel" style="padding: 18px">
           <div class="split" style="gap: 14px">
             <div>
-              <h2 class="section-title" style="margin-bottom: 8px">Make Dropbox video review feel lighter.</h2>
+              <h2 class="section-title" style="margin-bottom: 8px">Line up your Dropbox videos and compare them at a glance.</h2>
               <p class="section-desc" style="margin: 0">
                 Simultaneous playback, tabs, and batch controls — for smoother comparisons.
               </p>
