@@ -78,7 +78,7 @@
 
     <div class="highlight">
       <p><strong>Your data never reaches the developer</strong></p>
-      <p>The App has no server operated by the developer. The App communicates <strong>only with the cloud storage endpoints you configure</strong>, and your credentials and files are never sent to or collected by the developer. The App does not perform analytics, tracking, advertising, or send any usage statistics.</p>
+      <p>The App has no server operated by the developer. The App communicates <strong>only with the storage and servers you configure and the destinations they use for authentication and delivery</strong> (section 2), and your credentials and files are never sent to or collected by the developer. The App does not perform analytics, tracking for advertising, or send any usage statistics.</p>
     </div>
 
     <h2>1. Information We Handle</h2>
@@ -90,14 +90,17 @@
       <li>If you use the export feature, the exported file (or the clipboard) contains your credentials unencrypted. Keep anything you export safe.</li>
     </ul>
 
-    <h3>1.2 Settings and Cache Stored Locally</h3>
+    <h3>1.2 Data Stored on Your Mac</h3>
     <ul>
-      <li><strong>Connection settings</strong>: connection name, endpoint, region, bucket, and other connection metadata (excluding credentials).</li>
-      <li><strong>Listing metadata cache</strong>: metadata such as file names, sizes, and modification dates used to speed up display (this does not include the contents of files themselves).</li>
-      <li><strong>App state</strong>: preferences such as window and tab state, display mode, the last location you opened, and folder access permissions (security-scoped bookmarks).</li>
-      <li><strong>Temporary files</strong>: temporary files downloaded for previewing or “Open with another app” (created in the system’s temporary area and automatically deleted when no longer needed).</li>
+      <li><strong>Connection settings</strong>: connection name, endpoint, region, bucket, and other connection metadata (excluding credentials). For services you sign in to, such as Box, this also includes the account display name (or the login email address when there is no name).</li>
+      <li><strong>Caches</strong>: listing metadata (file names, sizes, modification dates, and so on), thumbnails, and file contents fetched for previews or reuse, to speed up display.</li>
+      <li><strong>Transfer history and statistics</strong>: connection, remote path, operation type, transferred bytes, timestamps, and results or errors. Old statistics and finished history are deleted after about 30 days.</li>
+      <li><strong>Records of interrupted operations</strong>: paths, progress, and identifiers of unfinished uploads, used to resume or clean up transfers and moves.</li>
+      <li><strong>App state</strong>: preferences such as profiles, window and tab state, display mode, the last location you opened, and access permissions to files and folders you selected (security-scoped bookmarks).</li>
+      <li><strong>Diagnostic logs</strong>: to investigate problems, the App records operation types, remote paths, transferred bytes, results or errors, some keyboard shortcut presses, and abnormal terminations in macOS logging and the App’s log folder.</li>
+      <li><strong>Temporary files</strong>: files fetched for previewing or “Open with another app” are created in the system’s temporary area, and files older than about 24 hours are deleted at startup or the next time you open something. During downloads, the App creates a temporary <code>.part</code> file in the destination and replaces it on completion. These files may remain after abnormal termination.</li>
     </ul>
-    <p>All of these are stored only on your Mac and are never transmitted externally.</p>
+    <p>The App has no feature that sends any of this to the developer.</p>
 
     <h3>1.3 Files in the Cloud</h3>
     <ul>
@@ -108,7 +111,7 @@
     <h3>1.4 Access to Box</h3>
     <ul>
       <li>When you connect Box, the App accesses the Box API through Box OAuth 2.0, with permission granted by you from your own Box account.</li>
-      <li>The permission requested is to read and write the files and folders stored in Box. It is used to list, preview, download, upload, create folders, rename, move, copy, and delete.</li>
+      <li>The permission requested is to read and write the files and folders stored in Box. It is used to list, preview, download, upload, create folders, rename, move, copy files, and delete. The App also reads your Box user information to show the connected account’s name and to check upload limits.</li>
       <li>The tokens received from Box are stored in the macOS Keychain. When you export connections, the access token is included but the refresh token is not (on the importing Mac, you need to reconnect after the access token expires).</li>
       <li>Data obtained from Box (file contents and metadata such as file names and folder structure) is used <strong>solely to carry out the actions you perform within the App</strong>. It is never sent to the developer’s servers, used for advertising or analytics, or shared with any third party other than you.</li>
     </ul>
@@ -134,29 +137,30 @@
     <p>No transmissions are made to any destination other than the above.</p>
 
     <h2>3. Third-Party Disclosure and Tracking</h2>
-    <p>The App never sells, rents, or shares your information with third parties. <strong>The App does not:</strong></p>
+    <p>The App never sells or rents your information. When you transfer, export, or “Open with another app,” the App provides the relevant data or a temporary link to the destination, export location, or app you choose. <strong>The App does not:</strong></p>
     <ul>
       <li>Use analytics tools</li>
-      <li>Track user behavior</li>
+      <li>Track you for advertising or external analytics (the diagnostic logs in section 1.2 stay on your Mac)</li>
       <li>Integrate with advertising networks</li>
       <li>Automatically send crash data or usage statistics</li>
     </ul>
 
     <h2>4. Data Storage and Security</h2>
     <ul>
-      <li>Credentials are stored in the macOS Keychain and protected by the operating system’s security mechanisms.</li>
-      <li>The App runs within the macOS App Sandbox environment.</li>
+      <li>Credentials, and the fingerprints of SFTP host keys and TLS certificates you approved, are stored in the macOS Keychain and protected by the operating system’s security mechanisms.</li>
+      <li>The App distributed on the Mac App Store runs with the macOS App Sandbox enabled.</li>
       <li>Encryption in transit depends on the connection type, as described in section 2 (HTTPS, SSH, or TLS).</li>
       <li>The App does not encrypt user data with its own encryption (encryption in transit depends on each connection type).</li>
     </ul>
 
     <h2>5. Data Deletion</h2>
     <ul>
-      <li><strong>Deleting a connection</strong>: when you delete a connection in the App, the corresponding credentials are also removed from the Keychain.</li>
-      <li><strong>Clearing the cache</strong>: you can clear the metadata cache from the settings screen.</li>
-      <li><strong>Deleting the App</strong>: when you uninstall the App, the settings and cache it stored locally are deleted.</li>
+      <li><strong>Deleting a connection</strong>: when you delete a connection in the App, its credentials are removed from the Keychain unless another connection uses them. Credentials shared with other connections remain.</li>
+      <li><strong>Clearing the cache</strong>: from Settings › Cache, you can clear the listing metadata, thumbnail, and file content caches. This does not clear transfer history, statistics, or credentials.</li>
+      <li><strong>Deleting a profile</strong>: deleting a profile deletes that profile’s connection settings, credentials, history, and related data.</li>
+      <li><strong>Deleting the App</strong>: deleting the App does not guarantee that all settings, caches, history, logs, and Keychain items stored on your Mac are removed automatically. If needed, delete connections or profiles in the App first.</li>
     </ul>
-    <p>Your files in cloud storage are not deleted when you uninstall the App. Manage them on each cloud service as needed.</p>
+    <p>Your files in cloud storage are not deleted when you delete the App. Exported connection files and downloaded files also remain under your control.</p>
 
     <h2>6. About Third-Party Services</h2>
     <p>The App connects to external cloud storage services that you have contracted with yourself. The App is an independent third-party client and is not affiliated with, sponsored by, or endorsed by Amazon Web Services, Cloudflare, Dropbox, Box<!--, Google-->, or PikPak. Amazon S3, Cloudflare R2, Dropbox, Box<!--, Google Drive-->, and PikPak are trademarks of their respective owners. For how each service handles your data, please review that service’s own privacy policy<!-- (for Google, see the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>)-->.</p>
