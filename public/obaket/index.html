@@ -86,11 +86,7 @@
         font-family: "Inter", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
         font-feature-settings: "palt";
         color: var(--fg);
-        background:
-          radial-gradient(1200px 600px at 10% 0%, rgba(255, 106, 0, 0.28), transparent 60%),
-          radial-gradient(900px 500px at 80% 10%, rgba(255, 146, 51, 0.18), transparent 55%),
-          radial-gradient(800px 500px at 30% 95%, rgba(255, 106, 0, 0.12), transparent 55%),
-          var(--bg);
+        background: var(--bg);
         line-height: 1.7;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -183,27 +179,12 @@
         grid-template-columns: 1.05fr 1fr;
         gap: 48px;
         align-items: center;
-        padding: 64px 0 48px;
+        padding: 32px 0 12px;
       }
 
       @media (max-width: 880px) {
-        .hero { grid-template-columns: 1fr; gap: 32px; padding: 40px 0 28px; }
+        .hero { grid-template-columns: 1fr; gap: 32px; padding: 24px 0 7px; }
       }
-
-      .pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 6px 12px;
-        border-radius: 999px;
-        background: var(--card);
-        border: 1px solid var(--border);
-        font-size: 12px;
-        color: var(--muted);
-        margin-bottom: 16px;
-      }
-
-      .pill strong { color: var(--fg); }
 
       h1 {
         font-size: clamp(27px, 4.8vw, 52px);
@@ -281,7 +262,7 @@
         .mock-ghost { animation: none; }
       }
 
-      section { padding: clamp(56px, 9vw, 96px) 0; }
+      section { padding: clamp(14px, 2vw, 24px) 0; }
 
       .section-title {
         font-size: clamp(26px, 3.6vw, 40px);
@@ -345,6 +326,16 @@
       }
 
       /* ─── 対応ストレージサービス (ロゴタイル付きカードグリッド) ─── */
+      .services-group-title {
+        margin: 28px 0 12px;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--muted);
+        letter-spacing: 0.02em;
+      }
+      .services-group-title:first-of-type { margin-top: 0; }
+      .services + .services-group-title { margin-top: 28px; }
+
       .services {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(264px, 1fr));
@@ -533,11 +524,6 @@
     <main id="top" class="container">
       <section class="hero" aria-label="ヒーロー">
         <div>
-          <div class="pill">
-            <span>macOS 専用</span>
-            <span aria-hidden="true">•</span>
-            <strong>App Store で配信中</strong>
-          </div>
           <h1>S3 も R2 も Dropbox も、<span style="white-space: nowrap;">ひとつのアプリで。</span></h1>
           <p class="lead">
             サービスごとに<strong>専用アプリを入れる必要はありません</strong>。同期で Mac のディスクを埋めることもなく、
@@ -583,7 +569,7 @@
           </li>
           <li>
             <strong>どのクラウドにも、同じ操作でアップロード</strong>
-            <span>ドラッグ &amp; ドロップで完了。進捗と失敗の可視化までサービス横断で統一。大きいファイルはマルチパートで分割転送します。</span>
+            <span>ドラッグ &amp; ドロップで完了。進捗と失敗の可視化までサービス横断で統一。</span>
           </li>
           <li>
             <strong>サービスをまたいでコピーできる</strong>
@@ -607,7 +593,7 @@
           </li>
           <li>
             <strong>転送の後始末まで面倒を見る</strong>
-            <span>マルチパートアップロードが途中で失敗しても、見えないところで課金され続ける断片 (orphan parts) を自動でクリーンアップします。</span>
+            <span>大きいファイルのアップロードが途中で失敗しても、見えないところで課金され続ける断片を自動でクリーンアップします。</span>
           </li>
         </ul>
       </section>
@@ -618,6 +604,7 @@
 以下のストレージサービスに対応しています（「予定」表記は今後対応予定）。<strong>対応サービスは順次拡大していきます。</strong>
         </p>
 
+        <h3 class="services-group-title">オブジェクトストレージ</h3>
         <ul class="services">
           <li style="--g1:#ff9d2e; --g2:#e0700f;">
             <span class="service-logo" aria-hidden="true"><svg><use href="#ic-bucket" /></svg></span>
@@ -635,22 +622,6 @@
             </span>
             <span class="status">対応</span>
           </li>
-          <li style="--g1:#1e8fff; --g2:#0061fe;">
-            <span class="service-logo" aria-hidden="true"><svg><use href="#ic-cloud" /></svg></span>
-            <span class="service-body">
-              <a class="service-name" href="https://www.dropbox.com/" target="_blank" rel="noopener noreferrer">Dropbox</a>
-              <span class="service-meta">読み書き・マルチパート対応</span>
-            </span>
-            <span class="status">対応</span>
-          </li>
-          <li style="--g1:#2dd4bf; --g2:#0ea5b7;">
-            <span class="service-logo" aria-hidden="true"><svg><use href="#ic-cloud" /></svg></span>
-            <span class="service-body">
-              <a class="service-name" href="https://mypikpak.com/" target="_blank" rel="noopener noreferrer">PikPak</a>
-              <span class="service-meta">WebDAV / 閲覧のみ</span>
-            </span>
-            <span class="status">対応</span>
-          </li>
           <li style="--g1:#8b93ff; --g2:#5a6bd8;">
             <span class="service-logo" aria-hidden="true"><svg><use href="#ic-bucket" /></svg></span>
             <span class="service-body">
@@ -663,6 +634,44 @@
             </span>
             <span class="status">対応</span>
           </li>
+        </ul>
+        <h3 class="services-group-title">クラウドサービス</h3>
+        <ul class="services">
+          <li style="--g1:#1e8fff; --g2:#0061fe;">
+            <span class="service-logo" aria-hidden="true"><svg><use href="#ic-cloud" /></svg></span>
+            <span class="service-body">
+              <a class="service-name" href="https://www.dropbox.com/" target="_blank" rel="noopener noreferrer">Dropbox</a>
+              <span class="service-meta"><a href="https://www.dropbox.com/" target="_blank" rel="noopener noreferrer">dropbox.com ↗</a></span>
+            </span>
+            <span class="status">対応</span>
+          </li>
+          <li style="--g1:#2486fc; --g2:#0061d5;">
+            <span class="service-logo" aria-hidden="true"><svg><use href="#ic-cloud" /></svg></span>
+            <span class="service-body">
+              <a class="service-name" href="https://www.box.com/" target="_blank" rel="noopener noreferrer">Box</a>
+              <span class="service-meta"><a href="https://www.box.com/" target="_blank" rel="noopener noreferrer">box.com ↗</a></span>
+            </span>
+            <span class="status">対応</span>
+          </li>
+          <li style="--g1:#2dd4bf; --g2:#0ea5b7;">
+            <span class="service-logo" aria-hidden="true"><svg><use href="#ic-cloud" /></svg></span>
+            <span class="service-body">
+              <a class="service-name" href="https://mypikpak.com/" target="_blank" rel="noopener noreferrer">PikPak</a>
+              <span class="service-meta">閲覧のみ・<a href="https://mypikpak.com/" target="_blank" rel="noopener noreferrer">mypikpak.com ↗</a></span>
+            </span>
+            <span class="status">対応</span>
+          </li>
+          <li style="--g1:#d9a441; --g2:#b07e2a;">
+            <span class="service-logo" aria-hidden="true"><svg><use href="#ic-archive" /></svg></span>
+            <span class="service-body">
+              <a class="service-name" href="https://archive.org/" target="_blank" rel="noopener noreferrer">Internet Archive</a>
+              <span class="service-meta"><a href="https://archive.org/" target="_blank" rel="noopener noreferrer">archive.org ↗</a></span>
+            </span>
+            <span class="status">対応</span>
+          </li>
+        </ul>
+        <h3 class="services-group-title">ネットワーク共有</h3>
+        <ul class="services">
           <li style="--g1:#3ec46d; --g2:#2a9d55;">
             <span class="service-logo" aria-hidden="true"><svg><use href="#ic-server" /></svg></span>
             <span class="service-body">
@@ -679,6 +688,14 @@
             </span>
             <span class="status">対応</span>
           </li>
+          <li style="--g1:#94a3b8; --g2:#475569;">
+            <span class="service-logo" aria-hidden="true"><svg><use href="#ic-server" /></svg></span>
+            <span class="service-body">
+              <span class="service-name">FTP / FTPS</span>
+              <span class="service-meta">FTPS は TLS で暗号化・読み書き対応</span>
+            </span>
+            <span class="status">対応</span>
+          </li>
           <li style="--g1:#0ea5e9; --g2:#0369a1;">
             <span class="service-logo" aria-hidden="true"><svg><use href="#ic-server" /></svg></span>
             <span class="service-body">
@@ -687,15 +704,10 @@
             </span>
             <span class="status">対応</span>
           </li>
-          <li style="--g1:#d9a441; --g2:#b07e2a;">
-            <span class="service-logo" aria-hidden="true"><svg><use href="#ic-archive" /></svg></span>
-            <span class="service-body">
-              <a class="service-name" href="https://archive.org/" target="_blank" rel="noopener noreferrer">Internet Archive</a>
-              <span class="service-meta">公開アーカイブ</span>
-            </span>
-            <span class="status">対応</span>
-          </li>
         </ul>
+        <p class="section-desc" style="margin: 16px 0 0; font-size: 13px;">
+          Obaket は独立したアプリで、上記の各サービスの提供会社とは提携していません。各サービス名は各社の商標です。
+        </p>
       </section>
 
       <section id="pricing" aria-label="価格" class="reveal">

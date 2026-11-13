@@ -83,11 +83,7 @@
         margin: 0;
         font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
         color: var(--fg);
-        background:
-          radial-gradient(1200px 600px at 10% 0%, rgba(255, 106, 0, 0.28), transparent 60%),
-          radial-gradient(900px 500px at 80% 10%, rgba(255, 146, 51, 0.18), transparent 55%),
-          radial-gradient(800px 500px at 30% 95%, rgba(255, 106, 0, 0.12), transparent 55%),
-          var(--bg);
+        background: var(--bg);
         line-height: 1.7;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -180,27 +176,12 @@
         grid-template-columns: 1.05fr 1fr;
         gap: 48px;
         align-items: center;
-        padding: 64px 0 48px;
+        padding: 32px 0 12px;
       }
 
       @media (max-width: 880px) {
-        .hero { grid-template-columns: 1fr; gap: 32px; padding: 40px 0 28px; }
+        .hero { grid-template-columns: 1fr; gap: 32px; padding: 24px 0 7px; }
       }
-
-      .pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 6px 12px;
-        border-radius: 999px;
-        background: var(--card);
-        border: 1px solid var(--border);
-        font-size: 12px;
-        color: var(--muted);
-        margin-bottom: 16px;
-      }
-
-      .pill strong { color: var(--fg); }
 
       h1 {
         font-size: clamp(27px, 4.8vw, 52px);
@@ -278,7 +259,7 @@
         .mock-ghost { animation: none; }
       }
 
-      section { padding: clamp(56px, 9vw, 96px) 0; }
+      section { padding: clamp(14px, 2vw, 24px) 0; }
 
       .section-title {
         font-size: clamp(26px, 3.6vw, 40px);
@@ -342,6 +323,16 @@
       }
 
       /* ─── Supported storage services (logo tile card grid) ─── */
+      .services-group-title {
+        margin: 28px 0 12px;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--muted);
+        letter-spacing: 0.02em;
+      }
+      .services-group-title:first-of-type { margin-top: 0; }
+      .services + .services-group-title { margin-top: 28px; }
+
       .services {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(264px, 1fr));
@@ -530,11 +521,6 @@
     <main id="top" class="container">
       <section class="hero" aria-label="Hero">
         <div>
-          <div class="pill">
-            <span>macOS only</span>
-            <span aria-hidden="true">•</span>
-            <strong>Available on the App Store</strong>
-          </div>
           <h1>S3, R2, and Dropbox, <span style="white-space: nowrap;">all in one app.</span></h1>
           <p class="lead">
             <strong>No separate client to install for every service</strong>, and nothing syncing in the
@@ -582,7 +568,7 @@
           </li>
           <li>
             <strong>Upload to any cloud with the same actions</strong>
-            <span>Just drag &amp; drop. Progress and failures are visualized consistently across services. Large files are split and transferred via multipart upload.</span>
+            <span>Just drag &amp; drop. Progress and failures are visualized consistently across services.</span>
           </li>
           <li>
             <strong>Copy files across services</strong>
@@ -606,7 +592,7 @@
           </li>
           <li>
             <strong>It even cleans up after your transfers</strong>
-            <span>Even if a multipart upload fails partway through, Obaket automatically cleans up the leftover fragments (orphan parts) that would otherwise keep silently incurring charges.</span>
+            <span>Even if a large upload fails partway through, Obaket automatically cleans up the leftover fragments that would otherwise keep silently incurring charges.</span>
           </li>
         </ul>
       </section>
@@ -617,6 +603,7 @@
 Obaket supports the storage services below (items marked "Planned" are coming soon). <strong>Supported services will keep expanding over time.</strong>
         </p>
 
+        <h3 class="services-group-title">Object storage</h3>
         <ul class="services">
           <li style="--g1:#ff9d2e; --g2:#e0700f;">
             <span class="service-logo" aria-hidden="true"><svg><use href="#ic-bucket" /></svg></span>
@@ -634,22 +621,6 @@ Obaket supports the storage services below (items marked "Planned" are coming so
             </span>
             <span class="status">Supported</span>
           </li>
-          <li style="--g1:#1e8fff; --g2:#0061fe;">
-            <span class="service-logo" aria-hidden="true"><svg><use href="#ic-cloud" /></svg></span>
-            <span class="service-body">
-              <a class="service-name" href="https://www.dropbox.com/" target="_blank" rel="noopener noreferrer">Dropbox</a>
-              <span class="service-meta">Read/write, multipart support</span>
-            </span>
-            <span class="status">Supported</span>
-          </li>
-          <li style="--g1:#2dd4bf; --g2:#0ea5b7;">
-            <span class="service-logo" aria-hidden="true"><svg><use href="#ic-cloud" /></svg></span>
-            <span class="service-body">
-              <a class="service-name" href="https://mypikpak.com/" target="_blank" rel="noopener noreferrer">PikPak</a>
-              <span class="service-meta">WebDAV / browsing only</span>
-            </span>
-            <span class="status">Supported</span>
-          </li>
           <li style="--g1:#8b93ff; --g2:#5a6bd8;">
             <span class="service-logo" aria-hidden="true"><svg><use href="#ic-bucket" /></svg></span>
             <span class="service-body">
@@ -662,6 +633,44 @@ Obaket supports the storage services below (items marked "Planned" are coming so
             </span>
             <span class="status">Supported</span>
           </li>
+        </ul>
+        <h3 class="services-group-title">Cloud services</h3>
+        <ul class="services">
+          <li style="--g1:#1e8fff; --g2:#0061fe;">
+            <span class="service-logo" aria-hidden="true"><svg><use href="#ic-cloud" /></svg></span>
+            <span class="service-body">
+              <a class="service-name" href="https://www.dropbox.com/" target="_blank" rel="noopener noreferrer">Dropbox</a>
+              <span class="service-meta"><a href="https://www.dropbox.com/" target="_blank" rel="noopener noreferrer">dropbox.com ↗</a></span>
+            </span>
+            <span class="status">Supported</span>
+          </li>
+          <li style="--g1:#2486fc; --g2:#0061d5;">
+            <span class="service-logo" aria-hidden="true"><svg><use href="#ic-cloud" /></svg></span>
+            <span class="service-body">
+              <a class="service-name" href="https://www.box.com/" target="_blank" rel="noopener noreferrer">Box</a>
+              <span class="service-meta"><a href="https://www.box.com/" target="_blank" rel="noopener noreferrer">box.com ↗</a></span>
+            </span>
+            <span class="status">Supported</span>
+          </li>
+          <li style="--g1:#2dd4bf; --g2:#0ea5b7;">
+            <span class="service-logo" aria-hidden="true"><svg><use href="#ic-cloud" /></svg></span>
+            <span class="service-body">
+              <a class="service-name" href="https://mypikpak.com/" target="_blank" rel="noopener noreferrer">PikPak</a>
+              <span class="service-meta">Read-only · <a href="https://mypikpak.com/" target="_blank" rel="noopener noreferrer">mypikpak.com ↗</a></span>
+            </span>
+            <span class="status">Supported</span>
+          </li>
+          <li style="--g1:#d9a441; --g2:#b07e2a;">
+            <span class="service-logo" aria-hidden="true"><svg><use href="#ic-archive" /></svg></span>
+            <span class="service-body">
+              <a class="service-name" href="https://archive.org/" target="_blank" rel="noopener noreferrer">Internet Archive</a>
+              <span class="service-meta"><a href="https://archive.org/" target="_blank" rel="noopener noreferrer">archive.org ↗</a></span>
+            </span>
+            <span class="status">Supported</span>
+          </li>
+        </ul>
+        <h3 class="services-group-title">Network shares</h3>
+        <ul class="services">
           <li style="--g1:#3ec46d; --g2:#2a9d55;">
             <span class="service-logo" aria-hidden="true"><svg><use href="#ic-server" /></svg></span>
             <span class="service-body">
@@ -678,6 +687,14 @@ Obaket supports the storage services below (items marked "Planned" are coming so
             </span>
             <span class="status">Supported</span>
           </li>
+          <li style="--g1:#94a3b8; --g2:#475569;">
+            <span class="service-logo" aria-hidden="true"><svg><use href="#ic-server" /></svg></span>
+            <span class="service-body">
+              <span class="service-name">FTP / FTPS</span>
+              <span class="service-meta">FTPS encrypted with TLS, read &amp; write</span>
+            </span>
+            <span class="status">Supported</span>
+          </li>
           <li style="--g1:#0ea5e9; --g2:#0369a1;">
             <span class="service-logo" aria-hidden="true"><svg><use href="#ic-server" /></svg></span>
             <span class="service-body">
@@ -686,15 +703,10 @@ Obaket supports the storage services below (items marked "Planned" are coming so
             </span>
             <span class="status">Supported</span>
           </li>
-          <li style="--g1:#d9a441; --g2:#b07e2a;">
-            <span class="service-logo" aria-hidden="true"><svg><use href="#ic-archive" /></svg></span>
-            <span class="service-body">
-              <a class="service-name" href="https://archive.org/" target="_blank" rel="noopener noreferrer">Internet Archive</a>
-              <span class="service-meta">Public archive</span>
-            </span>
-            <span class="status">Supported</span>
-          </li>
         </ul>
+        <p class="section-desc" style="margin: 16px 0 0; font-size: 13px;">
+          Obaket is an independent app and is not affiliated with the providers of the services above. All service names are trademarks of their respective owners.
+        </p>
       </section>
 
       <section id="pricing" aria-label="Pricing" class="reveal">
