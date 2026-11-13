@@ -69,12 +69,12 @@
 <body>
   <div class="container">
     <h1>Privacy Policy</h1>
-    <p class="last-updated">Last updated: July 12, 2026</p>
+    <p class="last-updated">Last updated: November 13, 2026</p>
 
     <!-- Google Drive general availability is pending (hidden from the new-connection
          picker, see issues/epic/google-drive/production-readiness.md). Restore this
          comment-out when it ships. -->
-    <p>Obaket (the “App”) is a client for browsing and transferring cloud object storage — such as Amazon S3, Cloudflare R2, Dropbox<!--, Google Drive-->, and PikPak (WebDAV) — from a single macOS app. This policy explains what information the App handles and how it is protected.</p>
+    <p>Obaket (the “App”) is a client for browsing and transferring cloud storage — such as Amazon S3, Cloudflare R2, Dropbox, Box<!--, Google Drive-->, and PikPak (WebDAV) — and SFTP, FTP, SMB, and WebDAV servers from a single macOS app. This policy explains what information the App handles and how it is protected.</p>
 
     <div class="highlight">
       <p><strong>Your data never reaches the developer</strong></p>
@@ -104,8 +104,16 @@
       <li>This communication never passes through any server operated by the developer.</li>
     </ul>
 
+    <h3>1.4 Access to Box</h3>
+    <ul>
+      <li>When you connect Box, the App accesses the Box API through Box OAuth 2.0, with permission granted by you from your own Box account.</li>
+      <li>The permission requested is to read and write the files and folders stored in Box. It is used to list, preview, download, upload, create folders, rename, move, copy, and delete.</li>
+      <li>The tokens received from Box are stored only in the macOS Keychain. The Box refresh token is not included when you export connections.</li>
+      <li>Data obtained from Box (file contents and metadata such as file names and folder structure) is used <strong>solely to carry out the actions you perform within the App</strong>. It is never sent to the developer’s servers, used for advertising or analytics, or shared with any third party other than you.</li>
+    </ul>
+
     <!-- Restore this section when Google Drive ships (see the comment above).
-    <h3>1.4 Access to Google Drive</h3>
+    <h3>1.5 Access to Google Drive</h3>
     <ul>
       <li>When you connect Google Drive, the App accesses the Google Drive API through Google OAuth, with permission granted by you from your own Google Account.</li>
       <li>The scope requested is either a read-only scope (<code>drive.readonly</code>) used to list, preview, and download files and folders, or a write scope (<code>drive</code>) that additionally allows upload, creation, rename, move, copy, and delete (moving to trash). You choose which scope to grant when you connect.</li>
@@ -117,8 +125,9 @@
     <h2>2. Communication Destinations</h2>
     <p>The App communicates only with the following destinations:</p>
     <ul>
-      <li><strong>The cloud storage endpoints you configure</strong> (such as Amazon S3 / Cloudflare R2 / Dropbox /<!-- Google Drive / --> PikPak WebDAV). All communication is over HTTPS.</li>
+      <li><strong>The cloud storage and servers you configure</strong> (such as Amazon S3 / Cloudflare R2 / Dropbox / Box /<!-- Google Drive / --> PikPak WebDAV, and the SFTP, FTP, SMB, and WebDAV servers you specify). Encryption depends on the connection type: cloud services and HTTPS WebDAV use HTTPS, SFTP uses SSH, and FTPS uses TLS. The App asks you to confirm before connecting with unencrypted FTP, and uses HTTP WebDAV only when you specify an <code>http://</code> address.</li>
       <li>When you use Dropbox, authentication is performed with Dropbox’s authentication servers via OAuth using your own account.</li>
+      <li>When you use Box, authentication is performed with Box’s authentication servers (<code>account.box.com</code> / <code>api.box.com</code>) via OAuth using your own account, and file operations go to the Box API (<code>api.box.com</code> / <code>upload.box.com</code>).</li>
       <!-- <li>When you use Google Drive, authentication is performed with Google’s authentication servers (<code>accounts.google.com</code> / <code>oauth2.googleapis.com</code>) and the Google Drive API (<code>www.googleapis.com</code>) via OAuth using your own account.</li> -->
     </ul>
     <p>No transmissions are made to any destination other than the above.</p>
@@ -136,8 +145,8 @@
     <ul>
       <li>Credentials are stored in the macOS Keychain and protected by the operating system’s security mechanisms.</li>
       <li>The App runs within the macOS App Sandbox environment.</li>
-      <li>Communication with cloud storage is performed over HTTPS (an encrypted connection).</li>
-      <li>The App does not encrypt user data with its own encryption (transport encryption is provided by each cloud service’s HTTPS).</li>
+      <li>Encryption in transit depends on the connection type, as described in section 2 (HTTPS, SSH, or TLS).</li>
+      <li>The App does not encrypt user data with its own encryption (encryption in transit depends on each connection type).</li>
     </ul>
 
     <h2>5. Data Deletion</h2>
@@ -149,7 +158,7 @@
     <p>Your files in cloud storage are not deleted when you uninstall the App. Manage them on each cloud service as needed.</p>
 
     <h2>6. About Third-Party Services</h2>
-    <p>The App connects to external cloud storage services that you have contracted with yourself. The App is an independent third-party client and is not affiliated with, sponsored by, or endorsed by Amazon Web Services, Cloudflare, Dropbox<!--, Google-->, or PikPak. Amazon S3, Cloudflare R2, Dropbox<!--, Google Drive-->, and PikPak are trademarks of their respective owners. For how each service handles your data, please review that service’s own privacy policy<!-- (for Google, see the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>)-->.</p>
+    <p>The App connects to external cloud storage services that you have contracted with yourself. The App is an independent third-party client and is not affiliated with, sponsored by, or endorsed by Amazon Web Services, Cloudflare, Dropbox, Box<!--, Google-->, or PikPak. Amazon S3, Cloudflare R2, Dropbox, Box<!--, Google Drive-->, and PikPak are trademarks of their respective owners. For how each service handles your data, please review that service’s own privacy policy<!-- (for Google, see the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>)-->.</p>
 
     <h2>7. Children’s Privacy</h2>
     <p>The App is not intended for children under the age of 13. The App does not collect personal information for the developer.</p>
@@ -160,7 +169,7 @@
     <h2>9. Contact</h2>
     <div class="contact">
       <p>If you have questions about this policy, please contact us at:</p>
-      <p><a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">GitHub Issues</a></p>
+      <p><a href="mailto:support@jiikko.com">support@jiikko.com</a> · <a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">GitHub Issues</a></p>
     </div>
 
     <p>Related pages: <a href="/obaket/en/terms.html">Terms of Service</a> · <a href="/obaket/en/">Obaket page</a> · <a href="/obaket/privacy.html" hreflang="ja">日本語</a></p>
