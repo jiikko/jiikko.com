@@ -278,7 +278,7 @@
         .mock-ghost { animation: none; }
       }
 
-      section { padding: clamp(56px, 9vw, 96px) 0; }
+      section { padding: clamp(14px, 2vw, 24px) 0; }
 
       .section-title {
         font-size: clamp(26px, 3.6vw, 40px);
@@ -342,6 +342,16 @@
       }
 
       /* ─── Supported storage services (logo tile card grid) ─── */
+      .services-group-title {
+        margin: 28px 0 12px;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--muted);
+        letter-spacing: 0.02em;
+      }
+      .services-group-title:first-of-type { margin-top: 0; }
+      .services + .services-group-title { margin-top: 28px; }
+
       .services {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(264px, 1fr));
@@ -617,6 +627,7 @@
 Obaket supports the storage services below (items marked "Planned" are coming soon). <strong>Supported services will keep expanding over time.</strong>
         </p>
 
+        <h3 class="services-group-title">Object storage</h3>
         <ul class="services">
           <li style="--g1:#ff9d2e; --g2:#e0700f;">
             <span class="service-logo" aria-hidden="true"><svg><use href="#ic-bucket" /></svg></span>
@@ -634,6 +645,21 @@ Obaket supports the storage services below (items marked "Planned" are coming so
             </span>
             <span class="status">Supported</span>
           </li>
+          <li style="--g1:#8b93ff; --g2:#5a6bd8;">
+            <span class="service-logo" aria-hidden="true"><svg><use href="#ic-bucket" /></svg></span>
+            <span class="service-body">
+              <span class="service-name">S3-compatible</span>
+              <span class="service-meta">
+                <a href="https://wasabi.com/" target="_blank" rel="noopener noreferrer">Wasabi</a>
+                /
+                <a href="https://www.backblaze.com/cloud-storage" target="_blank" rel="noopener noreferrer">Backblaze B2</a>
+              </span>
+            </span>
+            <span class="status">Supported</span>
+          </li>
+        </ul>
+        <h3 class="services-group-title">Cloud services</h3>
+        <ul class="services">
           <li style="--g1:#1e8fff; --g2:#0061fe;">
             <span class="service-logo" aria-hidden="true"><svg><use href="#ic-cloud" /></svg></span>
             <span class="service-body">
@@ -658,18 +684,17 @@ Obaket supports the storage services below (items marked "Planned" are coming so
             </span>
             <span class="status">Supported</span>
           </li>
-          <li style="--g1:#8b93ff; --g2:#5a6bd8;">
-            <span class="service-logo" aria-hidden="true"><svg><use href="#ic-bucket" /></svg></span>
+          <li style="--g1:#d9a441; --g2:#b07e2a;">
+            <span class="service-logo" aria-hidden="true"><svg><use href="#ic-archive" /></svg></span>
             <span class="service-body">
-              <span class="service-name">S3-compatible</span>
-              <span class="service-meta">
-                <a href="https://wasabi.com/" target="_blank" rel="noopener noreferrer">Wasabi</a>
-                /
-                <a href="https://www.backblaze.com/cloud-storage" target="_blank" rel="noopener noreferrer">Backblaze B2</a>
-              </span>
+              <a class="service-name" href="https://archive.org/" target="_blank" rel="noopener noreferrer">Internet Archive</a>
+              <span class="service-meta">Public archive</span>
             </span>
             <span class="status">Supported</span>
           </li>
+        </ul>
+        <h3 class="services-group-title">Network shares</h3>
+        <ul class="services">
           <li style="--g1:#3ec46d; --g2:#2a9d55;">
             <span class="service-logo" aria-hidden="true"><svg><use href="#ic-server" /></svg></span>
             <span class="service-body">
@@ -699,14 +724,6 @@ Obaket supports the storage services below (items marked "Planned" are coming so
             <span class="service-body">
               <span class="service-name">WebDAV</span>
               <span class="service-meta">Nextcloud, NAS and more, read &amp; write</span>
-            </span>
-            <span class="status">Supported</span>
-          </li>
-          <li style="--g1:#d9a441; --g2:#b07e2a;">
-            <span class="service-logo" aria-hidden="true"><svg><use href="#ic-archive" /></svg></span>
-            <span class="service-body">
-              <a class="service-name" href="https://archive.org/" target="_blank" rel="noopener noreferrer">Internet Archive</a>
-              <span class="service-meta">Public archive</span>
             </span>
             <span class="status">Supported</span>
           </li>
