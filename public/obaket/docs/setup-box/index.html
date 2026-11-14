@@ -109,7 +109,7 @@
       </li>
       <li>Check the <strong>Connection Name</strong>. It starts as “Box”; change it if you like (for example, “Work Box”).</li>
       <li>Click <strong>Connect Box</strong>. Your web browser opens the Box sign-in page.</li>
-      <li>Sign in to Box and click <strong>Grant access to Box</strong>. Obaket asks for permission to read and write the files and folders in your Box account.</li>
+      <li>Sign in to Box and click <strong>Grant access to Box</strong>. Obaket asks for permission to read and manage the files and folders your Box account can access. What it can actually open or change is still limited by your own Box permissions and your organization’s policies. If your browser asks whether to open Obaket, allow it.</li>
       <li>Your browser returns you to Obaket, and the sheet shows your Box account as connected.
         <figure>
           <img src="connect-box.webp" width="2200" height="1440" alt="The Box connection form in Obaket showing a connected Box account and the message Box account connected">
@@ -125,11 +125,11 @@
     </ol>
 
     <div class="highlight">
-      <p><strong>Your files stay between your Mac and Box.</strong> Obaket talks to Box directly and has no server of its own. Your Box sign-in is stored in the macOS Keychain on your Mac. See the <a href="/obaket/en/privacy.html">Privacy Policy</a> for details.</p>
+      <p><strong>Your files stay between your Mac and Box.</strong> Obaket talks to Box directly and has no server of its own. You sign in on Box’s own page in your browser, so Obaket never sees your Box password. Obaket stores only the authorization tokens from Box, in the macOS Keychain on your Mac. See the <a href="/obaket/en/privacy.html">Privacy Policy</a> for details.</p>
     </div>
 
     <h2 id="enterprise">For Box business accounts</h2>
-    <p>Some companies turn off apps that are not yet approved by the company’s Box administrator. If that applies to your account, signing in or reconnecting will not help until the administrator enables Obaket. Ask your Box administrator to do the following:</p>
+    <p>Some companies turn off apps that are not yet approved by the company’s Box administrator. If that applies to your account, signing in or reconnecting will not help until the administrator enables Obaket. Ask your Box administrator to allow Obaket with the Client ID below. The administrator does not need a Box developer account for this.</p>
     <ol>
       <li>Open the Box <strong>Admin Console</strong>, then go to <strong>Platform</strong> › <strong>Platform Apps</strong>.</li>
       <li>Click <strong>Add</strong> and enter Obaket’s Client ID:<br><code>xfb94dy2nd371cv8sfe177ayunbjojod</code></li>
@@ -138,14 +138,18 @@
     <p>Box describes these settings in <a href="https://developer.box.com/guides/authorization/platform-app-approval" target="_blank" rel="noopener noreferrer">Platform app approval</a>. Menu names in the Admin Console may differ slightly between Box plans.</p>
 
     <h2>Troubleshooting</h2>
+    <h3>The browser does not return to Obaket</h3>
+    <p>If your browser asks whether to open Obaket, allow it. If you closed the Box page, clicked <strong>Deny</strong>, or nothing happens, click <strong>Cancel</strong> in the Add Connection sheet and start again. Obaket also stops waiting after about five minutes.</p>
     <h3>Obaket asks you to reconnect</h3>
     <p>If Box sign-in expires or is revoked, Obaket shows “The connection needs to be re-authorized.” Right-click the connection in the sidebar, choose <strong>Edit</strong>, click <strong>Reconnect Box</strong>, sign in again, and click <strong>Save</strong>.</p>
     <h3>An upload fails because of its size</h3>
     <p>Each Box account has a maximum upload file size that depends on your Box plan. Obaket shows the limit when a file is larger than it allows.</p>
+    <h3>Box storage is full</h3>
+    <p>This is different from the file size limit: your Box account has no space left. Free up space in Box, then try the upload again.</p>
     <h3>An item cannot be opened or changed</h3>
     <p>Box may block access because of your account’s permissions, a company policy, or a lock on the item. Obaket shows which of these Box reported. Ask the item’s owner or your Box administrator.</p>
     <h3>Remove the connection</h3>
-    <p>Right-click the connection in the sidebar and choose <strong>Delete</strong>. This also removes the stored Box sign-in from your Mac. To revoke Obaket’s access on the Box side as well, remove Obaket from the authorized apps in your Box account settings.</p>
+    <p>Right-click the connection in the sidebar and choose <strong>Delete</strong>. This removes the stored Box tokens from your Mac. It does not revoke Obaket’s authorization in Box. To revoke it as well, remove Obaket from the authorized apps in your Box account settings.</p>
 
     <h2>Need help?</h2>
     <p>Email <a href="mailto:support@jiikko.com">support@jiikko.com</a>, or report a problem on <a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
