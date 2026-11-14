@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!--
+  Box Integrations の掲載申請 (obaket issue 1507) の User Guide 欄が指すページ。英語のみ (日本語版は無い)。
+  手順の文言はアプリの英語の UI (shared/Sources/ObaketPresentation/Connections/ConnectionSheetView.swift・
+  BoxConnectionFormView.swift・ConnectionSheetFooter.swift) に合わせてある。UI の文言を変えたらここも直す。
+  client ID は BoxOAuthConfiguration.defaultClientID と同じ値 (Developer Console のアプリを作り直したら差し替える)。
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect Box | Obaket</title>
+  <meta name="description" content="How to connect your Box account to Obaket, the macOS file manager for cloud storage.">
+  <link rel="canonical" href="https://jiikko.com/obaket/docs/setup-box/" />
+  <style>
+    :root {
+      --bg: #191210;
+      --fg: #faf3ec;
+      --muted: rgba(250, 243, 236, 0.72);
+      --card: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 122, 26, 0.24);
+      --brand: #ff6a00;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #fff6ee;
+        --fg: #2b1708;
+        --muted: rgba(43, 23, 8, 0.72);
+        --card: rgba(255, 255, 255, 0.78);
+        --border: rgba(214, 97, 0, 0.3);
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.85;
+      padding: 48px 20px;
+    }
+    .container { max-width: 760px; margin: 0 auto; }
+    .breadcrumb { margin-bottom: 20px; }
+    h1 { font-size: 2rem; margin-bottom: 8px; }
+    .last-updated { color: var(--muted); margin-bottom: 36px; }
+    h2 {
+      font-size: 1.2rem;
+      margin: 34px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 { font-size: 1.02rem; margin: 20px 0 8px; }
+    p, li { margin-bottom: 12px; color: var(--muted); }
+    strong { color: var(--fg); }
+    ul, ol { padding-left: 24px; }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.92em;
+      color: var(--fg);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1px 6px;
+      word-break: break-all;
+    }
+    .highlight {
+      background: var(--card);
+      padding: 20px;
+      border-radius: 12px;
+      margin: 24px 0;
+      border: 1px solid var(--border);
+    }
+    .highlight p:last-child { margin-bottom: 0; }
+    .back { display: inline-block; margin-top: 36px; }
+    figure { margin: 8px 0 24px; }
+    figure img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+    figcaption { font-size: 0.9rem; color: var(--muted); margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p class="breadcrumb"><a href="/obaket/en/">Obaket</a></p>
+    <h1>Connect Box to Obaket</h1>
+    <p class="last-updated">Last updated: November 14, 2026</p>
+
+    <p>Obaket is a macOS file manager for cloud storage. After you connect your Box account, you can browse your Box files and folders, preview them with thumbnails, upload and download files, and create, rename, move, copy, and delete items, next to your other cloud storage in one window.</p>
+
+    <h2>Before you start</h2>
+    <ul>
+      <li>A Mac running <strong>macOS 15 or later</strong> with <a href="https://apps.apple.com/us/app/obaket/id6768261740?mt=12" target="_blank" rel="noopener noreferrer">Obaket from the Mac App Store</a> (version 0.4.0 or later).</li>
+      <li>A Box account. Personal and business accounts both work. On a business account, your Box administrator may need to enable Obaket first (see <a href="#enterprise">For Box business accounts</a>).</li>
+    </ul>
+
+    <h2>Connect your Box account</h2>
+    <ol>
+      <li>In Obaket, click <strong>Add Connection</strong> in the toolbar (or press <strong>⌘N</strong>).</li>
+      <li>Under “Choose a storage service to connect,” select <strong>Box</strong>, then click <strong>Next</strong>.
+        <figure>
+          <img src="choose-box.webp" width="2200" height="1440" alt="The Add Connection sheet in Obaket with Box selected among the cloud services">
+          <figcaption>Select Box in the Add Connection sheet.</figcaption>
+        </figure>
+      </li>
+      <li>Check the <strong>Connection Name</strong>. It starts as “Box”; change it if you like (for example, “Work Box”).</li>
+      <li>Click <strong>Connect Box</strong>. Your web browser opens the Box sign-in page.</li>
+      <li>Sign in to Box and click <strong>Grant access to Box</strong>. Obaket asks for permission to read and write the files and folders in your Box account.</li>
+      <li>Your browser returns you to Obaket, and the sheet shows your Box account as connected.
+        <figure>
+          <img src="connect-box.webp" width="2200" height="1440" alt="The Box connection form in Obaket showing a connected Box account and the message Box account connected">
+          <figcaption>After you grant access, the sheet shows the connected account.</figcaption>
+        </figure>
+      </li>
+      <li>Click <strong>Save</strong>. The connection appears in the sidebar; select it to browse your Box files.
+        <figure>
+          <img src="browse-box.webp" width="2200" height="1440" alt="Obaket showing a Box folder of cat photos as a grid of thumbnails">
+          <figcaption>Browse your Box files with thumbnails. Drop files from Finder to upload them.</figcaption>
+        </figure>
+      </li>
+    </ol>
+
+    <div class="highlight">
+      <p><strong>Your files stay between your Mac and Box.</strong> Obaket talks to Box directly and has no server of its own. Your Box sign-in is stored in the macOS Keychain on your Mac. See the <a href="/obaket/en/privacy.html">Privacy Policy</a> for details.</p>
+    </div>
+
+    <h2 id="enterprise">For Box business accounts</h2>
+    <p>Some companies turn off apps that are not yet approved by the company’s Box administrator. If that applies to your account, signing in or reconnecting will not help until the administrator enables Obaket. Ask your Box administrator to do the following:</p>
+    <ol>
+      <li>Open the Box <strong>Admin Console</strong>, then go to <strong>Platform</strong> › <strong>Platform Apps</strong>.</li>
+      <li>Click <strong>Add</strong> and enter Obaket’s Client ID:<br><code>xfb94dy2nd371cv8sfe177ayunbjojod</code></li>
+      <li>Authorize and enable the app.</li>
+    </ol>
+    <p>Box describes these settings in <a href="https://developer.box.com/guides/authorization/platform-app-approval" target="_blank" rel="noopener noreferrer">Platform app approval</a>. Menu names in the Admin Console may differ slightly between Box plans.</p>
+
+    <h2>Troubleshooting</h2>
+    <h3>Obaket asks you to reconnect</h3>
+    <p>If Box sign-in expires or is revoked, Obaket shows “The connection needs to be re-authorized.” Right-click the connection in the sidebar, choose <strong>Edit</strong>, click <strong>Reconnect Box</strong>, sign in again, and click <strong>Save</strong>.</p>
+    <h3>An upload fails because of its size</h3>
+    <p>Each Box account has a maximum upload file size that depends on your Box plan. Obaket shows the limit when a file is larger than it allows.</p>
+    <h3>An item cannot be opened or changed</h3>
+    <p>Box may block access because of your account’s permissions, a company policy, or a lock on the item. Obaket shows which of these Box reported. Ask the item’s owner or your Box administrator.</p>
+    <h3>Remove the connection</h3>
+    <p>Right-click the connection in the sidebar and choose <strong>Delete</strong>. This also removes the stored Box sign-in from your Mac. To revoke Obaket’s access on the Box side as well, remove Obaket from the authorized apps in your Box account settings.</p>
+
+    <h2>Need help?</h2>
+    <p>Email <a href="mailto:support@jiikko.com">support@jiikko.com</a>, or report a problem on <a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+    <p>Obaket is an independent app and is not affiliated with, sponsored by, or endorsed by Box, Inc. Box is a trademark of its respective owner.</p>
+
+    <a class="back" href="/obaket/en/">← Back to Obaket</a>
+  </div>
+</body>
+</html>
