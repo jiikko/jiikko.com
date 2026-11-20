@@ -69,12 +69,12 @@
 <body>
   <div class="container">
     <h1>プライバシーポリシー</h1>
-    <p class="last-updated">最終更新日: 2026年11月13日</p>
+    <p class="last-updated">最終更新日: 2026年11月21日</p>
 
     <!-- Google ドライブは一般公開 pending (新規接続 picker から非表示、
          issues/epic/google-drive/production-readiness.md 参照)。
          一般公開時にこのコメントアウトを戻すこと。 -->
-    <p>Obaket（以下「本アプリ」）は、Amazon S3・Cloudflare R2・Dropbox・Box・<!-- Google ドライブ・-->PikPak（WebDAV）などのクラウドストレージや、SFTP・FTP・SMB・WebDAV のサーバーを、ひとつの macOS アプリから閲覧・転送するためのクライアントです。本ポリシーは、本アプリがどのような情報を扱い、どのように保護するかを説明します。</p>
+    <p>Obaket（以下「本アプリ」）は、Amazon S3・Cloudflare R2・Dropbox・Box・pCloud・<!-- Google ドライブ・-->PikPak（WebDAV）などのクラウドストレージや、SFTP・FTP・SMB・WebDAV のサーバーを、ひとつの macOS アプリから閲覧・転送するためのクライアントです。本ポリシーは、本アプリがどのような情報を扱い、どのように保護するかを説明します。</p>
 
     <div class="highlight">
       <p><strong>開発者にデータは届きません</strong></p>
@@ -92,7 +92,7 @@
 
     <h3>1.2 Mac 内に保存されるデータ</h3>
     <ul>
-      <li><strong>接続設定</strong>: 接続名・エンドポイント・リージョン・バケット等（認証情報を除く接続のメタ情報）。Box などアカウントで接続するサービスでは、表示用のアカウント名（名前が無いときはログインのメールアドレス）も含みます。</li>
+      <li><strong>接続設定</strong>: 接続名・エンドポイント・リージョン・バケット等（認証情報を除く接続のメタ情報）。Box・pCloud などアカウントで接続するサービスでは、表示用のアカウント名（名前が無いときはログインのメールアドレス）も含みます。</li>
       <li><strong>キャッシュ</strong>: 表示を速くするための一覧のメタデータ（ファイル名・サイズ・更新日時など）、サムネイル、プレビューや再利用のために取得したファイル本体。</li>
       <li><strong>転送の履歴と統計</strong>: 接続・リモートのパス・操作の種類・転送量・日時・結果やエラー。古い統計と終わった履歴は、30 日をめどに削除します。</li>
       <li><strong>中断した操作の記録</strong>: 転送や移動を再開・後片付けするための、対象のパス・進み具合・未完了のアップロードの識別子。</li>
@@ -116,8 +116,17 @@
       <li>Box から取得したデータ（ファイル本体・ファイル名・フォルダ構成などのメタデータ）は、<strong>あなたが本アプリ上で行った操作を実行する目的にのみ</strong>使用されます。開発者のサーバーへの送信、広告・分析目的での利用、あなた以外の第三者への共有は一切行いません。</li>
     </ul>
 
+    <h3>1.5 pCloud へのアクセスについて</h3>
+    <ul>
+      <li>あなたが pCloud に接続すると、本アプリは pCloud の OAuth 2.0 認証を通じて、あなた自身の pCloud アカウントの許可を得た上で pCloud API にアクセスします。認証の画面はお使いのブラウザで開きます。</li>
+      <li>許可を求める権限は、pCloud のすべてのフォルダにあるファイルとフォルダの読み取りと書き込みです。一覧表示・プレビュー・サムネイルの表示・ダウンロード・アップロード・フォルダ作成・名前の変更・移動・コピー・削除のために使います。また、接続したアカウントの確認と表示のため、pCloud のユーザー情報（利用者 ID とメールアドレス）を取得します。利用者 ID とメールアドレスは接続の設定に保存し（表示名にはメールアドレスを使います）、接続を書き出すと書き出しにも含まれます。公開リンクは作りません。</li>
+      <li>pCloud のデータは、アカウントごとに米国または EU の地域に置かれます。本アプリは認証の結果が示す地域の API に接続し、その地域を接続の設定に保存します。</li>
+      <li>pCloud から受け取ったアクセストークンは macOS キーチェーンに保存されます。このトークンには期限が無く、リフレッシュトークンはありません。接続を書き出すと、アクセストークンは書き出しに含まれます。</li>
+      <li>pCloud から取得したデータ（ファイル本体・ファイル名・フォルダ構成などのメタデータ）は、<strong>あなたが本アプリ上で行った操作を実行する目的にのみ</strong>使用されます。開発者のサーバーへの送信、広告・分析目的での利用、あなた以外の第三者への共有は一切行いません。</li>
+    </ul>
+
     <!-- Google ドライブ一般公開時にこの節を復活させること (上記コメント参照)。
-    <h3>1.5 Google ドライブへのアクセスについて</h3>
+    <h3>1.6 Google ドライブへのアクセスについて</h3>
     <ul>
       <li>あなたが Google ドライブに接続すると、本アプリは Google の OAuth 認証を通じて、あなた自身の Google アカウントの許可を得た上で Google Drive API にアクセスします。</li>
       <li>取得するスコープは、ファイル・フォルダの一覧表示・プレビュー・ダウンロードのための読み取り専用スコープ（<code>drive.readonly</code>）、またはアップロード・作成・リネーム・移動・コピー・削除（ゴミ箱への移動）もあわせて行う書き込みスコープ（<code>drive</code>）のいずれかです。どちらのスコープを許可するかは接続時にあなたが選択します。</li>
@@ -129,8 +138,8 @@
     <h2>2. 通信先</h2>
     <p>本アプリが通信するのは、次の宛先のみです：</p>
     <ul>
-      <li><strong>あなたが設定したクラウドストレージやサーバーの接続先</strong>（Amazon S3 / Cloudflare R2 / Dropbox / Box /<!-- Google ドライブ / --> PikPak の WebDAV、あなたが指定した SFTP・FTP・SMB・WebDAV のサーバーなど）。通信の暗号化は接続の種類によります。クラウドサービスと HTTPS の WebDAV は HTTPS、SFTP は SSH、FTPS は TLS で暗号化されます。暗号化しない FTP は接続の前に確認があり、HTTP の WebDAV はあなたが <code>http://</code> の接続先を指定したときだけ使われます。</li>
-      <li><strong>あなたが選んだサービスの API・認証・ファイル配信のホスト</strong>。Dropbox は Dropbox 社の認証サーバーと <code>api.dropboxapi.com</code> / <code>content.dropboxapi.com</code>、Box は <code>account.box.com</code> / <code>api.box.com</code> / <code>upload.box.com</code> と、ファイルやサムネイルの配信に使われる <code>*.boxcloud.com</code> / <code>*.boxcdn.net</code> など、Internet Archive は <code>archive.org</code> とそのダウンロードの配信先です。認証はいずれも、あなた自身のアカウントで行われます。</li>
+      <li><strong>あなたが設定したクラウドストレージやサーバーの接続先</strong>（Amazon S3 / Cloudflare R2 / Dropbox / Box / pCloud /<!-- Google ドライブ / --> PikPak の WebDAV、あなたが指定した SFTP・FTP・SMB・WebDAV のサーバーなど）。通信の暗号化は接続の種類によります。クラウドサービスと HTTPS の WebDAV は HTTPS、SFTP は SSH、FTPS は TLS で暗号化されます。暗号化しない FTP は接続の前に確認があり、HTTP の WebDAV はあなたが <code>http://</code> の接続先を指定したときだけ使われます。</li>
+      <li><strong>あなたが選んだサービスの API・認証・ファイル配信のホスト</strong>。Dropbox は Dropbox 社の認証サーバーと <code>api.dropboxapi.com</code> / <code>content.dropboxapi.com</code>、Box は <code>account.box.com</code> / <code>api.box.com</code> / <code>upload.box.com</code> と、ファイルやサムネイルの配信に使われる <code>*.boxcloud.com</code> / <code>*.boxcdn.net</code> など、pCloud は認証の <code>my.pcloud.com</code> と、地域ごとの API の <code>api.pcloud.com</code>（米国）/ <code>eapi.pcloud.com</code>（EU）、ファイルやサムネイルの配信に使われる <code>*.pcloud.com</code> のホスト、Internet Archive は <code>archive.org</code> とそのダウンロードの配信先です。認証はいずれも、あなた自身のアカウントで行われます。</li>
       <li><strong>同じネットワーク内の SMB サーバーの探索</strong>。SMB の接続を作る画面では、接続先の候補を出すために Bonjour（ローカルネットワーク内の探索）を使います。</li>
       <!-- <li>Google ドライブを利用する場合、認証はあなた自身のアカウントによる OAuth を通じて Google 社の認証サーバー（<code>accounts.google.com</code> / <code>oauth2.googleapis.com</code>）および Google Drive API（<code>www.googleapis.com</code>）と行われます。</li> -->
     </ul>
@@ -163,7 +172,7 @@
     <p>クラウドストレージ上にあるあなたのファイルは、本アプリを削除しても削除されません。書き出した接続のファイルやダウンロードしたファイルも、あなた自身で管理してください。</p>
 
     <h2>6. 第三者サービスについて</h2>
-    <p>本アプリは、あなた自身が契約している外部のクラウドストレージサービスに接続します。本アプリは独立したサードパーティ製クライアントであり、Amazon Web Services、Cloudflare、Dropbox、Box、<!-- Google、-->PikPak とは提携・後援・推奨の関係にありません。Amazon S3、Cloudflare R2、Dropbox、Box、<!-- Google ドライブ、-->PikPak は各社の商標です。各サービスにおけるデータの取り扱いについては、それぞれのサービスのプライバシーポリシー<!--（Google については <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google プライバシーポリシー</a>）-->をご確認ください。</p>
+    <p>本アプリは、あなた自身が契約している外部のクラウドストレージサービスに接続します。本アプリは独立したサードパーティ製クライアントであり、Amazon Web Services、Cloudflare、Dropbox、Box、pCloud、<!-- Google、-->PikPak とは提携・後援・推奨の関係にありません。Amazon S3、Cloudflare R2、Dropbox、Box、pCloud、<!-- Google ドライブ、-->PikPak は各社の商標です。各サービスにおけるデータの取り扱いについては、それぞれのサービスのプライバシーポリシー<!--（Google については <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google プライバシーポリシー</a>）-->をご確認ください。</p>
 
     <h2>7. お子様のプライバシー</h2>
     <p>本アプリは 13 歳未満のお子様を対象としたサービスではありません。本アプリは開発者に対して個人情報を収集しません。</p>
