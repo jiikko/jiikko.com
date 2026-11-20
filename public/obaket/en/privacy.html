@@ -119,8 +119,8 @@
     <h3>1.5 Access to pCloud</h3>
     <ul>
       <li>When you connect pCloud, the App accesses the pCloud API through pCloud OAuth 2.0, with permission granted by you from your own pCloud account. The sign-in page opens in your web browser.</li>
-      <li>The permission requested is to read and write the files and folders in all of your pCloud folders. It is used to list, preview, show thumbnails, download, upload, create folders, rename, move, copy, and delete. The App also reads your pCloud user information (user ID and email address) to confirm and show the connected account. The App does not create public links.</li>
-      <li>pCloud stores your data in the region (United States or EU) chosen when the account was created. The App connects to the API of the region returned by the sign-in, and saves that region in the connection settings.</li>
+      <li>The permission requested is to read and write the files and folders in all of your pCloud folders. It is used to list, preview, show thumbnails, download, upload, create folders, rename, move, copy, and delete. The App also reads your pCloud user information (user ID and email address) to confirm and show the connected account. The user ID and email address are saved in the connection settings (the email address is used as the display name), and are included when you export connections. The App does not create public links.</li>
+      <li>pCloud stores each account’s data in either the United States or the EU region. The App connects to the API of the region returned by the sign-in, and saves that region in the connection settings.</li>
       <li>The access token received from pCloud is stored in the macOS Keychain. The token does not expire, and there is no refresh token. When you export connections, the access token is included.</li>
       <li>Data obtained from pCloud (file contents and metadata such as file names and folder structure) is used <strong>solely to carry out the actions you perform within the App</strong>. It is never sent to the developer’s servers, used for advertising or analytics, or shared with any third party other than you.</li>
     </ul>
