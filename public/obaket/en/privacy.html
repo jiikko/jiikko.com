@@ -69,12 +69,12 @@
 <body>
   <div class="container">
     <h1>Privacy Policy</h1>
-    <p class="last-updated">Last updated: November 13, 2026</p>
+    <p class="last-updated">Last updated: November 21, 2026</p>
 
     <!-- Google Drive general availability is pending (hidden from the new-connection
          picker, see issues/epic/google-drive/production-readiness.md). Restore this
          comment-out when it ships. -->
-    <p>Obaket (the “App”) is a client for browsing and transferring cloud storage — such as Amazon S3, Cloudflare R2, Dropbox, Box<!--, Google Drive-->, and PikPak (WebDAV) — and SFTP, FTP, SMB, and WebDAV servers from a single macOS app. This policy explains what information the App handles and how it is protected.</p>
+    <p>Obaket (the “App”) is a client for browsing and transferring cloud storage — such as Amazon S3, Cloudflare R2, Dropbox, Box, pCloud<!--, Google Drive-->, and PikPak (WebDAV) — and SFTP, FTP, SMB, and WebDAV servers from a single macOS app. This policy explains what information the App handles and how it is protected.</p>
 
     <div class="highlight">
       <p><strong>Your data never reaches the developer</strong></p>
@@ -92,7 +92,7 @@
 
     <h3>1.2 Data Stored on Your Mac</h3>
     <ul>
-      <li><strong>Connection settings</strong>: connection name, endpoint, region, bucket, and other connection metadata (excluding credentials). For services you sign in to, such as Box, this also includes the account display name (or the login email address when there is no name).</li>
+      <li><strong>Connection settings</strong>: connection name, endpoint, region, bucket, and other connection metadata (excluding credentials). For services you sign in to, such as Box and pCloud, this also includes the account display name (or the login email address when there is no name).</li>
       <li><strong>Caches</strong>: listing metadata (file names, sizes, modification dates, and so on), thumbnails, and file contents fetched for previews or reuse, to speed up display.</li>
       <li><strong>Transfer history and statistics</strong>: connection, remote path, operation type, transferred bytes, timestamps, and results or errors. Old statistics and finished history are deleted after about 30 days.</li>
       <li><strong>Records of interrupted operations</strong>: paths, progress, and identifiers of unfinished uploads, used to resume or clean up transfers and moves.</li>
@@ -116,8 +116,17 @@
       <li>Data obtained from Box (file contents and metadata such as file names and folder structure) is used <strong>solely to carry out the actions you perform within the App</strong>. It is never sent to the developer’s servers, used for advertising or analytics, or shared with any third party other than you.</li>
     </ul>
 
+    <h3>1.5 Access to pCloud</h3>
+    <ul>
+      <li>When you connect pCloud, the App accesses the pCloud API through pCloud OAuth 2.0, with permission granted by you from your own pCloud account. The sign-in page opens in your web browser.</li>
+      <li>The permission requested is to read and write the files and folders in all of your pCloud folders. It is used to list, preview, show thumbnails, download, upload, create folders, rename, move, copy, and delete. The App also reads your pCloud user information (user ID and email address) to confirm and show the connected account. The App does not create public links.</li>
+      <li>pCloud stores your data in the region (United States or EU) chosen when the account was created. The App connects to the API of the region returned by the sign-in, and saves that region in the connection settings.</li>
+      <li>The access token received from pCloud is stored in the macOS Keychain. The token does not expire, and there is no refresh token. When you export connections, the access token is included.</li>
+      <li>Data obtained from pCloud (file contents and metadata such as file names and folder structure) is used <strong>solely to carry out the actions you perform within the App</strong>. It is never sent to the developer’s servers, used for advertising or analytics, or shared with any third party other than you.</li>
+    </ul>
+
     <!-- Restore this section when Google Drive ships (see the comment above).
-    <h3>1.5 Access to Google Drive</h3>
+    <h3>1.6 Access to Google Drive</h3>
     <ul>
       <li>When you connect Google Drive, the App accesses the Google Drive API through Google OAuth, with permission granted by you from your own Google Account.</li>
       <li>The scope requested is either a read-only scope (<code>drive.readonly</code>) used to list, preview, and download files and folders, or a write scope (<code>drive</code>) that additionally allows upload, creation, rename, move, copy, and delete (moving to trash). You choose which scope to grant when you connect.</li>
@@ -129,8 +138,8 @@
     <h2>2. Communication Destinations</h2>
     <p>The App communicates only with the following destinations:</p>
     <ul>
-      <li><strong>The cloud storage and servers you configure</strong> (such as Amazon S3 / Cloudflare R2 / Dropbox / Box /<!-- Google Drive / --> PikPak WebDAV, and the SFTP, FTP, SMB, and WebDAV servers you specify). Encryption depends on the connection type: cloud services and HTTPS WebDAV use HTTPS, SFTP uses SSH, and FTPS uses TLS. The App asks you to confirm before connecting with unencrypted FTP, and uses HTTP WebDAV only when you specify an <code>http://</code> address.</li>
-      <li><strong>The API, authentication, and file delivery hosts of the services you choose.</strong> For Dropbox: Dropbox’s authentication servers and <code>api.dropboxapi.com</code> / <code>content.dropboxapi.com</code>. For Box: <code>account.box.com</code> / <code>api.box.com</code> / <code>upload.box.com</code>, and the hosts Box uses to deliver files and thumbnails, such as <code>*.boxcloud.com</code> / <code>*.boxcdn.net</code>. For Internet Archive: <code>archive.org</code> and its download servers. Authentication always uses your own account.</li>
+      <li><strong>The cloud storage and servers you configure</strong> (such as Amazon S3 / Cloudflare R2 / Dropbox / Box / pCloud /<!-- Google Drive / --> PikPak WebDAV, and the SFTP, FTP, SMB, and WebDAV servers you specify). Encryption depends on the connection type: cloud services and HTTPS WebDAV use HTTPS, SFTP uses SSH, and FTPS uses TLS. The App asks you to confirm before connecting with unencrypted FTP, and uses HTTP WebDAV only when you specify an <code>http://</code> address.</li>
+      <li><strong>The API, authentication, and file delivery hosts of the services you choose.</strong> For Dropbox: Dropbox’s authentication servers and <code>api.dropboxapi.com</code> / <code>content.dropboxapi.com</code>. For Box: <code>account.box.com</code> / <code>api.box.com</code> / <code>upload.box.com</code>, and the hosts Box uses to deliver files and thumbnails, such as <code>*.boxcloud.com</code> / <code>*.boxcdn.net</code>. For pCloud: <code>my.pcloud.com</code> for sign-in, the regional API at <code>api.pcloud.com</code> (United States) / <code>eapi.pcloud.com</code> (EU), and the <code>*.pcloud.com</code> hosts pCloud uses to deliver files and thumbnails. For Internet Archive: <code>archive.org</code> and its download servers. Authentication always uses your own account.</li>
       <li><strong>Discovery of SMB servers on your local network.</strong> When you create an SMB connection, the App uses Bonjour (local network discovery) to suggest servers.</li>
       <!-- <li>When you use Google Drive, authentication is performed with Google’s authentication servers (<code>accounts.google.com</code> / <code>oauth2.googleapis.com</code>) and the Google Drive API (<code>www.googleapis.com</code>) via OAuth using your own account.</li> -->
     </ul>
@@ -163,7 +172,7 @@
     <p>Your files in cloud storage are not deleted when you delete the App. Exported connection files and downloaded files also remain under your control.</p>
 
     <h2>6. About Third-Party Services</h2>
-    <p>The App connects to external cloud storage services that you have contracted with yourself. The App is an independent third-party client and is not affiliated with, sponsored by, or endorsed by Amazon Web Services, Cloudflare, Dropbox, Box<!--, Google-->, or PikPak. Amazon S3, Cloudflare R2, Dropbox, Box<!--, Google Drive-->, and PikPak are trademarks of their respective owners. For how each service handles your data, please review that service’s own privacy policy<!-- (for Google, see the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>)-->.</p>
+    <p>The App connects to external cloud storage services that you have contracted with yourself. The App is an independent third-party client and is not affiliated with, sponsored by, or endorsed by Amazon Web Services, Cloudflare, Dropbox, Box, pCloud<!--, Google-->, or PikPak. Amazon S3, Cloudflare R2, Dropbox, Box, pCloud<!--, Google Drive-->, and PikPak are trademarks of their respective owners. For how each service handles your data, please review that service’s own privacy policy<!-- (for Google, see the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>)-->.</p>
 
     <h2>7. Children’s Privacy</h2>
     <p>The App is not intended for children under the age of 13. The App does not collect personal information for the developer.</p>
