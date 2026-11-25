@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!--
+  Google Cloud Storage の接続ガイド (obaket epic 1420・issue 1538)。英語は index.html、日本語は ja/index.html。
+  Obaket の手順の文言はアプリの UI (shared/Sources/ObaketPresentation/Connections/GCSConnectionFormView.swift・
+  ConnectionSheetView.swift・ConnectionSheetFooter.swift・SidebarView.swift と Localizable.xcstrings の ja) に合わせてある。UI の文言を変えたら両方を直す。
+  console の手順は Google の公式の文書 (2026-11-26 に読んだもの) に合わせてある。最小の権限 (Storage Object User) は obaket の
+  support-storage-services.md の「HMAC key の用意」と同じで、実アカウントでの確認は obaket issue 1539。
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect Google Cloud Storage | Obaket</title>
+  <meta name="description" content="How to create an HMAC key in Google Cloud and connect a Google Cloud Storage bucket to Obaket, the macOS file manager for cloud storage.">
+  <link rel="canonical" href="https://jiikko.com/obaket/docs/setup-gcs/" />
+  <link rel="alternate" hreflang="en" href="https://jiikko.com/obaket/docs/setup-gcs/" />
+  <link rel="alternate" hreflang="ja" href="https://jiikko.com/obaket/docs/setup-gcs/ja/" />
+  <style>
+    :root {
+      --bg: #191210;
+      --fg: #faf3ec;
+      --muted: rgba(250, 243, 236, 0.72);
+      --card: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 122, 26, 0.24);
+      --brand: #ff6a00;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #fff6ee;
+        --fg: #2b1708;
+        --muted: rgba(43, 23, 8, 0.72);
+        --card: rgba(255, 255, 255, 0.78);
+        --border: rgba(214, 97, 0, 0.3);
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.85;
+      padding: 48px 20px;
+    }
+    .container { max-width: 760px; margin: 0 auto; }
+    .breadcrumb { margin-bottom: 20px; }
+    h1 { font-size: 2rem; margin-bottom: 8px; }
+    .last-updated { color: var(--muted); margin-bottom: 36px; }
+    h2 {
+      font-size: 1.2rem;
+      margin: 34px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 { font-size: 1.02rem; margin: 20px 0 8px; }
+    p, li { margin-bottom: 12px; color: var(--muted); }
+    strong { color: var(--fg); }
+    ul, ol { padding-left: 24px; }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.92em;
+      color: var(--fg);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1px 6px;
+      word-break: break-all;
+    }
+    .highlight {
+      background: var(--card);
+      padding: 20px;
+      border-radius: 12px;
+      margin: 24px 0;
+      border: 1px solid var(--border);
+    }
+    .highlight p:last-child { margin-bottom: 0; }
+    .back { display: inline-block; margin-top: 36px; }
+    figure { margin: 8px 0 24px; }
+    figure img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+    figcaption { font-size: 0.9rem; color: var(--muted); margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p class="breadcrumb"><a href="/obaket/en/">Obaket</a> · <a href="ja/">日本語</a></p>
+    <h1>Connect Google Cloud Storage to Obaket</h1>
+    <p class="last-updated">Last updated: November 26, 2026</p>
+
+    <div class="highlight">
+      <p><strong>Coming soon.</strong> Google Cloud Storage support is still being tested and is not yet in the version of Obaket on the Mac App Store. This page describes how it will work once it is available.</p>
+    </div>
+
+    <p>Obaket is a macOS file manager for cloud storage. After you connect a Google Cloud Storage bucket, you can browse its files and folders, preview them with thumbnails, upload and download files, and rename, move, copy, and delete items, next to your other cloud storage in one window.</p>
+    <p>Obaket connects to one bucket with an <strong>HMAC key</strong> (an <em>Access key</em> and a <em>Secret</em>). This page shows how to create a bucket, a service account, and an HMAC key in the Google Cloud console, and then how to enter them in Obaket. If you already have a bucket and an HMAC key, skip to <a href="#connect">Connect in Obaket</a>.</p>
+
+    <h2>Before you start</h2>
+    <ul>
+      <li>A Mac running <strong>macOS 15 or later</strong> with a version of <a href="https://apps.apple.com/us/app/obaket/id6768261740?mt=12" target="_blank" rel="noopener noreferrer">Obaket from the Mac App Store</a> that lists Google Cloud Storage under Add Connection.</li>
+      <li>A Google Cloud project where you can use Cloud Storage. Google Cloud may ask you to set up billing for the project.</li>
+      <li>Permission in that project to create buckets, service accounts, and HMAC keys. The project owner has all of these. Otherwise ask for the roles <strong>Storage Admin</strong>, <strong>Create Service Accounts</strong>, and <strong>Storage HMAC Key Admin</strong>.</li>
+    </ul>
+
+    <h2>Step 1. Create a bucket</h2>
+    <p>Skip this step if you want to use a bucket you already have.</p>
+    <ol>
+      <li>In the Google Cloud console, open <a href="https://console.cloud.google.com/storage/browser" target="_blank" rel="noopener noreferrer">Cloud Storage › Buckets</a> and click <strong>Create</strong>.</li>
+      <li>Enter a bucket name. The name must be unique across all of Google Cloud. Use 3 to 63 lowercase letters, digits, hyphens (<code>-</code>), underscores (<code>_</code>), and dots (<code>.</code>), and start and end with a letter or digit (names with dots can be longer). See <a href="https://docs.cloud.google.com/storage/docs/buckets#naming" target="_blank" rel="noopener noreferrer">Bucket names</a> for all the rules.</li>
+      <li>The other settings (location, storage class, access control, data protection) can stay as they are. Click <strong>Create</strong>.</li>
+    </ol>
+    <p>Google describes the settings in <a href="https://docs.cloud.google.com/storage/docs/creating-buckets" target="_blank" rel="noopener noreferrer">Create buckets</a>.</p>
+
+    <h2>Step 2. Create a service account</h2>
+    <p>A service account is an account for an app rather than a person. Obaket acts with the permissions of this account, so you can limit Obaket to one bucket.</p>
+    <ol>
+      <li>Open <a href="https://console.cloud.google.com/iam-admin/serviceaccounts/create" target="_blank" rel="noopener noreferrer">IAM &amp; Admin › Service accounts › Create service account</a> and select your project.</li>
+      <li>Enter a name, for example <code>obaket</code>.</li>
+      <li>Click <strong>Done</strong>. You do not need to give the account roles on the whole project here; Step 3 gives it access to the bucket only.</li>
+    </ol>
+    <p>See <a href="https://docs.cloud.google.com/iam/docs/service-accounts-create" target="_blank" rel="noopener noreferrer">Create service accounts</a>.</p>
+
+    <h2>Step 3. Give the service account access to the bucket</h2>
+    <ol>
+      <li>On the <strong>Buckets</strong> page, click the name of your bucket.</li>
+      <li>Open the <strong>Permissions</strong> tab and click <strong>Grant access</strong>.</li>
+      <li>In <strong>New principals</strong>, enter the email address of the service account from Step 2 (it ends with <code>.iam.gserviceaccount.com</code>).</li>
+      <li>In <strong>Select a role</strong>, choose <strong>Cloud Storage › Storage Object User</strong>, then click <strong>Save</strong>.</li>
+    </ol>
+    <p><strong>Storage Object User</strong> lets the account list, read, create, replace, and delete objects and multipart uploads. Obaket does not need <strong>Storage Object Admin</strong>, which adds changing access and retention settings. See <a href="https://docs.cloud.google.com/storage/docs/access-control/using-iam-permissions" target="_blank" rel="noopener noreferrer">Use IAM permissions</a> and <a href="https://docs.cloud.google.com/storage/docs/access-control/iam-roles" target="_blank" rel="noopener noreferrer">IAM roles for Cloud Storage</a>.</p>
+
+    <h2>Step 4. Create an HMAC key</h2>
+    <ol>
+      <li>Open <a href="https://console.cloud.google.com/storage/settings" target="_blank" rel="noopener noreferrer">Cloud Storage › Settings</a> and select the <strong>Interoperability</strong> tab.</li>
+      <li>Under <strong>Access keys for service accounts</strong>, click <strong>Create a key for a service account</strong>.</li>
+      <li>Select the service account from Step 2 and click <strong>Create key</strong>.</li>
+      <li>Copy the <strong>Access key</strong> (it starts with <code>GOOG1</code>) and the <strong>Secret</strong>. Google Cloud shows the secret only when you create the key; if you lose it, create a new key.</li>
+    </ol>
+    <p>A new key can take up to a minute before it works. See <a href="https://docs.cloud.google.com/storage/docs/authentication/managing-hmackeys" target="_blank" rel="noopener noreferrer">Manage HMAC keys for service accounts</a>.</p>
+    <div class="highlight">
+      <p><strong>Use the HMAC key, not a JSON key file.</strong> The JSON key file of a service account (“Keys” on the service account page) is a different kind of key, and Obaket does not accept it yet. Keep the secret private: do not paste it into chats, issue trackers, or screenshots.</p>
+    </div>
+
+    <h2 id="connect">Step 5. Connect in Obaket</h2>
+    <ol>
+      <li>In Obaket, click the <strong>+</strong> (Add Connection) button in the sidebar.</li>
+      <li>Under “Choose a storage service to connect,” select <strong>Google Cloud Storage</strong>, then click <strong>Next</strong>.</li>
+      <li>Check the <strong>Connection Name</strong>, and enter the <strong>Bucket</strong> name, the <strong>Access key</strong>, and the <strong>Secret</strong>. There are no endpoint or region fields; Obaket always connects to <code>storage.googleapis.com</code>.</li>
+      <li>Click <strong>Test</strong> to check the connection, then click <strong>Save</strong>. The connection appears in the sidebar; select it to browse the bucket.</li>
+    </ol>
+
+    <div class="highlight">
+      <p><strong>Your files stay between your Mac and Google Cloud.</strong> Obaket talks to Cloud Storage directly and has no server of its own. The secret is stored in the macOS Keychain on your Mac. See the <a href="/obaket/en/privacy.html">Privacy Policy</a> for details.</p>
+    </div>
+
+    <h2>Things to know</h2>
+    <h3>Deleted files may still count toward your storage</h3>
+    <p>New buckets keep deleted and replaced objects for 7 days (<a href="https://docs.cloud.google.com/storage/docs/soft-delete" target="_blank" rel="noopener noreferrer">soft delete</a>) unless you change the setting, and buckets with <a href="https://docs.cloud.google.com/storage/docs/object-versioning" target="_blank" rel="noopener noreferrer">Object Versioning</a> keep older versions. Google Cloud charges for this storage. Obaket does not remove these copies; change the bucket settings in the console if you do not want them.</p>
+    <h3>Locked files cannot be deleted or replaced</h3>
+    <p>If the bucket has a <a href="https://docs.cloud.google.com/storage/docs/bucket-lock" target="_blank" rel="noopener noreferrer">retention policy</a> or an object has a <a href="https://docs.cloud.google.com/storage/docs/object-holds" target="_blank" rel="noopener noreferrer">hold</a>, Google Cloud refuses to delete it until the retention period ends or the hold is removed. Obaket shows this as a permission error.</p>
+    <h3>Organization policies can block HMAC keys</h3>
+    <p>If your organization sets the policy <code>constraints/storage.restrictAuthTypes</code> to block HMAC keys, you cannot create keys, and existing keys stop working. Ask your Google Cloud administrator. See <a href="https://docs.cloud.google.com/storage/docs/org-policy-constraints" target="_blank" rel="noopener noreferrer">Organization policy constraints for Cloud Storage</a>.</p>
+    <h3>Very large moves</h3>
+    <p>Moving or renaming a file larger than 5 GiB is done as one copy on Google’s side. Google Cloud stops a copy of more than 2.5 GiB that takes longer than 30 seconds, so large moves can fail. When a move fails, the original file stays where it was.</p>
+
+    <h2>Change (rotate) the key</h2>
+    <ol>
+      <li>Create a new HMAC key for the same service account (Step 4).</li>
+      <li>In Obaket, right-click the connection in the sidebar, choose <strong>Edit</strong>, enter the new <strong>Access key</strong> and <strong>Secret</strong>, and click <strong>Save</strong>. Check that you can browse the bucket.</li>
+      <li>In the console, on the <strong>Interoperability</strong> tab, click the service account under <strong>Access keys for service accounts</strong>, and change the old key to <strong>Inactive</strong>.</li>
+      <li>Wait at least 3 minutes, then delete the old key. A key must be inactive before you can delete it, and a deleted key cannot be recovered.</li>
+    </ol>
+    <p>A service account can have up to 10 HMAC keys.</p>
+
+    <h2>Troubleshooting</h2>
+    <h3>Test fails with an access error</h3>
+    <ul>
+      <li>Check that you entered the HMAC key (the Access key starts with <code>GOOG1</code>), not values from a JSON key file.</li>
+      <li>Check that the key is <strong>Active</strong> on the Interoperability tab. A key you just created can take up to a minute to work.</li>
+      <li>Check that the service account has <strong>Storage Object User</strong> on this bucket (Step 3), and that the bucket name is spelled correctly.</li>
+      <li>If your organization blocks HMAC keys (see above), the key cannot be used.</li>
+    </ul>
+    <h3>Remove the connection</h3>
+    <p>Right-click the connection in the sidebar and choose <strong>Delete</strong>. This removes the stored secret from your Mac. The HMAC key still works in Google Cloud; deactivate and delete it in the console if you no longer need it.</p>
+
+    <h2>Need help?</h2>
+    <p>Email <a href="mailto:support@jiikko.com">support@jiikko.com</a>, or report a problem on <a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+    <p>Obaket is an independent app and is not affiliated with, sponsored by, or endorsed by Google LLC. Google Cloud and Google Cloud Storage are trademarks of Google LLC.</p>
+
+    <a class="back" href="/obaket/en/">← Back to Obaket</a>
+  </div>
+</body>
+</html>
