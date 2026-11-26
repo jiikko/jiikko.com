@@ -3,7 +3,8 @@
   Google Cloud Storage の接続ガイド (obaket epic 1420・issue 1538)。英語は ja/index.html、日本語は index.html。
   Obaket の手順の文言はアプリの UI (shared/Sources/ObaketPresentation/Connections/GCSConnectionFormView.swift・
   ConnectionSheetView.swift・ConnectionSheetFooter.swift・SidebarView.swift と Localizable.xcstrings の ja) に合わせてある。UI の文言を変えたら両方を直す。
-  console の手順は Google の公式の文書 (2026-11-26 に読んだもの) に合わせてある。最小の権限 (Storage Object User) は obaket の
+  console の手順は Google の公式の文書 (2026-11-26 に読んだもの) に合わせてある。日本語の頁のボタン名と画像 (このディレクトリの *.webp) は、
+  2026-11-26 に日本語の console で撮ったもの (プロジェクト obaket。アカウントのアイコンと HMAC キーの値は塗りつぶした。撮影に使った bucket・サービスアカウント・キーは消した)。最小の権限 (Storage Object User) は obaket の
   support-storage-services.md の「HMAC key の用意」と同じで、実アカウントでの確認は obaket issue 1539。
 -->
 <html lang="ja">
@@ -106,41 +107,77 @@
       <li>Cloud Storage を使える Google Cloud のプロジェクト。プロジェクトに請求先の設定を求められることがあります。</li>
       <li>そのプロジェクトで bucket・サービスアカウント・HMAC キーを作る権限。プロジェクトのオーナーは全部を持っています。オーナーでなければ、次の 3 つのロールを管理者に頼んでください: <strong>Storage Admin</strong>・<strong>Create Service Accounts</strong>・<strong>Storage HMAC Key Admin</strong>。</li>
     </ul>
-    <p>Google Cloud の console の表示は言語の設定で変わります。以下ではメニューやボタンの名前を英語の表示で書きます。</p>
+    <p>ボタンやメニューの名前は、Google Cloud の console を日本語で表示したときのものです。画像のアカウントのアイコンとキーの値は伏せてあります。</p>
 
     <h2>手順 1. GCS の bucket を作る</h2>
     <p>既にある bucket を使うなら、この手順は飛ばしてください。</p>
     <ol>
-      <li>Google Cloud の console で <a href="https://console.cloud.google.com/storage/browser" target="_blank" rel="noopener noreferrer">Cloud Storage › Buckets</a> を開き、<strong>Create</strong> を押します。</li>
-      <li>bucket の名前を入れます。名前は Google Cloud 全体で重複できません。小文字・数字・ハイフン (<code>-</code>)・アンダースコア (<code>_</code>)・ピリオド (<code>.</code>) で 3〜63 字にし、先頭と末尾は英字か数字にします (ピリオドを含めるともっと長くできます)。規則の全体は Google の <a href="https://docs.cloud.google.com/storage/docs/buckets#naming" target="_blank" rel="noopener noreferrer">Bucket names</a> にあります。</li>
-      <li>ほかの設定 (場所・ストレージ クラス・アクセス制御・データの保護) はそのままでかまいません。<strong>Create</strong> を押します。</li>
+      <li>Google Cloud の console で <a href="https://console.cloud.google.com/storage/browser" target="_blank" rel="noopener noreferrer">Cloud Storage › バケット</a> を開き、<strong>作成</strong> を押します。
+        <figure>
+          <img src="01-buckets.webp" width="1400" height="723" alt="Cloud Storage のバケットの一覧。上に「作成」のボタンがある">
+          <figcaption>「作成」を押します。</figcaption>
+        </figure>
+      </li>
+      <li>bucket の名前を入れます。名前は Google Cloud 全体で重複できません。小文字・数字・ハイフン (<code>-</code>)・アンダースコア (<code>_</code>)・ピリオド (<code>.</code>) で 3〜63 字にし、先頭と末尾は英字か数字にします (ピリオドを含めるともっと長くできます)。規則の全体は Google の <a href="https://docs.cloud.google.com/storage/docs/buckets#naming" target="_blank" rel="noopener noreferrer">Bucket names</a> にあります。
+        <figure>
+          <img src="02-create-bucket.webp" width="1400" height="723" alt="バケットの作成の画面で、名前の欄に obaket-setup-guide-20261126 を入れたところ">
+          <figcaption>名前を入れます。</figcaption>
+        </figure>
+      </li>
+      <li>ほかの設定 (データの保存場所・ストレージ クラス・アクセス制御・データの保護) はそのままでかまいません。下の <strong>作成</strong> を押します。</li>
+      <li>「公開アクセスの防止」の確認が出たら、<strong>このバケットに対する公開アクセス禁止を適用する</strong> に印が付いたまま <strong>確認</strong> を押します。</li>
     </ol>
     <p>設定の説明は Google の <a href="https://docs.cloud.google.com/storage/docs/creating-buckets" target="_blank" rel="noopener noreferrer">Create buckets</a> にあります。</p>
 
     <h2>手順 2. サービスアカウントを作る</h2>
     <p>サービスアカウントは、人ではなくアプリが使うアカウントです。Obaket はこのアカウントの権限で動くので、Obaket が触れる範囲を 1 つの bucket に限れます。</p>
     <ol>
-      <li><a href="https://console.cloud.google.com/iam-admin/serviceaccounts/create" target="_blank" rel="noopener noreferrer">IAM &amp; Admin › Service accounts › Create service account</a> を開き、プロジェクトを選びます。</li>
-      <li>名前を入れます (例: <code>obaket</code>)。</li>
-      <li><strong>Done</strong> を押します。ここでプロジェクト全体のロールを付ける必要はありません。手順 3 で bucket だけに権限を付けます。</li>
+      <li><a href="https://console.cloud.google.com/iam-admin/serviceaccounts/create" target="_blank" rel="noopener noreferrer">IAM と管理 › サービス アカウント › サービス アカウントの作成</a> を開き、プロジェクトを選びます。</li>
+      <li><strong>サービス アカウント名</strong> を入れます (例: <code>obaket</code>)。<strong>メールアドレス</strong> に出るアドレスを手順 3 で使います。
+        <figure>
+          <img src="03-service-account.webp" width="1400" height="723" alt="サービス アカウントの作成の画面で、名前に obaket を入れたところ。下にメールアドレスが出ている">
+          <figcaption>名前を入れると、メールアドレスが決まります。</figcaption>
+        </figure>
+      </li>
+      <li><strong>作成して閉じる</strong> を押します。ここでプロジェクト全体のロールを付ける必要はありません。手順 3 で bucket だけに権限を付けます。</li>
     </ol>
     <p>Google の <a href="https://docs.cloud.google.com/iam/docs/service-accounts-create" target="_blank" rel="noopener noreferrer">Create service accounts</a> も参照してください。</p>
 
     <h2>手順 3. サービスアカウントに bucket の権限を付ける</h2>
     <ol>
-      <li><strong>Buckets</strong> のページで、使う bucket の名前を押します。</li>
-      <li><strong>Permissions</strong> タブを開き、<strong>Grant access</strong> を押します。</li>
-      <li><strong>New principals</strong> に、手順 2 のサービスアカウントのメールアドレス (<code>.iam.gserviceaccount.com</code> で終わるもの) を入れます。</li>
-      <li><strong>Select a role</strong> で <strong>Cloud Storage › Storage Object User</strong> を選び、<strong>Save</strong> を押します。</li>
+      <li><strong>バケット</strong> のページで、使う bucket の名前を押します。</li>
+      <li><strong>権限</strong> タブを開き、<strong>アクセスを許可</strong> を押します。</li>
+      <li><strong>新しいプリンシパル</strong> に、手順 2 のサービスアカウントのメールアドレス (<code>.iam.gserviceaccount.com</code> で終わるもの) を入れます。</li>
+      <li><strong>ロールを選択</strong> で <strong>Storage オブジェクト ユーザー</strong> を選び (検索の欄に名前を入れると出ます)、<strong>保存</strong> を押します。
+        <figure>
+          <img src="04-grant-access.webp" width="1400" height="723" alt="バケットへのアクセス権の付与の画面。新しいプリンシパルにサービスアカウントのメールアドレス、ロールに Storage オブジェクト ユーザーを入れたところ">
+          <figcaption>プリンシパルとロールを入れて「保存」を押します。</figcaption>
+        </figure>
+      </li>
     </ol>
-    <p><strong>Storage Object User</strong> を付けると、そのアカウントは object と multipart upload の一覧・読み出し・作成・置き換え・削除ができます。アクセスと保持の設定の変更が増えるだけの <strong>Storage Object Admin</strong> は要りません。Google の <a href="https://docs.cloud.google.com/storage/docs/access-control/using-iam-permissions" target="_blank" rel="noopener noreferrer">Use IAM permissions</a> と <a href="https://docs.cloud.google.com/storage/docs/access-control/iam-roles" target="_blank" rel="noopener noreferrer">IAM roles for Cloud Storage</a> を参照してください。</p>
+    <p><strong>Storage オブジェクト ユーザー</strong> (Storage Object User) を付けると、そのアカウントはオブジェクトの一覧・読み出し・作成・置き換え・削除と、マルチパートアップロードができます。アクセスと保持の設定の変更が増えるだけの <strong>Storage Object Admin</strong> は要りません。Google の <a href="https://docs.cloud.google.com/storage/docs/access-control/using-iam-permissions" target="_blank" rel="noopener noreferrer">Use IAM permissions</a> と <a href="https://docs.cloud.google.com/storage/docs/access-control/iam-roles" target="_blank" rel="noopener noreferrer">IAM roles for Cloud Storage</a> を参照してください。</p>
 
     <h2>手順 4. HMAC キーを作る</h2>
     <ol>
-      <li><a href="https://console.cloud.google.com/storage/settings" target="_blank" rel="noopener noreferrer">Cloud Storage › Settings</a> を開き、<strong>Interoperability</strong> (相互運用性) タブを選びます。</li>
-      <li><strong>Access keys for service accounts</strong> の下の <strong>Create a key for a service account</strong> を押します。</li>
-      <li>手順 2 のサービスアカウントを選び、<strong>Create key</strong> を押します。</li>
-      <li>表示された <strong>Access key</strong> (<code>GOOG1</code> で始まる) と <strong>Secret</strong> を控えます。シークレットはキーを作ったときにしか表示されません。なくしたら新しいキーを作ってください。</li>
+      <li><a href="https://console.cloud.google.com/storage/settings" target="_blank" rel="noopener noreferrer">Cloud Storage › 設定</a> を開き、<strong>相互運用性</strong> タブを選びます。</li>
+      <li><strong>サービス アカウント HMAC</strong> の下の <strong>サービス アカウント用にキーを作成</strong> を押します。
+        <figure>
+          <img src="05-interoperability.webp" width="1400" height="723" alt="Cloud Storage の設定の相互運用性タブ。サービス アカウント HMAC の下に「サービス アカウント用にキーを作成」のボタンがある">
+          <figcaption>「サービス アカウント用にキーを作成」を押します。</figcaption>
+        </figure>
+      </li>
+      <li>手順 2 のサービスアカウントを選び、<strong>鍵を作成</strong> を押します。
+        <figure>
+          <img src="06-select-service-account.webp" width="1400" height="723" alt="サービス アカウントの選択の画面で、obaket のサービスアカウントを選んだところ">
+          <figcaption>サービスアカウントを選んで「鍵を作成」を押します。</figcaption>
+        </figure>
+      </li>
+      <li>表示された <strong>アクセスキー</strong> (<code>GOOG1</code> で始まる) と <strong>シークレット</strong> を控え、<strong>終了</strong> を押します。シークレットはこの画面を閉じると二度と表示されません。なくしたら新しいキーを作ってください。
+        <figure>
+          <img src="07-hmac-key.webp" width="1400" height="723" alt="新しいサービス アカウントの HMAC キーの画面。アクセスキーとシークレットの値は伏せてある">
+          <figcaption>アクセスキーとシークレットを控えます (画像では値を伏せています)。</figcaption>
+        </figure>
+      </li>
     </ol>
     <p>作ったキーが使えるようになるまで最大 1 分ほどかかります。Google の <a href="https://docs.cloud.google.com/storage/docs/authentication/managing-hmackeys" target="_blank" rel="noopener noreferrer">Manage HMAC keys for service accounts</a> を参照してください。</p>
     <div class="highlight">
@@ -150,8 +187,18 @@
     <h2 id="connect">手順 5. Obaket で接続する</h2>
     <ol>
       <li>Obaket のサイドバーの <strong>+</strong> (接続を追加) ボタンを押します。</li>
-      <li>「接続するストレージサービスを選択してください。」で <strong>Google Cloud Storage</strong> を選び、<strong>次へ</strong> を押します。</li>
-      <li><strong>接続名</strong>を確かめ、<strong>バケット</strong>に bucket の名前、<strong>アクセスキー</strong>と<strong>シークレット</strong>に手順 4 で控えた値を入れます。endpoint と region の欄はありません。接続先は常に <code>storage.googleapis.com</code> です。</li>
+      <li>「接続するストレージサービスを選択してください。」で <strong>Google Cloud Storage</strong> を選び、<strong>次へ</strong> を押します。
+        <figure>
+          <img src="09-choose-gcs.webp" width="2200" height="1440" alt="Obaket の接続を追加の画面。オブジェクトストレージの中に Google Cloud Storage がある">
+          <figcaption>「オブジェクトストレージ」の Google Cloud Storage を選びます。</figcaption>
+        </figure>
+      </li>
+      <li><strong>接続名</strong>を確かめ、<strong>バケット</strong>に bucket の名前、<strong>アクセスキー</strong>と<strong>シークレット</strong>に手順 4 で控えた値を入れます。endpoint と region の欄はありません。接続先は常に <code>storage.googleapis.com</code> です。
+        <figure>
+          <img src="10-gcs-form.webp" width="2200" height="1440" alt="Obaket の Google Cloud Storage の接続のフォーム。接続名・バケット・アクセスキー・シークレットの欄がある">
+          <figcaption>バケット・アクセスキー・シークレットを入れます。</figcaption>
+        </figure>
+      </li>
       <li><strong>テスト</strong>で接続を確かめ、<strong>保存</strong>を押します。サイドバーに接続が出るので、選ぶと bucket の中を見られます。</li>
     </ol>
 
@@ -173,21 +220,26 @@
     <ol>
       <li>同じサービスアカウントに新しい HMAC キーを作ります (手順 4)。</li>
       <li>Obaket のサイドバーで接続を右クリックして<strong>編集</strong>を選び、新しい<strong>アクセスキー</strong>と<strong>シークレット</strong>を入れて<strong>保存</strong>を押します。bucket の中を見られることを確かめます。</li>
-      <li>console の <strong>Interoperability</strong> タブで、<strong>Access keys for service accounts</strong> のサービスアカウントを押し、古いキーを <strong>Inactive</strong> にします。</li>
-      <li>3 分以上待ってから古いキーを削除します。削除できるのは Inactive のキーだけで、削除したキーは元に戻せません。</li>
+      <li>console の <strong>相互運用性</strong> タブの <strong>サービス アカウントのアクセスキー</strong> で、古いキーのステータス <strong>有効</strong> を押し、<strong>無効にする</strong> を押します。
+        <figure>
+          <img src="08-key-list.webp" width="1400" height="723" alt="サービス アカウントのアクセスキーの一覧。キーのステータスが有効になっている (キーの値は伏せてある)">
+          <figcaption>ステータスの「有効」を押すと、キーを無効にできます。</figcaption>
+        </figure>
+      </li>
+      <li>3 分以上待ってから、古いキーの右のごみ箱のアイコンで削除します。削除できるのは無効にしたキーだけで、削除したキーは元に戻せません。</li>
     </ol>
-    <p>1 つのサービスアカウントに作れる HMAC キーは 10 本までです。</p>
+    <p>1 つのサービスアカウントで使えるキーの数には上限があります (console には 5 つまでと出ます)。</p>
 
     <h2>うまくいかないとき</h2>
     <h3>テストがアクセスのエラーで失敗する</h3>
     <ul>
       <li>入れたのが HMAC キーか (アクセスキーは <code>GOOG1</code> で始まります)、JSON のキーファイルの値ではないかを確かめてください。</li>
-      <li>Interoperability タブでキーが <strong>Active</strong> かを確かめてください。作ったばかりのキーは使えるまで最大 1 分ほどかかります。</li>
-      <li>サービスアカウントにこの bucket の <strong>Storage Object User</strong> を付けたか (手順 3)、bucket の名前が合っているかを確かめてください。</li>
+      <li>相互運用性タブでキーのステータスが <strong>有効</strong> かを確かめてください。作ったばかりのキーは使えるまで最大 1 分ほどかかります。</li>
+      <li>サービスアカウントにこの bucket の <strong>Storage オブジェクト ユーザー</strong> を付けたか (手順 3)、bucket の名前が合っているかを確かめてください。</li>
       <li>組織が HMAC キーを禁止していると (上記)、キーは使えません。</li>
     </ul>
     <h3>接続を消す</h3>
-    <p>サイドバーで接続を右クリックして<strong>削除</strong>を選びます。Mac に保存したシークレットが消えます。HMAC キー自体は Google Cloud で有効なままなので、要らなければ console で Inactive にしてから削除してください。</p>
+    <p>サイドバーで接続を右クリックして<strong>削除</strong>を選びます。Mac に保存したシークレットが消えます。HMAC キー自体は Google Cloud で有効なままなので、要らなければ console で無効にしてから削除してください。</p>
 
     <h2>お問い合わせ</h2>
     <p><a href="mailto:support@jiikko.com">support@jiikko.com</a> へのメールか、<a href="https://github.com/jiikko/product-feedback" target="_blank" rel="noopener noreferrer">GitHub</a> でお知らせください。</p>
